@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 5</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body> 
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 5</h1>
+<div id="TagLine">
+   In which, we begin working with quaternions
+</div>
+<hr>
+     
+<p>The goals of this lab are to 
+<ul>
+<li> Implement angle/axis to quaternion conversions
+<li> Implement quaternion to matrix conversions
+<li> Use rotations in an animation (based on the code your wrote for lab 4)
+</ul>
+
+<p>After completing this assignment, all teapots from lab 4 should spin in unison!
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+<p>This assignment has been added to your AnimationToolkit repository. 
+
+<pre class="prettyprint lang-sh">
+> cd cs56
+> cd AnimationToolkit
+> cd build
+> cmake ..
+> make 
+> ../bin/a5-testQuat
+</pre>
+
+<p>You should now have a new directory under assignments called a5-quats.
+
+<br>
+<hr>
+<h2>Assignment 5: Quazy quaternions</h2>
+<h3>Due October 11</h3>
+<hr>
+
+<p>In this assignment, you will implement conversions between quaternions,
+matrices, and angle/axis representations for rotation.  To help test your
+conversions, re-use the teapot demo from <a href="lab4-euler.html">assignment
+4</a>. 
+
+<br>
+<hr>
+<h3>Question 1: Ripples (15 points)</h3>
+<hr>
+
+<p>In this question, we will use rotations around the Z axis to create a ripple 
+effect. This question is split into steps 
+
+<b>Part 1: Draw a NxN grid of cuboids (2 points)</b>
+
+<p>Re-purpose your code from assignment 2 to draw a grid of cuboids. Unlike in 
+assignment 2 (gradient), these cuboids should be longer than they are wide to 
+create stripes across the screen. (Hint: to change the width of the cuboid, 
+use the last parameter to ADrawCube to adjust the dimensions)
+
+<br>
+<br>
+<img src="rippleStripes.png" height=300>
+<br>
+<br>
+
+<b>Part 2: Use atan2 to rotate cuboids towards the target (3 points)</b>
+
+<p>Re-purpose your code from assignment 1 (look) to use atan2 to compute 
+an angle that points from the cuboid's position to the target. The calculation 
+will give you an angle which you can use to rotate the cuboid towards the 
+target. (Hint: the axis of rotation is the Z axis. Use euler angles to create 
+an AMatrix3 to pass to ADrawCube).
+
+<br>
+<br>
+<img src="ripples1.gif" height=300>
+<br>
+<br>
+
+<p>Next, modify your code so that only cuboids within 100 units of the target 
+are pointed towards it.
+
+<br>
+<br>
+<img src="ripples2.gif" height=300>
+<br>
+<br>
+
+<b>Part 3: Interpolate cuboids smoothly back to their original orientations (10 points)</b>
+
+<p>To accomplish this effect, you will need to store the Z angle for each cuboid. 
+If the cuboid's position is further than 100 units away from the target, you should 
+blend its current angle with zero. In our interpolations for assignment 2, we kept 
+track of the start and end values so we could vary the quantity based on 
+
+<pre>
+angle = start * (1-t) + end * t
+</pre>
+
+<p>For this animation, we will perform an exponential blend back to zero. This is 
+simpler to implement than a linear blend merely need decrease the currentAngle back 
+to zero each frame, e.g.  
+
+<pre>
+angle = currentAngle * pow(rate, dt())
+</pre>
+ 
+<p>For example, if rate = 0.1, we will decrease currentAngle by pow(0.1, dt()) each frame. This will quickly reduce the angle towards zero. 
+
+<br>
+<br>
+<img src="ripples3.gif" height=300>
+<br>
+<br>
+
+<p>To finish up the animation, use the flag _buttonDown so that the cuboids do not 
+point towards the target unless the user is pressing the left mouse button (e.g. 
+when _buttonDown = true, the user is pressing the left mouse button).
+
+<br>
+<br>
+<img src="ripples4.gif" height=300>
+<br>
+<br>
+
+<br>
+<hr>
+<h3>Question 2: Converting between angle/axis and quaternions (10 points)</h3>
+<hr>
+
+<p>In this question, you will implement conversions between quaternions and 
+angle-axis representations for rotation.
+
+<p>Recall that the relationship between quaternions and an angle/axis rotation is
+
+\(
+q = \left[\sin(\frac{\theta}{2}) \hat{u}, \cos(\frac{\theta}{2})\right]
+\) 
+
+<ol>
+<li>(5 points) Implement <b>AQuaternion::fromAngleAxis</b> in <b>libsrc/animation/AQuaternion-basecode.cpp</b>
+<li>(5 points) Implement <b>AQuaternion::toAngleAxis</b> in <b>libsrc/animation/AQuaternion-basecode.cpp</b>
+</ol>
+
+<p>To run the unit tests from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a5-testQuat 
+</pre>
+</p>
+
+<pre class="prettyprint lang-c">
+// accessing member variables in AQuaternion works similarly to AMatrix3
+mX = 0.5;
+mY = 0.0;
+mZ = 3.0;
+mW = -5.0;
+normalize(); // make myself a unit quaternion
+
+AQuaternion q; // create an identity quat
+q[0] = 0.1; // x value
+q[1] = 0.1; // y value
+q[2] = 0.1; // z value
+q[3] = 0.1; // w value
+q.normalize(); // make q a unit quaternion
+</pre>
+
+<br>
+<hr>
+<h3>Question 3: Converting from a quaternion to a matrix (15 points)</h3>
+<hr>
+
+<p>In class, we derived the rotation matrix corresponding to a quaternion 
+\( q = (x, y, z, w) = (\bar{v}), w \).
+
+\[
+\left( \begin{array}{ccc}
+1-2(y^2+z^2) & 2(x y - w z) & 2(x z + w y) \\
+2(x y + w z) & 1-2(x^2+z^2) & 2(y z - w x) \\
+2(x z - w y) & 2(y z + w x) & 1-2(y^2+x^2) \\
+\end{array} \right)
+\]
+
+<ol>
+<li>(5 points) 
+Suppose we have a quaternion corresponding to a 45 degree rotation around the Z 
+axis. Verify that the matrix above reduces to a Z rotation matrix \( R_Z(45) \).
+Write your answer in your readme for this week.
+<li>(10 points) Implement the above matrix to convert from a AQuaternion to an AMatrix3 in <b>AQuaternion::toMatrix()</b> located in <b>libsrc/animation/AQuaternion-basecode.cpp</b>
+</ol>
+
+<p>To run the unit tests from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a5-testQuatMat 
+</pre>
+</p>
+
+<p>To check the teapot demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a4-teapots 
+</pre>
+</p>
+
+<br>
+<hr>
+<h3>Question 4: Converting from a matrix to a quaternion (22 points)</h3>
+<hr>
+
+<ol>
+<li>(6 points) Consider the matrix above. In class, we showed that 
+\( w^2 = \frac{1}{4}(m_{11} + m_{22} + m_{33} + 1) \). Using the diagonal terms, 
+derive expressions for 
+<ul>
+		<li>\( x^2\)
+		<li>\( y^2\)
+		<li>\( z^2\)
+</ul>
+<li>(6 points) Consider the matrix above. Using the off-diagonal terms, derive expressions for 
+<ul>
+		<li>\( w x\)
+		<li>\( w y\)
+		<li>\( w z\)
+		<li>\( x y\)
+		<li>\( x z\)
+		<li>\( y z\)
+</ul>
+<li>(10 points) Implement the algorithm for converting from AMatrix3 to AQuaternion. Your implementation should go in <b>AQuaternion::fromMatrix()</b> in <b>libsrc/animation/AQuaternion-basecode.cpp</b>.
+<p>Using the expressions above, we can extract a quaternion from a rotation matrix, 
+similarly to how we extract euler angles from a matrix. 
+A numerically stable approach is to 
+
+<pre class="prettyprint lang-c">
+//solve for w^2, x^2, y^2, and z^2
+//Find the term with the largest value
+//Based on the largest component, compute the remaining terms using the off-diagonal matrix elements.
+</pre>
+
+<p>For example, if \( w^2 \) is the largest, we would then solve for x, y, and z using 
+the expressions for \( w x \), \( w y \), and \( w z \).
+
+<li>(5 points) Consider the matrix \( R_Z(45) \) from the previous question. 
+Apply this algorithm to obtain the original quaternion back.
+</ol>
+
+<p>To run the unit tests from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a5-testQuatMat 
+</pre>
+</p>
+
+<p>To check the teapot demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a4-teapots 
+</pre>
+</p>
+
+<!--
+<br>
+<br>
+<b>Numerical stability</b>
+<br>
+
+<p>You may be asking yourself why we can't just use the diagonal terms to extract 
+our quaternion. Or why we can simply always solve for the same component 
+and use the same off-diagonal terms. 
+
+<p>When performing computations we have to be careful to avoid
+
+<ul>
+		<li>taking sqrts of negative numbers
+		<li>dividing by zero
+		<li>dividing by very small numbers (in general)
+</ul>
+
+<p><b>Question 6 (5 points) </b>
+For example, compute the matrix that corresponds to a 180 degree rotation around Y. 
+What would the values for \( w^2 \), \( x^2 \), \( y^2 \), and \( z^2 \) be?  What 
+happens if you compute w and then try to use the off-diagonal terms to compute x, y, 
+and z?
+
+<p>In practice, your matrices will not have values that are exactly 0, -1 or exactly 1. 
+The will be slightly less or greater than these values. In the case above, it's 
+possible that computing w results on a NaN (Not a Number) if the parameter of the 
+sqrt is slightly negative. Rather than add checks in our code, using the above 
+proposed method avoids these pitfalls altogether.
+
+<p>Include your answers in your readme for this week.
+-->
+
+<br>
+<hr>
+<h2>Extra Credit (Up to 17 points)</h2>
+<hr>
+
+<p><b>Option 1 (up to 2)</b> Now that your framework supports rotations around any axis, try to make an interesting demo based on that. 
+
+<p><b>Option 2 (up to 15)</b> Implement a direct angle/axis to matrix conversions. Lengyel 4.3.1 can be used as a reference. 
+For full credit, answer the following questions:
+<ol>
+<li>(5 points) Outline the derivation of the angle/axis to matrix conversion. 
+<li>(5 points) Implement <b>AMatrix3::fromAngleAxis</b> in <b>libsrc/animation/AMatrix3-basecode.cpp</b> using a direct angle/axis to matrix implementation 
+<li>(5 points) Implement <b>AMatrix3::toAngleAxis</b> in <b>libsrc/animation/AMatrix3-basecode.cpp</b> using a direct matrix to angle/axis implementation
+</ol>
+
+<br>
+<br>
+<img src="rings.gif" height=300px">
+<img src="ripplesExtra.gif" height=300px">
+
+<hr>
+<h2>Submission Requirements (1 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+
+</body></html>

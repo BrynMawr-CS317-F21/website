@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 4</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+   </head>
+<body> 
+
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 4</h1>
+<div id="TagLine">
+   In which, euler angles and rotation matrices become part of our 3D programming skillset
+</div>
+<hr>
+     
+<p>The goals of this lab are to
+<ul>
+<li> Understand the matrix form of euler angles
+<li> Understand how to get euler angles from a rotations matrix
+<li> Implement euler conversions in the code framework
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+<p>This assignment has been added to your AnimationToolkit repository. 
+
+<pre class="prettyprint lang-sh">
+> cd cs56
+> cd AnimationToolkit
+> cd build
+> cmake ..
+> make 
+> ../bin/a4-teapots
+</pre>
+
+<p>You should now have a new directory under assignments called a4-euler.
+
+<br>
+<hr>
+<h2>Assignment 4: You spin me round!</h2>
+<h3>Due October 4</h3>
+<hr>
+
+<p>In this assignment, you will implement conversions between euler angles 
+   and matrices. To help test your conversions, you have been given a grid of 
+   spinning teapots as well as a console program for unit testing. 
+
+<p>In the teapot viewer, you should see a grid of teapots. The UI on the top
+left allows you to enter test values. Each teapot tests a conversion
+function. This week, you will implement 6 of the teapots to match the top
+right. Next week, you will implement the remaining two teapots.
+
+<br>
+<center>
+		<!--<img src="ConvertDemo.jpg" width="75%">-->
+<video controls>
+		<source src="teapots.ogv">
+</video>
+</center>
+<br>
+
+<h2>To Get Started: Read the <a href="../EulerAngles.html">Euler angle conversion notes</a></h2>
+
+<br>
+<hr>
+<h3>Question 0 (20 points): Converting between ZYX euler angles and matrices</h3>
+<hr>
+
+<p>Your basecode this week includes a <a href="https://jupyter.org/">Jupyter
+notebook</a> which uses the SymPy python library to compute symbolic
+expressions for all 6 euler angle matrices. In class, we talked about how to go
+between ZYX euler angles and a matrix. Let's check our understanding of this
+process here.  </p>
+
+
+<p><b>Aside: Running the Jupyter Notebook</b> You do not need to run the 
+Jupyter notebook for your assignment this week. Instead, use the compiled 
+output <a href="../EulerAngles.html">here</a>. However, if you would like the run it, you can download it from <a href="EulerAngles.ipynb">here</a>. To run, 
+execute the following from the command line.
+This will open a page in your browser that will allow you to 
+edit the notebook.</p>
+
+<pre class="prettyprint lang-sh">
+>jupyter notebook
+</pre>
+
+<p>Euler angles describe rotations as a sequence of rotations around each
+axis. Any sequence is valid: we can rotate first around X, then Y, then Z; or
+we can rotate first around Y, then X, and then Z.
+
+<p>In our notebook, we define rotation matrices for each of these rotations 
+   like so
+</p>
+
+<pre class="prettyprint lang-sh">
+# Define symbols
+cx,sx = symbols('cx sx')
+cy,sy = symbols('cy sy')
+cz,sz = symbols('cz sz')
+
+Rx = Matrix([ 
+         [1, 0, 0], 
+         [0, cx,-sx], 
+         [0, sx, cx]])
+
+Ry = Matrix([
+         [ cy, 0, sy], 
+         [ 0,  1, 0], 
+         [-sy, 0, cy]])
+
+Rz = Matrix([ 
+         [cz, -sz, 0], 
+         [sz,  cz, 0], 
+         [0,    0, 1]]) 
+
+</pre>
+
+<p>Once we have each rotation matrix, we can compute the matrix corresponding
+to XYZ euler angles like so. 
+
+<pre class="prettyprint lang-sh">
+print("Rxyz")
+pprint(Rx * Ry * Rz)
+
+Rxyz
+|      cy⋅cz             -cy⋅sz         sy  |
+|                                           |
+|cx⋅sz + cz⋅sx⋅sy   cx⋅cz - sx⋅sy⋅sz  -cy⋅sx|
+|                                           |
+|-cx⋅cz⋅sy + sx⋅sz  cx⋅sy⋅sz + cz⋅sx  cx⋅cy |
+
+</pre>
+
+<p>Let's take a look at this matrix and answers several questions about it.
+Please put the answers to the following questions in your readme for this
+week.
+
+<p><b>Q1</b>: What is an orthogonal matrix? Show that 
+<ul>
+<li> one column has length 1, and that
+<li> the same column is perpendicular to the other two
+</ul>
+
+<p>If you have shown that more columns have unit length or are perpendicular to
+the other two, you will receive extra credit.
+
+<p><b>Q2</b>: What matrix element would be the easiest to get an angle back?
+
+<p><b>Q3</b>: Recall that tan = sin/cos. How could we use this to get the other angles back?
+
+<p><b>Q4</b>: What happens when the rotation around the Y axis is 90 degrees? 
+
+<p><b>Q5</b>: If the Y rotation is 90 degrees, how can we get the X and Z values back?
+
+<p><b>Q6</b>: Show that when the rotation around Y is 90 degrees, the values for X and Z are not unique. 
+
+<p><b>Q7</b>: Consider the following matrix. What does each column represent? 
+
+<pre class="prettyprint lang-sh">
+|0   -cx⋅sz + cz⋅sx  cx⋅cz + sx⋅sz|
+|0   cx⋅cz + sx⋅sz   cx⋅sz - cz⋅sx|
+|-1        0               0      |
+</pre>
+
+<p><b>Q8</b>: Consider the following matrix. Suppose we want to use this matrix to 
+   convert a character's local axes to world coordinates.  How do we do this?
+
+<pre class="prettyprint lang-sh">
+|0   -cx⋅sz + cz⋅sx  cx⋅cz + sx⋅sz|
+|0   cx⋅cz + sx⋅sz   cx⋅sz - cz⋅sx|
+|-1        0               0      |
+</pre>
+
+<p><b>Q9</b>: Suppose we tried to extract euler angles from a matrix that was not orthogonal. 
+What are some problems we would encounter?
+
+<p><b>Q10</b>: What is the inverse of the rotation matrix corresponding to XYZ euler angles, in 
+terms of Rx, Ry, and Rz matrices?
+
+<br>
+<hr>
+<h3>(12 points) Implement the conversions from euler angles to a matrix</h3>
+<hr>
+
+<p>To start, implement the function <b>AMatrix3::fromEulerAnglesZYX()</b>. You can
+find this function in <b>libsrc/animation/AMatrix3-basecode.cpp</b>. This function
+takes a parameter called angleRad which stores euler angles as a 3-tuple
+<ul>
+<li>angleRad[0] contains the rotation around the X axis (in radians)
+<li>angleRad[1] contains the rotation around the Y axis (in radians)
+<li>angleRad[2] contains the rotation around the Z axis (in radians)
+</ul> 
+
+<p>To implement this function, you can take two approaches
+  <ul>
+     <li>Set the contents of the matrix to correspond to the matrix we computed in the previous section 
+     <li><b>Recommended: </b>Implement functions to create Rx,Ry,Rz matrices and then multiply them together
+  </ul>
+
+<p>AMatrix3 supports two types of syntax for accessing elements: indexing or by 
+element name. For example, 
+
+<pre class="prettyprint lang-c">
+std::cout << mM[0][0] << std::endl; // indexing notation
+std::cout << m11 << std::endl; // lecture matrix notation
+mM[row][col] = 0.4;
+m11 = 3;
+</pre>
+
+<ol>
+<li>(2 points) Implement AMatrix3::fromEulerAnglesZYX()
+<li>(2 points) Implement AMatrix3::fromEulerAnglesXYZ()
+<li>(2 points) Implement AMatrix3::fromEulerAnglesXZY()
+<li>(2 points) Implement AMatrix3::fromEulerAnglesYZX()
+<li>(2 points) Implement AMatrix3::fromEulerAnglesYXZ()
+<li>(2 points) Implement AMatrix3::fromEulerAnglesZXY()
+</ol>
+
+<p>To run the unit tests from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a4-testEuler 
+</pre>
+</p>
+
+<br>
+<hr>
+<h3>(60 points) Implement the conversion from a matrix to euler angles </h3>
+<hr>
+
+<p>Using the formulations from notebook, extract the X, Y, and Z angles from
+the matrix. In your implementation, be carefull of edge cases around 90
+degrees! 
+
+<ol>
+<li>(10 points) Implement AMatrix3::toEulerAnglesZYX()
+<li>(10 points) Implement AMatrix3::toEulerAnglesXYZ()
+<li>(10 points) Implement AMatrix3::toEulerAnglesXZY()
+<li>(10 points) Implement AMatrix3::toEulerAnglesYZX()
+<li>(10 points) Implement AMatrix3::toEulerAnglesYXZ()
+<li>(10 points) Implement AMatrix3::toEulerAnglesZXY()
+</ol>
+
+<p>To run the teapots from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a4-teapots 
+</pre>
+</p>
+
+<p>To run the unit tests from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a4-testEuler 
+</pre>
+</p>
+
+
+<hr>
+<h2>Extra Credit (Up to 4 points)</h2>
+<hr>
+
+<p><b>Option 1</b> Write unit tests to check your conversions 
+(0.1 per unique test. A unique test should execute a different control path in each function). 
+A simple test application could look like the following. Try to test 
+edge cases too! Extend your CMakeLists.txt file to create a new 
+test application. All you test code should be stored in assignments/a1-a2-rotations
+
+<pre>
+void RunTest()
+{
+   // create a matrix from euler angles
+   AMatrix3 m, m1;
+   m.fromEulerAngles(angles); // note: you will need to set angles
+
+   // convert from the matrix back to euler angles
+   AVector3 test = m.toEulerAngles();
+
+   // convert back to matrix again
+   m1.fromEulerAngles(test);
+
+   // Check whether m == m1 and print the result
+}
+
+void main(int argc, char** argv)
+{
+   RunTest();
+}
+</pre>
+
+<p><b>Option 2</b> Now that your framework supports euler rotations, you can make new types of interesting demos! As in the last assignment, create an interesting 2D demo that rotates objects. 
+
+<p><b>Option 3</b> Show that all the columns in Q1 have unit length and are orthogonal (1/3 each)
+
+<br>
+<br>
+<img src="flower.gif" height=200px">
+<img src="paths.gif" height=200px">
+
+<hr>
+<h2>Submission Requirements (5 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+
+
+</body></html>

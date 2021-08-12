@@ -1,0 +1,191 @@
+
+
+[.center,options="header,autowidth",cols=7*]
+|===
+| Week | Date | Announcements | Topics | Reading | Exercises | Lab
+
+//| 0
+//| Sept 1 
+//| 
+//| Topics:
+//* Course introduction, adminstrivia. 
+//* Installing processing on your own computer. 
+//* Your first sketch.
+//* Processing resources. 
+//| Readings:
+//* TODO
+//| Notes:
+//* link:todo[Installing Processing on apple]  
+//* link:todo[Installing Processing on windows]  
+//| link:todo[Lab00]
+// 
+//| 1 
+//| Sept 8,11 
+//| Read: Chapter 1, 2, 3 from Shiffman.
+//| 
+//* Computing: an introduction, examples of modern day computing. 
+//* Algorithms, programs, and programming languages. 
+//* Creative computing: an introduction with examples. 
+//* Introduction to Processing: Drawing canvas, coordinates, pixels. 
+//* Shapes: point, line, rectangle, ellipse, arcs, quadrilaterals, curves 
+//* Color: grayscale and RGB color. 
+//* Shape attributes: stroke weight, stroke color, fill color. 
+//* Debugging and testing
+//|
+//| Notes:
+//* Do the tutorial: Coordinate system & Shapes, Color 
+//* Please create a dropbox account and send an e-mail to Deepak with the e-mail used for dropbox account. You will then get an invite to share a folder for all your submissions.
+//| link:todo[Lab01]: Due Sept XX
+
+|===
+
+
+//    Week 2 (September 10, 12)
+//
+//    September 10: Dynamic sketch structure (using setup(), draw(), mousePressed(), and keyPressed()). Examples. Variables, names, and values. Types: int, float, String, color, PImage. Variable declarations and initialization. Assignment statement. System variables (mouseX, mouseY, etc.). The random() function in processing and its use.
+//
+//    Read: Chapter 4 from Shiffman.
+//
+//    Lab#2: Click here.
+//
+//    September 12: Variables: name, type, values. Functions. Random number generators. Transformations: translate() and rotate(). Examples.
+//
+//    Assignment#2 (Due on Thursday, September 19): Click here.
+//
+//    Read: Chapter 4 from Shiffman.
+//    Week 3 (September 17, 19)
+//
+//    September 17: Transformations: translation, rotation, pushMatrix() and popMatrix() (also, push() and pop()). Writing your own functions. Selection: if-statements.
+//
+//    Read: Chapters 5 & 7 from Shiffman.
+//
+//    Lab#3: Click here.
+//
+//    September 19: Functions, if-statements. Simple Physics modeling (gravity). Loops. Examples.
+//
+//    Read: Chapter 5 from Shiffman.
+//    Week 4 (September 24, 26)
+//
+//    September 24: Functions, loops (for- and while-). Doing computations using loops. Doing drawing using loops. Examples.
+//
+//    Read: Chapter 6 from Shiffman.
+//
+//    Sample Assignment#2 Program: Click here.
+//
+//    Assignment#3 (Due on Thursday, Octobe 3): Click here.
+//
+//    September 26: Trigonometry and how to use it in drawing. Drawing polygons and stars.
+//
+//    Read: Pages 233-236, 246-249 from Shiffman.
+//
+//    Sample Program: Drawing a 4-leaf Clover , Trig Points, Polygons
+//
+//    Sample Exam: Practice Exam, Practice Exam with Solutions. Please bear in mind that the syllabus for the sample exam may have been different from your exam. Some material on the exam may not be on your syllabus.
+//
+//    Week 5 (October 1, 3)
+//
+//    October1: Exam 1 is today.
+//
+//    October 3: Exam Review. Introducing Perlin Noise - noise(). random() versus noise(). Example: string art anomation.
+//
+//    Read: Pages: 240-244 from Shiffman
+//
+//    Week 6 (October 8, 10)
+//
+//    October 8: Objects and Object-Oriented Programming (OOP): Object: Attributes, Behaviors (methods), constructor(s). Defining and using objects. Examples.
+//
+//    Read: Chapter 8 from Shiffman.
+//
+//    TA Hours this week:
+//
+//    Ther will be NO TA Hours over Fall Break. TA Hours will resume on MOnday, October 21.
+//
+//    This week, TA HOurs on Tuesday only go from 6:00p to 9:00p)
+//    Wednesday Noght: TA HOurs will be from 7:00 to 9:00p
+//
+//    October 10: Arrays: Declaring, initializing, using. Arrays of objects. Examples.
+//
+//    Read: Chapter 9 from Shiffman.
+//
+//    Example from class: OOPBall, Ball class.
+//
+//    Assignment#4 (Due on Thursday, October 31): Click here.
+//    Week 7 (October 15, 17)
+//
+//    No Classes. Fall Break
+//
+//    Week 8 (October 22, 24)
+//
+//    October 22: OOP Review. Introducing this. Using this. Example. Object composition: Balls in a Box example.
+//
+//    Read: Your class notes from today. this is not discussed in your text.
+//
+//    Code: BallSketch.pde, Ball.pde, Box.pde
+//
+//    October 24: Doing computations: practice using arrays. Examples.
+//    Week 9 (October 29, 31)
+//
+//    October 29: Array examples, contd. Towards Data Visualization - drawing a pie chart. Strings/Tex.
+//
+//    Read: Chapter 17 from Shiffman.
+//
+//    Programs from class: DiceRolls, Birthday.
+//
+//    October 31: String type: common operations. Displaying text in canvas using fonts. Data Visualization: Drawing scatter plots (Halloween Special!).
+//
+//    Read: Chapters 17 and 18 from Shiffman. In Chapter 18, only read pages 383 to 396.
+//
+//    Programs from class: Scary Data Scatter Plot, The data itself (Save it in your sketch folder with the name "ScaryData.csv")
+//
+//    Assignment#5 is posted (Due on Thursday, November 14): Click here for details.
+//    Week 10 (November 5, 7)
+//
+//    November 5: Data Visualization examples: Drawing Pie Charts and Bar Graphs. Making interactive bar graphs.
+//
+//    Programs from class: Energy Charts.
+//
+//    November 7: Exam 2 is today.
+//    Week 11 (November 12, 14)
+//
+//    November 12: Data Visualization: Plotting line graphs: USPS First Calss Volume.
+//
+//    Programs from class: USPSViz, USPSData.csv (data file).
+//
+//    November 14: Recursion: Introduction, examples of recursive functions, drawing using recursion.
+//
+//    Programs from class: Simple Recursive Functions, Trees.
+//
+//    Week 12 (November 19, 21)
+//
+//    November 19: 2-Dimensional arrays/matrices. Basic operations; defining them, creating them, intializying, and printing them. Examples: Simulating the 15-puzzle game.
+//
+//    Read: Pages 257-263 from Shiffman.
+//
+//    November 21: The NPuzzle: finishing up. Inheritance in OOP.
+//
+//    Assignment#6 is posted (Due on Thursday, December 5): Click here for details.
+//
+//    Programs from class: N Puzzle (complete program): The sketch (save in File NPuzzle), The Board class (save in File Board). NOTE: You will also need to create the font file. Do this once you have set up the sketch.
+//    Week 13 (November 26, 28)
+//
+//    No labs this week.
+//
+//    November 26: 2-D Arrays: Example: Interactive 15-puzzle. OOP Concepts: Inheritance (extends, super). Interfaces.
+//
+//    Read: Chapter 22 from Shiffman.
+//
+//    November 28: No class. Thanksgiving!
+//    Week 14 (December 3, 5)
+//
+//    December 3: What is Computer Science? Introducing: algorithms, complexity, Big-O notation. Examples: Linear search, Binary search.
+//
+//    December 5: More algorithms. Sorting: Selection Sort, Insertion Sort. Big-O analysis of sorting algorithms. On to pure Java.
+//
+//    Week 15 (December 10, 12)
+//
+//    December 10: Review. Course Warp up.
+//
+//    December 12: Exam 3 is today.
+//
+//|===
+

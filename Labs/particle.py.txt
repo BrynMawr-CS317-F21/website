@@ -1,0 +1,27 @@
+from math import *
+from graphics import *
+
+def main():
+  win = GraphWin("Particle", 600, 400)
+  win.setBackground("black")
+
+  x = 0
+  y = 0
+  vx = 100
+  vy = 100
+
+  c = Circle(Point(x,y), 25)
+  c.setFill(color_rgb(255,0,0))
+  c.draw(win)
+
+  timeToQuit = False
+  frameRate = 30
+  while not timeToQuit:
+      timeToQuit = win.checkMouse()
+      c.move(vx * 1.0/frameRate, vy * 1.0/frameRate)
+      update(frameRate)
+
+  win.close()
+
+main()
+

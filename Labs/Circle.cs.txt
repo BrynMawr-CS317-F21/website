@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Circle : MonoBehaviour
+{
+    public float radius = 2;
+    private float _theta = 0;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        _theta += Time.deltaTime;
+        float x = radius * Mathf.Cos(_theta);
+        float y = radius * Mathf.Sin(_theta);
+        transform.position = new Vector3(x,y,0);
+    }
+}

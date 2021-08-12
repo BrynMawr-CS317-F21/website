@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Jam 3: Study Guide</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_jam_3_study_guide">Jam 3: Study Guide</a></li>
+<li><a href="#_practice_questions">Practice questions</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_jam_3_study_guide">Jam 3: Study Guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jams are open book. 40 minutes in lab.</p>
+</div>
+<div class="paragraph">
+<p>Topics:</p>
+</div>
+<div class="paragraph">
+<p>This quiz includes the previous topics from Jam 1-2 plus</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>functions: defining and calling, return types, return statements, parameters (aka arguments)</p>
+</li>
+<li>
+<p>function stack, function execution</p>
+</li>
+<li>
+<p>scope of a variable</p>
+</li>
+<li>
+<p>arrays: defining and indexing</p>
+</li>
+<li>
+<p>Strings: <code>chatAt</code>, <code>compareTo</code>, <code>length</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Write Java programs to check your answers. Or you can ask a TA or instructor
+to give feedback on your responses.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_practice_questions">Practice questions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>1) Consider the following loop</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">int pinLength = 4;
+String pin = "";
+for (int i = 0; i &lt; pinLength; i++) {
+  pin = pin + "*";
+  System.out.println(pin);
+}
+System.out.println("Enter your pin: "+pin);</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is output to the console when we run this program?</p>
+</li>
+<li>
+<p>Convert the loop above so it uses a while loop instead of a for loop</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>2) Write a function, <code>Pow</code>, that raises any number X to a power Y, using a loop.
+Your function should match the following specification.
+In your program, use <code>main</code> to call and test your function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>// Function: Pow
+// Description: Computes X to the power Y
+// Input X (double), the number to raise to a power
+// Input Y (double), the exponent
+// Returns (double), the quantity X^Y</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3) Write a function, <code>Average</code>, that takes an array of doubles as input and
+returns the average value based on the specification below. In your program,
+use <code>main</code> to call and test your function using random values in the range
+[-5, 5).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>// Function: Average
+// Description: Computes the average value in a list of numbers
+// Input data (double[]), the numbers to average
+// Returns (double), the average value, or 0 if the size of data is 0
+
+public static void main(String[] args)
+{
+  double[] values = new double[5];
+  // todo - initialize values with random values in range [-5,5)
+  // todo - call average and print the result
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>4) Write a function, <code>CountLetter</code>, which counts the number of times a character
+occurs in a String. Implement tests in <code>main</code> to check your function. For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CountLetter("elephant",'e')</code> should return 2.</p>
+</li>
+<li>
+<p><code>CountLetter("zebra", 'z')</code> should return 1.</p>
+</li>
+<li>
+<p><code>CountLetter("elephant", 'z')</code> should return 0.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>5) Write a function, <code>IsEvenLength</code>, which returns <code>true</code> if the given String has an
+even number of characters and <code>false</code> otherwise. Implement tests in <code>main</code> to check your
+answer. For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>IsEvenLength("cat")</code> returns false</p>
+</li>
+<li>
+<p><code>IsEvenLength("")</code> returns true</p>
+</li>
+<li>
+<p><code>IsEvenLength("a")</code> returns false</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>6) Consider the following program</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Mystery {
+  public static String mystery2(String message, String symbol) {
+    message = symbol+message+symbol;
+    // (a) Show function stack here
+    return message;
+  }
+
+  public static void mystery1(String message) {
+    System.out.println(message);
+    message = mystery2(message, "~~");
+    System.out.println(message);
+    // (b) Show function stack here
+  }
+
+  public static void main(String[] args) {
+    String userText = "Happy Halloween!";
+    mystery1(userText);
+    System.out.println(userText);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the line labeled (a), what functions are in the function stack? List the contents of the stack with the oldest contents at the top, same as on <a href="http://www.pythontutor.com/java.html#mode=edit">Java tutor</a></p>
+</li>
+<li>
+<p>On the line labeled (b), what functions are in the function stack?</p>
+</li>
+<li>
+<p>What local variables are defined in mystery2?</p>
+</li>
+<li>
+<p>What local variables are defined in mystery1?</p>
+</li>
+<li>
+<p>What parameters are defined in mystery1?</p>
+</li>
+<li>
+<p>What is the return type of mystery1?</p>
+</li>
+<li>
+<p>What is the return type of mystery2?</p>
+</li>
+<li>
+<p>What variables are in scope in main?</p>
+</li>
+<li>
+<p>What variables are in scope in mystery1?</p>
+</li>
+<li>
+<p>What variables are in scope in mystery2?</p>
+</li>
+<li>
+<p>What is the console output of this program?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>7) Implement a Movie class. Movie should contain the following data and methods</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">// Data
+
+// Title (string)
+// Duration in minutes (float)
+// Year (integer)
+// actors (array of String)
+
+// Methods
+
+// Constructor
+// Input: Title (string)
+// Input: Duration in minutes (float)
+// Input: Year (integer)
+// Input: actors (array of String)
+
+// Accessor for title
+// Mutator for title</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test your Movie class. Create a Movie object for "The Shining" which was made in 1980, is
+2 hours and 26 minutes long, and stars Jack Nicholson and Shelley Duval. Create your object in <code>setup()</code></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-08-11 10:54:57 -0400
+</div>
+</div>
+</body>
+</html>

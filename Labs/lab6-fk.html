@@ -1,0 +1,423 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 6</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 6</h1>
+<div id="TagLine">
+   In which, we take our first steps making our characters step
+</div>
+<hr>
+     
+<p>The goals of this lab are to 
+<ul>
+<li> Implement slerp
+<li> Implement a simple keyframed animation
+<li> Implement transformations
+<li> Work with skeletons
+<li> Implement forward kinematics
+<li> Animate simple characters
+</ul>
+
+<p>This is a two week assignment. It has many parts, so start early. After completing this assignment, you will have your first animated characters!
+
+<!--<img style="width: 80%;" alt="screesnhot" src="FKDemo.jpg"><br>-->
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>This assignment has been added to your AnimationToolkit repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+> cd build
+> cmake ..
+> make
+</pre>
+
+<p>You should now have a new directory under assignments called <b>a6-characters</b>. 
+
+<br>
+<hr>
+<h2>Assignment 6: Characters, big and small</h2>
+<h3>Due November 1</h3>
+<hr>
+
+
+<br>
+<hr>
+<h3>Question 1: Implement AQuaternion::Slerp (5 points)</h3>
+<hr>
+
+<p>For this question, implement <b>AQuaternion::Slerp()</b> in
+<b>libsrc/animation/AQuaternion-basecode.cpp</b>
+
+<p>To run the unit test from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a6-testSlerp 
+</pre>
+</p>
+
+<p>To run the teapot demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a6-slerpTeapot 
+</pre>
+</p>
+
+<br>
+<img src="slerpTeapot.gif">
+<br>
+
+<br>
+<hr>
+<h3>Question 2: Keyframe animation (10 points)</h3>
+<hr>
+
+<p>In this question, you will implement a simple animation using splines for position and rotation. 
+Implement you solution in the file <b>AKeyframeCone.cpp</b>
+
+<br>
+<img src="coneAnimate.gif">
+<br>
+
+<p>Your solution should have the following features:
+<ul>
+<li>The cone should travel between the four corners (100,0,100), (-100,0,100), (-100, 0, -100), (100,0,-100) 
+<li>The cone should have size (10,10,20).
+<li>The forward direction of the cone is +Z. You should define keys for the cone's rotation that face it in the direction in which it is traveling. This rotation will be around the +Y axis. 
+<li>The cone should pause to turn.
+<li>You should animate positions using ASpline and rotations using AQuatSpline 
+</ul>
+
+<br>
+<hr>
+<h3>Question 2: Implement ATransform (4 points)</h3>
+<hr>
+
+<p>The <b>ATransform</b> class represents 4x4 homogeneous transforms as 2x2 block matrices. 
+The transform's rotation \(R_j^i\) and translation \(d_j^i\) are public variables. 
+Because the bottom row of such matrices are always known, we do not 
+store them. Instead, we store the top left block as a rotation (e.g. AQuaternion) and the 
+top right column as a vector. 
+
+<p> Complete the implementation of the ATransform class in <b>libsrc/animation/ATransform-basecode.cpp</b>. 
+
+<ol>
+		<li><b>(1 points)</b> Implement <b>ATransform::inverse()</b>
+<p>Returns a transform representing the inverse of this object. 
+<li><b>(1 points)</b> Implement <b>ATransform::transformPoint(p)</b>
+<p>Input 3D position to be transformed by this transform
+<p>Output Transformed position
+<li><b>(1 points)</b> Implement <b>ATransform::transformVector(v)</b>
+<p>Input 3D vector to be transformed by this transform
+<p>Output Transformed vector
+<li><b>(1 points)</b> Implement the multiplication operator, e.g. <b>operator* (t1, t2)</b>. 
+This function computes t1 * t2 
+and returns returns the result
+<p>Input The first transform t1 in the operation
+<p>Input The second transform t2
+<p>Output The resulting transform t1 * t2
+</ol>
+
+<p>To run tests from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a6-testTransform 
+</pre>
+</p>
+
+<br>
+To help you test, I recommend modifying <b>assignments/a6-characters/testTransform.cpp</b>
+<ul>
+<li>Add a test which multiplies t2 * t2Inv and print the result. You should get the identity matrix
+<li>Create a transform that translates but doesn't rotate. Compute and print the inverse of this matrix.
+</ul>
+
+<br>
+<hr>
+<h3>Question 3: Stacking Boxes (10 points)</h3>
+<hr>
+
+<p>For this question, you will use the transform implementation from the previous 
+section to position several boxes. Look at the code in <b>assignments/a6-characters/boxes.cpp</b>. 
+You will need to modify it.
+
+<p>A room has three boxes in it. Each box has a local coordinate system
+attached to it. The lengths of all three boxes in the x,y, and z directions of
+their local coordinate frames are (3,2,1) respectively. The origin of each box
+is in the lower left-hand corner.  The z-axis of each box is aligned with the
+global Z axis.
+
+<p>The position of B1 with respect to the world (e.g. coordinate system {X<sub>0</sub>,Y<sub>0</sub>,Z<sub>0</sub>}) is
+<b>p<sub>1</sub></b> = [-2 0 1]<sup>T</sup>.
+
+<p>The position of B2 with respect to the world is <b>p<sub>2</sub></b> = [4 0 2]<sup>T</sup>.
+
+<p>The position of B3 with respect to the world is <b>p<sub>3</sub></b> = [5 4 2]<sup>T</sup>.
+
+<p>Furthermore, with respect to the world coordinate system, B2 is rotated 45 degrees around Z<sub>0</sub> and
+B3 is rotated 90 degrees around Z<sub>0</sub>.
+
+<br>
+<br>
+<img src="boxes-2019.png" width=40%>
+<br>
+<br>
+
+In your readme, writeup answers to the following questions in terms of algebraic expressions in terms 
+of rotations and displacement vectors. Then, implement you answers in <b>boxes.cpp</b> to check your 
+work.  
+
+<ol>
+   <li>List the frames of reference F<sub>1</sub><sup>0</sup>,
+   F<sub>2</sub><sup>0</sup>, F<sub>3</sub><sup>0</sup> (in the form of homogeneous matrices) that describe the
+   position and orientations of boxes B1, B2, and B3 with respect to the world.</li>
+   <li>What is the position of B2 relative to the local coordinate system attached to box B1? Express your answer as a displacement vector.</li>
+   <li>What is the position of B3 relative to the local coordinate system attached to box B2? Express your answer as a displacement vector.</li>
+   <li>What is the homogeneous transformation matrix that stack B2 onto B1?</li>
+</ol>
+
+<p>To run the demo from the <b>build</b> directory, type
+<pre class="prettyprint lang-sh">
+build> ../bin/a6-boxes 
+</pre>
+</p>
+
+<br>
+<hr>
+<h3>Question 4: Skeleton (10 points)</h3>
+<hr>
+
+<p>In this question, you were learn about the <b>ASkeleton</b> and <b>AJoint</b> classes in your basecode.
+
+<p>Read the header files for ASkeleton and AJoint in <b>libsrc/animation/ASkeleton.h</b> and 
+<b>libsrc/animation/AJoint.h</b> and then complete the program in <b>assignments/a6-character/ASkeletonPractive.cpp</b>
+This file loads a BVH file and prints information about the character in it. For more details, read below.
+
+<p>To run the demo from the <b>build</b> directory, type
+<pre class="prettyprint lang-sh">
+build> ../bin/a6-skeleton 
+</pre>
+</p>
+
+
+<br>
+<b>Summary of ASkeleton and AJoint</b>
+<br>
+<p>The term scene graph, or hierachy, is typically used to organize all the transforms in a scene. A skeleton is 
+a sub-tree of the scene graph, which represents a single character. Your base code already includes a class 
+for managing skeletons in <b>ASkeleton</b> in <b>libsrc/animation/ASkeleton.h</b>. In this question, you 
+will read the ASkeleton class, answer questions, and write a small program to understand how it works.
+
+<p>In your SceneGraph, you created nodes to hold each transform. In the
+basecode, the nodes correspond to <b>AJoint</b> in
+<b>libsrc/animation/AJoint.h</b> Each joint has a unique ID (unsigned integer),
+name, pointer to its parent joint, and a list of children.  The root joint has
+ID zero and a NULL parent. The skeleton contains a pointer to the root joint. 
+
+<p>Joints are implemented in the <b>AJoint</b> class. AJoint stores a transformation from 
+its own coordinate frame to its parent in its <b>local2parent</b> transform. This transform 
+contains the offset from the parent in <b>LocalTranslation</b> and the relative rotation from 
+the parent in <b>LocalRotation</b>. In this assignment, you will implement a recursive 
+forward kinematics algorithm which will compute the joint's <b>local2global</b> transformations 
+
+<p>You can create characters from scratch using the methods in ASkeleton and AJoint. However, we 
+usually load characters (and motion) from a file. Your basecode supports a file format called 
+<a href="https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html">BVH</a>. The first part of the file contains the hierachy of joints and the second part 
+contains root positions and joint orientations to use for animation. A BVH reader is defined in 
+the class <b>ABVHReader</b> in <b>libsrc/animation/ABVHReader.cpp</b> 
+
+<br>
+<hr>
+<h3>Question 5: Tentacle (12 points)</h3>
+<hr>
+
+<b>Part 1: Implement forward kinematics (5 points)</b>
+<p>In this question, you will implement forward kinematics algorithm in
+<b>ASkeleton::fk</b> and <b>AJoint::fk</b>.  
+
+<p>Forward kinematics (FK) is the process of computing the global positions for
+the end effectors. The basecode assumes that we will implement FK recursively,
+starting at the root joint and then propagating down to each end effector (e.g.
+hands, feet, head, tail, etc)
+
+<pre>
+AJoint::fk()
+   if "I am the root joint"
+	    compute local2global base case
+	 else
+	    compute local2global from parent
+
+   call fk for each child
+</pre>
+
+<b>Part 2: Create a skeleton to represent the tentacle (2 points)</b>
+
+<p>After implementing forward kinematics, you will have global positions and
+rotations for each segment of the tentacle. This will allow us to draw the
+tentacle using the following algorithm (note: this has been implemented for 
+you)
+
+<pre>
+for each joint
+   if the joint is the root
+	     continue
+
+   p1 = global position of the parent joint
+   p2 = global position of the joint
+   draw a limb between p1 and p2 
+</pre>
+
+<ul>
+<li>Your skeleton should have at least 5 joints (including the root)
+<li>Each joint is 50 units from its parent. To make this easier, let the offset of each joint from its parent by along the local X-axis. 
+</ul>
+
+<br>
+<img src="tentacleSkeleton.png" height="320">
+<br>
+
+<b>Part 3: Animate the tentacle (5 points)</b>
+
+<p>Use sine to animate each joint of the tentacle. 
+
+<ul>
+<li>Rotate each joint around its local Z axis.
+<li>Use sine to compute the angle of rotation around each joint's local Z axis. 
+<li>Offset the angle of rotation for each joint to make the animation more interesting 
+</ul>
+
+<br>
+<br>
+<img src="tentacle.gif">
+<br>
+<br>
+
+
+<!--
+<p>When working, you can use the FKViewer to play animations from BVH files.
+In our next assignment, we will look closely at how these motions are 
+stored and played.
+
+<p>To run the FKViewer from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a6-fkviewer 
+</pre>
+</p>
+
+
+<br>
+<center>
+<video controls>
+		<source src="walk.ogv">
+</video>
+</center>
+
+<br>
+<b>FKViewer user interface overview</b>
+<br>
+
+<p>When you open the viewer, it opens a character along with several example motions.
+
+<p>The camera can be controled with the mouse:
+
+<ul>
+    <li>Left-button drag with the mouse to rotate
+    <li>Right-button drag with the mouse to pan
+    <li>Middle-button drag with the mouse to zoom
+    <li>'f' button will focus the view on the character
+</ul>
+
+<p>The player control panel on the top left can be used to load and play files.
+The panel at the bottom left can be used to load different BVH files.
+
+<p>A pose of the character consists of a position for the root joint and rotations for 
+each joint (in local coordinates). Each joint also has an offset from its parent, but these 
+offsets are typically not animated. The framework stores poses in the class <b>APose</b>.
+
+<p>Motion capture produces a sequence of poses at a fixed framerate, usually either 30 fps 
+or 120 fps. The play an animation, we compute the pose for the given time, and then update 
+the character skeleton with it. In the framework, <b>AMotion</b> is a subclass of 
+<b>ASplines&lt;APose&gt;</b>. The function AMotion::getValue(time), computes the segment 
+containing the given time and uses LERP and SLERP to compute the current pose.
+
+<p>Motion capture animations are stored in BVH files and loaded with ABVHReader. BVH files 
+specify the structure of the skeleton followed by a list of the poses. In the BVH file, each 
+pose is the X Y Z of the root position followed by euler angles for each joint. 
+BVH files can be found in <b>motions/Beta</b>.
+
+<br>
+<hr>
+<h3>Question 6: Thriller (10 points)</h3>
+<hr>
+
+<p>In the previous question, we had a single character. In this question, we will implement 
+a troop of characters to perform thriller. We also randomize the characters to have different 
+heights, sizes, and colors.
+-->
+
+<hr>
+<h2>Extra Credit</h2>
+<hr>
+
+<p><b>Option 1 (2 points) </b> Create a cool demo using splines and unique characters. Or 
+create a scene with many characters! 
+
+<br>
+<br>
+<img src="tentacles.gif" height="200">
+<br>
+<br>
+
+<!--
+<p><b>Option 4 (up to 2 each)</b> Create unique keyframed animation using the key editor
+
+<p><b>Option 5 (up to 2 each)</b> Customize the appearance of the character. You 
+can change the character's color or add accessories (like a crown or sword). See 
+ASkeletonDrawer.cpp for example code.
+<br>
+<br>
+<img src="characters.gif">
+<br>
+<p><b>Option 6 (up to 2 each)</b> Create a procedural animation. 
+<ul>
+<li>Try animating the arms to make a dance motion.
+<li>Try animating a tapping foot
+<li>Try animating gaze
+</ul>
+-->
+
+<p>Be sure to include a video of your demo for full credit!
+
+<br>
+<hr>
+<h2>Submission Requirements (1 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

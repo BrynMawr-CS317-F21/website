@@ -1,0 +1,389 @@
+include::header.adoc[]
+
+:title: Jam 4: Study Guide
+:Author Initials: ASN
+:Date:    2020-08-15
+:Revision: 0.1
+
+= {title}
+
+Jams are open book. 40 minutes in lab.
+
+Topics:
+
+This quiz includes the previous topics from Jams 1, 2 and 3 plus
+
+* classes
+** defining and using classes
+** terms: methods, member variables, accessors (getters), mutators (setters) 
+** scope of member variables
+* Reading text files 
+* Linear and binary search
+* Selection sort and bubble sort
+* Swapping elements in an array
+
+Write Java programs to check your answers. Or you can ask a TA or instructor 
+to give feedback on your responses.
+
+= Practice questions
+
+1) Loop practice. Use loops to compute quantities over random numbers.
+
+* Using a loop, compute the sum of 5 random numbers between -10 and 10. Output the results to the console. 
+Below is an example
+
+[source,java]
+----
+9.732847
+3.099474
+-9.973539
+2.9620247
+-6.101103
+Sum: -0.28029633
+----
+
+* Using a loop, compute the maximum value of 5 random numbers between -10 and 10.
+
+3) Function practice. Write functions corresponding to the following specifications.
+For each question, test your function from `main` using an array of random values 
+as input.  Your function should not hard-code the length of the array. You should also 
+print the result to the console.
+
+* Write a function that converts miles to kilometers. There are 1.609 kilometers in a mile. 
+Test your function with the following sequence of values using a loop: 1.0, 1.25, 1.5, 1.75, 2.0, ..., 3.0.
+
+[source,java]
+----
+// Implement function: milesToKilometers
+// Input: miles (double)
+// output: kilometers (double)
+----
+
+* Write a function that computes the tip. 
+
+[source,java]
+----
+// Implement function: computeTip
+// Input: total cost (double)
+// Input: tip percent (double)
+// Output: double
+----
+
+
+* Write a function that computes the average of an array of numbers
+
+[source,java]
+----
+// Implement function: computeAverage
+// Input: values (array of double)
+// Output: double
+----
+
+* Write a function that returns true if an array of double has a negative number on it.
+
+[source,java]
+----
+// Implement function: containsNegative
+// Input: values (array of double)
+// Output: boolean
+----
+
+* Write a function that reverses the contents of an array. (Hint: create and return a new array in the function) 
+
+[source,java]
+----
+// Implement function: reverseArray
+// Input: values (array of double)
+// Output: values (array of float)
+----
+
+6) A programmer has a bug in her code. She expected compute to return 4.0 but it's returning 3.0. What's wrong?
+
+[source,java]
+----
+class Mystery {
+  public static float compute(float a, float b, float c) {
+    float tmp = a + b;
+    return tmp - c;
+    tmp += 1.0;
+  }
+
+  public static void main() {
+    float result = compute(1.0, 4.0, 2.0);
+    System.out.println(result);
+  }
+}
+----
+
+7) Consider the following program
+
+[source,java]
+----
+class Mystery {
+  public static int mystery(int[] values) {
+    int total = 0;
+    for (int i = 0; i < values.length; i++) {
+      int value = values[i];
+      if (values[i] < 0) {
+        value = -value;
+      }
+      total += value;
+      System.out.println("mystery: ", value, total);
+    }
+    return total;
+  }
+
+  public static void main(String[] args) {
+    int[] values = {-1, 0, 1, 2, 3};
+    System.out.println("Checkpoint 1:", values[2]);
+    
+    int result = mystery(values);
+    System.out.println("Checkpoint 2: ", result);
+  }
+}
+----
+
+* What is the output of this program?
+* What local variables are in scope in `main()`? 
+* What local variables are in scope in `mystery()`? 
+* What is the return type of `mystery()`?
+
+8) Consider the following program
+
+[source,java]
+----
+class Mystery {
+  public static String snaf(int a) {
+    if (a < 5) {
+      return "pop";
+    }
+    else {
+      return "crackle";
+    }
+  }
+
+  public static int fee(int q) {
+    return -q;
+  }
+
+  public static int bar(int u, int v) {
+    return -10*u + fee(v);
+  }
+
+  public static int foo(int x, int y) {
+    return x*10 - fee(y);
+  }
+
+  public static void main(String[] args) {
+    int a = -5;
+    int b = 5;
+    int c = 10;
+    int d = foo(a, b);
+    int e = bar(b, a);
+    String result = snaf(d+e);
+    System.out.println(result, d, e, d+e);
+  }
+}
+----
+
+* What console output is produced by this program?
+
+10) Consider the following program
+
+[source,java]
+----
+class Main {
+  public static void main(String[] args) {
+    
+    Mystery m1 = new Mystery(4,1);
+    Mystery m2 = new Mystery(1,1);
+    
+    int result1 = 0;
+    int result2 = 0;
+    result1 = m1.compute(2);
+    result2 = m2.compute(2);
+    System.out.println("BEFORE compute1: ", result1);
+    System.out.println("BEFORE compute2: ", result2);
+    
+    m1.setA(3);
+    m2.setB(3);
+    
+    result1 = m1.compute(2);
+    result2 = m2.compute(2);
+    System.out.println("AFTER compute1: ", result1);
+    System.out.println("AFTER compute2: ", result2);
+  }
+}
+----
+
+where `Mystery` is defined as
+
+[source,java]
+----
+class Mystery {
+
+  int a = 0;
+  int b = 0;
+  
+  Mystery(int x, int y) {
+    a = x;
+    b = y;
+  }
+  
+  void setA(int x) {
+    a = x;
+  }
+  
+  void setB(int y) {
+    b = y;
+  }
+
+  int compute(int factor) {
+    return a + factor*b;
+  }
+}
+----
+
+* What is the console output of this program?
+* What constructors are defined in this program?
+* What member variables are defined in this program?
+* What variables are in scope in Mystery's `compute` method? 
+* What methods are defined in `Mystery`? 
+* Implement an accessor method for the attribute (e.g. member variable) `a` in `Mystery`. 
+
+
+11) Write a function that takes a String as an input and replaces all occurrences of the letter 
+`e` to `3` and all occurrences of the letter `s` to `5`. Test your function from `main` using the 
+phrases "elephant" and "sour patch kids".
+
+[source, java]
+----
+// Function: replaceChars
+// Input: initialString (String), the original string to modify
+// Output: (String), the modified String
+----
+
+12) Write a function that takes a String as an input and returns the reverse String.  
+
+13) What would the output of the following code be?
+
+[source,java]
+----
+for (int i = 0; i < 2; i++) 
+{
+    for (int j = 0; j < 3; j++)
+    { 
+        println("i:" + i + " j:" + j);
+    }
+}
+----
+
+14) Write code to load and parse a file with format [Name,Score,PowerUp,Role]
+[source,java]
+----
+Ressie Rask  ,3224,Mushroom,Healer
+Angelique Aust  ,1190,Mushroom,Dps
+Tiny Teamer  ,3722,Mushroom,Tank
+Michell Mancino  ,316,Tea kettle,Dps
+Amos Ackman  ,4989,Fireball,Tank
+Liz Labat  ,714,Mushroom,Healer
+Lawerence Lalonde  ,3921,Mushroom,Dps
+Madelyn Mcjunkin  ,1243,Fireball,Tank
+Echo Eckhardt  ,4831,Mushroom,Dps
+----
+
+15) True/False questions:
+
+- Linear search requires a number of steps proportional to the size of the list being searched (T/F)
+- Binary search is an O(N+++<sup>2</sup>+++) algorithm (T/F)
+- The number of times N can be divided by 2 (before reaching 1) is
+  log+++<sub>2</sub>+++ N (T/F)
+
+16) How many steps would it take to do binary search on a list of size 1
+million, when the item you are searching for is NOT in the list?
+
+17) How many steps would it take to do linear search on a list of size 1
+million, when the item you are searching for is NOT in the list?
+
+18) Binary search is much faster than linear search, so why don't we use it for every search problem?
+
+19) For each iteration of the loop in `binarySearch(int x, int[] L)`, show the
+*index* values for `low`, `high`, and `mid`, and the value stored at
+location `mid`.  What will be returned by this function call?
+
+----
+int x = 67;
+int[] L = {10, 12, 14, 21, 37, 44, 45, 46, 58, 67, 99};
+            0   1   2   3   4   5   6   7   8   9  10   
+
+low | high | mid | L[mid]
+- - - - - - - - - - - - -
+    |      |     |
+    |      |     |
+    |      |     |
+    |      |     |
+----
+
+20) For each iteration of the loop in `binarySearch(int y, int[] L)`, show the
+*index* values for low, high, and mid, and the value stored at
+location mid.  What will be returned by this function call?
+
+----
+int y = 4;
+int[] L = [10, 12, 14, 21, 37, 44, 45, 46, 58, 67, 99];
+            0   1   2   3   4   5   6   7   8   9  10   
+
+low | high | mid | L[mid]
+- - - - - - - - - - - - -
+    |      |     |
+    |      |     |
+    |      |     |
+    |      |     |
+----
+
+21) Write a function to return the *index* of the smallest item in a given list.
+
+[source,java]
+----
+// Input:  An array of integers
+// Returns: The index of the smallest item in the list, 
+//    -1 if the list is empty
+
+int indexOfSmallest(int[] ls) {
+   // complete this function
+}
+----
+
+
+22) Which algorithm requires time directly proportional to the size of the input list?
++
+    - linear search
+    - binary search
+    - bubble sort
+    - selection sort
++
+
+23) Consider the following function, `oneLoop(int[] L)`, which is similar to 
+the inner loop from bubble sort:
++
+[source,java]
+----
+void oneLoop(int[] L)
+{
+   for (int j = 0; j < L.length()-1; j++) 
+   {
+      if (L[j] > L[j+1])
+      {
+         int tmp = L[j+1];
+         L[j+1] = L[j];
+         L[j] = tmp;
+      }
+   }
+}
+----
++
+Suppose we run `oneLoop` on the list `L={17,4,19,3,11,8}`. What are
+the new contents of `L`?
+
+24) Show how the list `L={17,4,19,3,11,8}` would be changed 
+after selection sort does its first 3 swaps:

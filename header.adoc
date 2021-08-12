@@ -1,0 +1,10 @@
+:lang: en
+:stylesdir: style
+:stylesheet: cs.css
+:linkcss:
+:icons: font
+:imagesdir: 
+:xrefstyle: short
+:leveloffset: +1
+:toc: left
+:csweb: https://www.cs.brynmawr.edu/

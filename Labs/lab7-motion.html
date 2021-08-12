@@ -1,0 +1,330 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 6</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 7</h1>
+<div id="TagLine">
+   In which, we take our first steps making our characters step
+</div>
+<hr>
+     
+<p>The goals of this lab are to 
+<ul>
+<li> Use transforms to draw geometry relative to joints
+<li> Begin working with motion capture data
+<li> Animate more complex characters
+</ul>
+
+<!--<img style="width: 80%;" alt="screesnhot" src="FKDemo.jpg"><br>-->
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>This assignment has been added to your AnimationToolkit repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+> cd build
+> cmake ..
+> make
+</pre>
+
+<p>You should now have a new directory under assignments called <b>a7-motion</b>. 
+
+<br>
+<hr>
+<h2>Assignment 7: Commotion of motion</h2>
+<h3>Due November 8</h3>
+<hr>
+
+<br>
+<hr>
+<h3>Getting started: Run the motion viewer</h3>
+<hr>
+
+<p>Check that your basecode has core functionality running properly by 
+running the motion viewer.
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a7-motionviewer 
+</pre>
+</p>
+
+<br>
+<center>
+<video controls>
+		<source src="walk.ogv">
+</video>
+</center>
+
+<br>
+<b>User interface overview</b>
+<br>
+
+<p>When you open the viewer, it opens a character along with several example motions.
+
+<p>The camera can be controled with the mouse:
+
+<ul>
+    <li>Left-button drag with the mouse to rotate
+    <li>Right-button drag with the mouse to pan
+    <li>Middle-button drag with the mouse to zoom
+    <li>'f' button will focus the view on the character
+</ul>
+
+<p>The player control panel on the top left can be used to load and play files.
+The panel at the bottom left can be used to load different BVH files.
+
+<br>
+<hr>
+<h3>Question 1: Motion practice (5 points)</h3>
+<hr>
+
+<p>For this question, use the APIs in <b>AMotion</b>, <b>APose</b> and <b>ASkeleton</b> 
+to finish the implementation in <b>assignments/a7-motion/APracticeMotion.cpp</b>.
+
+<p><b>AMotion</b> is defined in <b>libsrc/animation/AMotion.h</b>
+<p><b>ASkeleton</b> is defined in <b>libsrc/animation/ASkeleton.h</b>
+<p><b>APose</b> is defined in <b>libsrc/animation/APose.h</b>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a7-practice 
+</pre>
+</p>
+<br>
+
+<p><b>AMotion</b> implements a fixed-framerate motion loaded from a <a
+href="https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html">BVH
+file</a>.  A motion stores a sequence of a <b>APose</b>. Each APose stores the
+state of the skeleton on that frame .  Because AMotion represents motions with
+a fixed framerate, the time between each key is 1/fps. Fps stands for frames
+per second. For the characters in this class, poses contain the root position
+and the rotations for each joint. All pose data is always in local coordinates.
+The order of the joint rotations in <b>APose</b> matches the IDs in
+<b>ASkeleton</b>.  For example, the joint with ID = 5 has its local rotation
+stored in jointRots[5].
+
+<br>
+<hr>
+<h3>Question 2: Thriller (5 points)</h3>
+<hr>
+
+<p>In this question, you will implement dancers performing the 80s classic: Thriller!
+Implement your solution in <b>assignments/a7-motion/AThriller.cpp</b>.
+You will use the methods in <b>ASkeletonDrawer</b> defined in <b>libsrc/ui/ASkeletonDrawer.h</b> 
+for this question. Note that to draw multiple characters with the same synchronized animations,
+we only need one skeleton and multiple drawers!
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a7-thriller 
+</pre>
+</p>
+
+<br>
+<center>
+<video controls>
+<source src="thriller.ogv">
+</video>
+</center>
+
+<br>
+<p>Your solution should have the following features:
+<ul>
+<li>Use a vector or array to store drawers for every character in the crowd
+<li>Arrange 12 characters in a 4x3 grid across the floor. Use ASkeletonDrawer::setOffsetPosition.
+<li>Jitter the positions of the characters so that the alignment is not exact.
+<li>Randomize the colors of the characters. Use ASkeletonDrawer::setColor
+<li>Randomize the sizes of the characters. Use ASkeleton::setScale
+</ul>
+
+<br>
+<hr>
+<h3>Question 3: Simple controller (10 points)</h3>
+<hr>
+
+<p>For this question you will implement a simple character controlled with the keyboard.
+We will use the motion from <b>motions/Beta/walking.bvh</b> to animate the body but 
+the root will be animated based on keyboard input.
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a7-controller 
+</pre>
+</p>
+
+<br>
+<b>Step 1: Pin the root</b>
+<br>
+
+<p>Modify the pose of the skeleton so that the character's body animates but does not move.
+
+<br>
+<br>
+<img src="wasd1.gif">
+<br>
+<br>
+
+<br>
+<b>Step 2: Visualize the heading</b>
+<br>
+
+<p>The user can change the heading of the character by pressing 'a' and 'd' or the left and right arrow buttons. 
+When the user pressing 'a' or left, the heading turns left. To start, draw the heading on the floor at the 
+location of the character. Hint: use the global position of the character to compute endpoints for a line. 
+Use <b>ADrawLine</b> to draw the direction of the heading.
+
+<br>
+<br>
+<img src="wasd2.gif">
+<br>
+<br>
+
+<br>
+<b>Step 3: Turn the body to match the heading</b>
+<br>
+
+<p>Modify the pose of the skeleton so that the character rotates with the heading
+
+
+<br>
+<br>
+<img src="wasd3.gif">
+<br>
+<br>
+
+<br>
+<b>Step 4: Set the camera to follow the character</b>
+<br>
+
+<p>When we update the character, modify the camera position and look target so that it's behind the 
+character's head. Use the global position of the character's head to compute positions  
+for the camera. You will need global positions for the camera's position and for the target 
+where the camera is looking. 
+
+<pre>
+AVector3 globalPos;
+AVector3 globalLookPos;
+...
+ACamera* camera = getCamera();
+camera->set(globalPos, globalLookPos, AVector3(0,1,0) /*up*/);
+</pre>
+
+<br>
+<br>
+<img src="wasd4.gif">
+<br>
+<br>
+
+<br>
+<b>Step 5: Update the character position</b>
+<br>
+
+<p>Modify the pose of the skeleton so that the character both rotates and moves with the heading. 
+Update the position of the skeleton's root similarly to how you animated 
+a particle to move in a straight line. In this case, velocity is based on the heading and the 
+desired speed.
+
+<br>
+<br>
+<img src="wasd5.gif">
+<br>
+<br>
+
+<br>
+<hr>
+<h3>Question 4: Butterfly (10 points)</h3>
+<hr>
+
+<p>In this questio, you will complete the butterfly demo. Put your solution in 
+<b>assignments/a7-motion/AButterfly.cpp</b>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a7-butterfly 
+</pre>
+</p>
+
+<br>
+<br>
+<img src="butterfly.gif" height="200">
+<br>
+<br>
+
+Your solution should have the following features
+<ul>
+<li>Two+ primitives for each wing
+<li>Animated wings
+<li>Animated body
+</ul>
+
+<hr>
+<h2>Extra Credit</h2>
+<hr>
+
+<p><b>Option 1 (up to 5 points) </b> Create a cool demo using motion capture and/or unique characters. 
+
+<br>
+<br>
+<img src="characters.gif" height="200">
+<br>
+<br>
+
+<p><b>Option 2 (5 points) </b>Extend the controller from question 4 to support jump with spacebar.
+
+ 
+<!--
+<p><b>Option 4 (up to 2 each)</b> Create unique keyframed animation using the key editor
+
+<p><b>Option 5 (up to 2 each)</b> Customize the appearance of the character. You 
+can change the character's color or add accessories (like a crown or sword). See 
+ASkeletonDrawer.cpp for example code.
+<br>
+<br>
+<br>
+<p><b>Option 6 (up to 2 each)</b> Create a procedural animation. 
+<ul>
+<li>Try animating the arms to make a dance motion.
+<li>Try animating a tapping foot
+<li>Try animating gaze
+</ul>
+-->
+
+<p>Be sure to include a video of your demo for full credit!
+
+<br>
+<hr>
+<h2>Submission Requirements (1 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

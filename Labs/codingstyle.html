@@ -1,0 +1,94 @@
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+   <title>CS56: Coding Style</title>
+   <link rel="stylesheet" href="../astyle.css"/>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+<body>
+
+<hr>
+<h1>C++ Coding style guidelines</h1>
+<hr>
+
+<br>
+
+<p>The primary goal of a coding style is 
+to make a codebase easier to read through consistent syntax. For example, the framework used in class 
+tries to uphold consistent capitalization and spacing. A secondary goal might also be to prohibit 
+potentially risky code practices.  For example, using macros to define simple functions can result in surprising  
+behavior! (<a href="#note1">*</a>). But using templates for such functions makes such bugs impossible. 
+Thus, a coding standard might specify that templates should be preferred to macros.
+
+<p>Below are the code style guidelines for the framework used in the animation course. Many of these 
+are identical to Professor Tia Newhall's guidelines 
+<a href="https://www.cs.swarthmore.edu/~newhall/unixhelp/cppcodestyle.html">here</a>.
+<br>
+<ul>
+  <li>Prefer streams and stream operators rather than C style I/O functions
+  <li>All classes should define virtual destructor functions
+  <li>Each class definition should be in its own file. Filenames containing classes should match the classname.
+  <li>Classnames start with captital letters and use camel case. 
+  For example, ABlueClass (good!) but not Ablueclass (no!) aBlueClass (no!) or ablueclass (no!)
+  <li>Local variables and public class variables should start with a lowercase letter and use camelCase
+  For example, radiusHalf, but not RadiusHalf (no!) or _radiusHalf (no!) or _radiushalf (no!)
+  <li>Protected and private class member variables should start with either _ or m; _ is preferred. Variables should be camelCase.
+  For example, mRadiusHalf (ok) or _radiusHalf (good!) but not _RadiusHalf (no!) or radiusHalf (no!)
+  <li>Classes and global variables and global functions are prefixed with A (to avoid name conflicts)
+  <li>Avoid global variables
+  <li>Avoid macros. Prefer const global variables or template functions instead.
+  <li>Avoid multiple inheritance
+  <li>Prefer pass by reference to pass by pointer
+  <li>Never return a reference to a temporary object
+  <li>Group functions by public/protected/private followed by member variables (public/protected/private followed by static variables
+  <li>Avoid public member variables in classes. Instead create protected or private variable and define accessor/setter methods
+  <pre>
+  class foo
+  {
+  public:
+    int getFoo() const { return _value; } 
+    void setFoo(int v) { _value = v; }
+  private:
+    int _value;  // good!
+  }
+  </pre>
+  and not
+  <pre>
+  class foo
+  {
+  
+  public:
+    int value; // avoid this, blech
+  }
+  </pre>
+  <li>Put curly brackets on their own line, e.g. 
+  <pre>
+  if (i == 2)
+  { // good!
+  }
+  </pre>
+  but not
+  <pre>
+  if (i == 2) { // "egyptian style" no!
+  }
+  </pre>
+</ul>
+
+<b>Notes:</b>
+<br>
+<p id="note1">(1) Here's a good example from Scott Meyer's book <i>Effective C++</i>
+
+<pre>
+#define max(a,b) ((a) > (b) ? (a) : (b))
+
+int foo()
+{
+  int a = 5, b = 0;
+  max(++a, b);    // a is incremented twice
+  max(++a, b+10); // a is incremented once
+}
+</pre>
+
+</body>
+</html>
+

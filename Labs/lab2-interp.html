@@ -1,0 +1,371 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 2</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body> 
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 2</h1>
+<div id="TagLine">
+   In which, we implement interpolation algorithms of different flavors
+</div>
+<hr>
+     
+<p>The goals of this lab are to implement 
+<ul>
+<li> animations using linear interpolations
+<li> animations using cubic interpolations
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>The interpolation assignment has been added to your AnimationFramework repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+> cd build
+> cmake ..; make
+</pre>
+
+<p>You should now have a new directory under assignments called a2-interpolation.
+
+<br>
+<hr>
+<h2>Assignment 2: Howl's moving casteljau</h2>
+<h3>Due September 20</h3>
+<hr>
+
+<p>In this assignment, you will interpolate between points using linear 
+interpolation.
+
+\[
+p(t) = (1-t) p_0 + t p_1
+\]
+
+<p>And cubic interpolation with Bezier curves
+
+\[
+p(t) = (1-t)^3 b_0 + 3t(1-t)^2 b_1 + 3t^2(1-t) b_2 + t^3 b_3
+\]
+
+<br>
+<br>
+<hr>
+<h3>Question 1: Gradient (5 points)</h3>
+<hr>
+
+<p>A color gradient uses linear interpolation to gradually change from one color to another 
+based on position. In class, we computed a gradient in the demo 
+<a href="colorLerp2.cpp.txt">colorLerp2.cpp</a>
+
+<p>For this question, modify the code in <b>gradient.cpp</b> to implement a 2D gradient. 
+Your program should open a square window and draw NxN cubes to fill it. The color of each 
+cube will be a function of four colors and the cube's position. The four colors will correspond 
+to the four corners of the screen: NE, SE, SW, NW. 
+
+<p>To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a2-gradient 
+</pre>
+</p>
+
+<p>Let's suppose that 
+
+<ul>
+<li>The northwest corner has color yellow (1,1,0). Let's name this color $C^{nw}$.
+<li>The northeast corner has color cyan (0,1,1). Let's name this color $C^{ne}$.
+<li>The southwest corner has color red (1,0,0). Let's name this color $C^{sw}$
+<li>The southeast corner has color fuchsia (1,0,1). Let's name this color $C^{se}$.
+</ul>
+
+<p>A 2D gradient is computed in two steps. Suppose our cube is at position $(p_x, p_y)^T$.
+First, we interpolate from west to east.  Let $t^x \in [0,1]$ be computed based on $p_x$ 
+and the window's width. 
+<br>
+<br>
+\(
+C_0^x = C^{nw} * (1-t^x) + C^{ne} * t^x \\
+C_1^x = C^{sw} * (1-t^x) + C^{se} * t^x
+\)
+
+<p>Second, interpolate $C_0^x$ and $C_1^x$ based on the y direction. Let $t^y \in [0,1]$ be computed 
+based on $p_y$ and the window's height.
+
+<br>
+<br>
+\(
+C = C_0^{x} * (1-t^y) + C_1^{x} * t^y
+\)
+
+<p>The final result is below
+<br>
+<br>
+
+<img src="colorLerp3.png">
+
+<br>
+<hr>
+<h3>Question 2: Degree-2 Bezier Curve (10 points)</h3>
+<hr>
+
+<p>In class, we derived the Bezier curve for cubic interpolation. For this question, 
+derive the Bezier curve for a degree-2 polynomial. 
+
+<ol>
+<li>(5 points) In class, we saw that the formula for a nth-degree Bezier curve is 
+\[
+p(t) = \sum_{i=0}^n B_i^n(t) b_i
+\]
+What is the polynomial for a degree-2 Bezier curve? How many control points does it have?
+<li>(5 points) How can we use de Casteljau's algorithm to interpolate using a degree-2 
+		Bezier curve? 
+</ol>
+
+<p>Please include your answers as part of your README for this week.
+
+<br>
+<br>
+<hr>
+<h3>Question 3: Classy Cubic (10 points)</h3>
+<hr>
+
+<p>For this question, you will implement classes for cubic curves computed using either 
+Bernstein polynomials or De Casteljau's algorithm. 
+
+<p>You have been given skeleton code in <b>Cubic.h</b> and <b>Cubic.cpp</b>.
+These files implement a base class, Cubic, with two subclasses:
+CubicDeCasteljau and CubicBernstein.  The base class has setters and getters
+for the control points. The base class also defines two methods. The draw()
+method should draw the curve using ADrawLine (defined in
+libsrc/ui/AGLObjects.h).  The interpolate(double) method should return the
+value of the curve at the given time. The implementation for interpolate is in
+the subclasses. CubicDeCasteljau should implement interpolate using de
+Casteljau's algorithm. CubicBernstein should implement interpolate using
+Bernstein polynomials. 
+
+<p>Once your class is complete, you can test both your implementations using the 
+application defined in <b>drawCubic.cpp</b>
+
+<p>To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a2-drawCubic 
+</pre>
+</p>
+
+<img src="drawCubic.png">
+
+<br>
+<br>
+<hr>
+<h3>Question 4: Animating position (5 points)</h3>
+<hr>
+
+<p>For this question, we will re-use the class you made in Question 3 to update the position 
+of a particle. Implement your solution in the file <b>particleCubic.cpp</b>. The algorithm for 
+animating position is the same as the <a href="particleLerp.cpp.txt">particleLerp.cpp</a> example 
+from class. However, instead of linear interpolation, we use cubic interpolation. Your solution 
+should draw the curve as well as the particle.
+
+<p>To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a2-particleCubic 
+</pre>
+</p>
+
+<img src="particleCubic.gif">
+
+<br>
+<br>
+<p>Requirements:
+<ul>
+<li>The particle should take 5 seconds to travel the curve.
+<li>The particle should wrap to the beginning of the curve when it gets to the end. You can use any algorithm you want for this, but the simplest solution involves using the elapsed time and <a href="http://www.cplusplus.com/reference/cmath/fmod/">fmod</a>. 
+</ul>
+
+<br>
+<br>
+<hr>
+<h3>Question 5: Animating curves (5 points)</h3>
+<hr>
+
+<p>For this question, we will re-use the class you made in Question 3 to linearly interpolate 
+between two curves. Implement your solution in the file <b>animateCubic.cpp</b>. 
+
+<p>To interpolate between two curves, we only need to interpolate each of the
+control points.  Your basecode defines two curves: curve1 and curve2. To
+interpolate back and forth between them you need to let the t vary from 0 to 1
+and then from 1 to 0. 
+
+<p>To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a2-animateCubic 
+</pre>
+</p>
+
+<p>Requirements:
+<ul>
+<li>The interpolated curve should ping pong between curve 1 and curve 2.
+<li>You should also interpolate the color.
+</ul>
+
+<br>
+<br>
+<img src="animateCubic.gif">
+
+<br>
+<br>
+<hr>
+<h3>Question 6: Screensaver (15 points)</h3>
+<hr>
+
+<p>In the previous question, we oscillated between two curves. In this question, we will 
+interpolate between a series of curves.  This question has two parts. 
+
+<p>To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a2-screensaver 
+</pre>
+</p>
+
+<h4>Part 1: Animate a single curve (10 points)</h4> 
+
+<p>We will interpolate between curves having random control points. You will need three curves. 
+<ul>
+<li>the starting curve (e.g. curve1 from before), 
+<li>the ending curve (e.g. curve2), and 
+<li>a curve that stores the current interpolation between them. Let's call this curve 'current'
+</ul>
+
+<p>When the current curve reaches curve 2, we compute a new curve to interpolate towards. The algorithm 
+looks like 
+
+<pre class="prettyprint lang-sh">
+if t > 1
+   t = 0
+   curve1 = current
+   curve2 = new random curve
+
+current = interpolate between curve1 and curve2 based on t
+</pre>
+
+<img src="screensaver1.gif">
+
+<p>Requirements:
+<ul>
+<li>You should randomize colors
+<li>The animation should run forever (don't hardcode the number of curves)
+<li>All control points should be within the bounds of the window
+<li>Draw curve1, curve2, and current 
+<li>Implement your animation in update(), not draw()
+</ul>
+
+<h4>Part 2: Implement a trail effect (5 points)</h4> 
+
+<p>To implement a trailing effect, we save previously interpolated curves in a
+<a href="http://www.cplusplus.com/reference/list/list/">list</a>.  So we don't
+run out of memory, we store at most N previous curves. In the demo below, N is
+50. 
+
+<p>In the simplest trail implementation, we would add a new curve to our 
+list every frame. In other words, whenever we update the current curve, we 
+would also add it to our list. However, this creates a trail that has the 
+lines close together. You should try this first.
+
+<p>To make a prettier effect, we should only save the current curve only after
+T seconds have passed. In the demo below, X is 0.1 seconds. The algorithm looks
+like
+
+<pre class="prettyprint lang-sh">
+if timer > T
+   timer = 0
+   add current curve to a list
+   if trail size > max size
+      remove oldest curve from list
+</pre>
+
+<br>
+<img src="screensaver.gif">
+<br>
+
+
+<p>Requirements:
+<ul>
+<li>You should randomize colors
+<li>The animation should run forever (don't hardcode the number of curves)
+<li>All control points should be within the bounds of the window
+<li>Space out saving the current curve by T seconds. T > 0
+<li>Store at most N curves in your trail. N > 5
+<li>Implement your animation in update(), not draw()
+<li>Implement your animation in update(), not draw()
+</ul>
+
+
+<br>
+<br>
+<hr>
+<h3>Extra Credit (Up to 3 points)</h3>
+<hr>
+
+<h3>Option 1: Derive and implement a degree-N curve</h3>
+
+Implement a demo based on a degree N curve. N should be greater than 3.  Your
+demo should draw the control points as well as the curve. 
+
+<h3>Option 2: Implement a cool scene using curves</h3>
+
+Create a scene with lots of curves or that integrate some interactivity from 
+the user. Some ideas:
+
+<ul>
+<li>Play with colors (gradients, palettes, jitter). Use a cubic curve to animate color.
+<li>Use sine/cosine to animate the control points
+<li>Let the user specify control points with mouse click
+<li>Animate the positions, colors, and scale of different shapes using cubic curves 
+</ul>
+
+<img src="wavy.gif" height="200px">
+<img src="grass.gif" height="200px">
+<!--<img src="userClick.gif" height="100px">
+<img src="animateShapes.gif" height="100px">-->
+
+<br>
+<hr>
+<h2>Submission Requirements (1 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+
+</body>
+</html>

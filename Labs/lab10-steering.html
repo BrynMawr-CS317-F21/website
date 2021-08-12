@@ -1,0 +1,328 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 10</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 10</h1>
+<div id="TagLine">
+   In which, we implement a steering algorithm with simple dynamics
+</div>
+<hr>
+     
+<p>The goal of this lab is to 
+<ul>
+<li>Implement a physics-based steering model for our character 
+</ul>
+
+<!--<br>
+<center>
+<video controls>
+		<source src="steering.ogv">
+</video>
+</center>
+<br>
+-->
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>The steering assignment has been added to your AnimationFramework repository.  
+To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+</pre>
+
+<p>You should now have new files under a10-steering
+
+<hr>
+<h2>Compile and run</h2>
+<hr>
+
+<p>First, you will need to edit the CMakeLists.txt file under assignments to build the executables in the new directory, e.g. 
+
+<pre>
+add_subdirectory(viewer2d)
+add_subdirectory(viewer3d)
+add_subdirectory(a0-hello)
+add_subdirectory(a1-a2-rotations)
+add_subdirectory(a3-a4-curves)
+add_subdirectory(a5-motion)
+add_subdirectory(a6-keys)
+add_subdirectory(a7-crossfade)
+add_subdirectory(a8-a9-ik)
+add_subdirectory(a10-steering)
+</pre>
+
+<p>You can build and run like so
+
+<pre class="prettyprint lang-sh">
+> cd AnimationFramework/build
+> cmake ..
+> make 
+> ../bin/a10-steering
+</pre>
+
+<hr>
+<h2>User interface overview</h2>
+<hr>
+
+<p>The camera can be controled with the mouse:
+
+<ul>
+    <li>Left-button drag with the mouse to rotate
+    <li>Right-button drag with the mouse to pan
+    <li>Middle-button drag with the mouse to zoom
+    <li>'f' button will focus the view on the character
+</ul>
+
+<p>Control-left click will set the position of the target (red dot)
+
+<p>Pressing the spacebar will reset the character at (0,0,0)
+
+<hr>
+<h2>Assignment <b>Due April 27</b></h2>
+<hr>
+
+<p>This is an individual assignment.
+
+<p>The code for this assignment includes the class ASteerable, which implements a 
+steerable character, and the class ABehavior, which implements various steering behaviors.
+Subclasses of ABehavior compute desired velocities which are 'fed' to the steering 
+algorithm in ASteerable. You can control how a character moves by changing its behavior.
+
+<p>We will build up our steering model in steps. 
+
+<h3>Step 1: Implement a simple seek behavior with basic steering model</h3>
+
+<p><b>(5 points)</b> Implement ASeek::computeDesiredVelocity(const ASteerable&amp; actor). 
+Also, set a default value for the constant ASeek::kMaxSpeed. 
+You may need to tweak this parameter to produce nice looking 
+results with your steering algorithm.
+
+<p><b>(5 points)</b> Compute _vd and _thetad in ASteerable::senseControlAct(const AVector3&amp; veld, double dt). Given a desired velocity and dt, senseControlAct() computes a global translation and rotation 
+and stores them in the member variable ATransform _characterRoot. To test your computation of _vd and _thetad, set the 
+_characterRoot using the following approach, e.g. 
+<ol>
+<li>Compute \( \theta_d \). Store the result in member variable _thetad
+<li>Compute \( v_d \). Store the result in member variable _vd
+<li>Compute a new orientation \( R_y \) using \( \theta_d \) 
+<li>Compute a new velocity in global coordinates using v<sub>d</sub>, e.g. 
+\( v^{t} = R_y \left( \begin{array}{c} 
+0 \\
+0 \\
+v_d
+\end{array} \right)
+\)
+<li>Compute a new position using v<sup>t</sup>, 
+e.g. \( p^{t+\Delta t} = p^t + v^t \Delta t \)
+<li>Update _characterRoot with the new position and orientation
+</ol>
+
+<p>Note above that although in class, the vehicle has X forward (and rotates around Z), 
+note that in your basecode <b>Z is forward (and we rotate around Y)</b>.
+
+<p>Your application should look like this
+
+<br>
+<br>
+<img src="simpleSteer.gif">
+<br>
+<br>
+
+<h3>Step 2: Implement translational dynamics (linear forces)</h3>
+
+<p><b>(5 points)</b> Extend ASteerable::senseControlAct(const AVector3&amp; veld, double dt)
+to implement linear dynamics. Compute a force based on _vd and the current velocity (stored 
+in _state[VEL]). Use this force to compute derivatives and update the state for POS and VEL.
+To test, update the translation of _characterRoot based on the computed located position
+<ol>
+<li>Compute a new orientation \( R_y \) using \( \theta_d \) 
+<li>Compute global change in position as
+\( \Delta p = R_y \left( \begin{array}{c} 
+0 \\
+0 \\
+x^{t+\Delta t}
+\end{array} \right)
+\) where x is the local position stored in the character's state vector.
+<li>Compute a new position, 
+e.g. \( p^{t+\Delta t} = p^t + \Delta p \)
+<li>Update _characterRoot with the new position and orientation
+</ol>
+
+<!--
+<p>You may notice some weird behavior after imlementing this. Maybe something even like 
+
+<br>
+<br>
+<img src="badForces1.gif">
+<br>
+<br>
+
+<p><b>(2 points)</b> Remember in class: we talked about accuracy and stability for 
+numerical methods. We are currently using Euler's Method to simulate our character's 
+movement. Why and how is this happening (in your readme, answer in 1-2 sentences)? 
+
+<p>To fix the problem, adjust the gain, ASteerable::kVelKv, which you use to compute _force. 
+
+Your character should now look something like
+-->
+
+<br>
+<br>
+<img src="forcesOnly.gif">
+<br>
+<br>
+
+<h3>Step 3: Implement rotational dynamics (torques)</h3>
+
+<p><b>(5 points)</b> Extend ASteerable::senseControlAct(const AVector3&amp; veld, double dt)
+to implement rotational dynamics. Compute a torque based on _thetad and the current orientation (stored 
+in _state[ORI]). Use this force to compute derivatives and update the state for ORI and AVEL.
+To complete your steerable character, update the translation and orientation of _characterRoot based on the current state
+<ol>
+<li>Compute a new orientation \( R_y \) using \( \theta^{t+\Delta t} \) 
+<li>Compute global change in position as
+\( \Delta p = R_y \left( \begin{array}{c} 
+0 \\
+0 \\
+x^{t+\Delta t}
+\end{array} \right)
+\) where x is the local position stored in the character's state vector.
+<li>Compute a new position, 
+e.g. \( p^{t+\Delta t} = p^t + \Delta p \)
+<li>Update _characterRoot with the new position and orientation
+</ol>
+
+<p>After this step, our goal is for the character to look like
+
+<br>
+<br>
+<img src="steering.gif">
+<br>
+<br>
+
+<p>However, to get nice movement, we need to tweak the gains: 
+ASteerable::kVelKp, ASteerable::kOriKp and ASteerable::kOriKv.
+
+<p>One approach is to tweak these values manually. First, make large changes to find a 
+good magnitude for your parameter. Then make smaller changes to fine-tune. Also, change 
+parameters systematically, one at a time.
+
+<p>However, our orientation controller is an example of <i>proportional derivative</i> 
+control, which has well-understood properties. Specifically, recall that our dynamics 
+equation is 
+
+\[
+\tau = I(k_{P} (\theta_d - \theta) - k_V \dot{\theta}) 
+\]
+
+<p>We first solve for \( \tau \). Then we compute a new angular acceleration with 
+\( \ddot{\theta} = \tau/I \). The angular acceleration is then used to turn our 
+vehicle. The constants \( k_P, k_V \) for this type of controller can be defined 
+in terms of two parameters \( w_n \) and  \( \zeta \) like so
+
+\[
+k_P = (w_n)^2 \\
+k_V = 2 \zeta w_n
+\]
+
+<p>\( w_n \) is called the natural frequency and \( \zeta \) is called the damping ratio.
+The rate of convergence follows the function \( e^{-\zeta w_n t}\), so this function will 
+be close to zero when \( \zeta w_n t = 4 \). We can use this to choose \( \zeta \) and 
+\( w_n \) so that we converge at an approximate time. 
+
+<p>Furthermore, the choice \( \zeta \) will determine if the system is 
+underdamped (e.g. oscillates), critically-damped (smoothly goes to \( \theta_d \) ), 
+or over-damped. Specifically,
+
+<ul>
+		<li><b>Underdamped</b> \( 0 \leq \zeta < 1 \).  In the example below, we have 
+		 \( w_n = 8, \zeta = 0.25 \). This choice of values results in \(k_V = 4, k_P = 64 \)
+				<br>
+				<br>
+				<img src="oscillate.gif">
+				<br>
+				<br>
+		<li><b>Critically damped</b> \( \zeta = 1 \).  In the example below, we \( w_n = 8, \zeta = 1 \). 
+				This choice of values results in \( k_V = 16, k_P = 64 \)
+				<br>
+				<br>
+				<img src="cdamped.gif">
+				<br>
+				<br>
+		<li><b>Overdamped</b> \( \zeta > 1 \).  In the example below, we \( w_n = 8, \zeta = 2 \) 
+				This choice of values results in \( k_V = 32, k_P = 64 \)
+				<br>
+				<br>
+				<img src="overdamped.gif">
+				<br>
+				<br>
+</ul>
+
+<p><b>(5 points)</b> For your orientation control, compute values for the gains kOriKp and kOriKv 
+such that the character's turning is critically damped and converges in approximately 0.5 seconds.
+
+<p>A final thought: You may find that if the character sits a while, it accumilates movement. 
+You can fix this by either adding a special case to not update when the character is 
+close to the goal, or by implementing a more sophisticated behavior which returns 
+a desired velocity of zero when within a threshold of the goal.
+
+<hr>
+<h2>Extra Credit</h2>
+<hr>
+
+<p><b>Option 1 (1 points each)</b> Implement additional individual behaviors such as 
+flee, avoid obstacles, arrive, depart, and wander. Or feel free to create your own!
+<p><b>Option 2 (2 points)</b> Implement a crowd. Extend the basecode to create N 
+characters and implement alignment, cohesion, separation, leader
+<p><b>Option 3 (1 points)</b> Make your crowd look heterogeneous by 
+<ul>
+<li>randomizing the colors
+<li>randomizing the sizes
+<li>randomizing the animation time so that motions are no longer synchronized
+</ul>
+
+<p><b>Option 4 (2 points)</b> Improve the animation of the character. 
+Implement a walk controller which 
+blends between walking and standing based on the character's speed. When 
+the speed is zero, the character should idle. When it is walking at the 
+max speed, it should be walking.
+
+<p>Be sure to include a video of your demo for full credit!
+
+<p>Extra credits can be submitted after the due date!
+
+<br>
+<hr>
+<h2>Submission Guidelines (3 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

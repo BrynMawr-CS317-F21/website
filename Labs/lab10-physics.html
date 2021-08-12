@@ -1,0 +1,268 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 10</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 10</h1>
+<div id="TagLine">
+   In which, we play with physics and possibly choose our own adventure....
+</div>
+<hr>
+     
+<p>The goal of this lab is to 
+<ul>
+<li> gain hands-on experience using a physics engine
+<li> explore additional topics of your choosing for extra credit!
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>This assignment has been added to your AnimationFramework repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+> cd build
+> cmake ..
+> make
+</pre>
+
+<p>You should now have a new directory under assignments called
+<b>a10-physics</b>.
+
+<br>
+<hr>
+<h2>Assignment 10: Use the force</h2>
+<h3>Due December 12</h3>
+<hr>
+
+<br>
+<hr>
+<h3>Question 1: Computing forces and torques (5 points)</h3>
+<hr>
+
+<p>In this question, use Newton's equations of motion to compute the net force 
+and net torque for the following box. Show your calculations in your readme 
+for this week.
+
+<ul>
+<li>The box has mass 10.0 and dimensions (100, 200, 100)
+<li>The box starts at position (0,0,0)
+<li>Each frame, we apply two forces. The forces and positions are given in the 
+box's local coordinate frame. 
+<ul>
+<li>a linear force of (0, 0, 10) applied at position (-50,0,-50) 
+<li>a linear force of (0, 0, 5) applied at position (50,0,-50) 
+</ul>
+</ul>
+
+<p>To check your work, use <a
+href="http://ode.org/wiki/index.php?title=Manual">ODE</a> to simulate the box
+and print out the forces and torques each frame. Verify that you get the same
+result that you calculated in your readme. Use <b>ABoxSim1</b> as a guide.
+CAREFUL: don't forget to compare your answers against the simulated forces in 
+local coordinates!
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a10-forces 
+</pre>
+</p>
+<br>
+
+<br>
+<hr>
+<h3>Question 2: Unstoppable!! (10 points)</h3>
+<hr>
+
+<p>In this question, you will implement a character that can interact with a 
+physically-simulated wall. This demo will require defining both kinematic and 
+dynamic objects in the ODE physics engine. The character will consist of 
+kinematic objects and the wall will consist of dynamic objects.  
+Use the code in <b>ABoxSim3</b> as an example.
+
+<p>Helpful Reference: <a href="https://www.ode-wiki.org/wiki/index.php?title=Manual:_All">Open Dynamics Engine (ODE) Reference Manual</a>
+
+<br>
+<br>
+<img src="unstoppable.gif">
+<br>
+<br>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a10-unstoppable 
+</pre>
+</p>
+<br>
+
+<p>Controls
+<ul>
+<li>Press spacebar to reset the simulation
+<li>Press 'd' to toggle the display to show either the character or physics objects
+<li>
+</ul>
+
+<p>Features
+<ul>
+<li>Create a wall of bricks. The wall width should be at least 200 and height should be 200. Place the wall so it is perpendicular to the +Z axis, with its base centered at position (0,0,100). Each brick should be dynamically simulated
+<ul>
+<li>Each brick should have dimensions (50, 50, 50) and mass 50.
+<li>Create a rigid body for each brick using dBodyCreate()
+<li>Create a collision object for each brick using dCreateBox()
+</ul>
+<li>For each joint of the skeleton, create a kinematically simulated sphere. Each 
+sphere should have radius 2 and total mass equal to 5.
+<ul>
+<li>Create a rigid body for the sphere using dBodyCreate
+<li>Set the rigid body to be kinematic using dBodySetKinematic
+<li>Create a collision object for the sphere using dCreateSphere
+<li>Each frame, update the position of the spheres based on the global positions of each joint
+</ul>
+<li>Draw the boxes and spheres simulated by your program
+</ul>
+
+<br>
+<hr>
+<h3>BONUS: Fireworks (5 points)</h3>
+<hr>
+
+<p>In this question, you will implement fireworks using particle systems.
+Implement your solution in <b>assignments/a10-physics/fireworks.cpp</b>
+
+<br>
+<br>
+<img src="fireworks.gif">
+<br>
+<br>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a10-fireworks 
+</pre>
+</p>
+<br>
+
+<p>For this demo, implement a rocket that explodes into 
+fireworks when the user presses the space bar.  
+
+<p>Each firework should contain two particle systems: one which 
+represents the rocket and one which represents the the exploded firework.
+Fireworks go through three stages: ROCKET, EXPLODE, DONE.  
+
+<ul>
+<li>ROCKET: a rocket particle should be initialized with a randomized start 
+velocity and "time to live". When the rocket's time to live expires, the firework 
+switches to mode EXPLODE. 
+<li>EXPLODE: N sparks are initialized at the current location of the rocket 
+with randomized velocities extending in a circle arond the start position. 
+Each particle should get a "time to live". When all firework particles have 
+exceeded their time to live, the firework switches to mode DONE
+<li>DONE: The firework is no longer updated or drawn and is available for re-launch
+by the user.
+</ul>
+
+<p>Features
+<ol>
+<li>Particles should contain 
+<ul>
+<li>mass, velocity, position, color, time to live, transparency, and size
+<li>derivatives for position and velocity
+<li>accumilated forces
+</ul>
+<li>In update, compute the derivative and update each particle's state. Additionally, decrement ttl by the delta time.
+<li>Create a new rocket when the user presses spacebar
+<li>When a particle expires, it should either be deleted or recycled as part of an object pool. 
+<li>Randomize the properties of the particles. 
+<li>Define at least one external force to act on the particles (e.g. gravity)
+<li>Visualize the rocket with a cone. The cone should face the direction that the 
+particle is moving.
+</ol>
+
+<br>
+<hr>
+<h3>BONUS: Behave! (10 points)</h3>
+<hr>
+
+<p>In this question, you will animate a simple crowd using boid behaviors. 
+Implement your behaviors in <b>assignments/a10-physics/ABehaviors.cpp</b>
+Animate a character using your WASD controller in 
+<b>assignments/a10-physics/ASteerable.cpp</b>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a10-behaviors 
+</pre>
+</p>
+<br>
+
+<br>
+<br>
+<img src="leader.gif">
+<br>
+<br>
+
+<p>This demo requires you to have a placeholder character 
+drawn as a sphere. 
+
+<p>Implement the steering behaviors in ABehaviors.cpp. The basecode 
+provides a UI for tweaking parameters and for environment
+
+<p>Features
+<ul>
+<li>Implement AFlee:calculateDesiredVelocity
+<li>Implement AArrival:calculateDesiredVelocity
+<li>Implement ADeparture:calculateDesiredVelocity
+<li>Implement ASeparation:calculateDesiredVelocity
+<li>Implement ACohesion:calculateDesiredVelocity
+<li>Implement AAlignment:calculateDesiredVelocity
+<li>Implement AFlocking:calculateDesiredVelocity
+<li>Implement ALeader:calculateDesiredVelocity
+<li>Port your WASD controller to ASteerable to create a humanoid character
+</ul>
+
+<!--
+<h3>Uneven terrain walker (5 points)</h3>
+
+<p>For full credit, complete the following
+<ul>
+<li>Support steering the character using WASD controls
+<li>Use IK to ground clamp the feet the match the terrain height
+<li>Move the camera each frame to track the character
+<li>Support blending from standing, walking, or new motions such as jumping
+</ul>
+-->
+
+<br>
+<hr>
+<h2>Submission Requirements</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

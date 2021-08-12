@@ -1,0 +1,17 @@
+=== Homeworks and exercises
+
+This course features weekly lab exercises and assignments which are an
+important component of the class.  
+
+Labs will be used for quizzes, presenting work, and completing assignment work. 
+
+Class exercises will be passed out in class. These exercises are short and are
+intended to help you understand the concepts needed for exams and assignments.
+
+Assignments will be posted Fridays and due Thursday night. You are strongly
+encouraged to start early so that you can ask questions. See the syllabus for
+links to the assignments. Assignments are open-source but should still be your
+own work.  
+
+You will submit your assignments electronically using link:github.com[Github]. 
+

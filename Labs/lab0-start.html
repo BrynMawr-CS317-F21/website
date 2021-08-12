@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 0</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+
+</head>
+
+<body> 
+
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 0</h1>
+<div id="TagLine">
+   In which, we begin our work with git, cmake, and C++
+</div>
+<hr>
+
+<p>There is no assignment associated with this lab. Today, we will set up our
+development environment and review C++. We will use the same C++ code
+framework throughout this course. For some assignments, you will implement
+core features in the animation library. For other assignments, you will write
+applications which use the animation library. The framework also includes a
+simple graphics library for visualizing and controlling your animations.</p>
+
+<p>Some of you may not feel comfortable programming in C++. This is ok! This
+course is an opportunity to gain experience and this lab is intended to help
+you gain your footing. Note that you can always look at the existing code in
+the framework and then modify it to complete your assignments. You can also
+post questions in Piazza. </p>
+     
+<p>The goals of this lab are
+<ul>
+   <li> Introduce the code framework for the assignments
+   <li> Review C++ and setup our development environment
+   <li> Introduce the coordinate systems we will use for 2D and 3D
+   <li> Create static images with shapes and colors
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>The source is available from github.swarthmore.edu. We will use 
+<b>git</b> to keep track of our source code throughout the semester.  
+
+<p> You will need a Swarthmore git account for submitting assignments. 
+
+<pre class="prettyprint lang-sh">
+> mkdir cs56
+> cd cs56
+> git clone git@github.swarthmore.edu:cs56-f19/AnimationToolkit-YOURUSERNAME.git AnimationToolkit
+</pre>
+
+<br>
+<b>If you DO NOT have a Swarthmore github account yet</b>
+<br>
+
+<p>For those of you without an account yet, you can download the repository from 
+<a href="AnimationToolkit-master.zip">here</a>. You can still use git locally 
+to keep track of your changes. To submit, we will set the url to the remote 
+repository manually (The professor will send you instructions once your 
+account is setup).
+
+<pre class="prettyprint lang-sh">
+> mkdir cs56
+> cd cs56
+> unzip AnimationToolkit-master.zip
+> cd AnimationToolkit-master
+> git init
+> git add .
+> git commit -m "assignment framework"
+</pre>
+
+<br>
+<b>Ok, let's get started!</b>
+<br>
+
+<p>We will use the same framework for every assignment. Each week, you will
+implement additional features inside this framework.
+
+<p>Let's start by taking a look at the repository. It contains the following directories
+<ul>
+  <li>/libsrc - source files for animation and ui libraries. Most assignments will extend the animation library
+  <li>/assignments - source files for demos and test applications
+  <li>/motions - character and motion models 
+  <li>/cmake-modules - helper build files for cmake 
+  <li>CMakeLists.txt - top level build file for cmake
+</ul>
+
+<hr>
+<h2>Compile and run</h2>
+<hr>
+
+<p>We use <b>cmake</b> because it can support multiple platforms (such as
+UNIX and Windows) with a single build configuration. For example, cmake
+can generate Makefiles for UNIX and .vcproj files for Windows. 
+Cmake stores its build settings in CMakeLists.txt files in
+each directory.
+
+<p>Because cmake generates a lot of temporary files, we use an 
+<b>out of source build</b> to keep our repository clean. 
+
+<p>In other words, we will create a separate directory named <b>/build</b> to
+compile and link.
+
+<pre class="prettyprint lang-sh">
+> cd AnimationToolkit
+> mkdir build
+> cd build
+> cmake ..
+> make 
+</pre>
+
+<p><b>NOTE</b>: We do not want to check in temporary files to git!!! We can 
+tell git to ignore unwanted files by adding them to <b>.gitignore</b>. 
+I've added build* to this file, so your temporary files are not checked 
+into git. 
+
+<p>After this step, you should have executables installed into a new
+directory called <b>/bin</b>. To test, let's make sure the default viewers
+work. These are implemented in <b>assignments/viewer2d</b> and
+<b>assignments/viewer3d</b>. After building, you can run them from the
+<b>/build</b> directory. Let's start with the default 3D scene:
+
+<pre class="prettyprint lang-sh">
+> ../bin/viewer3d
+</pre>
+
+<p>You should see a grid with a grey background. Dragging with the left mouse
+will rotate (try it!) around the world origin. Middle mouse button will zoom.
+Right mouse button will pan. Pressing 'Escape' or closing the window will
+quit the application.<br> <img src="viewer3d.png" width=25% />
+
+<p>Now try running viewer2d.
+
+<pre class="prettyprint lang-sh">
+> ../bin/viewer2d
+</pre>
+
+Oh no, just a blank screen!! Not to worry. The world is empty. We will add 
+some objects to it soon.
+
+<br>
+<br>
+<hr>
+<h2>Exercise: Drawing in 2D.</h2>
+<hr>
+
+<p>To start, let's look at the implementation of viewer2d in
+<b>assignments/viewer2d/basicMain.cpp</b>
+
+<pre class="prettyprint lang-c">
+#include "AFramework.h"
+
+int main(int argc, char** argv)
+{
+   AFramework viewer(AFramework::Orthographic);
+   viewer.init(argc, argv);
+   viewer.run();
+   return 0;
+}
+</pre>
+
+<p>This code creates a window capable of receiving user input and
+drawing graphics. The code for viewer3d is very similar. Each creates an
+instance of <b>AFramework</b> and then calls init() and run(). The run()
+function does not return until either 'Escape' is pressed or the window is
+closed. AFramework::run() implements our <b>game loop</b>, which will invoke
+callbacks for user events, update, and draw. 
+         
+<p>AFramework supports two types of scenes: 
+   <ul>
+      <li>orthographic (2D)</li>
+      <li>perspective (3D)</li>
+   </ul>
+
+<p>In both, we use the term <b>camera</b> to refer to the location and
+direction in the world that we can see objects. Moving the camera allows us
+to see different parts of the world. The parameters of the camera control how
+much of the world we can see (sometimes called a view volume). Only objects
+in front of the camera can be seen.
+
+<p>By the default, the 2D scenes in this course do not allow you to move the camera.
+   In other words, only objects that have (X,Y) coordinates between (0,0) and 
+   (screen width, screen height) can be seen. 
+</p> 
+
+<p><b>Orthographic</b><br><br> 
+<img src="orthographic.png"/><br><br>
+   <ul>
+      <li>Viewable world is a cuboid 
+      <li>Defines a cuboid having dimensions screenWidth x screenHeight x 2000 units. 
+      The origin of the world is located at the bottom left corner of the window. 
+      <li>The view volume extents are X = [0, screenWidth], Y = [0, screenHeight], and Z = [-1000,1000]
+      <li>No perspective depth. In other words, every object looks to be the same distance away from the camera and parallel lines always appear parallel.
+      <li>Basic program: viewer2d
+   </ul>
+<br>
+
+<hr>
+<h2>Drawing shapes in 2D</h2>
+<hr>
+
+<br>
+<br>
+<h3>Example: Green sphere</h2>
+<p>Look at the code in <b>assignments/a0-start/2d/greenSphere2d.cpp</b></p>
+
+<p>Let's extend the default 2D scene to draw a green sphere in the center of
+our screen. Because the bottom corner is the origin (e.g. has coordinate
+(0,0,0)), we will draw the sphere at coordinate (screenWidth/2,
+screenHeight/2,0). Note that although we will draw a sphere, it will look like
+a circle in our 2D view. Also note that although our world looks 2D, it is 
+actually 3D. If we want to draw shapes in front of our sphere, we increase the 
+Z value; to draw behind the sphere, we decrease the Z value.
+
+<p>NOTE: You can set the window size by passing width and height to init()
+<pre class="prettyprint lang-c">
+   viewer.init(argc, argv, 600, 400);
+</pre>
+
+<p><b>Try this!</b> Draw a larger sphere directly behind the green sphere.</p>
+
+<br>
+<br>
+<h3>Example: Red cube</h2>
+<p>Now look at the code in <b>assignments/a0-start/redCube2d.cpp</b></p>
+
+<p>Now let's draw a cube using the function ADrawCube. This function 
+   takes a position like before, but it also takes arguments for setting the
+   orientation and size. Thus, this function can be used to draw rotated cuboids, 
+   not just cubes.
+
+<p><b>Try this!</b> Change the scale of the cube to draw a rectangle.</p>
+
+<br>
+<br>
+<hr>
+<h2>Drawing shapes in 3D</h2>
+<hr>
+
+Let's repeat the exercises above in 3D. Before, we drew shapes in the center
+of the screen. Now we will draw them at the center of the 3D world, which is
+at coordinate (0,0,0). You will also need to set materials instead of colors
+because the lighting for the 3D scene uses shading, whereas the 2D scene does
+not.
+
+In summary, to go from 2D to 3D, we need to do:
+<ul>
+   <li>Change the scene type to AFramework::Projection</li>
+   <li>Change the positions of your shapes</li>
+   <li>Use ASetMaterial instead of ASetColor</li>
+</ul> 
+
+In the 3D scene, the extents of the world are different and the 
+camera can be rotated and paned in the scene. Same as before, 
+only objects that are in the camera's view can be seen. 
+By default, this is objects that are with 500 units in front 
+of the camera. 
+
+<p><b>Perspective</b><br><br>
+<img src="perspective.png"/><br><br>
+<ul>
+<li>Viewable world is a truncated four-sided pyramid
+<li>Defines the pyramid with near distance = 0.1 and far distance = 500 and field of view = 60 degrees
+<li>Perspective depth. Objects closer to the viewer are larger than those far away. This is a traditional 3D view.
+<li>Basic program: viewer3d
+</ul>
+
+<br>
+<br>
+<h3>Example: Green sphere.</h3>
+<p>Look at and run the code in assignments/a0-start/3d/greenSphere3d.cpp.</p>
+
+<b>Try this! </b>Draw a second sphere at (5,0,5). 
+
+<br>
+<br>
+<h3>Example: Red cube</h3>
+<p>Look at the code in <b>assignments/a0-start/3d/redCube3d.cpp</b></p>
+
+<b>Try this!</b> Draw a yellow cone instead of a cube. Look up the 
+color yellow using an online resource such as <a href="https://rgbcolorcode.com/">this one</a>.
+Read the header file AGLObjects.h (in libsrc/ui) for a function for 
+drawing a cone.
+
+<!--
+<h2>Color tips and tricks</h2>
+
+One tip for generating pretty patterns is to use algorithms for  
+manipulating colors.
+
+<hr>
+<h3>Exercise 1: Draw a grid of spheres.</h2>
+<hr>
+
+Let's use 
+Using nested for loops, try filling the screen 
+
+<hr>
+<h3>Exercise 2: Draw a grid of red cubes having jittered colors.</h2>
+<hr>
+
+<hr>
+<h3>Practice 3: Draw a grid of cubes having gradient colors.</h2>
+<hr>
+
+<hr>
+<h3>Practice 4: Draw a grid of cubes which uses a pallet for colors.</h2>
+<hr>
+-->
+
+<br>
+<br>
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+   </div>
+
+</body></html>

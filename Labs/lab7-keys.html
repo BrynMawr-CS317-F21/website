@@ -1,0 +1,233 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 6</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 6</h1>
+<div id="TagLine">
+   In which, we build a simple keyframe editor
+</div>
+<hr>
+     
+<p>The goals of this lab are to 
+<ul>
+<li> Work with poses, skeletons, and transformations
+<li> Create your own key frame editor and make a unique character animation 
+</ul>
+
+<br>
+<center>
+<video controls>
+		<source src="keys.ogv">
+</video>
+</center>
+<br>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>The motion assignment has been added to your AnimationFramework repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+</pre>
+
+<p>You should now have a new directory under assignments called a5-motion. 
+
+<hr>
+<h2>Compile and run</h2>
+<hr>
+
+<p>First, you will need to edit the CMakeLists.txt file under assignments to build the executables in the new directory, e.g. 
+
+<pre>
+add_subdirectory(viewer2d)
+add_subdirectory(viewer3d)
+add_subdirectory(a0-hello)
+add_subdirectory(a1-a2-rotations)
+add_subdirectory(a3-a4-curves)
+add_subdirectory(a5-motion)
+add_subdirectory(a6-keys)
+</pre>
+
+<p>Then, you can build and run like so
+
+<pre class="prettyprint lang-sh">
+> cd AnimationFramework/build
+> cmake ..
+> make 
+> ../bin/a6-keys
+</pre>
+
+
+<hr>
+<h2>User interface overview</h2>
+<hr>
+
+<p>The basecode includes a simple interface and 3D viewer. See above for a demo. 
+
+<p>The camera can be controled with the mouse:
+
+<ul>
+    <li>Left-button drag with the mouse to rotate
+    <li>Right-button drag with the mouse to pan
+    <li>Middle-button drag with the mouse to zoom
+    <li>'f' button will focus the view on the character
+</ul>
+
+<p>The player control panel on the top left can be used to play/pause, step through keys, and see the simulation time.
+
+<p>The key control panel on the bottom left can be used to manage and preview keys. 
+<ul>
+  <li><b>Key time</b> the current time used for adding, deleting, previewing, or editing keys
+  <li><b>Delete key</b> Deletes the key corresponding to the current time. The viewer does not allow you to delete key 0. 
+  <li><b>Set key</b> Allows you to add or edit keys, depending on whether a key exists for the current time or not.  
+  If no key exists for the given key time, a new key is created. Otherwise, the existing key is modified with the current skeleton pose. 
+  <li><b>Load saved keys</b>. The load button will load keysavefile.txt if one exists in the current running directory.
+  <li><b>Save keys</b>. Saves the current list of keys to the file keysavefile.txt. This file is saved to the current running directory. 
+  <li><b>Keys</b>. The list of keys. Clicking on items from this list with preview the key's pose on the skeleton and set the key time.
+</ul>
+
+<p>The edit pose panel on the right allows you to edit the skeleton's pose. The reset button sets the root position and all joint rotations 
+to a default T-pose. Selecting a joint from the list will highlight it on the character and allow you to change its local rotation.
+
+<hr>
+<h2>Lab exercise: Stacking Boxes</h2>
+<hr>
+
+<p>For this exercise, we will work in groups of 2-3 people. In your readme for this week, please include the member names of the people you worked with!
+
+<p><p>A room has three boxes in it as shown below. Each box has a local coordinate system attached to it. The lengths of all three boxes
+in the x,y, and z directions of their local coordinate frames are (3,2,1) respectively. The origin of each box is in the lower left-hand corner.
+The z-axis of each box is aligned with the global Z axis.
+
+<p>The position of B1 with respect to the world (e.g. coordinate system {X<sub>0</sub>,Y<sub>0</sub>,Z<sub>0</sub>}) is
+<b>p<sub>1</sub></b> = [1 2 1]<sup>T</sup>.
+
+<p>The position of B2 with respect to the world is <b>p<sub>2</sub></b> = [6 0 0]<sup>T</sup>.
+
+<p>The position of B3 with respect to the world is <b>p<sub>3</sub></b> = [8 4 0]<sup>T</sup>.
+
+<p>Furthermore, with respect to the world coordinate system, B2 has been rotated 45 degrees around Z<sub>0</sub> and
+B3 has been rotated 90 degrees around Z<sub>0</sub>.
+
+<p>It is desired to move B3 to the origin of the world coordinate system and neatly stack box B3 on top of B1.
+
+<br>
+<br>
+<img src="Boxes.png" width="50%">
+<br>
+<br>
+
+<p>Your assignment implements the scene above. To run
+
+<pre class="prettyprint lang-sh">
+> ../bin/a6-boxes
+</pre>
+
+<p>Open the file <b>AStackingBoxes.cpp</b>. This simple program implements the scene shown above. 
+
+<ol>
+   <li>(3 points) List the frames of reference F<sub>1</sub><sup>0</sup>, 
+   F<sub>2</sub><sup>0</sup>, F<sub>3</sub><sup>0</sup> (in the form of homogeneous matrices) that describe the 
+   position and orientations of boxes B1, B2, and B3 with respect to the world. Include your responses in your readmes for this week. Also, don't forget 
+   to include your group member names in your readme.
+   <li>(3 points) Implement the frames of reference from the previous question in AStackingBoxes::draw(). Your scene should now show the boxes in 
+   their correct locations.
+   <li>(1 points) What is the position of B2 relative to the local coordinate system attached to box B1? Express your answer as a displacement vector. 
+   In your readme, work out the transformation (using F<sub>i</sub><sup>j</sup> notation above) and then implement it in 
+   AStackingBoxes::draw to get your answer.  Look at the scene to check if your answer makes sense.
+   <li>(1 points) What is the position of B3 relative to the local coordinate system attached to box B2? Express your answer as a displacement vector.
+   In your readme, work out the transformation you need and then implement it in AStackingBoxes::draw to get your answer. Look at the scene to check if your 
+   answer makes sense.
+   <li>(2 points) What is the homogeneous transformation matrix that stacks B3 onto B1? In other words, what transformation F should we multiply to 
+   <F<sub>3</sub><sup>0</sup> such that B3 sits on top of B1? In your readme, work out your transformation and then implement it to check your answer. 
+   You can uncomment the draw code to see the location of your final box.
+</ol>
+
+<hr>
+<h2>Assignment <b>Due March 29</b></h2>
+<hr>
+
+<p>This is an individual assignment.
+
+<p>In class, we talked about two ways of handling the timing of keyframes for splines. The first spline type maintains a 
+list of keyframes that progress at a constant framerate. The animations based on motion capture 
+(see the BVH files in /motions for examples) use this format. Your basecode 
+implements a fixed framerate spline in the class AMotion and ASpline<T>. The second spline type maintains a 
+list of <time, value> tuples. In this assignment, you will complete the implementation of this type of spline in <b>AKeySpline</b>. 
+
+<p>For this assignment, all the code you need to edit is in the dirrectory <b>assignments/a6-keys</b>
+
+<h3>AKeySpline</h3>
+
+<p>Implement the following functions in <b>AKeySpline-basecode.cpp</b>. You may use ASpline.h as a reference but be mindful that 
+your code needs to work with AKeyframe and support arbitrary timing! See the source for psuedocode for implementing each function.
+
+<p><b>(10 points)</b> AKeySpline::applyPoseToSkeleton
+<p><b>(10 points)</b> AKeySpline::getPoseFromSkeleton
+<p><b>(5 points)</b> AKeySpline::getDuration
+<p><b>(5 points)</b> AKeySpline::getNormalizedDuration
+<p><b>(5 points)</b> AKeySpline::computeSegment
+<p><b>(5 points)</b> AKeySpline::computeNormalizedTime
+<p><b>(10 points)</b> AKeySpline::getValue
+
+<h3>A simple animation</h3>
+
+<p><b>(5 points)</b> Implement a simple march-in-place animation such as the following. 
+Make a video and save your keyframes to a new file marchkeyframes.txt and include it with your submission.
+
+<br>
+<br>
+<img src="simplekeys.gif" height="200px">
+<br>
+
+<hr>
+<h2>Extra Credit</h2>
+<hr>
+
+<p><b>Option 1 (up to 2 each)</b> Create a unique keyframed animation using the key editor
+<p><b>Option 2 (up to 2 each)</b> Create a procedural animation. 
+<ul>
+<li>Try animating the arms to make a dance motion.
+<li>Try animating a tapping foot
+<li>Try animating gaze
+</ul>
+
+<p>Be sure to include a video of your demo for full credit!
+
+<p>Extra credits can be submitted after the due date!
+
+<br>
+<hr>
+<h2>Submission Guidelines (3 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

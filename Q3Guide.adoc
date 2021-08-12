@@ -1,0 +1,154 @@
+include::header.adoc[]
+
+:title: Jam 3: Study Guide
+:Author Initials: ASN
+:Date:    2020-08-15
+:Revision: 0.1
+
+= {title}
+
+
+Jams are open book. 40 minutes in lab.
+
+Topics:
+
+This quiz includes the previous topics from Jam 1-2 plus
+
+* functions: defining and calling, return types, return statements, parameters (aka arguments)
+* function stack, function execution
+* scope of a variable
+* arrays: defining and indexing
+* Strings: `chatAt`, `compareTo`, `length` 
+
+Write Java programs to check your answers. Or you can ask a TA or instructor 
+to give feedback on your responses.
+
+= Practice questions
+
+1) Consider the following loop
+
+[source,java]
+----
+int pinLength = 4;
+String pin = "";
+for (int i = 0; i < pinLength; i++) {
+  pin = pin + "*";
+  System.out.println(pin);
+}
+System.out.println("Enter your pin: "+pin);
+----
+
+* What is output to the console when we run this program?
+* Convert the loop above so it uses a while loop instead of a for loop
+
+2) Write a function, `Pow`, that raises any number X to a power Y, using a loop.
+Your function should match the following specification.
+In your program, use `main` to call and test your function. 
+
+[source]
+----
+// Function: Pow
+// Description: Computes X to the power Y
+// Input X (double), the number to raise to a power
+// Input Y (double), the exponent 
+// Returns (double), the quantity X^Y
+----
+
+3) Write a function, `Average`, that takes an array of doubles as input and
+returns the average value based on the specification below. In your program,
+use `main` to call and test your function using random values in the range
+[-5, 5).
+
+[source]
+----
+// Function: Average
+// Description: Computes the average value in a list of numbers
+// Input data (double[]), the numbers to average
+// Returns (double), the average value, or 0 if the size of data is 0
+
+public static void main(String[] args)
+{
+  double[] values = new double[5];
+  // todo - initialize values with random values in range [-5,5)
+  // todo - call average and print the result
+}
+----
+
+4) Write a function, `CountLetter`, which counts the number of times a character 
+occurs in a String. Implement tests in `main` to check your function. For example, 
+
+* `CountLetter("elephant",'e')` should return 2. 
+* `CountLetter("zebra", 'z')` should return 1. 
+* `CountLetter("elephant", 'z')` should return 0.
+
+5) Write a function, `IsEvenLength`, which returns `true` if the given String has an 
+even number of characters and `false` otherwise. Implement tests in `main` to check your 
+answer. For example, 
+
+* `IsEvenLength("cat")` returns false
+* `IsEvenLength("")` returns true
+* `IsEvenLength("a")` returns false
+
+6) Consider the following program
+
+[source,java]
+----
+class Mystery {
+  public static String mystery2(String message, String symbol) {
+    message = symbol+message+symbol;
+    // (a) Show function stack here
+    return message;
+  }
+
+  public static void mystery1(String message) {
+    System.out.println(message);
+    message = mystery2(message, "~~");
+    System.out.println(message);
+    // (b) Show function stack here
+  }
+
+  public static void main(String[] args) {
+    String userText = "Happy Halloween!";
+    mystery1(userText);
+    System.out.println(userText);
+  }
+}
+----
+
+* On the line labeled (a), what functions are in the function stack? List the contents of the stack with the oldest contents at the top, same as on link:http://www.pythontutor.com/java.html#mode=edit[Java tutor]
+* On the line labeled (b), what functions are in the function stack?
+* What local variables are defined in mystery2?
+* What local variables are defined in mystery1?
+* What parameters are defined in mystery1?
+* What is the return type of mystery1?
+* What is the return type of mystery2?
+* What variables are in scope in main?
+* What variables are in scope in mystery1?
+* What variables are in scope in mystery2?
+* What is the console output of this program?
+
+7) Implement a Movie class. Movie should contain the following data and methods
+
+[source,java]
+----
+// Data
+
+// Title (string)
+// Duration in minutes (float)
+// Year (integer)
+// actors (array of String) 
+
+// Methods
+
+// Constructor 
+// Input: Title (string)
+// Input: Duration in minutes (float)
+// Input: Year (integer)
+// Input: actors (array of String) 
+
+// Accessor for title
+// Mutator for title 
+----
+
+Test your Movie class. Create a Movie object for "The Shining" which was made in 1980, is 
+2 hours and 26 minutes long, and stars Jack Nicholson and Shelley Duval. Create your object in `setup()`

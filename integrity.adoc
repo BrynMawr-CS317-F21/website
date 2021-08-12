@@ -1,0 +1,25 @@
+== Academic Integrity
+
+At Bryn Mawr, we assume students are trustworthy and work with honesty and 
+integrity. link:https://www.brynmawr.edu/deans/academic-and-community-integrity[Look here for information about Bryn Mawr's Honor Code.] 
+
+As you progress in this course, you will see that programming is a creative
+process, similar to writing. The same problem can be solved in
+multiple ways. It's essential that you develop your own skills for developing
+algorithms and implementing them through programs. 
+
+*Discussing ideas and approaches to problems with others on a general level is
+fine (in fact, we encourage you to discuss general strategies with each other),
+but you should never read anyone else's code or let anyone else read your
+code.*  All code you submit should be your own with the following permissible
+exceptions: code distributed in class, and code found in the course text book.
+In these cases, you should always include detailed comments that indicates on
+which parts of the assignment you received help, and what your sources were.
+
+
+*  Please don't hesitate to ask the awesome teaching assistants (TAs) for help. They provide TA hours most week nights and are excellent mentors!
+*  Please discuss the readings and associated topics with each other. Work together to understand the material. Reading groups to discuss the material are highly recommended -- we will explore many ideas and it helps to have multiple people working together to understand them.
+*  It is fine to discuss the topics covered in the homeworks, to discuss approaches to problems, and to sketch out general solutions. However, you MUST write up the homework answers, solutions, and programs individually without sharing specific details, mathematical results, program code, etc. 
+*  Under NO circumstances should you share computer code with another student.  Similarly, you are not permitted to use code found on the internet for any of your assignments.
+*  Exams, of course, must be your own individual work.
+

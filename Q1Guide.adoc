@@ -1,0 +1,142 @@
+include::header.adoc[]
+
+:title: Jam 1: Study Guide
+:Author Initials: ASN
+:Date:    2020-08-15
+:Revision: 0.1
+
+= {title}
+
+Jams are open book. 40 minutes in lab.
+
+Topics:
+
+* Variables: defining and assigning
+* Data types: `String`, `double`, `int` 
+* Command line variables
+* `System.out.println()`, `System.out.print()`
+* `System.console().readLine()`
+* arithmetic operators: +, *, -, /, %
+* String concatenation with `+`
+* math utilities: sqrt, pow, cos, sin, exp, log, random, etc
+* Operators and expressions, order of operations
+
+Write Java programs to check your answers. Or you can ask a TA or instructor 
+to give feedback on your responses.
+
+= Practice questions
+
+1) What is the **value** and **type** for each of the following expressions? 
+
+- 2 + 3
+- Math.pow(2, 3) 
+- 2.0 + 3
+- 5.5/10
+- 5 - 2 * 3
+- "123"
+- 48 % 2
+- 2.0
+- 2+4*2+1
+- "lol" + "cats"
+
+2) Write a program `Sum.java` that takes two command line arguments, converts them to integers 
+and outputs their sum.  You can assume that the command line arguments are both valid integers.
+
+[source, subs="quotes"]
+----
+$ **java Sum 4 5**
+The sum is 9.
+
+$ **java Sum 0 0**
+The sum is 0.
+
+$ **java Sum -1 5**
+The sum is 4.
+----
+
+3) Write a madlib program that asks the user for 2 colors and 
+  one adjective, then prints out the filled-in poem:
+
+[source, subs="quotes"]
+----
+$ **java Roses**
+color: **pink**
+color: **azure**
+adjective: **funny**
+
+Roses are pink
+Violets are azure
+Sugar is funny
+and so are you!
+----
+
+4) Write a program that takes a user's hotel room rate and outputs the cost
+of a 6% sales tax and 10.5% city tourism fee.  The program should then output the total bill.
+
+[source, subs="quotes"]
+----
+$ *java Bill*
+Room rate: *100*
+Total nights: *3*
+-------------------
+Tax: $ 18.0
+Tourism Fee: $ 31.5
+Total: $ 349.50
+----
+
+5) What is the output of the following program?
+
+[source,java]
+----
+public class Cats {
+   public static void main(String[] args) {
+       String type = "tuxedo";
+       int fish = 3;
+
+       System.out.println("The "+type+" cat caught "+fish+" fish.");
+   } 
+}
+----
+
+6) The following program has several problems. What are they? For each error, is the error a syntax error, runtime error, or logic error? How can we fix the problem?
+
+[source,java]
+----
+public class Mystery {
+    public static void main(String args) {
+        System.out.print("Enter a value: ");
+        String valueStr = System.console().readLine();
+        int value = Integer.parseInteger(valuStr);
+        int result = value * 10
+        System.out.println("The result is "+result);
+    } 
+}
+----
+
+
+7) The following program has a problem. What is it? Is the error is syntax error, runtime error, or logic error? How can we fix the problem?
+
+[source,java]
+----
+public class Mystery {
+    public static void main(String[] args) {
+        int value = Integer.parseInt(args[0]);
+        double fraction = value / 10;
+        System.out.println("The fraction is "+fraction);
+    } 
+}
+----
+
+8) The following program has a bug. Is the error is syntax error, runtime error, or logic error? How can we fix the problem?
+
+[source,java]
+----
+public class Mystery {
+    public static void main(String[] args) {
+        int value = Integer.parseInt(args[0]);
+        double fraction = value / 0;
+        System.out.println("The fraction is "+fraction);
+    } 
+}
+----
+

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Computer Animation</title>
+<link rel="stylesheet" href="style/front.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>CS 317: Computer Animation&#8201;&#8212;&#8201;Fall 2021</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_announcements">Announcements</a></li>
+<li><a href="#_schedule"><strong>Schedule</strong></a></li>
+<li><a href="#_course_info">Course Info</a></li>
+<li><a href="#_software">Software</a></li>
+<li><a href="#_grading_policies">Grading Policies</a>
+<ul class="sectlevel2">
+<li><a href="#_exam_and_quizzes">Exam and Quizzes</a></li>
+<li><a href="#_homeworks_and_exercises">Homeworks and exercises</a></li>
+<li><a href="#_course_policies">Course Policies</a></li>
+</ul>
+</li>
+<li><a href="#_academic_integrity">Academic Integrity</a></li>
+<li><a href="#_academic_accommodations">Academic Accommodations</a></li>
+<li><a href="#_external_links">External Links</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1 anns">
+<h2 id="_announcements">Announcements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Welcome to CS 317!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_schedule"><strong>Schedule</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The syllabus may change during the semester. Please check here every week for updates
+on lecture content, worksheets, and assignments.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 22.2222%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Week</th>
+<th class="tableblock halign-left valign-top">Date</th>
+<th class="tableblock halign-left valign-top">Topics, Resources, &amp; ToDo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aug 31, Sept 2</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Course introduction, Hello World of Animation</strong> <a id="week01"></a></p>
+</div>
+<div class="paragraph">
+<p>Introduction. Preliminaries. Math, animation/game design patterns, C++ review</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Read</strong>: Parent 1.1, 1.3</p>
+</li>
+<li>
+<p><strong>Lab 00</strong>: <a href="asst00.html">Hello CS317</a> <strong>Due Sept 2 (in lab)</strong></p>
+</li>
+<li>
+<p><strong>Assignment 01</strong>: link:Labs/lab1-hello.html[Hello Animation! <strong>Due Sept 9</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Lecture</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="todo">Overview of the course</a></p>
+</li>
+<li>
+<p>Event-based architectures, <a href="https://gameprogrammingpatterns.com/game-loop.html">Game loop</a>, <a href="http://gameprogrammingpatterns.com/update-method.html">Update method</a></p>
+</li>
+<li>
+<p>Particle moving in a circle. <a href="Labs/circle.cpp.txt">AniTk</a>/<a href="Labs/circle.pde.txt">Processing</a>/<a href="circle.cs.txt">Unity</a></p>
+</li>
+<li>
+<p>Particle with velocity. <a href="Labs/particle.cpp.txt">AniTk</a>/<a href="Labs/particle.pde.txt">Processing</a>/<a href="Labs/particle.cs.txt">Unity</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>C++/cmake/git Resources</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.udemy.com/course/free-learn-c-tutorial-beginners/">C++ Course</a></p>
+</li>
+<li>
+<p><a href="Labs/TODO">Getting started with C++</a></p>
+</li>
+<li>
+<p>Git workshop: <a href="https://github.com/BrynMawr-CS312-2021/git-workshop">Notes</a>,<a href="https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=aa6a31bf-a4f1-419a-a2ed-acd30182820f">Video</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Math resources</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sept 7,9</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Interpolation</strong> <a id="week02"></a></p>
+</div>
+<div class="paragraph">
+<p>Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Casteljau&#8217;s algorithm.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Read: TODO (Parent book)</p>
+</li>
+<li>
+<p>Additional references: Lengyel: 11.3</p>
+</li>
+<li>
+<p>Linear interpolation <a href="Labs/colorLerp1.cpp.txt">colorLerp1</a>/<a href="Labs/colorLerp2.cpp.txt">colorLerp2</a>/<a href="Labs/particleLerp.cpp.txt">particleLerp</a></p>
+</li>
+<li>
+<p><a href="Labs/bezier.svg">Inkscape bezier curve</a> (open file in Inkscape to play with it)</p>
+</li>
+<li>
+<p>de Casteljau&#8217;s algorithm: <a href="Labs/deCasteljau.gif">Demo 1</a>/<a href="Labs/deCasteljau-curlyQ.gif">Demo 2</a></p>
+</li>
+<li>
+<p>TODO: Other interpolation types</p>
+</li>
+<li>
+<p><strong>Assignment 02:</strong> <a href="Labs/lab2-interp.html">Howl&#8217;s moving casteljau</a>: <strong>Due Sept 16</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sept 14,16</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Splines</strong> <a id="week03"></a></p>
+</div>
+<div class="paragraph">
+<p>Catmull-Rom splines. Hermite Splines.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lengyel: 11.1-11.4</p>
+</li>
+<li>
+<p>Solving equations using Eigen: <a href="Labs/solveEqn.cpp.txt">Example1</a>/<a href="Labs/hermiteEx.cpp.txt">Example2</a></p>
+</li>
+<li>
+<p>Spline Example: <a href="CatmullRomExample.pdf">Catmull-Rom</a>/<a href="HermiteExample.pdf">Hermite</a></p>
+</li>
+<li>
+<p>Hermite endpoint conditions: <a href="Labs/hermiteClamped.gif">Clamped</a>/<a href="Labs/hermiteNatural.gif">Natural</a></p>
+</li>
+<li>
+<p><strong>Assignment 03:</strong> <a href="Labs/lab3-spline.html">Good times with splines.</a>: <strong>Due Sept 23</strong></p>
+</li>
+<li>
+<p><a href="Q1Guide.html">TODO: Quiz Study Guide</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sept 21,23</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Rotations I</strong> <a id="week04"></a></p>
+</div>
+<div class="paragraph">
+<p>Rotations. Matrices. Euler angles. Gimbol lock.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="MathNotes.2019.pdf">Math notes (Coordinate systems and matrices)</a></p>
+</li>
+<li>
+<p><a href="EulerAngles.html">Euler angle conversions</a></p>
+</li>
+<li>
+<p><a href="EulerExamples.pdf">Sample problems with answers</a></p>
+</li>
+<li>
+<p>Lengyel: 3.1, 4.3</p>
+</li>
+<li>
+<p>Quiz</p>
+</li>
+<li>
+<p>Read: TODO</p>
+</li>
+<li>
+<p><strong>Assignment 04:</strong> <a href="Labs/lab4-euler.html">Spinning teapots</a>: <strong>Due Sept 30</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sept 28,30</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Quaternions</strong> <a id="week05"></a></p>
+</div>
+<div class="paragraph">
+<p>General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lengyel Appendix A, 4.3, 4.6.1, 4.6.2, 4.6.3</p>
+</li>
+<li>
+<p><a href="QuazyQuaternions.pdf">Quazy quaternions</a></p>
+</li>
+<li>
+<p><a href="https://dl.acm.org/citation.cfm?doid=325334.325242">Animating rotation with quaternion curves (seminal paper)</a></p>
+</li>
+<li>
+<p><a href="SlerpExample.pdf">Slerp example</a></p>
+</li>
+<li>
+<p>Read:</p>
+</li>
+<li>
+<p><strong>Assignment 05:</strong> <a href="lab5-quat.html">Quazy quaternions</a>: <strong>Due Oct 7</strong></p>
+</li>
+<li>
+<p><a href="Q2Guide.html">Quiz Study Guide</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 5,7</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Transformations</strong> <a id="week06"></a></p>
+</div>
+<div class="paragraph">
+<p>Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lengyel Chpt 4</p>
+</li>
+<li>
+<p><strong>Assignment 06:</strong> <a href="Labs/lab6-fk.html">Building character</a>: <strong>Due Oct 21 (after break)</strong></p>
+</li>
+<li>
+<p>Quiz</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 12,14 (Fall Break)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><strong>NO LABS OR CLASSES!</strong></p>
+</li>
+<li>
+<p><strong>NO ASSIGNMENT!</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 19,21</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Characters and motion</strong> <a id="week07"></a></p>
+</div>
+<div class="paragraph">
+<p>More Articulated Characters. Skeleton Example. Tree traversal review. Forward Kinematics.
+Motion. Poses. Motion Representation. Motion Capture. Procedural animation.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Butterfly: <a href="Labs/AButterfly.cpp.txt">Skeleton I</a></p>
+</li>
+<li>
+<p><a href="SkeletonExamples.pd">Skeleton FK Example</a></p>
+</li>
+<li>
+<p>Read:</p>
+</li>
+<li>
+<p><strong>Assignment 07:</strong> <a href="Labs/lab7-motion.html">Motion</a>: <strong>Due Oct 28</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 26,28</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Motion Editing</strong> <a id="week09"></a></p>
+</div>
+<div class="paragraph">
+<p>Motion editing. Blending. Splicing. Interpolation. Transitions.
+Transitions. Reorienting a motion. Crossfading.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Assignment 08:</strong> <a href="Labs/lab8-blend.html">Cross-fade away!</a>: <strong>Due Nov 4</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nov 2,4</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Inverse kinematics</strong> <a id="week10"></a></p>
+</div>
+<div class="paragraph">
+<p>Analytical method for two-link chain. CCD Algorithm.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="Labs/ikccd.ogv">CCD demo</a></p>
+</li>
+<li>
+<p><strong>Assignment 09:</strong> <a href="Labs/lab9-ik.html">Reach for your goals</a>: <strong>Due Nov 11</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nov 9,11</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Physics</strong> <a id="week11"></a></p>
+</div>
+<div class="paragraph">
+<p>Physics. Intro to rigid body simulation.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open Dynamics Engine (ODE) <a href="http://ode.org/wiki/index.php?title=Manual">Documentation</a></p>
+</li>
+<li>
+<p>Pushing a box: <a href="Labs/ABoxSim1.cpp.txt">Code</a></p>
+</li>
+<li>
+<p>Box with collisions: <a href="Labs/ABoxSim2.cpp.txt">Code</a></p>
+</li>
+<li>
+<p>Mixing kinematic and dynamic boxes: <a href="Labs/ABoxSim3.cpp.txt">Code</a></p>
+</li>
+<li>
+<p><a href="https://graphics.stanford.edu/courses/cs448b-00-winter/papers/phys_model.pdf">Physically Based Modeling SIGGRAPH Course</a></p>
+</li>
+<li>
+<p>Particle Systems. Demos: water, smoke, fireworks, cloth, jello</p>
+</li>
+<li>
+<p>Simple force particle: <a href="Labs/forceParticle.cpp.txt">Code</a></p>
+</li>
+<li>
+<p><strong>Assignment 10:</strong> <a href="Labs/Lab10-physics.html">Use the force</a>: <strong>Due Nov 18</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nov 16,18</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Steering behaviors</strong> <a id="week12"></a></p>
+</div>
+<div class="paragraph">
+<p>Steering behaviors.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.red3d.com/cwr/steer/gdc99">Boids</a></p>
+</li>
+<li>
+<p><strong>Assignment 11:</strong> <a href="Labs/lab10-steering.html">Flocks</a>: <strong>Due Nov 24</strong></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nov 23 (No class Thursday, Thanksgiving)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Skinning</strong> <a id="week13"></a></p>
+</div>
+<div class="paragraph">
+<p>Meshes and skinning.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.skinning.org/direct-methods.pdf">Skinning short course (SIGGRAPH 2014)</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nov 39, Dec 2</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Deformers</strong> <a id="week14"></a></p>
+</div>
+<div class="paragraph">
+<p>FDD. Blend shapes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dec 7, Dec 9</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a id="week15"></a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_course_info">Course Info</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Professor</strong>: <a href="https://www.cs.brynmawr.edu/~alinen">Aline Normoyle</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Office</strong>:Park 204</p>
+</div>
+<div class="paragraph">
+<p><strong>Office hours</strong>:Tue 2:25-3:45pm, and by appointment</p>
+</div>
+<div class="paragraph">
+<p>Optional Texts (available at the library):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Computer Animation, 3rd Edition</em> by Rick Parent</p>
+</li>
+<li>
+<p><em>Mathematics for 3D Game Programming and Computer Graphics, 3rd Edition</em> by Eric Lengyel</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all fit-content center">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Activity</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lecture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Park 336 (and Zoom (Link posted on Slack))</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tuesday, Thursday, 12:55am-2:15pm EST</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Park 230</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Thursday, 2:25pm - 3:45pm EST</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Office Hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Park 204</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tuesday, 2:25pm - 3:45pm EST or by appointment (See calend.ly link on Slack)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Welcome to CS317</strong>,</p>
+</div>
+<div class="paragraph">
+<p>The goal of this course is to give students a foundation for programming 3D animated and interactive graphics.</p>
+</div>
+<div class="paragraph">
+<p>In particular, we will "look under the hood" at the algorithms used by game engines and modeling tools to create authorable, interactive characters and special effects. Labs will give students hands on experience implementing algorithms in C++ as well as opportunities to derive their own unique animations. Topics will include mathematical foundations (coordinate systems, transformations, quaternions), interpolation techniques, keyframing, motion capture and procedural animation, and physically-based systems. Animation is hard work but nothing beats the joy and satisfaction of creating your own worlds and watching them come to life!</p>
+</div>
+<div class="paragraph">
+<p>Prereqs: Discrete Math (CS 231) and Systems Programming (CS 223). Calculus and linear algebra is also helpful.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software">Software</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Slack</strong> Please go to <a href="https://slack.com/signin">slack.com</a>. Our workspace is BrynMawr-CS317-F21. You can ask questions and request one-on-one help over zoom using this course&#8217;s slack channel.</p>
+</li>
+<li>
+<p><strong>Development environment</strong> This refers to the tools we will use to write and run code. We will program in C++ in a Ubuntu programming environment (Park 230), although you may setup your windows or mac laptop for development if you like.</p>
+</li>
+<li>
+<p><strong>Github Account</strong> Please go to <a href="https://github.com/">github.com</a> and register. You will be using github to submit assignments.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will have everything you need to run your assignments in the CS labs in the Park Science Center (Park 230).
+If you would like to work on your own laptop, you can follow the instructions below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>C++ development environment</strong> Please follow the instructions at <a href="https://github.com/BrynMawr-CS312-2021/cplusplus-beginners">cplusplus-beginners</a></p>
+</li>
+<li>
+<p><strong>Graphics development environment</strong> Please follow the instructions at <a href="https://github.com/BrynMawr-CS312-2021/getting-started">getting-started</a></p>
+</li>
+<li>
+<p><strong>Blender (Optional)</strong> Please go to <a href="https://blender.org">blender.org</a>. Blender is an open-source 3D modeling tool and advanced renderer. We will occasionally use blender to inspect and edit models and materials.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grading_policies">Grading Policies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All graded work will receive a grade, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.7,
+1.3, 1.0, or 0.0. At the end of the semester, final grades will be calculated
+as a weighted average of all grades according to the following weights:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Final Exam</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quizzes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assignments</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Labs and class work</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_exam_and_quizzes">Exam and Quizzes</h3>
+<div class="paragraph">
+<p>Quizzes will be given at the beginning of class on the days posted on the
+<a href="#_schedule">schedule</a>. Quizzes are 30 minutes and will be done in groups.
+Students will go over the answers for quizzes in lab a week later.</p>
+</div>
+<div class="paragraph">
+<p>There will be one final exam for the semester. Details and dates will be
+released during the semester.  Please read the section on
+<a href="#_accommodations">accomodations</a> if you are in need of extra time.  You
+must inform us of accommodations or conflicts at least 2 weeks in advance of
+the exam.</p>
+</div>
+<div class="paragraph">
+<p>Quizzes and exams will be open book. You will be given sample questions
+beforehand to help you study. <strong>Warning!</strong> Do not rely heavily on your notes
+for quizzes. You will need to have concepts memorized in order to finish
+within the time limit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_homeworks_and_exercises">Homeworks and exercises</h3>
+<div class="paragraph">
+<p>This course features weekly lab exercises and assignments which are an
+important component of the class.</p>
+</div>
+<div class="paragraph">
+<p>Labs will be used for quizzes, presenting work, and completing assignment work.</p>
+</div>
+<div class="paragraph">
+<p>Class exercises will be passed out in class. These exercises are short and are
+intended to help you understand the concepts needed for exams and assignments.</p>
+</div>
+<div class="paragraph">
+<p>Assignments will be posted Fridays and due Thursday night. You are strongly
+encouraged to start early so that you can ask questions. See the syllabus for
+links to the assignments. Assignments are open-source but should still be your
+own work.</p>
+</div>
+<div class="paragraph">
+<p>You will submit your assignments electronically using <a href="github.com">Github</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_course_policies">Course Policies</h3>
+<div class="paragraph">
+<p>The purpose of our course work is to give you hands on experience with the topics
+from class. Most of this work will be due in lecture or labs. The
+weekly time commitment for this course is aimed to be 10 hours per week.</p>
+</div>
+<div class="paragraph">
+<p><strong>Late Policy</strong></p>
+</div>
+<div class="paragraph">
+<p>You may request up to 2 late days on an assignment, provided you give advance
+notice ahead of time (e.g. plan ahead to see if/when you need more time for an assignment).  Your lowest assignment grade will be dropped.</p>
+</div>
+<div class="paragraph">
+<p><strong>Resubmission Policy</strong></p>
+</div>
+<div class="paragraph">
+<p>In some cases, it is possible to re-submit course work to recover lost points due to errors. However, you may not re-submit work for which you have no initial submission. Nor will we accept re-submissions that are incomplete or show little improvement from the original. If you resubmit work, you must strive for full marks. You will need permission from the instructor to re-submit work.</p>
+</div>
+<div class="paragraph">
+<p><strong>Missed Quiz Policy</strong></p>
+</div>
+<div class="paragraph">
+<p>If you need to miss a quiz, you must make arrangements ahead of time to take it
+later. If you cannot give notice ahead of time because of a medical emergency,
+you will need to provide a doctor&#8217;s note to schedule a make-up quiz.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_academic_integrity">Academic Integrity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At Bryn Mawr, we assume students are trustworthy and work with honesty and
+integrity. <a href="https://www.brynmawr.edu/deans/academic-and-community-integrity">Look here for information about Bryn Mawr&#8217;s Honor Code.</a></p>
+</div>
+<div class="paragraph">
+<p>As you progress in this course, you will see that programming is a creative
+process, similar to writing. The same problem can be solved in
+multiple ways. It&#8217;s essential that you develop your own skills for developing
+algorithms and implementing them through programs.</p>
+</div>
+<div class="paragraph">
+<p><strong>Discussing ideas and approaches to problems with others on a general level is
+fine (in fact, we encourage you to discuss general strategies with each other),
+but you should never read anyone else&#8217;s code or let anyone else read your
+code.</strong>  All code you submit should be your own with the following permissible
+exceptions: code distributed in class, and code found in the course text book.
+In these cases, you should always include detailed comments that indicates on
+which parts of the assignment you received help, and what your sources were.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Please don&#8217;t hesitate to ask the awesome teaching assistants (TAs) for help. They provide TA hours most week nights and are excellent mentors!</p>
+</li>
+<li>
+<p>Please discuss the readings and associated topics with each other. Work together to understand the material. Reading groups to discuss the material are highly recommended&#8201;&#8212;&#8201;we will explore many ideas and it helps to have multiple people working together to understand them.</p>
+</li>
+<li>
+<p>It is fine to discuss the topics covered in the homeworks, to discuss approaches to problems, and to sketch out general solutions. However, you MUST write up the homework answers, solutions, and programs individually without sharing specific details, mathematical results, program code, etc.</p>
+</li>
+<li>
+<p>Under NO circumstances should you share computer code with another student.  Similarly, you are not permitted to use code found on the internet for any of your assignments.</p>
+</li>
+<li>
+<p>Exams, of course, must be your own individual work.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_academic_accommodations">Academic Accommodations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All classes will be recorded and close-captioned. Links to lectures will be
+posted on the class syllabus.</p>
+</div>
+<div class="paragraph">
+<p>Any student who has a disability-related need to record this class first must
+speak with the Director of Access Services, Deb Alder, as part of university
+policy. Class members need to be aware that this class may be recorded.</p>
+</div>
+<div class="paragraph">
+<p>To receive an accommodation for a course activity (such as more time on quizzes
+and exams), you must have an Accommodation Letter from the Office of Student
+Disability Services <strong>and</strong> you need to contact us to work out the details of
+your accommodation at least <strong>two weeks prior</strong> to the activity. Forms can be
+emailed to me, the instructor.</p>
+</div>
+<div class="paragraph">
+<p>You are also welcome to contact us privately to discuss your academic needs.
+However, all disability-related accommodations must be arranged, in advance,
+through Student Disability Services.</p>
+</div>
+<div class="paragraph">
+<p>Students needing academic accommodations for a disability must first register
+with Access Services. Students can call 610-526-7516 to make an appointment
+with the Director of Access Services, Deb Alder, or email her at
+<a href="mailto:dalder@brynmawr.edu">dalder@brynmawr.edu</a> to begin this confidential process.  Once registered,
+students should schedule an appointment with the professor as early in the
+semester as possible to share the verification form and make appropriate
+arrangements. Please note that accommodations are not retroactive and require
+advance notice to implement. More information can be obtained at the Access
+Services website. (<a href="http://www.brynmawr.edu/access-services/" class="bare">http://www.brynmawr.edu/access-services/</a>)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_external_links">External Links</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Links that are related to the course may be posted here. If you have suggestions for links, let us know.</p>
+</div>
+<div class="ulist unstyled">
+<ul class="unstyled">
+<li>
+<p><a href="https://www.brynmawr.edu/academicsupport/academic-and-student-support-services">Academic Support, including help with math and quantitative skills!</a></p>
+</li>
+<li>
+<p>This site was generated with <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">asciidoctor</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-08-12 11:30:35 -0400
+</div>
+</div>
+</body>
+</html>

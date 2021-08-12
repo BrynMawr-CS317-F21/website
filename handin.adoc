@@ -1,0 +1,78 @@
+= Hand-in your work
+
+== What to hand-in
+
+* Your code
+* Images, movies, gifs, as appropriate
+* Your readme
+
+== How to hand-in
+
+Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.
+
+[source]
+----
+> cd animation-toolkit
+> git add <files>
+> git commit -m "helpful message"
+> git push
+----
+
+Best practice is to always commit changes as you work, rather than waiting until 
+the end to commit changes. You can always revert to an old version if you need to!
+
+Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works. 
+
+== Generating images, movies and gifs
+
+*Screenshots*
+
+On Ubuntu, you can take a screenshot by
+
+* Prt Scrn to take a screenshot of the desktop.
+* Alt + Prt Scrn to take a screenshot of a window.
+
+*Gifs*
+
+On Ubuntu, you can use Peek to create gifs.
+
+video::Labs/howtopeek.mp4[width=600]
+
+*Movies*
+
+On Ubuntu, you can use `recordmydesktop` to record movies in .ogv format.
+
+By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call `xwininfo` and click on the window. Then pass the 
+id to `recordmydesktop`.
+
+[source]
+----
+> recordmydesktop --windowid <WindowId> --no-sound  --v_quality 30 -o <name>.ogv
+----
+
+To check the video, open it in firefox.
+
+[source]
+----
+> firefox <name>.ogv
+----
+
+video::Labs/howtorecord.mp4[width=600]
+
+WARNING: Files larger than 100 MB cannot be checked into git. In general, 
+videos should be less than 5 MB.
+
+== Update your Readme.md
+
+Update `{Dir}/Readme.md` to document the features in your assignment. Your readme should contain your images, gifs, and movies.
+
+On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following
+
+[source]
+----
+![Alternate text here](/path/to/image.png)
+----
+
+This link:https://www.markdownguide.org/basic-syntax/[Guide] can help you with writing markdown.

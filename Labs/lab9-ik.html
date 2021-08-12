@@ -1,0 +1,443 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 9</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 9</h1>
+<div id="TagLine">
+   In which, we use inverse kinematics to animate our characters
+</div>
+<hr>
+     
+<p>The goal of this lab is to 
+<ul>
+<li> Implement the two-link analytic IK algorithm from class
+<li> Implement two-link analytical and CCD algorithms on our character
+<li> Implement procedural animations based on IK
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>This assignment has been added to your AnimationFramework repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+> cd build
+> cmake ..
+> make
+</pre>
+
+<p>You should now have a new directory under assignments called <b>a9-ik</b>. 
+
+<br>
+<hr>
+<h2>Assignment 9: Reach for your goals</h2>
+<h3>Due December 4</h3>
+<hr>
+
+<br>
+<hr>
+<h3>Question 1: Practice two-link chain analytical method (15 points)</h3>
+<hr>
+
+<p>In this question, you will work through the calculations needed to perform IK 
+for a two-link chain on paper. Include your answers in your readme for this week. 
+Remember that you can use python, octave, matlab, maple, our basecode or any other 
+method to check your answers! 
+
+<p>Suppose we have a 2-link chain as in class. 
+
+<br>
+<br>
+<img src="2LinkChain.png">
+<br>
+<br>
+
+<p>The root joint p<sub>1</sub> is located at the origin.
+
+<p>The next joint p<sub>2</sub> is offset from p<sub>1</sub> by (2,0,0)<sup>T</sup>
+
+<p>The next joint p<sub>3</sub> is offset from p<sub>2</sub> by (5,0,0)<sup>T</sup>
+
+<p><b>Solve using the analytic two-link method (Reference: <a href="../IK-Worksheet.html">here</a>)</b><br>
+
+<li>Suppose we wish to position p<sub>3</sub> at a target position 
+p<sub>d</sub> = (-4,3,0)<sup>T</sup>.  
+Let's use the analytic IK method for class to 
+compute rotations for p<sub>1</sub> and p<sub>2</sub> such that 
+p<sub>3</sub> is located at p<sub>d</sub>.
+<ol>
+<li><b>(1 point)</b> What is the desired distance r between p<sub>3</sub> and p<sub>1</sub>?
+<li><b>(1 point)</b> What is L1?
+<li><b>(1 point)</b> What is L2?
+<li><b>(2 points)</b>What is the angle \( \theta_{2z}\) that achieves the desired length? 
+<li><b>(1 points)</b>What is the new global position of joint 3? Verify that setting the rotation of joint 1 to \(\theta_{2z} \) results in the desired distance.
+</ol>
+
+<p>Using polar coordinates to compute the orientation of joint 1:
+<ol>
+<li><b>(1 points)</b> What is the angle \( \theta_{1z}\) that points the limb along the x axis? 
+<li><b>(1 points)</b> What is the new global position of joint 3? Verify that setting \( \theta_{2z} \) and \( \theta_{1z} \) points the limb along the x axis using the kinematic equation for our joints. 
+<li><b>(1 points)</b> Compute the heading (beta) and elevation (gamma) that point the limb towards the target \( p_d \).  
+<li><b>(1 points)</b>Plug in beta, gamma, \( \theta_{1z} \), and \( \theta_{2z} \) and verify that \( p_3 \) is now at location \( p_d \).
+</ol>
+
+<p>Using angle/axis to compute the orientation of joint 1:
+<ol>
+<li><b>(1 points)</b>After setting the length, what is the global position of joint 3? 
+<li><b>(1 points)</b>What is the direction vector r?
+<li><b>(1 points)</b>What is the error vector e?
+<li><b>(1 points)</b>What is the angle phi and axis of rotation?
+<li><b>(1 points)</b>Plugin in the angle/axis rotation and \(\theta_{2z} \) and verify that \( p_3 \) is now at location \( p_d \)
+</ol>
+
+<br>
+<hr>
+<h3>Question 2: Implement two-link analytic method from class (5 points)</h3>
+<hr>
+
+<p>In this question, you will implement the analytic IK algorithm from class. Put your work in 
+<b>libsrc/animation/AIKController-basecode.cpp</b> inside the method <b>solveIKTwoLink</b>.
+
+<br>
+<pre>
+// ASkeleton will contain a two-link chain
+// Assume joint 0 is the root
+// Assume joint 1 is the middle joint
+// Assume joint 2 is the end effector
+// If your implementation is correct, the end effector should be positioned at goalPos
+bool AIKController::solveIKTwoLink(ASkeleton& skeleton, const AVector3& goalPos) 
+</pre>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a9-iksimple 
+</pre>
+</p>
+<br>
+
+<p><b>Implementation tips:</b> 
+<li>DON'T FORGET: When you change the local rotation of a joint, you must call fk() to update the global rotations and translations.
+<li>When implementing IKSimple::updateIK(), it is best to approach the task systematically. I strongly recommend the following approach
+<ul>
+<li>First, set the goal position to something along the x axis. For example, set the 
+		goal position to (100,0,0) in the UI.
+<ol>
+<li>Solve for \(\theta_{2z}\) and set the rotation for the elbow. If done correctly, the distance
+between the wrist and root will match the distance between the goal position and the root. Print out the distance between the wrist and shoulder. It should be 100.
+<li>Next, solve for \(\theta_{1z}\) and set the rotation for the root. If done correctly, the wrist should be at the desired position exactly.
+</ol>
+<li>Last, solve for full root rotation in terms of \(\gamma\) and \(\beta\). Once correct, the wrist position should match the goal position -- so long as it is in reach.
+</ul>
+<br>
+
+<!--
+<br>
+<img src="2Link100.png" height="400px">
+<br>
+<br>
+-->
+
+<br>
+<center>
+<video controls>
+		<source src="2link.ogv">
+</video>
+</center>
+<br>
+
+<p>The basecode includes a simple interface and 3D viewer. See above for a demo. 
+
+<p>The camera can be controled with the mouse:
+
+<ul>
+    <li>Left-button drag with the mouse to rotate
+    <li>Right-button drag with the mouse to pan
+    <li>Middle-button drag with the mouse to zoom
+    <li>'f' button will focus the view on the character
+</ul>
+
+<p>The player control panel on the top left can be used to play/pause, step through keys, and see the simulation time.
+
+<p> The panel at the bottom left can be used to set the goal position of the end effector. 
+The target position can also be moved with the mouse by holding down the Ctrl key.
+
+<!--
+<br>
+<hr>
+<h3>Question 3: Solving for angle/axis rotation using the method from CCD (5 points)</h3>
+<hr>
+
+<p>In this question, you will work through the calculations needed to calculate
+the axis/angle used for nudging joints in CCD.  Include your answers
+in your readme for this week.  Remember that you can use python, octave,
+matlab, maple, our basecode or any other method to check your work.
+
+<p>Consider the same two-link chain from before.  Suppose we wish to position
+p<sub>3</sub> at a target position p<sub>d</sub> = (1,-2,0)<sup>T</sup>.  Let's
+use the CCD IK method's axis/angle formula to compute a rotation for
+p<sub>2</sub> such that p<sub>3</sub> is located at p<sub>d</sub>. 
+
+<p><b>Solve using the angle/axis method from CCD (Reference: <a href="">here</a></b>
+
+<p>Suppose the nudeg factor is one.
+
+<p>Assume all rotations are currently identity.
+
+<ol>
+<li><b>(1 points)</b>What is the global position of \( p_3 \)?
+<li><b>(1 points)</b>What is the direction r? the direction e?
+<li><b>(1 points)</b>What is the angle \( \phi \)?
+<li><b>(1 points)</b>What is the axis of rotation?
+<li><b>(1 points)</b>Verify that the computed angle/axis rotation positions \( p_3 \) at \( p_d \) using the kinematic equation for this joint.
+</ol>
+-->
+
+<br>
+<hr>
+<h3>Question 3: Eye on the prize (5 points)</h3>
+<hr>
+
+<p>In this question, you will use the CCD's angle/axis computation (with 
+nudge factor of 1) to make a character's gaze follow a target.
+Implement your solution in <b>assignments/a9-ik/ALooker.cpp</b>
+
+<p>Your approach should align the forward direction of the head with the
+target. The forward direction of the head is the Z axis (0,0,1) in its local
+coordinates. 
+
+<br>
+<br>
+<img src="looker.gif">
+<br>
+<br>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a9-looker
+</pre>
+</p>
+<br>
+
+<hr>
+<h3>Question 4: Character IK using CCD (10 points)</h3>
+<hr>
+
+<p>In this question, you will implement the CCD algorithm for a full character.
+Implement you solution in <b>IKController::solveIKCCD()</b> located in
+<b>libsrc/animation/AIKcontroller-basecode.cpp</b>. 
+
+Given the joint specified by jointid, make its position match goalPos. The chainsize indicates how many descendents to use for the CCD algorithm. When the function returns, skeleton's pose will have the end effector matching the goalPos (as close as feasible).
+
+<pre>
+// solveIKCCD positions the joint given by jointid so its global position
+// is located at goalPos
+//
+// param skeleton: the character to modify
+// param jointid: the ID of the end effector
+// param goalPos: the target position for jointid (global pos)
+// param chainSize: the number of joints to "nudge" towards the goal. (e.g. the number of descendants to use)
+// param maxIters: the max number of iterations to try to reach the goal
+// 
+// return true/false based on whether we could reach the goal
+// side effect: skeleton should by posed such that jointid is located at goalPos (or in this direction of 
+// goalPos if the target is out of reach) 
+bool AIKController::solveIKCCD(ASkeleton& skeleton, int jointid,
+    const AVector3& goalPos, int chainSize, int maxIters)
+{
+    // recompute the chain if the end effector or chain size changes
+    if (_selectedJoint != jointid || chainSize != (int) _chain.size())
+    {
+        computeJointChain(skeleton, jointid, chainSize);
+    }
+
+    // There are no joints in the IK chain for manipulation
+    if (_chain.size() == 0) return true;
+
+    // implement CCD algorithm here
+
+    return false;
+}
+</pre>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a9-ik 
+</pre>
+</p>
+<br>
+
+<h3>Implementation Hints</h3>
+
+<ul>
+<li>DON'T FORGET: When you change the local rotation of a joint, you must call fk() to update the global rotations and translations.
+<li>When implementing CCD, make the chain length 1 to start and ensure that a single joint can follow the target. 
+<li>Test in your function that your angle/axis computation is correct by computing whether the computed rotation indeed rotates
+the limb towards the target. 
+<li>Then, make sure that you can set the rotation matrix correctly in the
+joint's local coordinate system.
+</ul>
+
+<p>The basecode comes with a viewer to help yo utest your algorithm.
+
+<br>
+<center>
+<video controls>
+		<source src="ikccd.ogv">
+</video>
+</center>
+<br>
+
+<b>User interface overview</b><br>
+
+<p>The camera can be controled with the mouse:
+
+<ul>
+    <li>Left-button drag with the mouse to rotate
+    <li>Right-button drag with the mouse to pan
+    <li>Middle-button drag with the mouse to zoom
+    <li>'f' button will focus the view on the character
+</ul>
+
+<p>The left frame lets you select joints, reset the pose, and set the goal position maunally. 
+
+<p>The target position can also be moved with the mouse by holding down the Ctrl key.
+
+<p>The right panel lets you select the algorithm for IK along with IK paramaters. For CCD:
+<ul>
+<li>Epsilon: how close to the goal do we need to be to stop iterating
+<li>Max iterations: max number of iterations to use before stopping the agorithm
+<li>Chain length: the number of ancestors to "nudge" towards the goal. If the chain size is -1, we use all ancestors up to (but excluding) the root.
+</ul>
+
+<hr>
+<h3>Question 5: Character IK using analytical method (10 points)</h3>
+<hr>
+
+<p>In this question, implement <b>IKController::solveIKAnalytic()</b> located in 
+<b>libsrc/animation/AIKcontroller-basecode.cpp</b>. In this question, you will combine the 
+techniques of the simple two-link analytic approach with CCD's angle/axis calculation. This work 
+will allow us to animate the legs and arms of the character such that the knees and elbows 
+bend along their natural axis. 
+
+<pre>
+// solveIKAnalytic: positions the joint given by jointid so its global position
+// is located at goalPos. This method computes rotations for the parent and grandparent 
+// of jointid.
+//
+// param skeleton: the character to modify
+// param jointid: the ID of the end effector
+// param goalPos: the target position for jointid (global pos)
+// 
+// return true/false based on whether we could reach the goal
+// side effect: skeleton should by posed such that jointid is located at goalPos (or in this direction of 
+// goalPos if the target is out of reach) 
+bool AIKController::solveIKAnalytic(ASkeleton& skeleton, int jointid, const AVector3& goalPos)
+</pre>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a9-ik 
+</pre>
+Set the IK type to <b>Analytic</b> to test your work.
+</p>
+<br>
+
+<p>Implementation hints:
+<ul>
+<li>Use the angle/axis CCD computation to solve for the grandparent joint rotation. 
+<li>Use the law of cosines to solve for the parent joint rotation. 
+<li>Use the follow axis formula to choose the axis of rotation for the parent joint:
+<pre>
+vec3 limbDir = parentJoint->getLocalTranslation();
+limbDir.Normalize();
+vec3 axis = limbDir.Cross(vec3(0,0,-1));
+if (limbDir[1] < 0) axis = limbDir.Cross(vec3(0,0,1)); 
+</pre>
+</ul>
+
+<hr>
+<h3>Question 6: Rythym is a dancer (10 points)</h3>
+<hr>
+
+<p>In this question, you will implement a procedural dancer using solveIKAnalytic (or solveIKCCD if you 
+did not finish the previous question). Implement your solution in <b>assignments/a9-ik/ADancer.cpp</b>.
+Your solution will modify the motion in idle.bvh to make the hands and hips move differently.
+
+<br>
+<br>
+<img src="dancer.gif">
+<br>
+<br>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a9-dancer
+</pre>
+</p>
+<br>
+
+<p>Demo requirements
+<ul>
+<li>You should animate the hips back and forth and up and down. 
+<li>You should animate the hands up and down as shown.
+<li>The feet should not move
+<li>Note: You may use either sine/cosine or a spline to animate the hips and hands. 
+</ul>
+
+<p>Suggested approach
+<ol>
+<li>Animate the hand targets first.  <br><img src="dancer1.gif">
+<li>Then use AIKController to position the hands so that they follow the targets <br><img src="dancer2.gif">
+<li>Then animate the position of the hips <br><img src="dancer3.gif">
+<li>Then pin the feet to their original position using AIKController <br><img src="dancer4.gif">
+<li>Then reset the rotation of the feet to their original global rotation <br><img src="dancer5.gif">
+</ol>
+
+<hr>
+<h2>Extra Credit</h2>
+<hr>
+
+<p><b>Option 1</b> Make you own unique animation based on inverse kinematics,
+splines, and motions.  For example, make a new dance, have the character hold a
+cup, or wave. Try your procedural dance or look on an other motions.
+<p><b>Option 2</b> Procedural walker. Animate walking by using IK to move the
+feet (to move forward, you will need to move the root too). Experiment with
+unique characters, such as spiders and robots.
+
+<p>Be sure to include a video of your demo for full credit!
+
+<br>
+<hr>
+<h2>Submission Requirements (1 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

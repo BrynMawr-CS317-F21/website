@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 1</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+
+</head>
+
+<body> 
+
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 1</h1>
+<div id="TagLine">
+   In which, we make procedural 2D animations with spheres
+</div>
+<hr>
+
+In this assignment, you will work with particles that move in straight lines,
+circles, oscillations, or the direction of a target.
+
+
+<p>The goals of this lab are to work with
+<ul>
+   <li>points, velocity, and time</li>
+   <li>sine, cosine, and tangent</li>
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>The source is available from github.swarthmore.edu. All your code 
+   for this course will be in your AnimationToolkit repository.
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit
+> git pull
+> cd build
+> cmake ..; make
+</pre>
+
+<br>
+<b>If you DO NOT have a Swarthmore github account yet</b>
+<br>
+
+<p>For those of you without an account yet, you can download the repository from 
+<a href="AnimationToolkit-master-a1.zip">here</a>. You can still use git locally 
+to keep track of your changes. To submit, we will set the url to the remote 
+repository manually (The professor will send you instructions once your 
+account is setup).
+
+<pre class="prettyprint lang-sh">
+> mkdir cs56
+> cd cs56
+> unzip AnimationToolkit-master-a1.zip
+> cd AnimationToolkit-master-a1
+> git init
+> git add .
+> git commit -m "assignment framework"
+</pre>
+
+<br>
+<br>
+<hr>
+<h2>Assignment: Hello Animation! Nice to meet you!</h2>
+<h3>Due September 13</h3>
+<hr>
+
+<h3>Question 1: Eyes! (5 points)</h3>
+
+<p></p>An easy way to create smooth motion is to use sine() or cosine() to
+change an object's properties. For this question, modify the code in
+<b>assignments/a1-hello/eyes.cpp</b> to draw a pair of eyes. Then use sine()
+to animate two eyes like so.</p>
+
+<p>To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a1-eyes 
+</pre>
+</p>
+
+<p><b>Tip: </b> sin() will smoothly vary between 1 and -1 given smoothly
+increasing values. Use elapsedTime() (defined in "AFramework.h") as the input
+to sin().</p>
+
+
+<img src="eyes.gif"/>
+<br>
+
+<br>
+<br>
+<h3>Question 2: Look! (5 points)</h3>
+
+<p>In class, we talked about how atan2 (tangent) can be used to compute an angle 
+given a point. For this question, you will animate the eyes from Question 1 to 
+follow a target. Your solution should use tangent to compute the position of 
+the pupils.</p>
+
+<p>The target is indicated with a red dot. To move it, click and hold down
+the left mouse button to drag it to a new location. </p>
+
+<p>Implement your solution in <b>assignments/a1-hello/look.cpp</b>.
+To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a1-look 
+</pre>
+</p>
+
+<img src="look.gif"/>
+<br>
+
+<br>
+<br>
+<h3>Question 3: Particles on the move (10 points)</h3>
+
+<p>In class, we talked about how to animate a particle to move in a <a
+href="particle.cpp.txt"></a>straight line</a>. In this assignment, we will
+extend this program to animate *lots* of particles moving in a straight
+line.</p>
+
+<p>Implement your program in <b>assignments/a1-hello/velocity.cpp</b> 
+   To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a1-velocity 
+</pre>
+</p>
+
+<img src="velocity.gif"/>
+<br>
+
+<p>This program should support the following features
+<ul>
+   <li>Create 100+ particles, randomly distributed across the screen</li>
+   <li>Particles should all move in the same direction, but at different speeds</li>
+   <li>Particles should wrap when they move off the screen. For example, if a
+   particle's X position is greater than the window width, it should be reset
+   to 0.</li>
+   <li>Particle colors should also be randomized</li>
+</ul>
+</p>
+
+<p>It is up to you how to implement your program. However, some recommendations
+<ul>
+   <li>Use <b>particle.cpp</b> as a reference</li>
+   <li>Implement moving particles first</li>
+   <li>Implement random colors afterwards</li>
+   <li>Define a struct or class to hold the state for
+   each particle. The state would include the particle's position, color, and
+   velocity.</li>
+   <li>Store your particles in a vector or array. Initialize them in setup().
+   Update them in update(). Draw them in draw().</li>
+</ul>
+</p>
+
+<p><b>Tip: Color Jitter</b> The easiest way to generate a random color is to
+sample a random value for each red, green, and blue component. However, in
+the example above, we used a different approach called <i>color
+jittering</i>. To jitter color, we start with a base color and then add
+random deviations from it. For example, if our base color were blue, (0.2,0.8,0.2),
+we can jitter its components by adding random values in the range [-0.2,
+0.2]. This gives us colors that are close to the original but still has 
+variety.
+
+<br>
+<br>
+<h3>Question 4: Hypnotic circles (10 points)</h3>
+
+<p>In class, we talked about how to animate a particle to move in a <a
+href="circle.cpp.txt"></a>circle</a>. In this assignment, we will
+extend this program to animate particles moving in concentric circles.</p>
+
+<p>Implement your solution in <b>assignments/a1-hello/circles.cpp</b>
+   To run your program from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a1-circles 
+</pre>
+</p>
+</p>
+
+<img src="circles.gif"/>
+<br>
+
+<p>This program should support the following
+<ul>
+   <li>Create 36*N particles, where N is the number of concentric circles. Each circle should have 36 particles, spaced 10 degrees apart.</li>  
+   <li>Alternating circles should rotate in opposite directions.</li>
+   <li>Particles in the same circle should share the same color.</li>
+</ul>
+</p>
+
+<p><b>Tip: Color Palettes</b> A color palette is a simple method for generating
+harmonious colors. In this approach, we define a list of colors to use in our 
+application. When we need a color, we choose it from this list. 
+Above, we used the following palette.
+
+<pre class="prettyprint lang-sh">
+   //https://www.color-hex.com/color-palette/82379
+   std::vector<AVector3> pallet = 
+   {
+      AVector3(0,165,227)/255.,
+      AVector3(141,215,191)/255.,
+      AVector3(255,150,197)/255.,
+      AVector3(255,87,104)/255.,
+      AVector3(255,162,58)/255.
+   };
+</pre>
+</p>
+<br>
+<br>
+<hr>
+<h3>BONUS: Do something cool or quirky (up to 2 points)</h3>
+<hr>
+
+<p>Even with just spheres, it's possible to make an interesting demo!
+<br> 
+<br> 
+
+<img src="spiral.gif" height="100px">
+<img src="peek.gif" height="100px">
+<a href="http://thebookofshaders.com/edit.php#09/marching_dots.frag"><img src="transformEx-bookofshaders.gif" height="100px"></a>
+
+<p>Create a unique animation effect. For credit, you must submit your code
+and a video or gif. You can capture a video using <b>recordmydesktop</b>
+(instructions below) or with <b>Peek</b>.
+
+<p>You can easily create your own programs by copying an existing demo and then editing 
+   <b>CMakeLists.txt</b> to build it. See one of the same programs for an example!
+</p>
+
+<p>Some ideas
+
+<ul>
+<li> Animate color and size
+<li> Change the color based on the current position
+<li> Use different shapes
+<li> Use more interesting velocities for the particles, for example
+<ul>
+  <li>Use sin/cos to create falling snow or rising bubbles
+  <li>Create a spiral animation (see above)
+</ul>
+<li>Create an animated scene (like the above face)
+</ul>
+
+
+<br>
+<br>
+<hr>
+<h2>Submission Requirements (1 point)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(245, 205, 205);text-align:right;">
+</div>
+
+</body></html>

@@ -1,0 +1,97 @@
+include::header.adoc[]
+//override default to include table css
+:stylesheet: front.css
+:leveloffset: -1
+
+:course: CS 317
+:title: Computer Animation
+:term: Fall 2021
+
+= {course}: {title} -- {term}
+
+[.anns]
+== Announcements
+* Welcome to CS 317!
+
+== **Schedule**
+
+The syllabus may change during the semester. Please check here every week for updates 
+on lecture content, worksheets, and assignments.
+
+include::schedule.adoc[]
+
+== Course Info
+
+*Professor*: link:https://www.cs.brynmawr.edu/~alinen[Aline Normoyle]
+
+*Office*:Park 204
+
+*Office hours*:Tue 2:25-3:45pm, and by appointment
+
+Optional Texts (available at the library):
+
+* _Computer Animation, 3rd Edition_ by Rick Parent
+* _Mathematics for 3D Game Programming and Computer Graphics, 3rd Edition_ by Eric Lengyel
+
+[.center,options="header,autowidth"]
+|===
+| Activity | Location | Time
+
+| Lecture | Park 336 (and Zoom (Link posted on Slack)) | Tuesday, Thursday, 12:55am-2:15pm EST
+| Lab | Park 230 | Thursday, 2:25pm - 3:45pm EST
+| Office Hours | Park 204 | Tuesday, 2:25pm - 3:45pm EST or by appointment (See calend.ly link on Slack)
+
+|===
+
+
+**Welcome to CS317**, 
+
+The goal of this course is to give students a foundation for programming 3D animated and interactive graphics.
+
+In particular, we will "look under the hood" at the algorithms used by game engines and modeling tools to create authorable, interactive characters and special effects. Labs will give students hands on experience implementing algorithms in C++ as well as opportunities to derive their own unique animations. Topics will include mathematical foundations (coordinate systems, transformations, quaternions), interpolation techniques, keyframing, motion capture and procedural animation, and physically-based systems. Animation is hard work but nothing beats the joy and satisfaction of creating your own worlds and watching them come to life!
+
+Prereqs: Discrete Math (CS 231) and Systems Programming (CS 223). Calculus and linear algebra is also helpful.
+
+== Software
+
+*  **Slack** Please go to link:https://slack.com/signin[slack.com]. Our workspace is BrynMawr-CS317-F21. You can ask questions and request one-on-one help over zoom using this course's slack channel. 
+*  **Development environment** This refers to the tools we will use to write and run code. We will program in C++ in a Ubuntu programming environment (Park 230), although you may setup your windows or mac laptop for development if you like. 
+* **Github Account** Please go to link:https://github.com/[github.com] and register. You will be using github to submit assignments. 
+
+You will have everything you need to run your assignments in the CS labs in the Park Science Center (Park 230).
+If you would like to work on your own laptop, you can follow the instructions below: 
+
+* **C++ development environment** Please follow the instructions at link:https://github.com/BrynMawr-CS312-2021/cplusplus-beginners[cplusplus-beginners] 
+* **Graphics development environment** Please follow the instructions at link:https://github.com/BrynMawr-CS312-2021/getting-started[getting-started] 
+* **Blender (Optional)** Please go to link:https://blender.org[blender.org]. Blender is an open-source 3D modeling tool and advanced renderer. We will occasionally use blender to inspect and edit models and materials.
+
+== Grading Policies
+
+All graded work will receive a grade, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.7,
+1.3, 1.0, or 0.0. At the end of the semester, final grades will be calculated
+as a weighted average of all grades according to the following weights:
+
+|===
+| 20% | Final Exam
+| 25% | Quizzes
+| 45% | Assignments
+| 10% | Labs and class work 
+|===
+
+include::quizzes.adoc[]
+
+include::labPolicy.adoc[]
+
+include::latePolicy.adoc[]
+
+include::integrity.adoc[]
+
+include::accomodations.adoc[]
+
+== External Links
+
+Links that are related to the course may be posted here. If you have suggestions for links, let us know.
+
+[unstyled]
+ * link:https://www.brynmawr.edu/academicsupport/academic-and-student-support-services[Academic Support, including help with math and quantitative skills!]
+ * This site was generated with link:https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[asciidoctor]

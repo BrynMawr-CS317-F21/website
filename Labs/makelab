@@ -1,0 +1,27 @@
+#! /bin/bash
+
+# script to turn labXX.md markdown file into html
+#
+# J. Knerr
+# Fall 2017
+
+#---- check usage; give helpful message if wrong ------
+PROG=`basename ${0}`
+USAGE="Usage: ${PROG} markdownfile "
+if [ $# -lt 1 ] ; then
+  echo "Incorrect number of command-line arguments."
+  echo ${USAGE}
+  exit 1
+fi
+# set MDF to be whatever the args are
+MDF=$@
+#------------------------------------------------------
+
+BASE=`basename -s .md $MDF`
+HTML=$BASE.html
+cat header.html > $HTML
+echo "" >> $HTML
+# markdown $MDF >> $HTML
+pandoc -f markdown -t html -s --columns=1000 $MDF >> $HTML
+./fixbold.py $HTML
+chmod 644 $HTML

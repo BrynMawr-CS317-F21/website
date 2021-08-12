@@ -1,0 +1,446 @@
+<!DOCTYP html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 8</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+	 <script type="text/javascript" async
+	 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	 </script>
+</head>
+
+<body>
+<br>
+<hr>
+<h1>CS56 Computer Animation: Lab 8</h1>
+<div id="TagLine">
+   In which, we implement blending and reorienting between motions
+</div>
+<hr>
+     
+<p>The goals of this lab are to 
+<ul>
+<li> Implement spliced motions
+<li> Implement blends between similar motions
+<li> Modify animations for a part of the body
+<li> Align motion sequences for blending
+</ul>
+
+<hr>
+<h2>Get the source</h2>
+<hr>
+
+<p>The motion assignment has been added to your AnimationFramework repository.  To get the source, run
+
+<pre class="prettyprint lang-sh">
+> cd cs56/AnimationToolkit 
+> git pull
+> cd build
+> cmake ..
+> make
+</pre>
+
+<p>You should now have a new directory under assignments called <b>a8-blend</b>. 
+<br>
+<hr>
+<h2>Assignment 8: Cross-fade away</h2>
+<h3>Due November 22</h3>
+<hr>
+
+<br>
+<hr>
+<h3>Question 1: Blend (5 points)</h3>
+<hr>
+
+<p>In this question, you will blend the walk motion with a strafe motion.
+Implement your solution in <b>assignments/a8-blend/ABlend.cpp</b> inside of 
+the method <b>blend()</b>.
+
+<pre>
+// m1: First input motion
+// m2: Second input motion
+// alpha: blend value
+// returns the result of m1 * (1-alpha) + m2
+AMotion blend(const AMotion& m1, const AMotion& m2, double alpha) 
+</pre>
+
+<p>Your implementation should be based on the code from class
+
+<pre>
+duration = duration1 * (1-alpha) + duration2 * alpha
+deltaT = 1/fps
+for t from 0 to duration, increment by deltaT
+    APose pose1 = pose from motion1
+    APose pose2 = pose from motion2
+		APose newPose = lerp pose1 and pose2 by alpha
+		result.appendKey(newPose)
+return result
+</pre>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a8-blend 
+</pre>
+</p>
+<br>
+
+<img src="blend.gif">
+<br>
+
+
+<p>Controls
+<ul>
+<li>Press 'UP' to increase the blend factor _alpha
+<li>Press 'DOWN' to decrease the blend factor
+</ul>
+
+<p>Your program should have the following features
+<ol>
+<li>blend() shoudl create and return a new motion. Use AMotion::appendKey to add poses to your blended motion
+<li>The motion returned by blend should have a framerate equal to motion1. Hint: Call setFramerate() before returning result.
+<li>The duration of the blended motion should be based on the blend factor, e.g. duration = duration1 * (1-alpha) + duration2 * alpha. 
+<li>Use APose::Lerp to blend poses from motion1 and motion2
+</ol>
+
+<br>
+<hr>
+<h3>Question 2: Splice (5 points)</h3>
+<hr>
+
+<p>In this question, you will modify the walk motion to have the arm 
+motion from gangnam style dancing. 
+Implement your solution in <b>assignements/a8-blend/ASplice.cpp</b>. 
+
+<pre>
+// orig: Starting input motion
+// upper: Motion for the modifying the upper body (all joints which are descendants of the spine)
+// alpha: blend value
+// returns a new motion such that 
+//     the lower body matches the motion in 'orig'
+//     the upper body is the result of blending the upper body motion with 
+//         the original's upper body motion, e.g. newupper = upper * (1-alpha) + orig * alpha
+AMotion spliceUpperBody(const AMotion& orig, const AMotion& upper, double alpha) 
+</pre>
+
+<p>For this question, use keys for blending instead of durations, e.g.
+<pre>
+for i in range numKeys in orig
+    APose pose = orig.getKey(i)
+		// compute new pose and either call appendKey() or editKey() set the pose
+</pre>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a8-splice 
+</pre>
+</p>
+<br>
+
+<img src="splice-gangnam-walk.gif">
+<br>
+
+<p>Controls
+<ul>
+<li>Press '0' to use 100% of the dance upper body motion
+<li>Press '1' to use 50% of the dance upper body motion with 50% of the original
+<li>Press '2' to see the original motion
+<li>Press 'UP' to increase the blend factor _alpha
+<li>Press 'DOWN' to decrease the blend factor
+</ul>
+
+<li>NOTE: If you implement your solution so that key '0' shows the original 
+	 instead of key '2', that is ok. 
+
+<p>Your program should have the following features
+<ol>
+<li>spliceUpperBody() should create and return a new motion. Use AMotion::appendKey to add poses to your blended motion
+<li>The motion returned by blend should have a framerate equal to orig
+<li>The upper body consists of all descendants of the joint "Beta:Spine1" 
+<li>Use AQuaternion::Slerp to blend local rotations for the upper body
+<li>Use the sequence of poses from upper starting at key ID = 120
+</ol>
+
+<br>
+<hr>
+<h3>Question 3: Zombie Arms (10 points)</h3>
+<hr>
+
+<p>In this question, you will modify the walk motion to have zombie arms. 
+Implement your solution in <b>assignements/a8-blend/AZombieArms.cpp</b>. 
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a8-zombie 
+</pre>
+</p>
+<br>
+
+<b>Controls</b>
+<ul>
+<li>Press '0' to see the original motion
+<li>Press '1' to see the arms with a constant rotation
+<li>Press '2' to see the arms with an offset rotation
+</ul>
+
+<br>
+<p><b>Part 1: Freeze Arms</b> (5 points)
+<br>
+<br>
+
+<p>To freeze the arms, we will set both the shoulders and elbows to a constant
+rotation.  Implement your solution in <b>ComputeArmFreeze</b>.
+
+<pre>
+// motion: input motion
+// returns a new motion with the shoulders and elbows outstretched
+AMotion ComputeArmFreeze(const AMotion& motion)
+</pre>
+
+<br>
+<center>
+		<h3>Freeze arms</h3>
+<video controls>
+		<source src="zombieFreezeArms.ogv">
+</video>
+</center>
+<br>
+
+<p>Freeze arms should have the following features:
+<ol>
+<li>The left shoulder should local rotation equal to XYZ euler angles (-53, -88, -33) 
+<li>The right shoulder should local rotation equal to XYZ euler angles (14, 88, -33) 
+<li>Both elbows should local rotation equal to XYZ euler angles (0, 23, 0) 
+<li>The motion returned should have a framerate equal to motion
+<li>You should modify the joints with names: "Beta:LeftArm", "Beta:RightArm" (shoulders), "Beta:LeftForeArm", and "Beta:RightForeArm" (elbows). 
+</ol>
+
+<br>
+<p><b>Part 2: Offset Arms</b> (5 points)
+<br>
+<br>
+
+<p>To offset the arms, we will apply an offset rotation to shoulder's animation 
+curve. We will freeze the elbows as before. 
+Implement your solution in <b>ComputeArmOffset</b>.
+
+<pre>
+// motion: input motion
+// returns a new motion with the shoulders and elbows outstretched but moving
+AMotion ComputeArmOffset(const AMotion& motion)
+</pre>
+
+<p>To compute the offset, we will 
+use the local rotation of the should on the first frame to compute an offset 
+rotation.
+
+\(
+R_{offset} = R_{desired} (R_i^j)^{-1}
+\)
+
+where $R_i^j$ is the local to parent rotation for the shoulder joint. $R_{desired}$ is the target rotation we want for the joint. For the right joint, 
+the desired rotation will be the XYZ euler angles (14, 88, -33). For the 
+left joint, the desired rotation will be the XYZ euler angles (-53, -88, -33).
+
+
+<br>
+<center>
+		<h3>Offset arms</h3>
+<video controls>
+		<source src="zombieOffsetArms.ogv">
+</video>
+</center>
+<br>
+
+<p>Offset arms should have the following features:
+<ol>
+<li>The left shoulder's desired rotation is XYZ euler angles (-53, -88, -33) 
+<li>The right shoulder's desired rotation is XYZ euler angles (14, 88, -33) 
+<li>Both elbows should local rotation equal to XYZ euler angles (0, 23, 0). These frozen as before.
+<li>The motion returned should have a framerate equal to motion
+<li>You should modify the joints with names: "Beta:LeftArm", "Beta:RightArm" (shoulders), "Beta:LeftForeArm", and "Beta:RightForeArm" (elbows). 
+</ol>
+
+<br>
+<hr>
+<h3>Question 4: Reorient (5 points)</h3>
+<hr>
+
+<p>In this question, you will modify a motion so it starts in a new location
+and orientation. You will need to perform the same calculation in crossfade to
+align two motions. Implement your solution in <b>assignements/a8-blend/AReorient.cpp</b>
+
+<pre>
+// motion: the input motion
+// pos: the new starting position of the motion
+// heading: the new starting orientation as an angle (radians) around the world UP axis (e.g. Y)
+// returns a new motion whose starting pose has a root position and rotation that matches pos and heading
+AMotion reorient(const AMotion& motion, const AVector3& pos, double heading)
+</pre>
+
+<p>To run the demo from the <b>build</b> directory, type 
+<pre class="prettyprint lang-sh">
+build> ../bin/a8-reorient 
+</pre>
+</p>
+<br>
+
+<br>
+<center>
+<video controls>
+		<source src="reorient.ogv">
+</video>
+</center>
+<br>
+
+<b>Controls</b>
+<ul>
+<li>Use the left and right arrow keys to rotate
+<li>Use WASD to translate forward, back, left, and right
+</ul>
+
+<p>Your demo should have teh following features
+<ol>
+<li>The returned motion should have the same framerate as the input
+<li>The root position and heading of the first frame should match the desired 
+position and heading. All subsequent frames should be offset so the resulting motions looks like the original. 
+<li>The best solution should only align the headings. However, you may implement a simpler solution which sets the full XYZ orientation to match the heading. This will affect how motions where the root may tilt (such as jumps) are reoriented. 
+</ol>
+
+<br>
+<hr>
+<h3>Question 5: Crossfade (20 points)</h3>
+<hr>
+
+<p>In this question, you will implement a cross fade transition between two motins. You have a application with a GUI to help you test. You will implement your solution in <b>libsrc/animation/AMotionBlender-basecode.cpp</b>. 
+
+<p>To run the demo from the <b>build</b> directory, type
+<pre class="prettyprint lang-sh">
+build> ../bin/a8-crossfade 
+</pre>
+</p>
+<br>
+
+// Member function: AMotionBlender::blend<br>
+//<br>
+// param motion1: the starting motion of the transition<br>
+// param motion2: the ending motion of the transition<br>
+// param startKeyId: the frame of the starting motion at which to start blending<br>
+// param endKeyId: the frame of the ending motion at which to start blending<br>
+// param numBlendFrames: the number of frames in the blend<br>
+// param blend: the computed crossfade motion. This motion should contain
+<ul>
+<li>The starting motion sequence. This consists of the keys from motion 1 in range [0, startKeyId)
+<li>The cross fade sequence. This consists of the blended keys between motion 1 and motion 2. 
+The blended motion will have numBlendFrames in it. The first frame will blend the startKeyId from 
+motion 1 with the endKeyId from motion 2. The second frame will blend the (startKeyId+1) key 
+from motion1 with the (endKeyId+1) from motion 2. Etc.
+<li>The ending motion sequence. This consists of the keys from motion 2 in range 
+[endKeyId+numBlendFrames, motion2.getNumKeys).
+</ul>
+
+<br>
+<p><b>Part 1 (5 points)</b> Implement AMotionBlender::append. 
+<br>
+
+<p>This method should grab the keys in range 
+[startKeyId, endKeyId) from the input motion and append them to the output motion. Test your new 
+function by extending AMotionBlender::blend() to append the keys [0, startKeyId) from 
+motion 1 and the keys [endKeyId, motion2.getNumKeys) from motion 2. Your assignment should 
+look as follows: the walk motion plays and then snaps back to the origin to play the jump.
+
+<br>
+<br>
+<center>
+<img src="crossfade-append.gif">
+</center>
+<br>
+
+<p><b>Part 2 (5 points)</b> Implement AMotionBlender::crossfade. 
+<br>
+
+<p>So far, the transition snaps from the first motion to the 
+second motion. Fix this problem by implementing AMotionBlender::crossfade. This function 
+should blend the frame between motion 1 and motion 2 and append the blended frames to 
+'blend'. Extend AMotionBlender::blend to call your new crossfade function. 
+Now, your assignment should look as follows: the motion is smooth but the character slides to 
+the origin to play the jump motion.
+
+<br>
+<br>
+<center>
+<img src="crossfade-blend1.gif">
+</center>
+<br>
+
+<p><b>Part 3 (5 points)</b> Align the positions in AMotionBlender::align. 
+<br>
+
+<p>Now we have a smooth result but the jump unrealistically 
+moves back to the origin. We want the jump to occur at the character's current location! 
+We will fix this by aligning the sequence from motion 2 with the start transition key from 
+motion 1. Note that you can re-use the logic from reorient!
+
+<p>Translate the keys so that the second sequence is aligned with the first sequence. Extend AMotionBlender::blend to call align. Your assignment should now look as follows.
+
+<br>
+<br>
+<center>
+<img src="crossfade-blend2-walkjump.gif">
+</center>
+<br>
+However, note that blending between a turn and jump still doesn't work! Let's fix that.
+<br>
+<br>
+<center>
+<img src="crossfade-blend2-turnwalk.gif">
+</center>
+<br>
+
+<p><b>Part 4 (5 points)</b> Align the root headings in AMotionBlender::align. 
+<br>
+
+<p>Reorient the keys (e.g. rotate and translate) so that the second sequence is aligned with the first. Now your blend should look good in all cases.
+<br>
+<br>
+<center>
+<img src="crossfade-blend3.gif">
+</center>
+<br>
+
+<p><b>Testing tip:</b> A correct crossfade should return the original motion whenever 
+you crossfade between the same motion. For example, try blending two walk motions 
+over the starting 10 frames. The result should look identical to the original motion. 
+
+<hr>
+<h2>Extra Credit</h2>
+<hr>
+
+<p><b>Option 1 (2 points)</b> Create a unique animation or character. 
+<p><b>Option 2 (2 points) </b> Infinite motion. Create a character that can walk or dance or jump forever by repeatedly blending the walking motion with itself.
+<p><b>Option 3 (2 points) </b> Mirror. Try creating a mirrored motion which plays forward and backward. 
+<p><b>Option 4 (4 points) </b> Motion analysis. Detect when feet are in contact with the floor. Draw a cube at the location of the contact so we can visualize it. 
+
+<p>Be sure to include a gif or video of your demo for full credit!
+
+<br>
+<hr>
+<h2>Submission Requirements (1 points)</h2>
+<hr>
+
+<div id="submission"></div>
+
+<div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;">
+</div>
+</body>
+</html>

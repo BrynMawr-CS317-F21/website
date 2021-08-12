@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>CS56: Lab 0</title>
+   <link rel="stylesheet" href="./astyle.css">
+   <script src="./jquery-3.2.1.min.js"></script>
+   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+   <script>
+   $(function() {
+      $("#submission").load("submission.html");
+
+      let d = new Date();
+      $("#footer").html("&copy; alinen 2016 Last updated "+ d.toDateString());
+   });
+   </script>
+
+</head>
+
+<body> 
+
+<br>
+<hr>
+<h1>CS56: C++ Study Guide</h1>
+<hr>
+<br>
+Regarding C++, you should be familiar with the following: 
+<ul>
+   <li>built-in types: int, bool, float, double, char. (We will use double by default).</li>
+   <li>string types: char*, const char*, std::string</li>
+   <li>control: if/else, for, while</li>
+   <li>relationship operators: &gt;, &lt;, \&gt;=, &lt;=, ==, !=</li>
+   <li>arithmetic: +, -, ++, --, /, *, %, NaN, sin, cos, asin, acos, tan, atan2</li> 
+   <li>input/output using iostreams (std::cout, std::cin)</li>
+   <li>arrays and std::vector</li>
+   <li>classes: methods and member variables, inheritance (public, private, protected keywords), virtual methods, destructors, constructors</li>
+   <li>pointers: new/delete (pointers are not used much in this course. And we will not use malloc/free ever!)</li>
+   <li>functions: return types and parameters. (99% of your code for this class should be uses classes!), all logic will be in classes)</li>
+   <li>header and source files</li>
+   <li>pass-by-reference vs pass-by-value</li>
+   <li>const parameters, const return types and const methods</li>
+   <li>random number generation</li>
+</ul>
+
+
+Below are sample questions for practice.
+
+<h3>What is the value and type for each of the following expressions?
+<ul>
+<li>2 + 3
+<li>2++
+<li>2.0 + 3
+<li>5.5/10
+<li>5/10
+<li>10/5
+<li>asin(2)
+<li>8 % 6
+<li>5 - 2 * 3
+<li>"123"
+<li>2.0
+<li>2+4*2+1
+<li>"Swat" + "CS"
+</ul>
+
+<h3>Q1: What is the output of the following program. Write a program that inputs two integers a and b and outputs a/b.</h3>
+<h3>Q2: What is the output of the following program. Write a program that inputs N integers and outputs their average.</h3>
+<h3>Q3: What is the output of the following program. Write a program that inputs a float and outputs the arcsine of that value in degrees.</h3>
+<h3>Q4: What is the output of this program? (reference vs value)</h3>
+<h3>Q4: What is the output of this program? (Class example)</h3>
+
+<h3>Exercise</h3>Assume we have a word-count list, such as this: 
+
+wc = [['around', 99], ['beer', 300], ['bottle', 3], ['bottles', 297], ['buy', 1], ['down', 99]]
+
+Write a function to take a word-count list and return the word that has the highest count. For example, if called on the list above, the function should return "beer".
+
+<h3>Exercise 4: Examine the following two functions. One takes a const reference, whereas the other one doesn't. Draw the function diagram for each.</h3>
+<h3>Consider the following code. Will the compiler allow it?  Why or why not? (const example)
+<h3>The following code doesn't compile. The error is TODO. What does this error mean and how can we fix it?
+<h3>The following code doesn't compile. The error is TODO. What does this error mean and how can we fix it?
+<h3>Header files often has the following pre- and post- ambles around them. Why are these needed? 
+<h3>The following program compiles but has the following error when we run. Why? (Test seg fault/ Test Nan) 
+
+</body>
+</html>
