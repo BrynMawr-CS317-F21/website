@@ -10,7 +10,7 @@ include::header.adoc[]
 
 Use the questions below to identify topics for review.
 
-= Trigonometry
+= Trigonometry \anchor:trig[]
 
 Consider the point *p* and angle stem:[\theta] below, where *p* is a distance of 1 unit from the origin and 
 stem:[\theta] is 45 degrees. What is the coordinate of *p*? Hint: what are the values of a and b?
@@ -23,7 +23,7 @@ image:trig-ex2.png[width=200]
 
 Consider the point stem:[p_2] and angle stem:[\theta_2] above. Suppose stem:[p_2=(3,-2,0)^T]. What is the value of stem:[\theta_2]? Hint: Use tangent. 
 
-= Vectors
+= Vectors anchor:vector[]
 
 A *vector* is an n-tuple of real numbers. In this class, we will work with 2D, 3D, and 4D vectors.
 Suppose we have a vector *u*=(-2, 3, 0)^T^ and *v*=(-1, 4, 0)^T^. 
@@ -48,7 +48,7 @@ image:coordinate-system.png[width=500]
 
 * Compute the dot product stem:[u \cdot v]. 
 
-= Matrices
+= Matrices anchor:matrix[]
 
 Consider the following matrices
 
@@ -72,7 +72,7 @@ C = \begin{bmatrix}
 * What are the dimensions of A, B, and C?
 * What is the transpose of the matric C?
 * Compute the products AB and BA.  
-* Is it possible to multiply C times itself? Why not? What about CC^T^
+* Is it possible to multiply C times itself? Why not? What about CC^T^? 
 * What is the product of stem:[AA^{-1}]?
 
 Consider the following matrix
@@ -90,7 +90,7 @@ cos(30) & sin(30) & 0\\
 
 image:coordinate-system.png[width=500]
 
-= Polynomials
+= Polynomials anchor:poly[]
 
 Consider the polynomial stem:[p(t) = 9t^3 + 6t^2]. 
 
@@ -98,7 +98,7 @@ Consider the polynomial stem:[p(t) = 9t^3 + 6t^2].
 * What is the derivative of stem:[p(t)]?
 * What is the value of stem:[p(t)] when t = -1?
 
-Let stem:[B_0(t) = (t - 1)^2] and stem:[B_w = t - 2]. 
+Let stem:[B_0(t) = (t - 1)^2] and stem:[B_1 = t - 2]. 
 
 * Compute an expression for stem:[p(t) = B_0(t) + B_1(t)] and re-arrange the terms into standard form
 

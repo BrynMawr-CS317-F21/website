@@ -55,10 +55,16 @@ This class relies on vectors, matrices, and polynomials. Specifically,
 
 *Trigonometry*
 
-https://www.khanacademy.org/math/trigonometry#trigonometry-right-triangles
-https://www.khanacademy.org/math/trigonometry/unit-circle-trig-func
+Try the sample problems link:math-self-assessment.html#trig[here]. 
+
+Background resources:
+
+* link:https://www.khanacademy.org/math/trigonometry#trigonometry-right-triangles[Trigonometry of right triangles]
+* link:https://www.khanacademy.org/math/trigonometry/unit-circle-trig-func[Sine, cosine, tangent]
 
 *Vectors*
+
+Try the sample problems link:math-self-assessment.html#vector[here]. 
 
 * coordinate systems: axes, origin, stem:[\hat{i}, \hat{j}, \hat{k}]
 * adding, subtracting, scaling
@@ -66,12 +72,16 @@ https://www.khanacademy.org/math/trigonometry/unit-circle-trig-func
 * dot product
 * cross product
 
-https://www.khanacademy.org/math/algebra-home/alg-vectors
-https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/vector-dot-product-and-vector-length
-https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/linear-algebra-cross-product-introduction
-https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces
+Background resources:
+
+* link:https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces[Vector spaces]
+* link:https://www.khanacademy.org/math/algebra-home/alg-vectors[Vectors]
+* link:https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/vector-dot-product-and-vector-length[Dot product and length]
+* link:https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/linear-algebra-cross-product-introduction[Cross product]
 
 *Matrices*
+
+Try the sample problems link:math-self-assessment.html#matrix[here]. 
 
 * Zero matrix
 * Identity matrix
@@ -81,26 +91,25 @@ https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces
 * Inverse
 * Transpose
 
-https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:mat-intro/a/intro-to-matrices
-https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:multiplying-matrices-by-matrices/v/matrix-multiplication-intro
-https://www.khanacademy.org/math/linear-algebra/matrix-transformations/matrix-transpose/v/linear-algebra-transpose-of-a-matrix
-https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:properties-of-matrix-multiplication/a/intro-to-identity-matrices
-https://www.khanacademy.org/math/algebra-home/alg-matrices/alg-intro-to-matrix-inverses/v/inverse-matrix-part-1
+Background resources:
+
+* https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:mat-intro/a/intro-to-matrices[Matrices]
+* https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:multiplying-matrices-by-matrices/v/matrix-multiplication-intro[Matrix multiplication]
+* https://www.khanacademy.org/math/linear-algebra/matrix-transformations/matrix-transpose/v/linear-algebra-transpose-of-a-matrix[Matrix Transpose]
+* https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:properties-of-matrix-multiplication/a/intro-to-identity-matrices[Identity matrix]
+* https://www.khanacademy.org/math/algebra-home/alg-matrices/alg-intro-to-matrix-inverses/v/inverse-matrix-part-1[Matrix inverse]
 
 *Polynomials*
 
-* degree
-* Multiplying and simplifying terms
+Try the sample problems link:math-self-assessment.html#poly[here]. 
 
-https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratics-multiplying-factoring/x2f8bb11595b61c86:multiply-monomial-polynomial/v/polynomials-intro
-https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-6b/v/differentiating-polynomials-example
+* Degree
+* Manipulating expressions (algebra)
+* Derivatives of polynomials
 
-Take this link:MathSelfAssessment.pdf[Math Self-Assessment Quiz] to check whether you should brush up 
-on some skills!
+* link:https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratics-multiplying-factoring/x2f8bb11595b61c86:multiply-monomial-polynomial/v/polynomials-intro[Polynomials]
+* https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-6b/v/differentiating-polynomials-example[Differentiation of polynomials]
 
-Further reading:
-
-* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
 
 = Introduction to animation
 
