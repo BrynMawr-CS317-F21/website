@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Jam 4: Study Guide</title>
+<title>Quiz 4: Study Guide</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -14,59 +14,36 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_jam_4_study_guide">Jam 4: Study Guide</a></li>
+<li><a href="#_quiz_4_study_guide">Quiz 4: Study Guide</a></li>
 <li><a href="#_practice_questions">Practice questions</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_jam_4_study_guide">Jam 4: Study Guide</h2>
+<h2 id="_quiz_4_study_guide">Quiz 4: Study Guide</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jams are open book. 40 minutes in lab.</p>
+<p>Quizzes are open book. 30 minutes at the start of class</p>
 </div>
 <div class="paragraph">
 <p>Topics:</p>
 </div>
-<div class="paragraph">
-<p>This quiz includes the previous topics from Jams 1, 2 and 3 plus</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>classes</p>
-<div class="ulist">
-<ul>
-<li>
-<p>defining and using classes</p>
+<p>Transformations</p>
 </li>
 <li>
-<p>terms: methods, member variables, accessors (getters), mutators (setters)</p>
+<p>Skeletons</p>
 </li>
 <li>
-<p>scope of member variables</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Reading text files</p>
-</li>
-<li>
-<p>Linear and binary search</p>
-</li>
-<li>
-<p>Selection sort and bubble sort</p>
-</li>
-<li>
-<p>Swapping elements in an array</p>
+<p>Motions</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Write Java programs to check your answers. Or you can ask a TA or instructor
-to give feedback on your responses.</p>
+<p>Unless explicitly asked to compute a final answer, it is sufficient to write out the formula and plug-in values.</p>
 </div>
 </div>
 </div>
@@ -74,478 +51,150 @@ to give feedback on your responses.</p>
 <h2 id="_practice_questions">Practice questions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>1) Loop practice. Use loops to compute quantities over random numbers.</p>
+<p>1) For the following questions, suppose frame 1 is rotations 30 degrees around the Z axis and translated (1,4,6) units with respect to the world coordinate system.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Using a loop, compute the sum of 5 random numbers between -10 and 10. Output the results to the console.
-Below is an example</p>
+<p>Draw frame 0 and frame 1.</p>
+</li>
+<li>
+<p>What is the 4x4 homogeous transformation matrix? What is the 2x2 block matrix corresponding to this transformation?</p>
+</li>
+<li>
+<p>What is the coordinate of frame 1&#8217;s origin with respect to frame 0?</p>
+</li>
+<li>
+<p>What is the coordinate of (1,0,0) in frame 1 with respect to frame 0?</p>
+</li>
+<li>
+<p>What is the coordinate of frame 0&#8217;s origin with respect to frame 1?</p>
 </li>
 </ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">9.732847
-3.099474
--9.973539
-2.9620247
--6.101103
-Sum: -0.28029633</code></pre>
-</div>
+<div class="paragraph">
+<p>2) Suppose we have a three link kinematic chain. Joint 1 is located at point p1 = (-1,-1,0)
+and rotated 30 degrees around the global Z axis. Joint 2 is positioned relative to
+joint1 at location p2 = (1, -1, 0) and rotated 45 degrees in Z. Joint 3 is positioned relative
+to joint 2 at location p3 = (-1, -1, 0) and rotated 10 degrees around Z.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Using a loop, compute the maximum value of 5 random numbers between -10 and 10.</p>
+<p>Draw the kinematic chain described above.</p>
+</li>
+<li>
+<p>What is the global position of joint 3?</p>
+</li>
+<li>
+<p>What is the global position of joint 2?</p>
+</li>
+<li>
+<p>What is the global position of joint 1?</p>
+</li>
+<li>
+<p>What is the position of joint 2 relative to joint 3?</p>
+</li>
+<li>
+<p>Write pseudocode to compute the local2global transforms for each joint in the chain. Assume each joint stores its local2parent transform as well as pointers to its parent and children joints. Assume that the root joint&#8217;s parent is NULL.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>3) Function practice. Write functions corresponding to the following specifications.
-For each question, test your function from <code>main</code> using an array of random values
-as input.  Your function should not hard-code the length of the array. You should also
-print the result to the console.</p>
+<p>3) Suppose an object is rotated 50 degrees around Z, what is the 3x3 rotation matrix corresponding to the object&#8217;s orientation? Draw the frame corresponding to the object and the frame corresponding to the world coordinate system. If a point as position p = (1,1,0) in frame 1, what is its coordinate in frame 0? Draw the point p.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write a function that converts miles to kilometers. There are 1.609 kilometers in a mile.
-Test your function with the following sequence of values using a loop: 1.0, 1.25, 1.5, 1.75, 2.0, &#8230;&#8203;, 3.0.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>4) Each joint has its own local reference frame.
+What is the position of a joint with respect to its own reference frame?</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>5) Recall that we can combine a sequence of transformations
+into a single transformation by multiplying them together. For example,
+consider the following sequence of transformations</p>
+</div>
+<div class="stemblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Implement function: milesToKilometers
-// Input: miles (double)
-// output: kilometers (double)</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write a function that computes the tip.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Implement function: computeTip
-// Input: total cost (double)
-// Input: tip percent (double)
-// Output: double</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write a function that computes the average of an array of numbers</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Implement function: computeAverage
-// Input: values (array of double)
-// Output: double</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write a function that returns true if an array of double has a negative number on it.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Implement function: containsNegative
-// Input: values (array of double)
-// Output: boolean</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write a function that reverses the contents of an array. (Hint: create and return a new array in the function)</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Implement function: reverseArray
-// Input: values (array of double)
-// Output: values (array of float)</code></pre>
+\[H^{world}_{Hips} H^{Hips}_{RightUpLeg} H^{RightUpLeg}_{RightLeg} H^{RightLeg}_{RightFoot}\]
 </div>
 </div>
 <div class="paragraph">
-<p>6) A programmer has a bug in her code. She expected compute to return 4.0 but it&#8217;s returning 3.0. What&#8217;s wrong?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class Mystery {
-  public static float compute(float a, float b, float c) {
-    float tmp = a + b;
-    return tmp - c;
-    tmp += 1.0;
-  }
-
-  public static void main() {
-    float result = compute(1.0, 4.0, 2.0);
-    System.out.println(result);
-  }
-}</code></pre>
-</div>
+<p>Each \(H_i^j\) transforms from each joint to its parent (e.g. local2parent transform).
+What transformation do we get if we multiply these matrices together?</p>
 </div>
 <div class="paragraph">
-<p>7) Consider the following program</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class Mystery {
-  public static int mystery(int[] values) {
-    int total = 0;
-    for (int i = 0; i &lt; values.length; i++) {
-      int value = values[i];
-      if (values[i] &lt; 0) {
-        value = -value;
-      }
-      total += value;
-      System.out.println("mystery: ", value, total);
-    }
-    return total;
-  }
-
-  public static void main(String[] args) {
-    int[] values = {-1, 0, 1, 2, 3};
-    System.out.println("Checkpoint 1:", values[2]);
-
-    int result = mystery(values);
-    System.out.println("Checkpoint 2: ", result);
-  }
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>What is the output of this program?</p>
-</li>
-<li>
-<p>What local variables are in scope in <code>main()</code>?</p>
-</li>
-<li>
-<p>What local variables are in scope in <code>mystery()</code>?</p>
-</li>
-<li>
-<p>What is the return type of <code>mystery()</code>?</p>
-</li>
-</ul>
+<p>6) If we multiply the position of the right foot (in local
+coordinates) by the matrix from the previous question, what do we get?</p>
 </div>
 <div class="paragraph">
-<p>8) Consider the following program</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class Mystery {
-  public static String snaf(int a) {
-    if (a &lt; 5) {
-      return "pop";
-    }
-    else {
-      return "crackle";
-    }
-  }
-
-  public static int fee(int q) {
-    return -q;
-  }
-
-  public static int bar(int u, int v) {
-    return -10*u + fee(v);
-  }
-
-  public static int foo(int x, int y) {
-    return x*10 - fee(y);
-  }
-
-  public static void main(String[] args) {
-    int a = -5;
-    int b = 5;
-    int c = 10;
-    int d = foo(a, b);
-    int e = bar(b, a);
-    String result = snaf(d+e);
-    System.out.println(result, d, e, d+e);
-  }
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>What console output is produced by this program?</p>
-</li>
-</ul>
+<p>7)  How can we define a motion for a character?</p>
 </div>
 <div class="paragraph">
-<p>10) Consider the following program</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class Main {
-  public static void main(String[] args) {
-
-    Mystery m1 = new Mystery(4,1);
-    Mystery m2 = new Mystery(1,1);
-
-    int result1 = 0;
-    int result2 = 0;
-    result1 = m1.compute(2);
-    result2 = m2.compute(2);
-    System.out.println("BEFORE compute1: ", result1);
-    System.out.println("BEFORE compute2: ", result2);
-
-    m1.setA(3);
-    m2.setB(3);
-
-    result1 = m1.compute(2);
-    result2 = m2.compute(2);
-    System.out.println("AFTER compute1: ", result1);
-    System.out.println("AFTER compute2: ", result2);
-  }
-}</code></pre>
-</div>
+<p>8)  What are two methods for storing motions in terms of poses?</p>
 </div>
 <div class="paragraph">
-<p>where <code>Mystery</code> is defined as</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class Mystery {
-
-  int a = 0;
-  int b = 0;
-
-  Mystery(int x, int y) {
-    a = x;
-    b = y;
-  }
-
-  void setA(int x) {
-    a = x;
-  }
-
-  void setB(int y) {
-    b = y;
-  }
-
-  int compute(int factor) {
-    return a + factor*b;
-  }
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>What is the console output of this program?</p>
-</li>
-<li>
-<p>What constructors are defined in this program?</p>
-</li>
-<li>
-<p>What member variables are defined in this program?</p>
-</li>
-<li>
-<p>What variables are in scope in Mystery&#8217;s <code>compute</code> method?</p>
-</li>
-<li>
-<p>What methods are defined in <code>Mystery</code>?</p>
-</li>
-<li>
-<p>Implement an accessor method for the attribute (e.g. member variable) <code>a</code> in <code>Mystery</code>.</p>
-</li>
-</ul>
+<p>9)  What is a keyframe?  What is a pose? How do poses and keyframes relate to skeletons?</p>
 </div>
 <div class="paragraph">
-<p>11) Write a function that takes a String as an input and replaces all occurrences of the letter
-<code>e</code> to <code>3</code> and all occurrences of the letter <code>s</code> to <code>5</code>. Test your function from <code>main</code> using the
-phrases "elephant" and "sour patch kids".</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Function: replaceChars
-// Input: initialString (String), the original string to modify
-// Output: (String), the modified String</code></pre>
-</div>
+<p>10)  Suppose we have a 2s motion captured at 120 fps. How many frames does it have?</p>
 </div>
 <div class="paragraph">
-<p>12) Write a function that takes a String as an input and returns the reverse String.</p>
+<p>11)  Suppose we have a 12 frames recorded for a motion at 24 fps. How long is the motion?</p>
 </div>
 <div class="paragraph">
-<p>13) What would the output of the following code be?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">for (int i = 0; i &lt; 2; i++)
-{
-    for (int j = 0; j &lt; 3; j++)
-    {
-        println("i:" + i + " j:" + j);
-    }
-}</code></pre>
-</div>
+<p>12)  Suppose we had a snake character with 5 joints. Define a skeleton for this character. What might a pose for this character look like if we did not allow the joints to change length?</p>
 </div>
 <div class="paragraph">
-<p>14) Write code to load and parse a file with format [Name,Score,PowerUp,Role]</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Ressie Rask  ,3224,Mushroom,Healer
-Angelique Aust  ,1190,Mushroom,Dps
-Tiny Teamer  ,3722,Mushroom,Tank
-Michell Mancino  ,316,Tea kettle,Dps
-Amos Ackman  ,4989,Fireball,Tank
-Liz Labat  ,714,Mushroom,Healer
-Lawerence Lalonde  ,3921,Mushroom,Dps
-Madelyn Mcjunkin  ,1243,Fireball,Tank
-Echo Eckhardt  ,4831,Mushroom,Dps</code></pre>
-</div>
+<p>13)  What is the difference between local and global coordinates?  If we have a local position for a joint, how can we convert it to global coordinates and vice versa?  How about a local direction vector?</p>
 </div>
 <div class="paragraph">
-<p>15) True/False questions:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Linear search requires a number of steps proportional to the size of the list being searched (T/F)</p>
-</li>
-<li>
-<p>Binary search is an O(N<sup>2</sup>) algorithm (T/F)</p>
-</li>
-<li>
-<p>The number of times N can be divided by 2 (before reaching 1) is
-log<sub>2</sub> N (T/F)</p>
-</li>
-</ul>
+<p>14)  Suppose we have a looping motion which snaps back to the start position when it replays. Why does this happen and how can we fix it?</p>
 </div>
 <div class="paragraph">
-<p>16) How many steps would it take to do binary search on a list of size 1
-million, when the item you are searching for is NOT in the list?</p>
+<p>15)  Suppose we wish to edit a motion so that the character starts at the origin and moves in the direction of positive Z. Write pseudocode to accomplish this.</p>
 </div>
 <div class="paragraph">
-<p>17) How many steps would it take to do linear search on a list of size 1
-million, when the item you are searching for is NOT in the list?</p>
+<p>16)  Suppose we have two motions, a sad walk and a happy walk, which we&#8217;d like to blend together. What are factors that would effect the quality of blend?</p>
 </div>
 <div class="paragraph">
-<p>18) Binary search is much faster than linear search, so why don&#8217;t we use it for every search problem?</p>
+<p>17)  Suppose we compute a blended motion M = M1 * (1-alpha) + M2 * alpha. Will this blend always look good? Why or why not?</p>
 </div>
 <div class="paragraph">
-<p>19) For each iteration of the loop in <code>binarySearch(int x, int[] L)</code>, show the
-<strong>index</strong> values for <code>low</code>, <code>high</code>, and <code>mid</code>, and the value stored at
-location <code>mid</code>.  What will be returned by this function call?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>int x = 67;
-int[] L = {10, 12, 14, 21, 37, 44, 45, 46, 58, 67, 99};
-            0   1   2   3   4   5   6   7   8   9  10
-
-low | high | mid | L[mid]
-- - - - - - - - - - - - -
-    |      |     |
-    |      |     |
-    |      |     |
-    |      |     |</pre>
-</div>
+<p>18)  How does crossfade blending work?</p>
 </div>
 <div class="paragraph">
-<p>20) For each iteration of the loop in <code>binarySearch(int y, int[] L)</code>, show the
-<strong>index</strong> values for low, high, and mid, and the value stored at
-location mid.  What will be returned by this function call?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>int y = 4;
-int[] L = [10, 12, 14, 21, 37, 44, 45, 46, 58, 67, 99];
-            0   1   2   3   4   5   6   7   8   9  10
-
-low | high | mid | L[mid]
-- - - - - - - - - - - - -
-    |      |     |
-    |      |     |
-    |      |     |
-    |      |     |</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>21) Write a function to return the <strong>index</strong> of the smallest item in a given list.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Input:  An array of integers
-// Returns: The index of the smallest item in the list,
-//    -1 if the list is empty
-
-int indexOfSmallest(int[] ls) {
-   // complete this function
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>22) Which algorithm requires time directly proportional to the size of the input list?</p>
-</div>
-<div class="paragraph">
-<p>+
-    - linear search
-    - binary search
-    - bubble sort
-    - selection sort</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="paragraph">
-<p>23) Consider the following function, <code>oneLoop(int[] L)</code>, which is similar to
-the inner loop from bubble sort:</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">void oneLoop(int[] L)
-{
-   for (int j = 0; j &lt; L.length()-1; j++)
-   {
-      if (L[j] &gt; L[j+1])
-      {
-         int tmp = L[j+1];
-         L[j+1] = L[j];
-         L[j] = tmp;
-      }
-   }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>+
-Suppose we run <code>oneLoop</code> on the list <code>L={17,4,19,3,11,8}</code>. What are
-the new contents of <code>L</code>?</p>
-</div>
-<div class="paragraph">
-<p>24) Show how the list <code>L={17,4,19,3,11,8}</code> would be changed
-after selection sort does its first 3 swaps:</p>
+<p>19)  Suppose we wish to change the rotation of spine for a motion so it lurches forward. Write pseudocode for doing this.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-08-11 10:54:57 -0400
+Last updated 2021-08-26 21:26:11 -0400
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

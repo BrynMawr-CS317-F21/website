@@ -1,0 +1,13 @@
+include::header.adoc[]
+
+:title: Week 06: Rotations II: Quaternions
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+* Lengyel Appendix A, 4.3, 4.6.1, 4.6.2, 4.6.3
+* link:QuazyQuaternions.pdf[Quazy quaternions]
+* link:https://dl.acm.org/citation.cfm?doid=325334.325242[Animating rotation with quaternion curves (seminal paper)]
+* link:SlerpExample.pdf[Slerp example] 

@@ -1,0 +1,13 @@
+include::header.adoc[]
+
+:title: Week 05: Rotations I: Euler Angles
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+* link:MathNotes.2019.pdf[Math notes (Coordinate systems and matrices)]
+* link:EulerAngles.html[Euler angle conversions]
+* link:EulerExamples.pdf[Sample problems with answers]
+* Lengyel: 3.1, 4.3

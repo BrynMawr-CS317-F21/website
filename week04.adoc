@@ -1,0 +1,14 @@
+include::header.adoc[]
+
+:title: Week 04: Splines
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+
+* Lengyel: 11.1-11.4
+* Solving equations using Eigen: link:Labs/solveEqn.cpp.txt[Example1]/link:Labs/hermiteEx.cpp.txt[Example2]
+* Spline Example: link:CatmullRomExample.pdf[Catmull-Rom]/link:HermiteExample.pdf[Hermite]
+* Hermite endpoint conditions: link:Labs/hermiteClamped.gif[Clamped]/link:Labs/hermiteNatural.gif[Natural] 

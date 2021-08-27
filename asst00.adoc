@@ -10,17 +10,15 @@ include::header.adoc[]
 
 _In which, we begin our work with git, cmake, and C++_
 
-**Due Thursday, Sept 2, before midnight**
+**Due Thursday, Sept 9, before midnight**
 
 The goals for this assignment are:
 
 * Sign-up for github
 * Join slack
-* Look at the website!
+* Review relevant math concepts
 * Setup your animation development environment
 * Implement a simple animation in C++
-
-We will complete this assignment during Lab on Sept 2.
 
 :sectnums:
 
@@ -128,41 +126,36 @@ After this step, you should have executables installed into a new directory call
 [source]
 ----
 > ../bin/sphere3d
+> ../bin/sphere2d
 ----
-
-You should see a grid with a grey background. 
-
-* Dragging with the left mouse will rotate (try it!) around the world origin. 
-* Middle mouse button will zoom. 
-* Right mouse button will pan. 
-* Pressing 'Escape' or closing the window will quit the application.
-
-TODO IMAGE
 
 == Draw in 2D
 
 To start, let's look at the implementation of sphere2d in `assignments/a0/sphere2d.cpp`.
+
+image::Labs/sphere2d.png[]
 
 [source]
 ----
 #include "atkui/framework.h"
 
 using glm::vec3;
-using namespace atkui;
 
-class Sphere2D : public Framework {
-  public:
-    Sphere2D() : Framework(Orthographic) {
-    }
+class Sphere2D : public atkui::Framework {
+ public:
+  Sphere2D() : atkui::Framework(atkui::Orthographic) {
+  }
 
-    virtual void draw() {
-      // colors are RGB triplets in range [0,1]
-      setColor(vec3(0,1,0));
+  virtual void scene() {
+    // colors are RGB triplets in range [0,1]
+    setColor(vec3(0,1,0));
 
-      // draw a sphere at center of the screen
-      float radius = 50.0;
-      drawSphere(vec3(width(), height(), 0), radius);
-    }
+    // draw a sphere at center of screen
+    double x = width() * 0.5;
+    double y = height() * 0.5;
+    double radius = 100;
+    drawSphere(vec3(x,y,0), radius);
+  }
 };
 
 int main(int argc, char** argv)
@@ -204,50 +197,23 @@ image:Labs/orthographic.png[]
 
 Draw a red sphere behind the green sphere. 
 
-TODO: Create an image
+image::Labs/sphere2d-Target.png[]
 
-If we want to draw shapes in front of our sphere, we increase the Z value; to draw behind the sphere, we decrease the Z value. 
+NOTE: If we want to draw shapes behind our sphere, we decrease the Z value. Why does this make sense?
 
-NOTE: Although our world looks 2D, it is actually 3D. The sphere looks 2D because it is drawn with flat shading. 
+NOTE: Although our scene looks flat, it is actually 3D. The sphere looks 2D because it is drawn with flat shading. 
+
+Requirements:
+
+* Your program should draw two spheres with different colors, one behind the other
+* You should take a screenshot of your program
+* You should update your readme to contain your screenshot
 
 == Draw in 3D
 
 Now let's look at a 3D program. Before, we drew shapes in the center of the screen. Now we will draw them at the center of the 3D world, which is at coordinate (0,0,0). 
 
-[source]
-----
-#include "atkui/framework.h"
-
-using glm::vec3;
-using namespace atkui;
-
-class GreenSphere3D : public Framework {
-  public:
-    GreenSphere3D() : Framework(Perspective) {
-    }
-
-    virtual void draw() {
-      // colors are RGB triplets in range [0,1]
-      setColor(vec3(0,1,0));
-
-      // draw a sphere at center of the world
-      float radius = 50.0;
-      drawSphere(vec3(0), radius);
-
-      // draw a floor with a XZ grid
-      drawFloor(2000, 200, 50);
-    }
-};
-
-int main(int argc, char** argv)
-{
-  GreenSphere3D viewer;
-  viewer.run();
-  return 0;
-}
-----
-
-The Framework class creates a window capable of receiving user input and drawing graphics. 
+image::Labs/sphere3d.png[]
 
 Controls:
 
@@ -255,6 +221,35 @@ Controls:
 * Middle-drag the mouse to zoom into the scene
 * Right-drag the mouse to pan around the scene
 * Escape button closes the window
+
+[source]
+----
+#include "atkui/framework.h"
+
+using glm::vec3;
+
+class Sphere3D : public atkui::Framework {
+ public:
+  Sphere3D() : atkui::Framework(atkui::Perspective) {
+  }
+
+  virtual void scene() {
+    // colors are RGB triplets in range [0,1]
+    setColor(vec3(0,1,0));
+
+    // draw a sphere at center of the world
+    float radius = 50.0;
+    drawSphere(vec3(0), radius);
+  }
+};
+
+int main(int argc, char** argv)
+{
+  Sphere3D viewer;
+  viewer.run();
+  return 0;
+}
+----
 
 In the 3D scene, the extents of the world are different and the camera can be rotated and paned in the scene. Same as before, only objects that are in the camera's view can be seen. By default, this is objects that are with 500 units in front of the camera. 
 
@@ -265,34 +260,27 @@ image:Labs/perspective.png[]
 * Viewable world is a truncated four-sided pyramid
 * Defines the pyramid with near distance = 0.1 and far distance = 500 and field of view = 60 degrees
 * Perspective depth. Objects closer to the viewer are larger than those far away. This is a traditional 3D view.
-* Basic program: viewer3d
 
 === TODO: Modify the program
 
-Create 6 additional spheres around the green sphere:
+Modify the program so that when the user presses the SPACEBAR, the green sphere
+moves in a random direction. When the user presses R, reset the position of the sphere to (0,0,0).
 
-* above (+Y)
-* below (-Y)
-* left (+X)
-* right (-X)
-* front (+Z)
-* back (-Z)
+image::Labs/sphere3d-Move.gif[]
 
-TODO: Image
+Hints and tips: 
 
-Feel free to play with the colors, shapes, and sizes to personalize your demo.
+* Override `keyUp` in Sphere3D, e.g. implement a method `void keyUp(int key, int mods)`. To check the key, test whether `key == GLFW_KEY_SPACE` or `key == GLFW_KEY_R`. Click link:https://alinen.github.io/agl/html/classagl_1_1_window.html#a022bd571eae1add76f1f06b4e4a4e8a3[here for documentation on agl::Window::keyUp]
+* Add member variables to Sphere3D to store the sphere's position and velocity. 
+* You can use the function, `agl::randomUnitVector()`, to generate a random direction. See link:https://alinen.github.io/agl/html/reference.html#refrandom[here for more documentation about generating random quantities].
+* For smooth animation, you need to use time. If the position is changing based on a velocity, the distance covered from the previous frame is `velocity * dt()`. See link:https://alinen.github.io/agl/html/reference.html#reftime[here for documentation about querying time].
 
-* Save a screenshot of your spheres
+Requirements:
 
-=== TODO: Animate your shapes
-
-
-* Save a gif of your animation
-* Save a movie
-
-=== TODO: Load a character
-
-(Maybe) todo
+* Your program should support the SPACEBAR and R keys
+* Your program should animate the sphere
+* You should capture a video and a gif of your demo
+* You should modify the Readme to contain your video and gif
 
 include::handin.adoc[]
 

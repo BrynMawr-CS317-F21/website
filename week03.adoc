@@ -1,0 +1,17 @@
+include::header.adoc[]
+
+:title: Week 03: Interpolation 
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Lecture Topics:
+
+* Read: TODO (Parent book) 
+* Additional references: Lengyel: 11.3
+* Linear interpolation link:Labs/colorLerp1.cpp.txt[colorLerp1]/link:Labs/colorLerp2.cpp.txt[colorLerp2]/link:Labs/particleLerp.cpp.txt[particleLerp]
+* link:Labs/bezier.svg[Inkscape bezier curve] (open file in Inkscape to play with it)
+* de Casteljau's algorithm: link:Labs/deCasteljau.gif[Demo 1]/link:Labs/deCasteljau-curlyQ.gif[Demo 2]
+* TODO: Other interpolation types

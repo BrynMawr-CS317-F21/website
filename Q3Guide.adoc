@@ -1,154 +1,130 @@
 include::header.adoc[]
 
-:title: Jam 3: Study Guide
+:title: Quiz 3: Study Guide
 :Author Initials: ASN
-:Date:    2020-08-15
+:Date:    2021-08-26
 :Revision: 0.1
+:stem: latexmath
 
 = {title}
 
-
-Jams are open book. 40 minutes in lab.
+Quizzes are open book. 30 minutes at the start of class
 
 Topics:
 
-This quiz includes the previous topics from Jam 1-2 plus
+* Rotation matrices
+* Euler angles
+* Quaternions
 
-* functions: defining and calling, return types, return statements, parameters (aka arguments)
-* function stack, function execution
-* scope of a variable
-* arrays: defining and indexing
-* Strings: `chatAt`, `compareTo`, `length` 
-
-Write Java programs to check your answers. Or you can ask a TA or instructor 
-to give feedback on your responses.
+Unless explicitly asked to compute a final answer, it is sufficient to write out the formula and plug-in values. 
 
 = Practice questions
 
-1) Consider the following loop
+1) What is a rotation matrix?  
 
-[source,java]
-----
-int pinLength = 4;
-String pin = "";
-for (int i = 0; i < pinLength; i++) {
-  pin = pin + "*";
-  System.out.println(pin);
-}
-System.out.println("Enter your pin: "+pin);
-----
+2) What is a quaternion?
 
-* What is output to the console when we run this program?
-* Convert the loop above so it uses a while loop instead of a for loop
+3) What is the relationship between rotation matrices, quaternions, and euler angles?
 
-2) Write a function, `Pow`, that raises any number X to a power Y, using a loop.
-Your function should match the following specification.
-In your program, use `main` to call and test your function. 
+4) What does it mean for a matrix to be orthogonal?
 
-[source]
-----
-// Function: Pow
-// Description: Computes X to the power Y
-// Input X (double), the number to raise to a power
-// Input Y (double), the exponent 
-// Returns (double), the quantity X^Y
-----
+5) What do the columns of a rotation matrix represent?
 
-3) Write a function, `Average`, that takes an array of doubles as input and
-returns the average value based on the specification below. In your program,
-use `main` to call and test your function using random values in the range
-[-5, 5).
+6) How do we compute the 3x3 rotation matrix for euler angles YXZ?
+
+7) What are euler angles? Why use them? 
+
+8) What is Gimbol Lock?  When does it occur?
+
+9) Derive the inverse of a ZYX euler matrix.
+
+10) Suppose an object is rotated 50 degrees around Z, what is the 3x3 rotation matrix corresponding to the object's orientation? 
+
+11) Consider the YZX euler rotation matrix having the algebraic form
 
 [source]
 ----
-// Function: Average
-// Description: Computes the average value in a list of numbers
-// Input data (double[]), the numbers to average
-// Returns (double), the average value, or 0 if the size of data is 0
-
-public static void main(String[] args)
-{
-  double[] values = new double[5];
-  // todo - initialize values with random values in range [-5,5)
-  // todo - call average and print the result
-}
+[  cy*cz, sx*sy - cx*cy*sz, cx*sy + cy*sx*sz]
+[     sz,            cx*cz,           -cz*sx]
+[ -cz*sy, cy*sx + cx*sy*sz, cx*cy - sx*sy*sz]
 ----
 
-4) Write a function, `CountLetter`, which counts the number of times a character 
-occurs in a String. Implement tests in `main` to check your function. For example, 
+Suppose we have the following matrix and we wish to extract YZX euler angles from it.
 
-* `CountLetter("elephant",'e')` should return 2. 
-* `CountLetter("zebra", 'z')` should return 1. 
-* `CountLetter("elephant", 'z')` should return 0.
+[stem]
+++++
+\left( \begin{array}{ccc}
+-0.0170 & -0.5260 & 0.8503\\
+  0.9939 &  0.0839 & 0.0718\\
+-0.1091 &  0.8463 & 0.5214\\
+\end{array} \right)
+++++
 
-5) Write a function, `IsEvenLength`, which returns `true` if the given String has an 
-even number of characters and `false` otherwise. Implement tests in `main` to check your 
-answer. For example, 
+* How can we get back the Z rotation? Write the formula and plugin in values
+* How can we get back the Y rotation? Write the formula and plugin in values
+* How can we get back the X rotation? Write the formula and plugin in values
 
-* `IsEvenLength("cat")` returns false
-* `IsEvenLength("")` returns true
-* `IsEvenLength("a")` returns false
+12) Consider again the YZX euler rotation matrix above, but suppose we have the following matrix.
 
-6) Consider the following program
+[stem]
+++++
+\left( \begin{array}{ccc}
+0 & -0.7597 &  0.6503 \\
+-1 &       0 &       0 \\
+0 & -0.6503 & -0.7597 \\
+\end{array} \right)
+++++
 
-[source,java]
-----
-class Mystery {
-  public static String mystery2(String message, String symbol) {
-    message = symbol+message+symbol;
-    // (a) Show function stack here
-    return message;
-  }
+* What is the Z rotation? What is the algebraic form of the matrix in this case?
+* Sketch how we can get the YZX euler angles back from this matrix. 
 
-  public static void mystery1(String message) {
-    System.out.println(message);
-    message = mystery2(message, "~~");
-    System.out.println(message);
-    // (b) Show function stack here
-  }
+13) How do quaternions relate to rotations specified with an axis and angle?
 
-  public static void main(String[] args) {
-    String userText = "Happy Halloween!";
-    mystery1(userText);
-    System.out.println(userText);
-  }
-}
-----
+14) Suppose we want to rotate a point (3,0,0) 
+		around the axis (1,1,0) by 30 degrees. Compute the quaternion 
+		corresponding to this rotation.
 
-* On the line labeled (a), what functions are in the function stack? List the contents of the stack with the oldest contents at the top, same as on link:http://www.pythontutor.com/java.html#mode=edit[Java tutor]
-* On the line labeled (b), what functions are in the function stack?
-* What local variables are defined in mystery2?
-* What local variables are defined in mystery1?
-* What parameters are defined in mystery1?
-* What is the return type of mystery1?
-* What is the return type of mystery2?
-* What variables are in scope in main?
-* What variables are in scope in mystery1?
-* What variables are in scope in mystery2?
-* What is the console output of this program?
+15) How can we ensure that a quaternion corresponds to a rotation? 
 
-7) Implement a Movie class. Movie should contain the following data and methods
+16) Convert the quaternion from the previous question to a matrix.
 
-[source,java]
-----
-// Data
+17) Verify that multiplying the quaternion 
+	stem:[q_i = (x, y, z, w) = (1,0,0,0)] by stem:[q_j = (0,1,0,0)] produces 
+		the quaternion stem:[q_k = (0,0,1,0)]. Recall that the formula for 
+      multiplying quaternions is 
 
-// Title (string)
-// Duration in minutes (float)
-// Year (integer)
-// actors (array of String) 
+[stem]
+++++
+q_1 q_2 = [w_1 v_2 + w_2 v_1 + v_1 \times v_2, w_1 w_2 - v_1 \cdot v_2]
+++++
 
-// Methods
+18) Consider the algebraic form of a matrix constructed 
+		from a quaternion stem:[q = (x, y, z, w) = (\bar{v}, w)].
 
-// Constructor 
-// Input: Title (string)
-// Input: Duration in minutes (float)
-// Input: Year (integer)
-// Input: actors (array of String) 
+[stem]
+++++
+\left( \begin{array}{ccc}
+1-2(y^2+z^2) & 2(x y - w z) & 2(x z + w y) \\
+2(x y + w z) & 1-2(x^2+z^2) & 2(y z - w x) \\
+2(x z - w y) & 2(y z + w x) & 1-2(y^2+x^2) \\
+\end{array} \right)
+++++
 
-// Accessor for title
-// Mutator for title 
-----
+Suppose we have the same matrix as before
 
-Test your Movie class. Create a Movie object for "The Shining" which was made in 1980, is 
-2 hours and 26 minutes long, and stars Jack Nicholson and Shelley Duval. Create your object in `setup()`
+[stem]
+++++
+\left( \begin{array}{ccc}
+-0.0170 & -0.5260 & 0.8503\\
+  0.9939 &  0.0839 & 0.0718\\
+-0.1091 &  0.8463 & 0.5214\\
+\end{array} \right)
+++++
+
+* Show that stem:[w^2 = \frac{1}{4}(r_{11} + r_{22} + r_{33} + 1)]. 
+* What is the w component corresponding to the given matrix? Plug in the values.
+* How can we use the off-diagonal components to get the remaining x,y,z components?
+
+19) Suppose we have a quaternion q = [0.1325, 0.2649, -0.7947, 0.5298]. Extract the angle and axis of rotation corresponding to this quaternion. Write the formula and plug in values.
+
+20)Suppose we have a quaternion q = [0, 0, 0, 1]. Compute the matrix corresponding to this quaternion. What rotation does this correspond to?

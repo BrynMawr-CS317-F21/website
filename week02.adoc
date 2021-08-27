@@ -1,0 +1,36 @@
+include::header.adoc[]
+
+:title: Week 02: First animations
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Lecture Topics:
+
+* Points, vectors, and time
+* Animation software patterns
+* First animations: oscillation, forward and circular motion
+
+= Points, vectors, and time
+
+Further reading:
+
+* 
+* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
+
+= Design patterns
+
+Further reading:
+
+* https://gameprogrammingpatterns.com/game-loop.html[Game loop]
+* link:http://gameprogrammingpatterns.com/update-method.html[Update method]
+
+= First animations
+
+Examples:
+
+* Particle moving in a circle. link:Labs/circle.cpp.txt[AniTk]/link:Labs/circle.pde.txt[Processing]/link:circle.cs.txt[Unity]
+* Particle with velocity. link:Labs/particle.cpp.txt[AniTk]/link:Labs/particle.pde.txt[Processing]/link:Labs/particle.cs.txt[Unity]
+

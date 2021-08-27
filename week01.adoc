@@ -1,0 +1,64 @@
+include::header.adoc[]
+
+:title: Week 01: Hello CS317!
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Welcome to CS317: Computer Animation!
+
+Lecture Topics:
+
+* From Java to C++
+* Setting up your development environment and course tools
+* Math overview
+* Introduction to animation
+
+= From Java to C++
+
+We will be using C++. If you're familiar with Java, C++ supports the same programming features as Java. 
+
+* link:JavaToC++.pdf[Java to C++]
+
+If you would like extra practice in C++, try the exercises from the following repository.
+
+* link:https://github.com/BrynMawr-CS312-2021/cplusplus-beginners[C++ Udemy Course]
+
+= Development environment
+
+The primary goal of link:asst00.html[our first assignment] will be to setup our development environment. 
+
+We will use link:https://git-scm.com/[git] for sharing source code and resources.
+
+* link:https://github.com/BrynMawr-CS312-2021/git-workshop[Git workshop (Lab 01)]
+
+//* Git workshop: link:https://github.com/BrynMawr-CS312-2021/git-workshop[Notes],link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=aa6a31bf-a4f1-419a-a2ed-acd30182820f[Video] 
+
+Our development environment is based on 
+
+* link:https://cmake.org/[cmake]: generates build files for creating executables on linux, mac, and windows
+* link:https://www.opengl.org/[openGL]: 3D drawing
+* link:https://github.com/g-truc/glm[GLM]: math library
+
+Everything will be setup in the Park Science Center labs (Rm 230 and Rm 231). You may want to setup your own laptop 
+for development. Do it! It's a great idea. Make sure your code runs in the lab, however, for full credit on your assignments.
+
+To setup your development environment on your own machine, use the instructions in the following repository:
+
+* link:https://github.com/BrynMawr-CS312-2021/getting-started[Getting started]
+
+= Math Overview
+
+
+Further reading:
+
+* 
+* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
+
+= Introduction to animation
+
+Further reading:
+
+* Parent 1.1, 1.3

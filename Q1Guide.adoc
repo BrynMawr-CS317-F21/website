@@ -1,142 +1,198 @@
 include::header.adoc[]
 
-:title: Jam 1: Study Guide
+:title: Quiz 1: Study Guide
 :Author Initials: ASN
-:Date:    2020-08-15
+:Date:    2021-08-26
 :Revision: 0.1
 
 = {title}
 
-Jams are open book. 40 minutes in lab.
+Quizzes are open book. 30 minutes at the start of class
 
 Topics:
 
-* Variables: defining and assigning
-* Data types: `String`, `double`, `int` 
-* Command line variables
-* `System.out.println()`, `System.out.print()`
-* `System.console().readLine()`
-* arithmetic operators: +, *, -, /, %
-* String concatenation with `+`
-* math utilities: sqrt, pow, cos, sin, exp, log, random, etc
-* Operators and expressions, order of operations
+* C++:
+** `float`, `char`, `std::string`, `int`
+** pass by value, pass by reference 
+** `std::vector`
+** `struct`, `class`
+* points and vectors
+* coordinate systems
 
-Write Java programs to check your answers. Or you can ask a TA or instructor 
-to give feedback on your responses.
+= Practice questions: C++
 
-= Practice questions
+1) What is the value of x for the following expressions? Assume x has the correct 
+type for the expression and that the following variables are defined.
 
-1) What is the **value** and **type** for each of the following expressions? 
-
-- 2 + 3
-- Math.pow(2, 3) 
-- 2.0 + 3
-- 5.5/10
-- 5 - 2 * 3
-- "123"
-- 48 % 2
-- 2.0
-- 2+4*2+1
-- "lol" + "cats"
-
-2) Write a program `Sum.java` that takes two command line arguments, converts them to integers 
-and outputs their sum.  You can assume that the command line arguments are both valid integers.
-
-[source, subs="quotes"]
+[source]
 ----
-$ **java Sum 4 5**
-The sum is 9.
-
-$ **java Sum 0 0**
-The sum is 0.
-
-$ **java Sum -1 5**
-The sum is 4.
+std::string hello = "hello";
+int a = 10;
+int b = 45;
+float c = -1.0;
 ----
 
-3) Write a madlib program that asks the user for 2 colors and 
-  one adjective, then prints out the filled-in poem:
+* `x = a/10;`
+* `x = a/3;`
+* `x = c+4.1;`
+* `x = asin(c);`
+* `x = cos(0);`
+* `x = hello + " friends";`
+* `x = asin(a)`
+* `x = b * M_PI/180`
 
-[source, subs="quotes"]
+2) Consider the following program. Does it compile? If no, say why.
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)
+
+[source]
 ----
-$ **java Roses**
-color: **pink**
-color: **azure**
-adjective: **funny**
+#include <iostream>
+#include "atk/aglm.h"
 
-Roses are pink
-Violets are azure
-Sugar is funny
-and so are you!
-----
+void foo(glm::vec3& p)
+{
+    p[1] = 10;
+    std::cout << p << std::endl;
+}
 
-4) Write a program that takes a user's hotel room rate and outputs the cost
-of a 6% sales tax and 10.5% city tourism fee.  The program should then output the total bill.
-
-[source, subs="quotes"]
-----
-$ *java Bill*
-Room rate: *100*
-Total nights: *3*
--------------------
-Tax: $ 18.0
-Tourism Fee: $ 31.5
-Total: $ 349.50
-----
-
-5) What is the output of the following program?
-
-[source,java]
-----
-public class Cats {
-   public static void main(String[] args) {
-       String type = "tuxedo";
-       int fish = 3;
-
-       System.out.println("The "+type+" cat caught "+fish+" fish.");
-   } 
+int main(int argc, char** argv)
+{
+    glm::vec3 p(0,0,0);
+    foo(p);
+    std::cout << p << std::endl;
 }
 ----
 
-6) The following program has several problems. What are they? For each error, is the error a syntax error, runtime error, or logic error? How can we fix the problem?
+3) Consider the following program. Does it compile? If no, say why. 
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)
 
-[source,java]
+[source]
 ----
-public class Mystery {
-    public static void main(String args) {
-        System.out.print("Enter a value: ");
-        String valueStr = System.console().readLine();
-        int value = Integer.parseInteger(valuStr);
-        int result = value * 10
-        System.out.println("The result is "+result);
-    } 
+#include <iostream>
+#include "atk/aglm.h"
+
+void foo(const glm::vec3& p)
+{
+    p[1] += 10;
+    std::cout << p << std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   glm::vec3 p(0,0,0);
+   foo(p);
+   std::cout << p << std::endl;
 }
 ----
 
+4) Consider the following program. Does it compile? If no, say why. 
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)
 
-7) The following program has a problem. What is it? Is the error is syntax error, runtime error, or logic error? How can we fix the problem?
-
-[source,java]
+[source]
 ----
-public class Mystery {
-    public static void main(String[] args) {
-        int value = Integer.parseInt(args[0]);
-        double fraction = value / 10;
-        System.out.println("The fraction is "+fraction);
-    } 
+#include <iostream>
+#include "atk/aglm.h"
+
+void foo(const glm::vec3& p)
+{
+    std::cout << p + glm::vec3(0,10,0) << std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   foo(glm::vec3(0,0,0));
 }
 ----
 
-8) The following program has a bug. Is the error is syntax error, runtime error, or logic error? How can we fix the problem?
+5) Consider the following program. Does it compile? If no, say why. 
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)
 
-[source,java]
+[source]
 ----
-public class Mystery {
-    public static void main(String[] args) {
-        int value = Integer.parseInt(args[0]);
-        double fraction = value / 0;
-        System.out.println("The fraction is "+fraction);
-    } 
+#include <iostream>
+#include "atk/aglm.h"
+
+void foo(glm::vec3 p)
+{
+   p[1] += 10;
+   std::cout << p << std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   glm::vec3 p(0,0,0);
+   foo(p);
+   std::cout << p << std::endl;
 }
 ----
 
+6) Consider the following program. Does it compile? If no, say why. 
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)
+
+[source]
+----
+#include <iostream>
+
+void foo(glm::vec3& p)
+{
+   std::cout << p + glm::vec3(0,10,0) << std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   foo(glm::vec3(0,0,0));
+}
+----
+
+7) Write a program that stores 3 points in a `std::vector`. Then iterate through the vector to print each instance out.
+
+= Vector practice
+
+1) Short answer
+
+* What does NaN stand far? When can it occur?
+* Suppose we have an angle X in degrees. Give an expression for converting it to radians.
+* Suppose we have an angle X in radians. Give an expression for converting it to degrees.
+* What is the origin?
+* What is the difference between a avector and a point?
+* What is a unit vector?
+* What does it mean to normalize a vector? Why might we want to do this?
+* Do the built-in functions for sin, cos, and tan in C++ take radians or degrees?
+* What is the difference between atan and atan2? Which is better and why?
+
+2) Suppose we wish to stack three triangles in a row as in the diagram below.
+Let each triangle's base be 2 units wide and each triangle's height be 2 units high. 
+The origin of each triangle is at the bottom left corner.
+
+image::triangleStack.png[]
+
+* What should the positions of each triangle be if we would like the centers of each triangle to be along the Y-axis?
+* Write psuedocode to position N traingles along the Y axis.
+* Suppose the bottom triangle is traveling with velocity (0,1,0)units per second. At what time will it be aligned with the top triangle?
+* What should the positions of the triangles be if we wish to position each triangle 130 degrees apart in a circle 1 unit away from the origin?
+
+3) Suppose we have a target at a point *g* and we wish to compute a point *p* between *g* and the origin. Derive an expression for *p* using atan2.
+
+4) Suppose we have a particle at position (1,1). What is its distance from the origin? What is its distance from the x-axis? Its distance from the y-axis? What is the angle between the direction (1,1) and the positive x-axis? Angle from the negative x-axis? Angle from the positive y-axis?
+
+5) Suppose we have two particles at position (1,1) and (-3,4). Draw them. How far apart are they from each other?
+
+6) Suppose we have a vector v = (1,2,0)^T and u = (-2, 3, 0)^T. What is the value of u+v? Draw u, v, and u+v. Suppose we multiply v by -2. Compute and draw the result.
+
+7) Suppose we have a vector v = (1,2,0)^T. What is its length? Give and expression and evaluate it. Write a program that defines v and prints its length. 
+ 
+8) A particle travels with velocity (1,2,3) units per second. What is its speed? Where will the particle be after 3 seconds if it starts at position (-1,-2,3)? Suppose we wish to change the speed to 10 units per second. What would the new velocity be? Write a program that implements the movement of the particle p.
+
+9) Suppose we have an animation that runs at 24 fps. What does this mean? How many frames do we display in a minute? How much time passes between each frame?
+
+10) Suppose a character at position p = (1,5,0) is facing the direction fwd = (-1, -2, 0). Suppose the character's field of view (fov) is 60 degrees. If another character is at position a = (2,3,0), can p see a?  Is a on the left or right of p? How far apart are they?

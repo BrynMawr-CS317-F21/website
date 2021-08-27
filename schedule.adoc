@@ -9,104 +9,66 @@
 //-----------------------------
 | 1
 | Aug 31, Sept 2
-| *Course introduction, Hello World of Animation* anchor:week01[]
+| *Course introduction, Hello World* anchor:week01[]
 
-Introduction. Preliminaries. Math, animation/game design patterns, C++ review
+Introduction. Preliminaries. Math and C++ review
 
-* *Read*: Parent 1.1, 1.3
-* *Lab 00*: link:asst00.html[Hello CS317] *Due Sept 2 (in lab)*
-* *Assignment 01*: link:Labs/lab1-hello.html[Hello Animation! *Due Sept 9*
-
-*Lecture*
-
-* link:todo[Overview of the course]
-* Event-based architectures, link:https://gameprogrammingpatterns.com/game-loop.html[Game loop], link:http://gameprogrammingpatterns.com/update-method.html[Update method]
-* Particle moving in a circle. link:Labs/circle.cpp.txt[AniTk]/link:Labs/circle.pde.txt[Processing]/link:circle.cs.txt[Unity]
-* Particle with velocity. link:Labs/particle.cpp.txt[AniTk]/link:Labs/particle.pde.txt[Processing]/link:Labs/particle.cs.txt[Unity]
-
-*C++/cmake/git Resources*
-
-* link:https://www.udemy.com/course/free-learn-c-tutorial-beginners/[C++ Course]
-* link:Labs/TODO[Getting started with C++]
-* Git workshop: link:https://github.com/BrynMawr-CS312-2021/git-workshop[Notes],link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=aa6a31bf-a4f1-419a-a2ed-acd30182820f[Video] 
-
-*Math resources*
-
-* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
+* link:week01.html[Lecture notes and resources]
+* *Assignment 00*: link:asst00.html[Hello CS317!] *Due Sept 9*
 
 //-----------------------------
 | 2 
 | Sept 7,9
-| *Interpolation* anchor:week02[]
+| *First animations* anchor:week02[]
 
-Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Casteljau's algorithm. 
+Animation design patterns; Points, vectors, and time; Oscillations, forward and circular movement.
 
-* Read: TODO (Parent book) 
-* Additional references: Lengyel: 11.3
-* Linear interpolation link:Labs/colorLerp1.cpp.txt[colorLerp1]/link:Labs/colorLerp2.cpp.txt[colorLerp2]/link:Labs/particleLerp.cpp.txt[particleLerp]
-* link:Labs/bezier.svg[Inkscape bezier curve] (open file in Inkscape to play with it)
-* de Casteljau's algorithm: link:Labs/deCasteljau.gif[Demo 1]/link:Labs/deCasteljau-curlyQ.gif[Demo 2]
-* TODO: Other interpolation types
-
-* *Assignment 02:* link:Labs/lab2-interp.html[Howl's moving casteljau]: *Due Sept 16*
+* link:week02.html[Lecture notes and resources]
+* *Assignment 01*: link:Labs/lab1-hello.html[Hello Animation!] *Due Sept 16*
 
 //-----------------------------
 | 3
 | Sept 14,16
-|*Splines* anchor:week03[]
+|*Interpolation* anchor:week03[]
 
-Catmull-Rom splines. Hermite Splines.
+Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Casteljau's algorithm. 
 
-* Lengyel: 11.1-11.4
-* Solving equations using Eigen: link:Labs/solveEqn.cpp.txt[Example1]/link:Labs/hermiteEx.cpp.txt[Example2]
-* Spline Example: link:CatmullRomExample.pdf[Catmull-Rom]/link:HermiteExample.pdf[Hermite]
-* Hermite endpoint conditions: link:Labs/hermiteClamped.gif[Clamped]/link:Labs/hermiteNatural.gif[Natural] 
-
-* *Assignment 03:* link:Labs/lab3-spline.html[Good times with splines.]: *Due Sept 23*
-* link:Q1Guide.html[TODO: Quiz Study Guide]
+* link:week03.html[Lecture notes and resources]
+* *Assignment 02:* link:Labs/lab2-interp.html[Howl's moving casteljau]: *Due Sept 23*
+* link:Q1Guide.html[Quiz1 Study Guide]: Math preliminaries and first animations
 
 //-----------------------------
 |4
 | Sept 21,23
-|*Rotations I* anchor:week04[]
+|*Interpolation* anchor:week04[]
 
-Rotations. Matrices. Euler angles. Gimbol lock.
+Catmull-Rom splines. Hermite Splines.
 
-* link:MathNotes.2019.pdf[Math notes (Coordinate systems and matrices)]
-* link:EulerAngles.html[Euler angle conversions]
-* link:EulerExamples.pdf[Sample problems with answers]
-* Lengyel: 3.1, 4.3
-* Quiz
-
-* Read: TODO 
-* *Assignment 04:* link:Labs/lab4-euler.html[Spinning teapots]: *Due Sept 30*
+* *Sept 21* Quiz1
+* link:week04.html[Lecture notes and resources]
+* *Assignment 03:* link:Labs/lab3-spline.html[The Catmull-Rom Com]: *Due Sept 30*
 
 //-----------------------------
 |5
 | Sept 28,30
-|*Quaternions* anchor:week05[]
+|*Rotations I: Euler angles* anchor:week05[]
 
-General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
+Rotations. Matrices. Euler angles. Gimbol lock.
 
-* Lengyel Appendix A, 4.3, 4.6.1, 4.6.2, 4.6.3
-* link:QuazyQuaternions.pdf[Quazy quaternions]
-* link:https://dl.acm.org/citation.cfm?doid=325334.325242[Animating rotation with quaternion curves (seminal paper)]
-* link:SlerpExample.pdf[Slerp example] 
-
-* Read: 
-* *Assignment 05:* link:lab5-quat.html[Quazy quaternions]: *Due Oct 7*
-* link:Q2Guide.html[Quiz Study Guide]
+* link:week05.html[Lecture notes and resources]
+* *Assignment 04:* link:Labs/lab4-rotations.html[You spin me round]: *Due Oct 7*
+* link:Q2Guide.html[Quiz2 Study Guide]: Interpolation and splines
 
 //-----------------------------
 |6
 | Oct 5,7
-|*Transformations* anchor:week06[]
+|*Rotations II: Quaternions* anchor:week06[]
 
-Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
+General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 
-* Lengyel Chpt 4
-* *Assignment 06:* link:Labs/lab6-fk.html[Building character]: *Due Oct 21 (after break)*
-* Quiz
+* *Oct 5* Quiz2
+* link:week06.html[Lecture notes and resources]
+* *Assignment 05:* link:Labs/lab5-quat.html[Quazy Quaternions]: *Due Oct 21 (after fall break)*
 
 //-----------------------------
 |7
@@ -119,42 +81,54 @@ Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeleton
 //-----------------------------
 |8
 | Oct 19,21
-|*Characters and motion* anchor:week07[]
+|*Transformations* anchor:week08[]
+
+Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
+
+* Lengyel Chpt 4, Parent Chpt 2
+* *Assignment 06:* link:Labs/lab6-fk.html[Building character]: *Due Oct 28*
+
+//-----------------------------
+|9
+| Oct 28
+|*Characters and motion* anchor:week09[]
 
 More Articulated Characters. Skeleton Example. Tree traversal review. Forward Kinematics.
 Motion. Poses. Motion Representation. Motion Capture. Procedural animation.
 
+* *NO CLASS Oct 26!!*
 * Butterfly: link:Labs/AButterfly.cpp.txt[Skeleton I]
 * link:SkeletonExamples.pd[Skeleton FK Example]
+* link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 
-* Read: 
-* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Oct 28*
-
-
-//-----------------------------
-|9
-| Oct 26,28
-|*Motion Editing* anchor:week09[]
-
-Motion editing. Blending. Splicing. Interpolation. Transitions.
-Transitions. Reorienting a motion. Crossfading. 
-
-* *Assignment 08:* link:Labs/lab8-blend.html[Cross-fade away!]: *Due Nov 4*
+* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Nov 4*
 
 //-----------------------------
 |10
 | Nov 2,4
-|*Inverse kinematics* anchor:week10[]
+|*Motion Editing* anchor:week10[]
 
-Analytical method for two-link chain. CCD Algorithm.
+Motion editing. Blending. Splicing. Interpolation. Transitions.
+Transitions. Reorienting a motion. Crossfading. 
 
-* link:Labs/ikccd.ogv[CCD demo]
-* *Assignment 09:* link:Labs/lab9-ik.html[Reach for your goals]: *Due Nov 11*
+* *Quiz3 Nov 4*
+* *Assignment 08:* link:Labs/lab8-blend.html[Cross-fade away!]: *Due Nov 11*
 
 //-----------------------------
 |11
 |Nov 9,11
-|*Physics* anchor:week11[]
+|*Inverse kinematics* anchor:week11[]
+
+Analytical method for two-link chain. CCD Algorithm.
+
+* link:Labs/ikccd.ogv[CCD demo]
+* *Assignment 09:* link:Labs/lab9-ik.html[Reach for your goals]: *Due Nov 18*
+* link:Q4Guide.html[Quiz4 Study Guide]: Transformations
+
+//-----------------------------
+|12
+|Nov 16,18
+|*Physics* anchor:week12[]
 
 Physics. Intro to rigid body simulation.
 
@@ -165,38 +139,32 @@ Physics. Intro to rigid body simulation.
 * link:https://graphics.stanford.edu/courses/cs448b-00-winter/papers/phys_model.pdf[Physically Based Modeling SIGGRAPH Course]
 * Particle Systems. Demos: water, smoke, fireworks, cloth, jello
 * Simple force particle: link:Labs/forceParticle.cpp.txt[Code]
-* *Assignment 10:* link:Labs/Lab10-physics.html[Use the force]: *Due Nov 18*
-
-//-----------------------------
-|12
-|Nov 16,18
-|*Steering behaviors* anchor:week12[]
-
-Steering behaviors. 
-
-* link:http://www.red3d.com/cwr/steer/gdc99[Boids]
-* *Assignment 11:* link:Labs/lab10-steering.html[Flocks]: *Due Nov 24*
+* *Assignment 10:* link:Labs/Lab10-physics.html[Use the force]: *Due Nov 22*
+* *Quiz4 Nov 16*
 
 //-----------------------------
 |13
 |Nov 23 (No class Thursday, Thanksgiving)
-|*Skinning* anchor:week13[]
+|*Steering behaviors* anchor:week13[]
 
-Meshes and skinning. 
+Steering behaviors. Crowd simulation.
 
-* link:https://www.skinning.org/direct-methods.pdf[Skinning short course (SIGGRAPH 2014)]
+* link:http://www.red3d.com/cwr/steer/gdc99[Boids]
+* *Assignment 11:* link:Labs/lab10-steering.html[Flocks]: *Due Dec 2*
 
 //-----------------------------
 |14
 |Nov 39, Dec 2
-|*Deformers* anchor:week14[]
+|*Skinning* anchor:week14[]
 
-FDD. Blend shapes.
+* *Assignment 12* link:Labs/lab11-free.html[Free Play]: *Due Dec 9*
+* link:https://www.skinning.org/direct-methods.pdf[Skinning short course (SIGGRAPH 2014)]
 
 //-----------------------------
 |15
 |Dec 7, Dec 9
-|** anchor:week15[]
+|*Deformers* anchor:week15[]
 
+FDD. Blend shapes.
 
 |===

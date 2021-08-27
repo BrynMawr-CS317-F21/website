@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Jam 3: Study Guide</title>
+<title>Quiz 3: Study Guide</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -14,46 +14,36 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_jam_3_study_guide">Jam 3: Study Guide</a></li>
+<li><a href="#_quiz_3_study_guide">Quiz 3: Study Guide</a></li>
 <li><a href="#_practice_questions">Practice questions</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_jam_3_study_guide">Jam 3: Study Guide</h2>
+<h2 id="_quiz_3_study_guide">Quiz 3: Study Guide</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jams are open book. 40 minutes in lab.</p>
+<p>Quizzes are open book. 30 minutes at the start of class</p>
 </div>
 <div class="paragraph">
 <p>Topics:</p>
 </div>
-<div class="paragraph">
-<p>This quiz includes the previous topics from Jam 1-2 plus</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>functions: defining and calling, return types, return statements, parameters (aka arguments)</p>
+<p>Rotation matrices</p>
 </li>
 <li>
-<p>function stack, function execution</p>
+<p>Euler angles</p>
 </li>
 <li>
-<p>scope of a variable</p>
-</li>
-<li>
-<p>arrays: defining and indexing</p>
-</li>
-<li>
-<p>Strings: <code>chatAt</code>, <code>compareTo</code>, <code>length</code></p>
+<p>Quaternions</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Write Java programs to check your answers. Or you can ask a TA or instructor
-to give feedback on your responses.</p>
+<p>Unless explicitly asked to compute a final answer, it is sufficient to write out the formula and plug-in values.</p>
 </div>
 </div>
 </div>
@@ -61,198 +51,192 @@ to give feedback on your responses.</p>
 <h2 id="_practice_questions">Practice questions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>1) Consider the following loop</p>
+<p>1) What is a rotation matrix?</p>
+</div>
+<div class="paragraph">
+<p>2) What is a quaternion?</p>
+</div>
+<div class="paragraph">
+<p>3) What is the relationship between rotation matrices, quaternions, and euler angles?</p>
+</div>
+<div class="paragraph">
+<p>4) What does it mean for a matrix to be orthogonal?</p>
+</div>
+<div class="paragraph">
+<p>5) What do the columns of a rotation matrix represent?</p>
+</div>
+<div class="paragraph">
+<p>6) How do we compute the 3x3 rotation matrix for euler angles YXZ?</p>
+</div>
+<div class="paragraph">
+<p>7) What are euler angles? Why use them?</p>
+</div>
+<div class="paragraph">
+<p>8) What is Gimbol Lock?  When does it occur?</p>
+</div>
+<div class="paragraph">
+<p>9) Derive the inverse of a ZYX euler matrix.</p>
+</div>
+<div class="paragraph">
+<p>10) Suppose an object is rotated 50 degrees around Z, what is the 3x3 rotation matrix corresponding to the object&#8217;s orientation?</p>
+</div>
+<div class="paragraph">
+<p>11) Consider the YZX euler rotation matrix having the algebraic form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">int pinLength = 4;
-String pin = "";
-for (int i = 0; i &lt; pinLength; i++) {
-  pin = pin + "*";
-  System.out.println(pin);
-}
-System.out.println("Enter your pin: "+pin);</code></pre>
+<pre class="highlight"><code>[  cy*cz, sx*sy - cx*cy*sz, cx*sy + cy*sx*sz]
+[     sz,            cx*cz,           -cz*sx]
+[ -cz*sy, cy*sx + cx*sy*sz, cx*cy - sx*sy*sz]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose we have the following matrix and we wish to extract YZX euler angles from it.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\left( \begin{array}{ccc}
+-0.0170 &amp; -0.5260 &amp; 0.8503\\
+  0.9939 &amp;  0.0839 &amp; 0.0718\\
+-0.1091 &amp;  0.8463 &amp; 0.5214\\
+\end{array} \right)\]
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>What is output to the console when we run this program?</p>
+<p>How can we get back the Z rotation? Write the formula and plugin in values</p>
 </li>
 <li>
-<p>Convert the loop above so it uses a while loop instead of a for loop</p>
+<p>How can we get back the Y rotation? Write the formula and plugin in values</p>
+</li>
+<li>
+<p>How can we get back the X rotation? Write the formula and plugin in values</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>2) Write a function, <code>Pow</code>, that raises any number X to a power Y, using a loop.
-Your function should match the following specification.
-In your program, use <code>main</code> to call and test your function.</p>
+<p>12) Consider again the YZX euler rotation matrix above, but suppose we have the following matrix.</p>
 </div>
-<div class="listingblock">
+<div class="stemblock">
 <div class="content">
-<pre class="highlight"><code>// Function: Pow
-// Description: Computes X to the power Y
-// Input X (double), the number to raise to a power
-// Input Y (double), the exponent
-// Returns (double), the quantity X^Y</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3) Write a function, <code>Average</code>, that takes an array of doubles as input and
-returns the average value based on the specification below. In your program,
-use <code>main</code> to call and test your function using random values in the range
-[-5, 5).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>// Function: Average
-// Description: Computes the average value in a list of numbers
-// Input data (double[]), the numbers to average
-// Returns (double), the average value, or 0 if the size of data is 0
-
-public static void main(String[] args)
-{
-  double[] values = new double[5];
-  // todo - initialize values with random values in range [-5,5)
-  // todo - call average and print the result
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>4) Write a function, <code>CountLetter</code>, which counts the number of times a character
-occurs in a String. Implement tests in <code>main</code> to check your function. For example,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>CountLetter("elephant",'e')</code> should return 2.</p>
-</li>
-<li>
-<p><code>CountLetter("zebra", 'z')</code> should return 1.</p>
-</li>
-<li>
-<p><code>CountLetter("elephant", 'z')</code> should return 0.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>5) Write a function, <code>IsEvenLength</code>, which returns <code>true</code> if the given String has an
-even number of characters and <code>false</code> otherwise. Implement tests in <code>main</code> to check your
-answer. For example,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>IsEvenLength("cat")</code> returns false</p>
-</li>
-<li>
-<p><code>IsEvenLength("")</code> returns true</p>
-</li>
-<li>
-<p><code>IsEvenLength("a")</code> returns false</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>6) Consider the following program</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class Mystery {
-  public static String mystery2(String message, String symbol) {
-    message = symbol+message+symbol;
-    // (a) Show function stack here
-    return message;
-  }
-
-  public static void mystery1(String message) {
-    System.out.println(message);
-    message = mystery2(message, "~~");
-    System.out.println(message);
-    // (b) Show function stack here
-  }
-
-  public static void main(String[] args) {
-    String userText = "Happy Halloween!";
-    mystery1(userText);
-    System.out.println(userText);
-  }
-}</code></pre>
+\[\left( \begin{array}{ccc}
+0 &amp; -0.7597 &amp;  0.6503 \\
+-1 &amp;       0 &amp;       0 \\
+0 &amp; -0.6503 &amp; -0.7597 \\
+\end{array} \right)\]
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>On the line labeled (a), what functions are in the function stack? List the contents of the stack with the oldest contents at the top, same as on <a href="http://www.pythontutor.com/java.html#mode=edit">Java tutor</a></p>
+<p>What is the Z rotation? What is the algebraic form of the matrix in this case?</p>
 </li>
 <li>
-<p>On the line labeled (b), what functions are in the function stack?</p>
-</li>
-<li>
-<p>What local variables are defined in mystery2?</p>
-</li>
-<li>
-<p>What local variables are defined in mystery1?</p>
-</li>
-<li>
-<p>What parameters are defined in mystery1?</p>
-</li>
-<li>
-<p>What is the return type of mystery1?</p>
-</li>
-<li>
-<p>What is the return type of mystery2?</p>
-</li>
-<li>
-<p>What variables are in scope in main?</p>
-</li>
-<li>
-<p>What variables are in scope in mystery1?</p>
-</li>
-<li>
-<p>What variables are in scope in mystery2?</p>
-</li>
-<li>
-<p>What is the console output of this program?</p>
+<p>Sketch how we can get the YZX euler angles back from this matrix.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>7) Implement a Movie class. Movie should contain the following data and methods</p>
+<p>13) How do quaternions relate to rotations specified with an axis and angle?</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>14) Suppose we want to rotate a point (3,0,0)
+		around the axis (1,1,0) by 30 degrees. Compute the quaternion
+		corresponding to this rotation.</p>
+</div>
+<div class="paragraph">
+<p>15) How can we ensure that a quaternion corresponds to a rotation?</p>
+</div>
+<div class="paragraph">
+<p>16) Convert the quaternion from the previous question to a matrix.</p>
+</div>
+<div class="paragraph">
+<p>17) Verify that multiplying the quaternion
+	\(q_i = (x, y, z, w) = (1,0,0,0)\) by \(q_j = (0,1,0,0)\) produces
+		the quaternion \(q_k = (0,0,1,0)\). Recall that the formula for
+      multiplying quaternions is</p>
+</div>
+<div class="stemblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">// Data
-
-// Title (string)
-// Duration in minutes (float)
-// Year (integer)
-// actors (array of String)
-
-// Methods
-
-// Constructor
-// Input: Title (string)
-// Input: Duration in minutes (float)
-// Input: Year (integer)
-// Input: actors (array of String)
-
-// Accessor for title
-// Mutator for title</code></pre>
+\[q_1 q_2 = [w_1 v_2 + w_2 v_1 + v_1 \times v_2, w_1 w_2 - v_1 \cdot v_2]\]
 </div>
 </div>
 <div class="paragraph">
-<p>Test your Movie class. Create a Movie object for "The Shining" which was made in 1980, is
-2 hours and 26 minutes long, and stars Jack Nicholson and Shelley Duval. Create your object in <code>setup()</code></p>
+<p>18) Consider the algebraic form of a matrix constructed
+		from a quaternion \(q = (x, y, z, w) = (\bar{v}, w)\).</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\left( \begin{array}{ccc}
+1-2(y^2+z^2) &amp; 2(x y - w z) &amp; 2(x z + w y) \\
+2(x y + w z) &amp; 1-2(x^2+z^2) &amp; 2(y z - w x) \\
+2(x z - w y) &amp; 2(y z + w x) &amp; 1-2(y^2+x^2) \\
+\end{array} \right)\]
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose we have the same matrix as before</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\left( \begin{array}{ccc}
+-0.0170 &amp; -0.5260 &amp; 0.8503\\
+  0.9939 &amp;  0.0839 &amp; 0.0718\\
+-0.1091 &amp;  0.8463 &amp; 0.5214\\
+\end{array} \right)\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Show that \(w^2 = \frac{1}{4}(r_{11} + r_{22} + r_{33} + 1)\).</p>
+</li>
+<li>
+<p>What is the w component corresponding to the given matrix? Plug in the values.</p>
+</li>
+<li>
+<p>How can we use the off-diagonal components to get the remaining x,y,z components?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>19) Suppose we have a quaternion q = [0.1325, 0.2649, -0.7947, 0.5298]. Extract the angle and axis of rotation corresponding to this quaternion. Write the formula and plug in values.</p>
+</div>
+<div class="paragraph">
+<p>20)Suppose we have a quaternion q = [0, 0, 0, 1]. Compute the matrix corresponding to this quaternion. What rotation does this correspond to?</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-08-11 10:54:57 -0400
+Last updated 2021-08-26 21:20:25 -0400
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

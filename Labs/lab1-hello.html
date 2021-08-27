@@ -32,7 +32,6 @@
 In this assignment, you will work with particles that move in straight lines,
 circles, oscillations, or the direction of a target.
 
-
 <p>The goals of this lab are to work with
 <ul>
    <li>points, velocity, and time</li>
@@ -43,41 +42,21 @@ circles, oscillations, or the direction of a target.
 <h2>Get the source</h2>
 <hr>
 
-<p>The source is available from github.swarthmore.edu. All your code 
-   for this course will be in your AnimationToolkit repository.
+<p>Update your animation-toolkit and then build.
 
 <pre class="prettyprint lang-sh">
-> cd cs56/AnimationToolkit
+> cd animation-toolkit
+> chmod u+x update.sh
+> ./update.sh
 > git pull
 > cd build
 > cmake ..; make
 </pre>
 
 <br>
-<b>If you DO NOT have a Swarthmore github account yet</b>
-<br>
-
-<p>For those of you without an account yet, you can download the repository from 
-<a href="AnimationToolkit-master-a1.zip">here</a>. You can still use git locally 
-to keep track of your changes. To submit, we will set the url to the remote 
-repository manually (The professor will send you instructions once your 
-account is setup).
-
-<pre class="prettyprint lang-sh">
-> mkdir cs56
-> cd cs56
-> unzip AnimationToolkit-master-a1.zip
-> cd AnimationToolkit-master-a1
-> git init
-> git add .
-> git commit -m "assignment framework"
-</pre>
-
-<br>
-<br>
 <hr>
 <h2>Assignment: Hello Animation! Nice to meet you!</h2>
-<h3>Due September 13</h3>
+<h3>Due September 9</h3>
 <hr>
 
 <h3>Question 1: Eyes! (5 points)</h3>
@@ -209,23 +188,23 @@ Above, we used the following palette.
 
 <pre class="prettyprint lang-sh">
    //https://www.color-hex.com/color-palette/82379
-   std::vector<AVector3> pallet = 
+   std::vector<vec3> pallet = 
    {
-      AVector3(0,165,227)/255.,
-      AVector3(141,215,191)/255.,
-      AVector3(255,150,197)/255.,
-      AVector3(255,87,104)/255.,
-      AVector3(255,162,58)/255.
+      vec3(0,165,227)/255.0f,
+      vec3(141,215,191)/255.0f,
+      vec3(255,150,197)/255.0f,
+      vec3(255,87,104)/255.0f,
+      vec3(255,162,58)/255.0f
    };
 </pre>
 </p>
 <br>
 <br>
 <hr>
-<h3>BONUS: Do something cool or quirky (up to 2 points)</h3>
+<h3>Make your own animation</h3>
 <hr>
 
-<p>Even with just spheres, it's possible to make an interesting demo!
+<p>Use different shapes, colors, scale, etc. to make your own demo
 <br> 
 <br> 
 
@@ -233,13 +212,7 @@ Above, we used the following palette.
 <img src="peek.gif" height="100px">
 <a href="http://thebookofshaders.com/edit.php#09/marching_dots.frag"><img src="transformEx-bookofshaders.gif" height="100px"></a>
 
-<p>Create a unique animation effect. For credit, you must submit your code
-and a video or gif. You can capture a video using <b>recordmydesktop</b>
-(instructions below) or with <b>Peek</b>.
-
-<p>You can easily create your own programs by copying an existing demo and then editing 
-   <b>CMakeLists.txt</b> to build it. See one of the same programs for an example!
-</p>
+<p>Create a unique animation effect in the file `unique.cpp`
 
 <p>Some ideas
 

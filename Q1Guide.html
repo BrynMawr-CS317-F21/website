@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Jam 1: Study Guide</title>
+<title>Quiz 1: Study Guide</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -14,17 +14,18 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_jam_1_study_guide">Jam 1: Study Guide</a></li>
-<li><a href="#_practice_questions">Practice questions</a></li>
+<li><a href="#_quiz_1_study_guide">Quiz 1: Study Guide</a></li>
+<li><a href="#_practice_questions_c">Practice questions: C++</a></li>
+<li><a href="#_vector_practice">Vector practice</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_jam_1_study_guide">Jam 1: Study Guide</h2>
+<h2 id="_quiz_1_study_guide">Quiz 1: Study Guide</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jams are open book. 40 minutes in lab.</p>
+<p>Quizzes are open book. 30 minutes at the start of class</p>
 </div>
 <div class="paragraph">
 <p>Topics:</p>
@@ -32,193 +33,290 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Variables: defining and assigning</p>
+<p>C++:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>float</code>, <code>char</code>, <code>std::string</code>, <code>int</code></p>
 </li>
 <li>
-<p>Data types: <code>String</code>, <code>double</code>, <code>int</code></p>
+<p>pass by value, pass by reference</p>
 </li>
 <li>
-<p>Command line variables</p>
+<p><code>std::vector</code></p>
 </li>
 <li>
-<p><code>System.out.println()</code>, <code>System.out.print()</code></p>
-</li>
-<li>
-<p><code>System.console().readLine()</code></p>
-</li>
-<li>
-<p>arithmetic operators: +, *, -, /, %</p>
-</li>
-<li>
-<p>String concatenation with <code>+</code></p>
-</li>
-<li>
-<p>math utilities: sqrt, pow, cos, sin, exp, log, random, etc</p>
-</li>
-<li>
-<p>Operators and expressions, order of operations</p>
+<p><code>struct</code>, <code>class</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Write Java programs to check your answers. Or you can ask a TA or instructor
-to give feedback on your responses.</p>
+</li>
+<li>
+<p>points and vectors</p>
+</li>
+<li>
+<p>coordinate systems</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_practice_questions">Practice questions</h2>
+<h2 id="_practice_questions_c">Practice questions: C++</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>1) What is the <strong>value</strong> and <strong>type</strong> for each of the following expressions?</p>
+<p>1) What is the value of x for the following expressions? Assume x has the correct
+type for the expression and that the following variables are defined.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>std::string hello = "hello";
+int a = 10;
+int b = 45;
+float c = -1.0;</code></pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>2 + 3</p>
+<p><code>x = a/10;</code></p>
 </li>
 <li>
-<p>Math.pow(2, 3)</p>
+<p><code>x = a/3;</code></p>
 </li>
 <li>
-<p>2.0 + 3</p>
+<p><code>x = c+4.1;</code></p>
 </li>
 <li>
-<p>5.5/10</p>
+<p><code>x = asin(c);</code></p>
 </li>
 <li>
-<p>5 - 2 * 3</p>
+<p><code>x = cos(0);</code></p>
 </li>
 <li>
-<p>"123"</p>
+<p><code>x = hello + " friends";</code></p>
 </li>
 <li>
-<p>48 % 2</p>
+<p><code>x = asin(a)</code></p>
 </li>
 <li>
-<p>2.0</p>
-</li>
-<li>
-<p>2+4*2+1</p>
-</li>
-<li>
-<p>"lol" + "cats"</p>
+<p><code>x = b * M_PI/180</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>2) Write a program <code>Sum.java</code> that takes two command line arguments, converts them to integers
-and outputs their sum.  You can assume that the command line arguments are both valid integers.</p>
+<p>2) Consider the following program. Does it compile? If no, say why.
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>java Sum 4 5</strong>
-The sum is 9.
+<pre class="highlight"><code>#include &lt;iostream&gt;
+#include "atk/aglm.h"
 
-$ <strong>java Sum 0 0</strong>
-The sum is 0.
+void foo(glm::vec3&amp; p)
+{
+    p[1] = 10;
+    std::cout &lt;&lt; p &lt;&lt; std::endl;
+}
 
-$ <strong>java Sum -1 5</strong>
-The sum is 4.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3) Write a madlib program that asks the user for 2 colors and
-  one adjective, then prints out the filled-in poem:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>$ <strong>java Roses</strong>
-color: <strong>pink</strong>
-color: <strong>azure</strong>
-adjective: <strong>funny</strong>
-
-Roses are pink
-Violets are azure
-Sugar is funny
-and so are you!</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>4) Write a program that takes a user&#8217;s hotel room rate and outputs the cost
-of a 6% sales tax and 10.5% city tourism fee.  The program should then output the total bill.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>$ <strong>java Bill</strong>
-Room rate: <strong>100</strong>
-Total nights: <strong>3</strong>
--------------------
-Tax: $ 18.0
-Tourism Fee: $ 31.5
-Total: $ 349.50</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>5) What is the output of the following program?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class Cats {
-   public static void main(String[] args) {
-       String type = "tuxedo";
-       int fish = 3;
-
-       System.out.println("The "+type+" cat caught "+fish+" fish.");
-   }
+int main(int argc, char** argv)
+{
+    glm::vec3 p(0,0,0);
+    foo(p);
+    std::cout &lt;&lt; p &lt;&lt; std::endl;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>6) The following program has several problems. What are they? For each error, is the error a syntax error, runtime error, or logic error? How can we fix the problem?</p>
+<p>3) Consider the following program. Does it compile? If no, say why.
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class Mystery {
-    public static void main(String args) {
-        System.out.print("Enter a value: ");
-        String valueStr = System.console().readLine();
-        int value = Integer.parseInteger(valuStr);
-        int result = value * 10
-        System.out.println("The result is "+result);
-    }
+<pre class="highlight"><code>#include &lt;iostream&gt;
+#include "atk/aglm.h"
+
+void foo(const glm::vec3&amp; p)
+{
+    p[1] += 10;
+    std::cout &lt;&lt; p &lt;&lt; std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   glm::vec3 p(0,0,0);
+   foo(p);
+   std::cout &lt;&lt; p &lt;&lt; std::endl;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>7) The following program has a problem. What is it? Is the error is syntax error, runtime error, or logic error? How can we fix the problem?</p>
+<p>4) Consider the following program. Does it compile? If no, say why.
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class Mystery {
-    public static void main(String[] args) {
-        int value = Integer.parseInt(args[0]);
-        double fraction = value / 10;
-        System.out.println("The fraction is "+fraction);
-    }
+<pre class="highlight"><code>#include &lt;iostream&gt;
+#include "atk/aglm.h"
+
+void foo(const glm::vec3&amp; p)
+{
+    std::cout &lt;&lt; p + glm::vec3(0,10,0) &lt;&lt; std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   foo(glm::vec3(0,0,0));
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>8) The following program has a bug. Is the error is syntax error, runtime error, or logic error? How can we fix the problem?</p>
+<p>5) Consider the following program. Does it compile? If no, say why.
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class Mystery {
-    public static void main(String[] args) {
-        int value = Integer.parseInt(args[0]);
-        double fraction = value / 0;
-        System.out.println("The fraction is "+fraction);
-    }
+<pre class="highlight"><code>#include &lt;iostream&gt;
+#include "atk/aglm.h"
+
+void foo(glm::vec3 p)
+{
+   p[1] += 10;
+   std::cout &lt;&lt; p &lt;&lt; std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   glm::vec3 p(0,0,0);
+   foo(p);
+   std::cout &lt;&lt; p &lt;&lt; std::endl;
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>6) Consider the following program. Does it compile? If no, say why.
+If yes, what is its output?
+What is its output? (Note: the formatting for printing to vector should assume
+that the x, y, z components are printed in order)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;iostream&gt;
+
+void foo(glm::vec3&amp; p)
+{
+   std::cout &lt;&lt; p + glm::vec3(0,10,0) &lt;&lt; std::endl;
+}
+
+int main(int argc, char** argv)
+{
+   foo(glm::vec3(0,0,0));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>7) Write a program that stores 3 points in a <code>std::vector</code>. Then iterate through the vector to print each instance out.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vector_practice">Vector practice</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>1) Short answer</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What does NaN stand far? When can it occur?</p>
+</li>
+<li>
+<p>Suppose we have an angle X in degrees. Give an expression for converting it to radians.</p>
+</li>
+<li>
+<p>Suppose we have an angle X in radians. Give an expression for converting it to degrees.</p>
+</li>
+<li>
+<p>What is the origin?</p>
+</li>
+<li>
+<p>What is the difference between a avector and a point?</p>
+</li>
+<li>
+<p>What is a unit vector?</p>
+</li>
+<li>
+<p>What does it mean to normalize a vector? Why might we want to do this?</p>
+</li>
+<li>
+<p>Do the built-in functions for sin, cos, and tan in C++ take radians or degrees?</p>
+</li>
+<li>
+<p>What is the difference between atan and atan2? Which is better and why?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>2) Suppose we wish to stack three triangles in a row as in the diagram below.
+Let each triangle&#8217;s base be 2 units wide and each triangle&#8217;s height be 2 units high.
+The origin of each triangle is at the bottom left corner.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="triangleStack.png" alt="triangleStack">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What should the positions of each triangle be if we would like the centers of each triangle to be along the Y-axis?</p>
+</li>
+<li>
+<p>Write psuedocode to position N traingles along the Y axis.</p>
+</li>
+<li>
+<p>Suppose the bottom triangle is traveling with velocity (0,1,0)units per second. At what time will it be aligned with the top triangle?</p>
+</li>
+<li>
+<p>What should the positions of the triangles be if we wish to position each triangle 130 degrees apart in a circle 1 unit away from the origin?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>3) Suppose we have a target at a point <strong>g</strong> and we wish to compute a point <strong>p</strong> between <strong>g</strong> and the origin. Derive an expression for <strong>p</strong> using atan2.</p>
+</div>
+<div class="paragraph">
+<p>4) Suppose we have a particle at position (1,1). What is its distance from the origin? What is its distance from the x-axis? Its distance from the y-axis? What is the angle between the direction (1,1) and the positive x-axis? Angle from the negative x-axis? Angle from the positive y-axis?</p>
+</div>
+<div class="paragraph">
+<p>5) Suppose we have two particles at position (1,1) and (-3,4). Draw them. How far apart are they from each other?</p>
+</div>
+<div class="paragraph">
+<p>6) Suppose we have a vector v = (1,2,0)^T and u = (-2, 3, 0)^T. What is the value of u+v? Draw u, v, and u+v. Suppose we multiply v by -2. Compute and draw the result.</p>
+</div>
+<div class="paragraph">
+<p>7) Suppose we have a vector v = (1,2,0)^T. What is its length? Give and expression and evaluate it. Write a program that defines v and prints its length.</p>
+</div>
+<div class="paragraph">
+<p>8) A particle travels with velocity (1,2,3) units per second. What is its speed? Where will the particle be after 3 seconds if it starts at position (-1,-2,3)? Suppose we wish to change the speed to 10 units per second. What would the new velocity be? Write a program that implements the movement of the particle p.</p>
+</div>
+<div class="paragraph">
+<p>9) Suppose we have an animation that runs at 24 fps. What does this mean? How many frames do we display in a minute? How much time passes between each frame?</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-08-11 10:54:57 -0400
+Last updated 2021-08-26 20:57:40 -0400
 </div>
 </div>
 </body>
