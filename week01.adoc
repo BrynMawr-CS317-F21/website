@@ -59,6 +59,31 @@ Further reading:
 
 = Introduction to animation
 
+Animation is the illusion of movement created by showing a series of static images very quickly (think: flipbook). 
+
+*Framerate*
+
+The number of frames rendered (or displayed) each second. Typically measured in fps, or *frames per second*. 
+For example, a framerate of 24 indicates that 24 frames are displayed each second. Conversely, the duration of 
+each frame is 1/24.
+
+*Procedural animation*
+
+The animation is generated using an algorithm. Example might include a physical simulation or oscillating movement 
+computed with sine and cosine. 
+
+*Artist-driven animation*
+
+The animation is created by an artists, typicly using a technique called *key-framing*. In a key-framed 
+animation, the artist specifies the state of objects in the scene at different times. *Interpolation* is 
+then used to transition smoothly between keys.
+
+*Data-driven animation*
+
+The animation is generated from a recording of movement. A popular example is optical motion capture, where 
+reflective markers are used to keep track of the locations of different joints and landmarks on the body. 
+This technique may also use *retargeting* to fit the recorded motion to a character with different proportions.
+
 Further reading:
 
 * Parent 1.1, 1.3
