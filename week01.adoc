@@ -51,10 +51,55 @@ To setup your development environment on your own machine, use the instructions 
 
 = Math Overview
 
+This class relies on vectors, matrices, and polynomials. Specifically,
+
+*Trigonometry*
+
+https://www.khanacademy.org/math/trigonometry#trigonometry-right-triangles
+https://www.khanacademy.org/math/trigonometry/unit-circle-trig-func
+
+*Vectors*
+
+* coordinate systems: axes, origin, stem:[\hat{i}, \hat{j}, \hat{k}]
+* adding, subtracting, scaling
+* length and distance 
+* dot product
+* cross product
+
+https://www.khanacademy.org/math/algebra-home/alg-vectors
+https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/vector-dot-product-and-vector-length
+https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/linear-algebra-cross-product-introduction
+https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces
+
+*Matrices*
+
+* Zero matrix
+* Identity matrix
+* Matrix dimension
+* Matrix-Matrix multiplication
+* Matrix-Vector multiplation
+* Inverse
+* Transpose
+
+https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:mat-intro/a/intro-to-matrices
+https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:multiplying-matrices-by-matrices/v/matrix-multiplication-intro
+https://www.khanacademy.org/math/linear-algebra/matrix-transformations/matrix-transpose/v/linear-algebra-transpose-of-a-matrix
+https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:properties-of-matrix-multiplication/a/intro-to-identity-matrices
+https://www.khanacademy.org/math/algebra-home/alg-matrices/alg-intro-to-matrix-inverses/v/inverse-matrix-part-1
+
+*Polynomials*
+
+* degree
+* Multiplying and simplifying terms
+
+https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratics-multiplying-factoring/x2f8bb11595b61c86:multiply-monomial-polynomial/v/polynomials-intro
+https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-6b/v/differentiating-polynomials-example
+
+Take this link:MathSelfAssessment.pdf[Math Self-Assessment Quiz] to check whether you should brush up 
+on some skills!
 
 Further reading:
 
-* 
 * Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
 
 = Introduction to animation

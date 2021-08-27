@@ -40,7 +40,7 @@ Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Castelj
 //-----------------------------
 |4
 | Sept 21,23
-|*Interpolation* anchor:week04[]
+|*Splines* anchor:week04[]
 
 Catmull-Rom splines. Hermite Splines.
 
@@ -81,7 +81,7 @@ General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 //-----------------------------
 |8
 | Oct 19,21
-|*Transformations* anchor:week08[]
+|*Skeletons* anchor:week08[]
 
 Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
 

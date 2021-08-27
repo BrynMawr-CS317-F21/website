@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Animation Pre-requisites: Self-assessment</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_animation_pre_requisites_self_assessment">Animation Pre-requisites: Self-assessment</a></li>
+<li><a href="#_trigonometry">Trigonometry</a></li>
+<li><a href="#_vectors">Vectors</a></li>
+<li><a href="#_matrices">Matrices</a></li>
+<li><a href="#_polynomials">Polynomials</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_animation_pre_requisites_self_assessment">Animation Pre-requisites: Self-assessment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use the questions below to identify topics for review.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_trigonometry">Trigonometry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Consider the point <strong>p</strong> and angle \(\theta\) below, where <strong>p</strong> is a distance of 1 unit from the origin and
+\(\theta\) is 45 degrees. What is the coordinate of <strong>p</strong>? Hint: what are the values of a and b?</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="trig-ex1.png" alt="trig ex1" width="200"></span></p>
+</div>
+<div class="paragraph">
+<p>Consider the point \(p_1\) and angle \(\theta_1\) below. Suppose \(p_1=(2,2,0)^T\). What is the value of \(\theta_1\)? Hint: Use tangent.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="trig-ex2.png" alt="trig ex2" width="200"></span></p>
+</div>
+<div class="paragraph">
+<p>Consider the point \(p_2\) and angle \(\theta_2\) above. Suppose \(p_2=(3,-2,0)^T\). What is the value of \(\theta_2\)? Hint: Use tangent.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vectors">Vectors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <strong>vector</strong> is an n-tuple of real numbers. In this class, we will work with 2D, 3D, and 4D vectors.
+Suppose we have a vector <strong>u</strong>=(-2, 3, 0)<sup>T</sup> and <strong>v</strong>=(-1, 4, 0)<sup>T</sup>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Draw the vectors <strong>u</strong> and <strong>v</strong>, with their tails anchored at the origin below.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="coordinate-system.png" alt="coordinate system" width="500"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the length of <strong>u</strong>?</p>
+</li>
+<li>
+<p>What is the distance between <strong>u</strong> and <strong>v</strong>?</p>
+</li>
+<li>
+<p>Compute and draw <strong>u + v</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="coordinate-system.png" alt="coordinate system" width="500"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compute and draw <strong>u - v</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="coordinate-system.png" alt="coordinate system" width="500"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compute the cross product \(u \times v\).</p>
+</li>
+<li>
+<p>Normalize the vector <strong>u</strong>, e.g. compute \(\frac{u}{\|u\|}\).</p>
+</li>
+<li>
+<p>Compute the dot product \(u \cdot v\).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_matrices">Matrices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Consider the following matrices</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[A=\begin{bmatrix}
+1 &amp; 3 \\
+-0.5 &amp; 2
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+-3 &amp; 0 \\
+1 &amp; 2
+\end{bmatrix}, \quad
+C = \begin{bmatrix}
+1 &amp; 3 \\
+-4 &amp; 5 \\
+3 &amp; -7
+\end{bmatrix}\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What are the dimensions of A, B, and C?</p>
+</li>
+<li>
+<p>What is the transpose of the matric C?</p>
+</li>
+<li>
+<p>Compute the products AB and BA.</p>
+</li>
+<li>
+<p>Is it possible to multiply C times itself? Why not? What about CC<sup>T</sup></p>
+</li>
+<li>
+<p>What is the product of \(AA^{-1}\)?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Consider the following matrix</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[R = \begin{bmatrix}
+cos(30) &amp; sin(30) &amp; 0\\
+-sin(30) &amp; cos(30) &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppose we have a vector <strong>u</strong>=(1,0,0)<sup>T</sup>. Draw <strong>u</strong> below. Then multiple <strong>u</strong> by <strong>R</strong> and draw <strong>Ru</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="coordinate-system.png" alt="coordinate system" width="500"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_polynomials">Polynomials</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Consider the polynomial \(p(t) = 9t^3 + 6t^2\).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the degree of \(p(t)\)?</p>
+</li>
+<li>
+<p>What is the derivative of \(p(t)\)?</p>
+</li>
+<li>
+<p>What is the value of \(p(t)\) when t = -1?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let \(B_0(t) = (t - 1)^2\) and \(B_w = t - 2\).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compute an expression for \(p(t) = B_0(t) + B_1(t)\) and re-arrange the terms into standard form</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Standard form has the following pattern: \(a_nt^n + \ldots + a_2 t^2 + a t + a_0\).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-08-27 13:34:59 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
