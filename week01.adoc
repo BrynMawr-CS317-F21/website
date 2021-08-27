@@ -21,6 +21,7 @@ Lecture Topics:
 We will be using C++. If you're familiar with Java, C++ supports the same programming features as Java. 
 
 * link:JavaToC++.pdf[Java to C++]
+** link:https://github.com/BrynMawr-CS317-F21/cpp-lecture[C++ examples from lecture]
 
 If you would like extra practice in C++, try the exercises from the following repository.
 
@@ -53,45 +54,31 @@ To setup your development environment on your own machine, use the instructions 
 
 This class relies on vectors, matrices, and polynomials. Specifically,
 
-*Trigonometry*
+== Trigonometry
 
-Try the sample problems link:math-self-assessment.html#trig[here]. 
+link:math-self-assessment.html#trig[Sample Problems]. 
 
-Background resources:
+Review resources:
 
 * link:https://www.khanacademy.org/math/trigonometry#trigonometry-right-triangles[Trigonometry of right triangles]
 * link:https://www.khanacademy.org/math/trigonometry/unit-circle-trig-func[Sine, cosine, tangent]
 
-*Vectors*
+== Vectors
 
-Try the sample problems link:math-self-assessment.html#vector[here]. 
+link:math-self-assessment.html#vector[Sample Problems]. 
 
-* coordinate systems: axes, origin, stem:[\hat{i}, \hat{j}, \hat{k}]
-* adding, subtracting, scaling
-* length and distance 
-* dot product
-* cross product
-
-Background resources:
+Review resources:
 
 * link:https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces[Vector spaces]
 * link:https://www.khanacademy.org/math/algebra-home/alg-vectors[Vectors]
 * link:https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/vector-dot-product-and-vector-length[Dot product and length]
 * link:https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/linear-algebra-cross-product-introduction[Cross product]
 
-*Matrices*
+== Matrices
 
-Try the sample problems link:math-self-assessment.html#matrix[here]. 
+link:math-self-assessment.html#matrix[Sample Problems]. 
 
-* Zero matrix
-* Identity matrix
-* Matrix dimension
-* Matrix-Matrix multiplication
-* Matrix-Vector multiplation
-* Inverse
-* Transpose
-
-Background resources:
+Review resources:
 
 * https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:mat-intro/a/intro-to-matrices[Matrices]
 * https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:multiplying-matrices-by-matrices/v/matrix-multiplication-intro[Matrix multiplication]
@@ -99,13 +86,11 @@ Background resources:
 * https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:properties-of-matrix-multiplication/a/intro-to-identity-matrices[Identity matrix]
 * https://www.khanacademy.org/math/algebra-home/alg-matrices/alg-intro-to-matrix-inverses/v/inverse-matrix-part-1[Matrix inverse]
 
-*Polynomials*
+== Polynomials
 
-Try the sample problems link:math-self-assessment.html#poly[here]. 
+link:math-self-assessment.html#poly[Sample Problems]. 
 
-* Degree
-* Manipulating expressions (algebra)
-* Derivatives of polynomials
+Review resources:
 
 * link:https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratics-multiplying-factoring/x2f8bb11595b61c86:multiply-monomial-polynomial/v/polynomials-intro[Polynomials]
 * https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-6b/v/differentiating-polynomials-example[Differentiation of polynomials]

@@ -59,6 +59,11 @@ posted on the course webpage!
 
 Pay special attention to the link:./index.html#_schedule[Schedule]. 
 
+= Math Review
+
+Read the link:week01.html[lecture notes] and complete the link:math-self-assessment.html[math self-assessment].
+Submit the math assessment in class on the due date.
+
 = Setup graphics
 
 Fork the repository at link:https://github.com/BrynMawr-CS312-2021/getting-started[getting-started] 
@@ -71,7 +76,6 @@ You may also want to install Blender, but these are not necessary for class:
 * link:https://blender.org[Blender]: A 3D modeling tool with photorealistic rendering features. Blender can be used to view and create 3D models. We will use this in class demos and you may find it useful (and fun) to try it yourself. 
 
 = Make something! 
-
 
 We will use the same C++ code framework throughout this course. For some assignments, you will implement core features in the animation library. For other assignments, you will write applications which use the animation library. The framework also includes a simple graphics library for visualizing and controlling your animations.
 

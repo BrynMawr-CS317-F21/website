@@ -8,12 +8,14 @@ include::header.adoc[]
 
 = {title}
 
-Use the questions below to identify topics for review.
+= Name: 
 
-= Trigonometry \anchor:trig[]
+Use the questions below to identify any topics you should review. See the link:week01.html[week 01 notes for background information on these topics].
+
+= Trigonometry anchor:trig[]
 
 Consider the point *p* and angle stem:[\theta] below, where *p* is a distance of 1 unit from the origin and 
-stem:[\theta] is 45 degrees. What is the coordinate of *p*? Hint: what are the values of a and b?
+stem:[\theta] is 45 degrees. What is the coordinate of *p*? Hint: what are the values of a and b in terms of stem:[\theta]?
 
 image:trig-ex1.png[width=200]
 
@@ -23,6 +25,10 @@ image:trig-ex2.png[width=200]
 
 Consider the point stem:[p_2] and angle stem:[\theta_2] above. Suppose stem:[p_2=(3,-2,0)^T]. What is the value of stem:[\theta_2]? Hint: Use tangent. 
 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 = Vectors anchor:vector[]
 
 A *vector* is an n-tuple of real numbers. In this class, we will work with 2D, 3D, and 4D vectors.
@@ -30,23 +36,45 @@ Suppose we have a vector *u*=(-2, 3, 0)^T^ and *v*=(-1, 4, 0)^T^.
 
 * Draw the vectors *u* and *v*, with their tails anchored at the origin below.
 
-image:coordinate-system.png[width=500]
+image:coordinate-system.png[width=300]
 
 * What is the length of *u*?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * What is the distance between *u* and *v*?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * Compute and draw *u + v*.
 
-image:coordinate-system.png[width=500]
+image:coordinate-system.png[width=300]
 
 * Compute and draw *u - v*
 
-image:coordinate-system.png[width=500]
+image:coordinate-system.png[width=300]
 
 * Compute the cross product stem:[u \times v]. 
 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * Normalize the vector *u*, e.g. compute stem:[\frac{u}{\|u\|}]. 
 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * Compute the dot product stem:[u \cdot v]. 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
 
 = Matrices anchor:matrix[]
 
@@ -70,10 +98,34 @@ C = \begin{bmatrix}
 ++++
 
 * What are the dimensions of A, B, and C?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * What is the transpose of the matric C?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * Compute the products AB and BA.  
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * Is it possible to multiply C times itself? Why not? What about CC^T^? 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * What is the product of stem:[AA^{-1}]?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
 
 Consider the following matrix
 
@@ -88,15 +140,29 @@ cos(30) & sin(30) & 0\\
 
 * Suppose we have a vector *u*=(1,0,0)^T^. Draw *u* below. Then multiple *u* by *R* and draw *Ru*.
 
-image:coordinate-system.png[width=500]
+image:coordinate-system.png[width=300]
 
 = Polynomials anchor:poly[]
 
 Consider the polynomial stem:[p(t) = 9t^3 + 6t^2]. 
 
 * What is the degree of stem:[p(t)]? 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * What is the derivative of stem:[p(t)]?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
 * What is the value of stem:[p(t)] when t = -1?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
 
 Let stem:[B_0(t) = (t - 1)^2] and stem:[B_1 = t - 2]. 
 
