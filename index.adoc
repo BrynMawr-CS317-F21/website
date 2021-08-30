@@ -88,6 +88,8 @@ include::integrity.adoc[]
 
 include::accomodations.adoc[]
 
+include::legal.adoc[]
+
 == External Links
 
 Links that are related to the course may be posted here. If you have suggestions for links, let us know.
