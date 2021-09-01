@@ -1,6 +1,6 @@
 include::header.adoc[]
 
-:title: Animation Pre-requisites: Self-assessment
+:title: Animation Math Review: Self-assessment
 :Author Initials: ASN
 :Date:    2020-02-07
 :Revision: 0.1
@@ -9,6 +9,8 @@ include::header.adoc[]
 = {title}
 
 = Name: 
+
+*Due September 9*
 
 Use the questions below to identify any topics you should review. See the link:week01.html[week 01 notes for background information on these topics].
 

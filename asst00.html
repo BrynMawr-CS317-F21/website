@@ -18,21 +18,22 @@
 <li><a href="#_sign_up_for_github">1. Sign-up for github</a></li>
 <li><a href="#_join_slack">2. Join slack</a></li>
 <li><a href="#_read_the_class_web_pages">3. Read the class web pages</a></li>
-<li><a href="#_setup_graphics">4. Setup graphics</a></li>
-<li><a href="#_make_something">5. Make something!</a>
+<li><a href="#_math_review">4. Math Review</a></li>
+<li><a href="#_setup_graphics">5. Setup graphics</a></li>
+<li><a href="#_make_something">6. Make something!</a>
 <ul class="sectlevel2">
-<li><a href="#_get_the_source">5.1. Get the source</a></li>
-<li><a href="#_compile_and_run">5.2. Compile and run</a></li>
-<li><a href="#_draw_in_2d">5.3. Draw in 2D</a></li>
-<li><a href="#_draw_in_3d">5.4. Draw in 3D</a></li>
+<li><a href="#_get_the_source">6.1. Get the source</a></li>
+<li><a href="#_compile_and_run">6.2. Compile and run</a></li>
+<li><a href="#_draw_in_2d">6.3. Draw in 2D</a></li>
+<li><a href="#_draw_in_3d">6.4. Draw in 3D</a></li>
 </ul>
 </li>
-<li><a href="#_hand_in_your_work">6. Hand-in your work</a>
+<li><a href="#_hand_in_your_work">7. Hand-in your work</a>
 <ul class="sectlevel2">
-<li><a href="#_what_to_hand_in">6.1. What to hand-in</a></li>
-<li><a href="#_how_to_hand_in">6.2. How to hand-in</a></li>
-<li><a href="#_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</a></li>
-<li><a href="#_update_your_readme_md">6.4. Update your Readme.md</a></li>
+<li><a href="#_what_to_hand_in">7.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">7.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">7.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">7.4. Update your Readme.md</a></li>
 </ul>
 </li>
 </ul>
@@ -133,7 +134,16 @@ posted on the course webpage!</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup_graphics">4. Setup graphics</h2>
+<h2 id="_math_review">4. Math Review</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Read the <a href="week01.html">lecture notes</a> and complete the <a href="math-self-assessment.html">math self-assessment</a>.
+Submit the math assessment in class on the due date.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup_graphics">5. Setup graphics</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Fork the repository at <a href="https://github.com/BrynMawr-CS312-2021/getting-started">getting-started</a>
@@ -164,7 +174,7 @@ If you run into any problems setting this up, do not hesitate to ask for help! A
 </div>
 </div>
 <div class="sect1">
-<h2 id="_make_something">5. Make something!</h2>
+<h2 id="_make_something">6. Make something!</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We will use the same C++ code framework throughout this course. For some assignments, you will implement core features in the animation library. For other assignments, you will write applications which use the animation library. The framework also includes a simple graphics library for visualizing and controlling your animations.</p>
@@ -173,7 +183,7 @@ If you run into any problems setting this up, do not hesitate to ask for help! A
 <p>Some of you may not feel comfortable programming in C++. This is ok! This course is an opportunity to gain experience and this lab is intended to help you gain your footing. Note that you can always look at the existing code in the framework and then modify it to complete your assignments. You can also post questions in Slack, either publicly or privately via direct message.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_the_source">5.1. Get the source</h3>
+<h3 id="_get_the_source">6.1. Get the source</h3>
 <div class="paragraph">
 <p>On github, fork the respository at <a href="https://github.com/BrynMawr-CS317-F21/animation-toolkit">animation-toolkit</a>.</p>
 </div>
@@ -217,7 +227,7 @@ If you run into any problems setting this up, do not hesitate to ask for help! A
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compile_and_run">5.2. Compile and run</h3>
+<h3 id="_compile_and_run">6.2. Compile and run</h3>
 <div class="paragraph">
 <p>We use <strong>cmake</strong> because it can support multiple platforms (such as Ubuntu and Windows) with a single build configuration. For example, cmake can generate Makefiles for UNIX and .vcproj files for Windows. Cmake stores its build settings in <code>CMakeLists.txt</code> files in each directory.</p>
 </div>
@@ -259,7 +269,7 @@ We do not want to check in temporary files to git!!! We can tell git to ignore u
 </div>
 </div>
 <div class="sect2">
-<h3 id="_draw_in_2d">5.3. Draw in 2D</h3>
+<h3 id="_draw_in_2d">6.3. Draw in 2D</h3>
 <div class="paragraph">
 <p>To start, let&#8217;s look at the implementation of sphere2d in <code>assignments/a0/sphere2d.cpp</code>.</p>
 </div>
@@ -361,7 +371,7 @@ features implemented by Framework.
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_todo_modify_sphere2d">5.3.1. TODO: Modify sphere2d</h4>
+<h4 id="_todo_modify_sphere2d">6.3.1. TODO: Modify sphere2d</h4>
 <div class="paragraph">
 <p>Draw a red sphere behind the green sphere.</p>
 </div>
@@ -413,7 +423,7 @@ Although our scene looks flat, it is actually 3D. The sphere looks 2D because it
 </div>
 </div>
 <div class="sect2">
-<h3 id="_draw_in_3d">5.4. Draw in 3D</h3>
+<h3 id="_draw_in_3d">6.4. Draw in 3D</h3>
 <div class="paragraph">
 <p>Now let&#8217;s look at a 3D program. Before, we drew shapes in the center of the screen. Now we will draw them at the center of the 3D world, which is at coordinate (0,0,0).</p>
 </div>
@@ -493,7 +503,7 @@ int main(int argc, char** argv)
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_todo_modify_the_program">5.4.1. TODO: Modify the program</h4>
+<h4 id="_todo_modify_the_program">6.4.1. TODO: Modify the program</h4>
 <div class="paragraph">
 <p>Modify the program so that when the user presses the SPACEBAR, the green sphere
 moves in a random direction. When the user presses R, reset the position of the sphere to (0,0,0).</p>
@@ -546,10 +556,10 @@ moves in a random direction. When the user presses R, reset the position of the 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hand_in_your_work">6. Hand-in your work</h2>
+<h2 id="_hand_in_your_work">7. Hand-in your work</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_what_to_hand_in">6.1. What to hand-in</h3>
+<h3 id="_what_to_hand_in">7.1. What to hand-in</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -565,7 +575,7 @@ moves in a random direction. When the user presses R, reset the position of the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_to_hand_in">6.2. How to hand-in</h3>
+<h3 id="_how_to_hand_in">7.2. How to hand-in</h3>
 <div class="paragraph">
 <p>Check-in your code, images, and writeup and push the changes to Github.
 If everything is uploaded correctly, you will see your work on Github.</p>
@@ -587,7 +597,7 @@ the end to commit changes. You can always revert to an old version if you need t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</h3>
+<h3 id="_generating_images_movies_and_gifs">7.3. Generating images, movies and gifs</h3>
 <div class="paragraph">
 <p><strong>Screenshots</strong></p>
 </div>
@@ -663,7 +673,7 @@ videos should be less than 5 MB.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_update_your_readme_md">6.4. Update your Readme.md</h3>
+<h3 id="_update_your_readme_md">7.4. Update your Readme.md</h3>
 <div class="paragraph">
 <p>Update <code>a0/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
 </div>
@@ -684,7 +694,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-08-26 14:24:08 -0400
+Last updated 2021-08-27 18:46:04 -0400
 </div>
 </div>
 </body>
