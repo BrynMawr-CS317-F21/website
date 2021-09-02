@@ -16,6 +16,10 @@ Lecture Topics:
 * Math overview
 * Introduction to animation
 
+= Lectures
+
+* link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=20652954-119a-491d-b8e1-ad9600eb6187[Lecture 00 - 8/31/2021]
+
 = From Java to C++
 
 We will be using C++. If you're familiar with Java, C++ supports the same programming features as Java. 
