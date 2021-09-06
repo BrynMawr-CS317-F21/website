@@ -11,7 +11,7 @@ include::header.adoc[]
 
 [.anns]
 == Announcements
-* Welcome to CS 317!
+* link:asst00.html[Assignment 00] due September 09, midnight
 
 == **Schedule**
 

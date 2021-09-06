@@ -19,17 +19,7 @@ Lecture Topics:
 = Lectures
 
 * link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=20652954-119a-491d-b8e1-ad9600eb6187[Lecture 00 - 8/31/2021]
-
-= From Java to C++
-
-We will be using C++. If you're familiar with Java, C++ supports the same programming features as Java. 
-
-* link:JavaToC++.pdf[Java to C++]
-** link:https://github.com/BrynMawr-CS317-F21/cpp-lecture[C++ examples from lecture]
-
-If you would like extra practice in C++, try the exercises from the following repository.
-
-* link:https://github.com/BrynMawr-CS312-2021/cplusplus-beginners[C++ Udemy Course]
+* link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=45cd0e74-564d-47dd-a179-ad9800d0f406[Lecture 01 - 9/2/2021]
 
 = Development environment
 
@@ -117,9 +107,11 @@ computed with sine and cosine.
 
 *Artist-driven animation*
 
-The animation is created by an artists, typicly using a technique called *key-framing*. In a key-framed 
-animation, the artist specifies the state of objects in the scene at different times. *Interpolation* is 
-then used to transition smoothly between keys.
+The animation is created by an artists, typically using a technique called *key-framing*. In a key-framed 
+animation, the artist specifies the state of objects in the scene at different times. For example, an artist 
+may use key frames to animate an object's color, transparency, position, orientation, or size. *Interpolation* is 
+then used to transition smoothly between keys. Artists use tools such as a *dope sheet* to keep track of the key frames 
+on an object.
 
 *Data-driven animation*
 
@@ -130,3 +122,118 @@ This technique may also use *retargeting* to fit the recorded motion to a charac
 Further reading:
 
 * Parent 1.1, 1.3
+
+= From Java to C++
+
+We will be using C++. If you're familiar with Java, C++ supports the same programming features as Java. 
+
+* link:JavaToC++.pdf[Java to C++]
+** link:https://github.com/BrynMawr-CS317-F21/cpp-lecture[C++ examples from lecture]
+
+If you would like extra practice in C++, try the exercises from the following repository.
+
+* link:https://github.com/BrynMawr-CS312-2021/cplusplus-beginners[C++ Udemy Course]
+
+= Git
+
+In lab, we briefly covered the git features that you will frequently need in this course.
+On windows, we will use `git bash` to run git commands. On mac and ubuntu, we will use a 
+terminal.
+
+*Obtaining class repositories*
+
+Repositories for the class are hosted on Github from link:https://github.com/BrynMawr-CS317-F21[here].
+
+You should fork the repositories into your own personal Github account.
+
+*Downloading a repository*
+
+`git clone <url-to-repository>`
+
+The url can be obtained from Github. This command will download the source from github onto your local 
+machine, e.g. your laptop or lab machine.
+
+*Updating a repository*
+
+To update your personal repository from BrynMawr-CS317-F21, click the "Fetch Upstream" button 
+on Github.
+
+To download changes from Github into your local repository, run 
+
+`git pull`
+
+*Adding files*
+
+[source]
+----
+git add <filename1> <filename2> ..
+git add .
+git add *.cpp
+----
+
+Call `git add` with the names of the files you want to add. Using "dot" will recursively add everything 
+from the current directory. You can also use wildcards for filenames, such as `git add *.cpp`
+
+To check the status of your repository, call 
+
+`git status`
+
+It is always a good idea to frequently check the status to ensure that the correct files are being modified!
+
+*Commit a file*
+
+Once a file is added you can "commit" the file. Committed files have their state saved in the repository. 
+You can always revert files to a previously committed state. 
+
+[source]
+----
+git commit -m <helpful message>
+git commit --amend -m <helpful message>
+----
+
+It is best practice to always put a helpful message so you can find a desired commit later using `git log`
+You can also amend a previous commit message if you make a typo.
+
+NOTE: Fun fact: commit messages can contain emojis.
+
+*Merging*
+
+It is very common to have a _conflict_ when pulling files into a local repository. When this happens, you need to 
+decide whether to 
+
+* keep the local changes (ours)
+* keep the remote changes (theirs)
+* keep a mix of the local and remote changes
+
+To keep the local changes, 
+
+`git checkout --ours <conflicted files>`
+
+To keep the remote changes,
+
+`git checkout --theirs <conflicted files>`
+
+To keep a mix of local and remote changes, edit the file. The file will contain both versions in 
+text blocks surrounded by "<<<<<<<<". Tools exist to aid with resolving conflicts, but we will 
+let you investigate what you like best. I personally think a simple text editor is often easiest.
+
+Once you have resolved the merge, you should add and commit your changes. 
+
+*Uploading changes*
+
+Committed changes must be uploaded to Github to be submitted. 
+
+`git push`
+
+By default, we use HTTPS for transferring files between Github and our local machine. In some cases, 
+this may not be supported. If HTTPS is not supported, you will need to setup SSH for transferring files. 
+
+NOTE: To setup SSH for git, follow the instructions link:https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh[here]
+
+*Additional resources:*
+
+* link:https://git-scm.com/docs/gittutorial[Git tutorial]
+* link:https://guides.github.com/activities/hello-world/[Github tutorial]
+* link:https://www.youtube.com/watch?v=8JJ101D3knE[Git Tutorial for Beginners]: Learn Git in 1 Hour (Programming with Mosh)
+
+(We will not use branches, tags or pull requests in this course.)
