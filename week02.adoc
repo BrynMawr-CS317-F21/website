@@ -13,12 +13,8 @@ Lecture Topics:
 * Animation software patterns
 * First animations: oscillation, forward and circular motion
 
-= Points, vectors, and time
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d1debb0e-da1f-49bb-8524-ad9c01399aba[Lecture 03 - 9/7/2021],link:Notes/Lecture03-9.7.2021.pdf[Notes 9/7/2021]
 
-Further reading:
-
-* 
-* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
 
 = Design patterns
 
@@ -28,6 +24,12 @@ Further reading:
 * link:https://gameprogrammingpatterns.com/game-loop.html[Game loop pattern]
 * link:https://www.glfw.org/docs/3.3/input_guide.html[GLFW Input Guide]
 //* link:https://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html[Mouse Listener in Java]
+
+= Points, vectors, and time
+
+Further reading:
+ 
+* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
 
 = First animations
 
