@@ -129,8 +129,8 @@ After this step, you should have executables installed into a new directory call
 
 [source]
 ----
-> ../bin/sphere3d
-> ../bin/sphere2d
+> ../bin/a0-sphere3d
+> ../bin/a0-sphere2d
 ----
 
 == Draw in 2D

@@ -24,8 +24,10 @@ Further reading:
 
 Further reading:
 
-* https://gameprogrammingpatterns.com/game-loop.html[Game loop]
-* link:http://gameprogrammingpatterns.com/update-method.html[Update method]
+* link:https://en.wikipedia.org/wiki/Event-driven_architecture[Event-driven architectures]
+* link:https://gameprogrammingpatterns.com/game-loop.html[Game loop pattern]
+* link:https://www.glfw.org/docs/3.3/input_guide.html[GLFW Input Guide]
+//* link:https://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html[Mouse Listener in Java]
 
 = First animations
 
