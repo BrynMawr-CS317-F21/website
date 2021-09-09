@@ -24,7 +24,7 @@ Introduction. Preliminaries. Math and C++ review
 Animation design patterns; Points, vectors, and time; Oscillations, forward and circular movement.
 
 * link:week02.html[Lecture notes and resources]
-* *Assignment 01*: link:Labs/lab1-hello.html[Hello Animation!] *Due Sept 16*
+* *Assignment 01*: link:asst01-hello.html[Hello Animation!] *Due Sept 17*
 
 //-----------------------------
 | 3
@@ -34,7 +34,7 @@ Animation design patterns; Points, vectors, and time; Oscillations, forward and 
 Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Casteljau's algorithm. 
 
 * link:week03.html[Lecture notes and resources]
-* *Assignment 02:* link:Labs/lab2-interp.html[Howl's moving casteljau]: *Due Sept 23*
+//* *Assignment 02:* link:Labs/lab2-interp.html[Howl's moving casteljau]: *Due Sept 23*
 * link:Q1Guide.html[Quiz1 Study Guide]: Math preliminaries and first animations
 
 //-----------------------------
@@ -46,7 +46,7 @@ Catmull-Rom splines. Hermite Splines.
 
 * *Sept 21* Quiz1
 * link:week04.html[Lecture notes and resources]
-* *Assignment 03:* link:Labs/lab3-spline.html[The Catmull-Rom Com]: *Due Sept 30*
+//* *Assignment 03:* link:Labs/lab3-spline.html[The Catmull-Rom Com]: *Due Sept 30*
 
 //-----------------------------
 |5
@@ -56,7 +56,7 @@ Catmull-Rom splines. Hermite Splines.
 Rotations. Matrices. Euler angles. Gimbol lock.
 
 * link:week05.html[Lecture notes and resources]
-* *Assignment 04:* link:Labs/lab4-rotations.html[You spin me round]: *Due Oct 7*
+//* *Assignment 04:* link:Labs/lab4-rotations.html[You spin me round]: *Due Oct 7*
 * link:Q2Guide.html[Quiz2 Study Guide]: Interpolation and splines
 
 //-----------------------------
@@ -68,7 +68,7 @@ General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 
 * *Oct 5* Quiz2
 * link:week06.html[Lecture notes and resources]
-* *Assignment 05:* link:Labs/lab5-quat.html[Quazy Quaternions]: *Due Oct 21 (after fall break)*
+//* *Assignment 05:* link:Labs/lab5-quat.html[Quazy Quaternions]: *Due Oct 21 (after fall break)*
 
 //-----------------------------
 |7
@@ -86,7 +86,7 @@ General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
 
 * Lengyel Chpt 4, Parent Chpt 2
-* *Assignment 06:* link:Labs/lab6-fk.html[Building character]: *Due Oct 28*
+//* *Assignment 06:* link:Labs/lab6-fk.html[Building character]: *Due Oct 28*
 
 //-----------------------------
 |9
@@ -101,7 +101,7 @@ Motion. Poses. Motion Representation. Motion Capture. Procedural animation.
 * link:SkeletonExamples.pd[Skeleton FK Example]
 * link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 
-* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Nov 4*
+//* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Nov 4*
 
 //-----------------------------
 |10
@@ -122,7 +122,7 @@ Transitions. Reorienting a motion. Crossfading.
 Analytical method for two-link chain. CCD Algorithm.
 
 * link:Labs/ikccd.ogv[CCD demo]
-* *Assignment 09:* link:Labs/lab9-ik.html[Reach for your goals]: *Due Nov 18*
+//* *Assignment 09:* link:Labs/lab9-ik.html[Reach for your goals]: *Due Nov 18*
 * link:Q4Guide.html[Quiz4 Study Guide]: Transformations
 
 //-----------------------------
@@ -139,7 +139,7 @@ Physics. Intro to rigid body simulation.
 * link:https://graphics.stanford.edu/courses/cs448b-00-winter/papers/phys_model.pdf[Physically Based Modeling SIGGRAPH Course]
 * Particle Systems. Demos: water, smoke, fireworks, cloth, jello
 * Simple force particle: link:Labs/forceParticle.cpp.txt[Code]
-* *Assignment 10:* link:Labs/Lab10-physics.html[Use the force]: *Due Nov 22*
+//* *Assignment 10:* link:Labs/Lab10-physics.html[Use the force]: *Due Nov 22*
 * *Quiz4 Nov 16*
 
 //-----------------------------
@@ -150,14 +150,14 @@ Physics. Intro to rigid body simulation.
 Steering behaviors. Crowd simulation.
 
 * link:http://www.red3d.com/cwr/steer/gdc99[Boids]
-* *Assignment 11:* link:Labs/lab10-steering.html[Flocks]: *Due Dec 2*
+//* *Assignment 11:* link:Labs/lab10-steering.html[Flocks]: *Due Dec 2*
 
 //-----------------------------
 |14
 |Nov 39, Dec 2
 |*Skinning* anchor:week14[]
 
-* *Assignment 12* link:Labs/lab11-free.html[Free Play]: *Due Dec 9*
+//* *Assignment 12* link:Labs/lab11-free.html[Free Play]: *Due Dec 9*
 * link:https://www.skinning.org/direct-methods.pdf[Skinning short course (SIGGRAPH 2014)]
 
 //-----------------------------
