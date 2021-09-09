@@ -14,7 +14,7 @@ Lecture Topics:
 * First animations: oscillation, forward and circular motion
 
 link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d1debb0e-da1f-49bb-8524-ad9c01399aba[Lecture 03 - 9/7/2021],link:Notes/Lecture03-9.7.2021.pdf[Notes 9/7/2021]
-
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=424de51e-4278-4812-b6b7-ad9e014c663f[Lecture 04 - 9/9/2021],link:Notes/Lecture04-9.9.2021.pdf[Notes 9/9/2021]
 
 = Design patterns
 
@@ -29,16 +29,12 @@ Further reading:
 
 Further reading:
  
-* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
+* Lengyel: Chapter 2, Appendix B.1, B.2, B.3, B.5, B.6
 
 = First animations
 
 Examples:
 
-* Particle moving in a circle. link:Labs/circle.cpp.txt[AniTk]/link:Labs/circle.pde.txt[Processing]/link:circle.cs.txt[Unity]
-* Particle with velocity. link:Labs/particle.cpp.txt[AniTk]/link:Labs/particle.pde.txt[Processing]/link:Labs/particle.cs.txt[Unity]
-
-
-Further reading:
-
-* Lengyel: Chapter 2, 3.1, Appendix B.1, B.2, B.3, B.6, B.6
+* Particle with velocity. link:https://github.com/alinen/animation-toolkit/blob/main/classexamples/week01-linearMotion.cpp[Code]
+* Particle moving in a circle. link:https://github.com/alinen/animation-toolkit/blob/main/classexamples/week01-circularMotion.cpp[Code]
+* Oscillating particle. link:https://github.com/alinen/animation-toolkit/blob/main/classexamples/week01-oscillatingMotion.cpp[Code]

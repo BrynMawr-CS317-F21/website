@@ -11,7 +11,7 @@ include::header.adoc[]
 
 [.anns]
 == Announcements
-* link:asst00.html[Assignment 00] due September 09, midnight
+* link:asst01-hello.html[Assignment 01] due September 17, midnight
 
 == **Schedule**
 
