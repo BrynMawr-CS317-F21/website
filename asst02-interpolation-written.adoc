@@ -1,0 +1,82 @@
+include::header.adoc[]
+
+:title: Assignment 02: Written Questions
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+:stem: latexmath
+
+= {title}
+
+[discrete]
+= Name: 
+
+*Due September 23rd, in class*
+
+[discrete]
+= Degree-2 Bezier Curve
+
+In class, we derived the Bezier curve for cubic interpolation. For this question, 
+derive the Bezier curve for a degree-2 polynomial. 
+
+In class, we saw that the formula for a nth-degree Bezier curve is 
+
+[stem]
+++++
+p(t) = \sum_{i=0}^n B_i^n(t) b_i
+++++
+
+1) Derive is the polynomial for a degree-2 Bezier curve 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+2) How many control points does a degree-2 Bezier curve need?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+3) How can we use de Casteljau's algorithm to interpolate using a degree-2 Bezier curve? 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+4) Show that de Casteljau's algorithm reduces to the same equation as the degree-2 Bezier Curve.
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +

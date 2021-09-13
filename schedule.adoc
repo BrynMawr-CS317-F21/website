@@ -34,7 +34,7 @@ Animation design patterns; Points, vectors, and time; Oscillations, forward and 
 Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Casteljau's algorithm. 
 
 * link:week03.html[Lecture notes and resources]
-//* *Assignment 02:* link:Labs/lab2-interp.html[Howl's moving casteljau]: *Due Sept 23*
+//* *Assignment 02:* link:asst02-interpolation.html[Howl's moving casteljau]: *Due Sept 24, at midnight*
 * link:Q1Guide.html[Quiz1 Study Guide]: Math preliminaries and first animations
 
 //-----------------------------

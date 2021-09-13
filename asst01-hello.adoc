@@ -4,7 +4,7 @@ include::header.adoc[]
 :Author Initials: ASN
 :Date:    2020-02-07
 :Revision: 0.1
-:Dir: a1
+:Dir: assignments/a1-hello
 
 = {title}
 

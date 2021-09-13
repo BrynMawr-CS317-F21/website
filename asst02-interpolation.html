@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 2: Howl's moving casteljau</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_2_howls_moving_casteljau">Assignment 2: Howl&#8217;s moving casteljau</a></li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_gradient">1. Gradient</a></li>
+<li><a href="#_draw_cubic">2. Draw Cubic</a></li>
+<li><a href="#_cubic_motion">3. Cubic motion</a></li>
+<li><a href="#_screensaver">4. Screensaver</a>
+<ul class="sectlevel2">
+<li><a href="#_single_curve">4.1. Single curve</a></li>
+<li><a href="#_trail_effect">4.2. Trail effect</a></li>
+</ul>
+</li>
+<li><a href="#_be_unique">5. Be Unique!</a></li>
+<li><a href="#_hand_in_your_work">6. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">6.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">6.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">6.4. Update your Readme.md</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_2_howls_moving_casteljau">Assignment 2: Howl&#8217;s moving casteljau</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>In which, we implement animations based on interpolation</em></p>
+</div>
+<div class="paragraph">
+<p>This assignment has <strong>two parts!</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Written part: Due Thursday, September 23rd, in class</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Implementation part: Due Friday, September 24th, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals of this lab are to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>understand derivations based On Bezier curves</p>
+</li>
+<li>
+<p>implement animations using linear interpolation</p>
+</li>
+<li>
+<p>implement animations using cubic interpolation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The written part is <a href="asst02-interpolation-written.html">here</a> and
+was given out in class as a handout. Please print the handout and write your answers
+inline.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gradient">1. Gradient</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A color gradient uses linear interpolation to gradually change from one color to another
+based on position.</p>
+</div>
+<div class="paragraph">
+<p>For this question, modify the code in <strong>a2-interp/gradient.cpp</strong> to implement a 2D gradient.
+Your program should open a square window and draw NxN cubes to fill it. The color of each
+cube will be a function of four colors and the cube&#8217;s position. The four colors will correspond
+to the four corners of the screen: NE, SE, SW, NW.</p>
+</div>
+<div class="paragraph">
+<p>To run your program from the <strong>/build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a2-gradient
+build-windows&gt; ../bin/Debug/a2-gradient</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s suppose that</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The northwest corner has color yellow (1,1,0). Let&#8217;s name this color \(C^{nw}\).</p>
+</li>
+<li>
+<p>The northeast corner has color cyan (0,1,1). Let&#8217;s name this color \(C^{ne}\).</p>
+</li>
+<li>
+<p>The southwest corner has color red (1,0,0). Let&#8217;s name this color \(C^{sw}\)</p>
+</li>
+<li>
+<p>The southeast corner has color fuchsia (1,0,1). Let&#8217;s name this color \(C^{se}\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A 2D gradient is computed in two steps. Suppose our cube is at position \((p_x, p_y)^T\).
+First, we interpolate from west to east.  Let \(t^x \in [0,1\)] be computed based on \(p_x\)
+and the window&#8217;s width.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[C_0^x = C^{nw} * (1-t^x) + C^{ne} * t^x \\
+C_1^x = C^{sw} * (1-t^x) + C^{se} * t^x\]
+</div>
+</div>
+<div class="paragraph">
+<p>Second, interpolate \(C_0^x\) and \(C_1^x\) based on the y direction. Let \(t^y \in [0,1\)] be computed
+based on \(p_y\) and the window&#8217;s height.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[C = C_0^{x} * (1-t^y) + C_1^{x} * t^y\]
+</div>
+</div>
+<div class="paragraph">
+<p>The final result is below</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/colorLerp3.png" alt="colorLerp3">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_draw_cubic">2. Draw Cubic</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file <strong>a2-interp/drawcurve.cpp</strong>, implement an application that draws a cubic curve
+(and its control points) using both Bernstein polynomials and De Casteljau&#8217;s algorithm.</p>
+</div>
+<div class="paragraph">
+<p>This application should hard-code the following control points:</p>
+</div>
+<div class="paragraph">
+<p>*
+*
+*
+*</p>
+</div>
+<div class="paragraph">
+<p>When the user presses the '1' key, you should draw the curve by sampling the
+Bezier curve polynomial, e.g.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[p(t) = (1 - t)^3 b_0 + 3t(1-t)^2 b_1 + 3t^2(1 - t) b_2 t^3 b_3\]
+</div>
+</div>
+<div class="paragraph">
+<p>When the user presses the '2' key, you should draw the same curve using
+de Casteljau&#8217;s algorithm. The two curves should look visually identical.</p>
+</div>
+<div class="paragraph">
+<p>You may implement your application however you wish!</p>
+</div>
+<div class="paragraph">
+<p>To run your program from the <strong>/build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>build&gt; ../bin/a2-drawcubic</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/drawCubic.png" alt="drawCubic">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cubic_motion">3. Cubic motion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement a demo, <strong>a2-interp/particlecubic.cpp</strong>, that
+animates the position of a particle based on a cubic polynomial.</p>
+</div>
+<div class="paragraph">
+<p>To run your program from the <strong>/build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a2-particlecubic</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/particleCubic.gif" alt="particleCubic">
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The particle should take 5 seconds to travel the curve.</p>
+</li>
+<li>
+<p>The particle should wrap to the beginning of the curve when it gets to the end. You can use any algorithm you want for this, but the simplest solution involves using the elapsed time and <a href="http://www.cplusplus.com/reference/cmath/fmod/">fmod</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_screensaver">4. Screensaver</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In class, we talked about how we can animate a curve by animating the
+control points. In this demo, we will compute a series of random curves and
+use linear interpolation between the control points to blend from one
+curve to the next.</p>
+</div>
+<div class="paragraph">
+<p>To run your program from the <strong>/build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a2-screensaver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We recommend you implement the demo in two steps.</p>
+</div>
+<div class="sect2">
+<h3 id="_single_curve">4.1. Single curve</h3>
+<div class="paragraph">
+<p>We will interpolate between curves having random control points. You will need to manage three curves.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the starting curve (e.g. curve1),</p>
+</li>
+<li>
+<p>the ending curve (e.g. curve2), and</p>
+</li>
+<li>
+<p>a curve that stores the current interpolation between them. Let&#8217;s call this curve 'current'</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When the current curve reaches curve 2, we compute a new curve to interpolate towards. The algorithm
+looks like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>if t &gt; 1
+   t = 0
+   curve1 = current
+   curve2 = new random curve
+
+current = interpolate between curve1 and curve2 based on t</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="Labs/screensaver1.gif" alt="screensaver1"></span></p>
+</div>
+<div class="paragraph">
+<p>Requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You should randomize colors</p>
+</li>
+<li>
+<p>The animation should run forever (don&#8217;t hardcode the number of curves)</p>
+</li>
+<li>
+<p>All control points should be within the bounds of the window</p>
+</li>
+<li>
+<p>Draw curve1, curve2, and current</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trail_effect">4.2. Trail effect</h3>
+<div class="paragraph">
+<p>To implement a trailing effect, save the previously interpolated curves in a
+<a href="http://www.cplusplus.com/reference/list/list/">list</a>.  So we don&#8217;t
+run out of memory, we store at most N previous curves. In the demo below, N is
+50.</p>
+</div>
+<div class="paragraph">
+<p>In the simplest trail implementation, we would add a new curve to our
+list every frame. In other words, whenever we update the current curve, we
+would also add it to our list. However, this creates a trail that has the
+lines close together. You should try this first.</p>
+</div>
+<div class="paragraph">
+<p>To make a prettier effect, we should only save the current curve only after
+T seconds have passed. In the demo below, X is 0.1 seconds. The algorithm looks
+like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>   timer = 0
+   add current curve to a list
+   if trail size &gt; max size
+      remove oldest curve from list</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/screensaver.gif" alt="screensaver">
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You should randomize colors</p>
+</li>
+<li>
+<p>The animation should run forever (don&#8217;t hardcode the number of curves)</p>
+</li>
+<li>
+<p>All control points should be within the bounds of the window</p>
+</li>
+<li>
+<p>Space out saving the current curve by T seconds. T &gt; 0</p>
+</li>
+<li>
+<p>Store at most N curves in your trail. N &gt; 5</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_be_unique">5. Be Unique!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a unique animation of your own choosing. Below are some ideas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Derive and implement a degree-N curve, N &gt; 3</p>
+</li>
+<li>
+<p>Derive and implement different polynomials for interpolation, such as the ones <a href="https://easings.net/en">here</a>. Or create your own.</p>
+</li>
+<li>
+<p>Implement a cool scene using curves, Create a scene with lots of curves or that integrate some interactivity from
+the user. Some ideas:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Play with colors (gradients, palettes, jitter). Use a cubic curve to animate color.</p>
+</li>
+<li>
+<p>Use sine/cosine to animate the control points</p>
+</li>
+<li>
+<p>Let the user specify control points with mouse click</p>
+</li>
+<li>
+<p>Animate the positions, colors, and scale of different shapes using cubic curves</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Animate one or more shapes using different interpolation curves.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/wavy.gif" alt="wavy" width="200px">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/grass.gif" alt="grass" width="200px">
+</div>
+</div>
+<div class="paragraph">
+<p>Be sure to describe your unique demo in your README.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">6. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">6.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">6.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">6.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a2-interp/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-09-13 13:46:31 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
