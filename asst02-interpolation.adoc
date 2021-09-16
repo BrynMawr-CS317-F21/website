@@ -13,7 +13,7 @@ _In which, we implement animations based on interpolation_
 
 This assignment has *two parts!*
 
-**Written part: Due Thursday, September 23rd, in class**
+**Written part: Due Thursday, September 16th, in lab (~30 min worksheet)**
 
 **Implementation part: Due Friday, September 24th, before midnight**
 
@@ -26,7 +26,6 @@ The goals of this lab are to
 The written part is link:asst02-interpolation-written.html[here] and 
 was given out in class as a handout. Please print the handout and write your answers 
 inline.
-
 
 = Get the source
 
@@ -97,10 +96,10 @@ In the file *a2-interp/drawcurve.cpp*, implement an application that draws a cub
 
 This application should hard-code the following control points:
 
-*
-*
-*
-*
+* (100,  50 , 0)
+* (150, 200 , 0)
+* (250, 100 , 0)
+* (300, 300 , 0)
 
 When the user presses the '1' key, you should draw the curve by sampling the 
 Bezier curve polynomial, e.g. 
@@ -238,6 +237,7 @@ the user. Some ideas:
 ** Animate the positions, colors, and scale of different shapes using cubic curves 
 * Animate one or more shapes using different interpolation curves.
 
+image::Labs/squash.gif[width=200px]
 image::Labs/wavy.gif[width=200px]
 image::Labs/grass.gif[width=200px]
 
