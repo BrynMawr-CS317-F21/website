@@ -34,8 +34,8 @@ Animation design patterns; Points, vectors, and time; Oscillations, forward and 
 Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Casteljau's algorithm. 
 
 * link:week03.html[Lecture notes and resources]
-//* *Assignment 02:* link:asst02-interpolation.html[Howl's moving casteljau]: *Due Sept 24, at midnight*
-* link:Q1Guide.html[Quiz1 Study Guide]: Math preliminaries and first animations
+* *Lab Worksheet* link:week03-lab-interpolation.html[Bezier Curves]: *Due Sept 16, midnight* 
+* *Assignment 02:* link:asst02-interpolation.html[Howl's moving casteljau]: *Due Sept 24, midnight*
 
 //-----------------------------
 |4
@@ -44,7 +44,6 @@ Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Castelj
 
 Catmull-Rom splines. Hermite Splines.
 
-* *Sept 21* Quiz1
 * link:week04.html[Lecture notes and resources]
 //* *Assignment 03:* link:Labs/lab3-spline.html[The Catmull-Rom Com]: *Due Sept 30*
 
@@ -55,9 +54,9 @@ Catmull-Rom splines. Hermite Splines.
 
 Rotations. Matrices. Euler angles. Gimbol lock.
 
+* *Sept 28* Quiz1 link:Q1Guide.html[Quiz1 Study Guide]: Math preliminaries and first animations
 * link:week05.html[Lecture notes and resources]
 //* *Assignment 04:* link:Labs/lab4-rotations.html[You spin me round]: *Due Oct 7*
-* link:Q2Guide.html[Quiz2 Study Guide]: Interpolation and splines
 
 //-----------------------------
 |6
@@ -66,7 +65,7 @@ Rotations. Matrices. Euler angles. Gimbol lock.
 
 General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 
-* *Oct 5* Quiz2
+* *Oct 7* Quiz2 link:Q2Guide.html[Quiz2 Study Guide]: Interpolation and splines
 * link:week06.html[Lecture notes and resources]
 //* *Assignment 05:* link:Labs/lab5-quat.html[Quazy Quaternions]: *Due Oct 21 (after fall break)*
 

@@ -15,7 +15,6 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_quiz_1_study_guide">Quiz 1: Study Guide</a></li>
-<li><a href="#_practice_questions_c">Practice questions: C++</a></li>
 <li><a href="#_vector_practice">Vector practice</a></li>
 </ul>
 </div>
@@ -33,197 +32,15 @@
 <div class="ulist">
 <ul>
 <li>
-<p>C++:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>float</code>, <code>char</code>, <code>std::string</code>, <code>int</code></p>
-</li>
-<li>
-<p>pass by value, pass by reference</p>
-</li>
-<li>
-<p><code>std::vector</code></p>
-</li>
-<li>
-<p><code>struct</code>, <code>class</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p>points and vectors</p>
 </li>
 <li>
 <p>coordinate systems</p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_practice_questions_c">Practice questions: C++</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>1) What is the value of x for the following expressions? Assume x has the correct
-type for the expression and that the following variables are defined.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>std::string hello = "hello";
-int a = 10;
-int b = 45;
-float c = -1.0;</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><code>x = a/10;</code></p>
-</li>
-<li>
-<p><code>x = a/3;</code></p>
-</li>
-<li>
-<p><code>x = c+4.1;</code></p>
-</li>
-<li>
-<p><code>x = asin(c);</code></p>
-</li>
-<li>
-<p><code>x = cos(0);</code></p>
-</li>
-<li>
-<p><code>x = hello + " friends";</code></p>
-</li>
-<li>
-<p><code>x = asin(a)</code></p>
-</li>
-<li>
-<p><code>x = b * M_PI/180</code></p>
+<p>matrix dimension, transpose, and multiplication</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>2) Consider the following program. Does it compile? If no, say why.
-If yes, what is its output?
-What is its output? (Note: the formatting for printing to vector should assume
-that the x, y, z components are printed in order)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>#include &lt;iostream&gt;
-#include "atk/aglm.h"
-
-void foo(glm::vec3&amp; p)
-{
-    p[1] = 10;
-    std::cout &lt;&lt; p &lt;&lt; std::endl;
-}
-
-int main(int argc, char** argv)
-{
-    glm::vec3 p(0,0,0);
-    foo(p);
-    std::cout &lt;&lt; p &lt;&lt; std::endl;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3) Consider the following program. Does it compile? If no, say why.
-If yes, what is its output?
-What is its output? (Note: the formatting for printing to vector should assume
-that the x, y, z components are printed in order)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>#include &lt;iostream&gt;
-#include "atk/aglm.h"
-
-void foo(const glm::vec3&amp; p)
-{
-    p[1] += 10;
-    std::cout &lt;&lt; p &lt;&lt; std::endl;
-}
-
-int main(int argc, char** argv)
-{
-   glm::vec3 p(0,0,0);
-   foo(p);
-   std::cout &lt;&lt; p &lt;&lt; std::endl;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>4) Consider the following program. Does it compile? If no, say why.
-If yes, what is its output?
-What is its output? (Note: the formatting for printing to vector should assume
-that the x, y, z components are printed in order)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>#include &lt;iostream&gt;
-#include "atk/aglm.h"
-
-void foo(const glm::vec3&amp; p)
-{
-    std::cout &lt;&lt; p + glm::vec3(0,10,0) &lt;&lt; std::endl;
-}
-
-int main(int argc, char** argv)
-{
-   foo(glm::vec3(0,0,0));
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>5) Consider the following program. Does it compile? If no, say why.
-If yes, what is its output?
-What is its output? (Note: the formatting for printing to vector should assume
-that the x, y, z components are printed in order)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>#include &lt;iostream&gt;
-#include "atk/aglm.h"
-
-void foo(glm::vec3 p)
-{
-   p[1] += 10;
-   std::cout &lt;&lt; p &lt;&lt; std::endl;
-}
-
-int main(int argc, char** argv)
-{
-   glm::vec3 p(0,0,0);
-   foo(p);
-   std::cout &lt;&lt; p &lt;&lt; std::endl;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>6) Consider the following program. Does it compile? If no, say why.
-If yes, what is its output?
-What is its output? (Note: the formatting for printing to vector should assume
-that the x, y, z components are printed in order)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>#include &lt;iostream&gt;
-
-void foo(glm::vec3&amp; p)
-{
-   std::cout &lt;&lt; p + glm::vec3(0,10,0) &lt;&lt; std::endl;
-}
-
-int main(int argc, char** argv)
-{
-   foo(glm::vec3(0,0,0));
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>7) Write a program that stores 3 points in a <code>std::vector</code>. Then iterate through the vector to print each instance out.</p>
 </div>
 </div>
 </div>
@@ -248,7 +65,7 @@ int main(int argc, char** argv)
 <p>What is the origin?</p>
 </li>
 <li>
-<p>What is the difference between a avector and a point?</p>
+<p>What is the difference between a direction and a point?</p>
 </li>
 <li>
 <p>What is a unit vector?</p>
@@ -283,10 +100,10 @@ The origin of each triangle is at the bottom left corner.</p>
 <p>Write psuedocode to position N traingles along the Y axis.</p>
 </li>
 <li>
-<p>Suppose the bottom triangle is traveling with velocity (0,1,0)units per second. At what time will it be aligned with the top triangle?</p>
+<p>Suppose the bottom triangle is traveling with velocity (0,1,0) units per second. At what time will it be aligned with the top triangle?</p>
 </li>
 <li>
-<p>What should the positions of the triangles be if we wish to position each triangle 130 degrees apart in a circle 1 unit away from the origin?</p>
+<p>What should the positions of the triangles be if we wish to position each triangle 130 degrees apart in a circle 1 unit away from the origin? Express your answer in terms of sine and cosine.</p>
 </li>
 </ul>
 </div>
@@ -294,7 +111,29 @@ The origin of each triangle is at the bottom left corner.</p>
 <p>3) Suppose we have a target at a point <strong>g</strong> and we wish to compute a point <strong>p</strong> between <strong>g</strong> and the origin. Derive an expression for <strong>p</strong> using atan2.</p>
 </div>
 <div class="paragraph">
-<p>4) Suppose we have a particle at position (1,1). What is its distance from the origin? What is its distance from the x-axis? Its distance from the y-axis? What is the angle between the direction (1,1) and the positive x-axis? Angle from the negative x-axis? Angle from the positive y-axis?</p>
+<p>4) Suppose we have a particle at position (1,1).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is its distance from the origin?</p>
+</li>
+<li>
+<p>What is its distance from the x-axis?</p>
+</li>
+<li>
+<p>Its distance from the y-axis?</p>
+</li>
+<li>
+<p>What is the angle between the direction (1,1) and the positive x-axis?</p>
+</li>
+<li>
+<p>Angle from the negative x-axis?</p>
+</li>
+<li>
+<p>Angle from the positive y-axis?</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>5) Suppose we have two particles at position (1,1) and (-3,4). Draw them. How far apart are they from each other?</p>
@@ -311,15 +150,12 @@ The origin of each triangle is at the bottom left corner.</p>
 <div class="paragraph">
 <p>9) Suppose we have an animation that runs at 24 fps. What does this mean? How many frames do we display in a minute? How much time passes between each frame?</p>
 </div>
-<div class="paragraph">
-<p>10) Suppose a character at position p = (1,5,0) is facing the direction fwd = (-1, -2, 0). Suppose the character&#8217;s field of view (fov) is 60 degrees. If another character is at position a = (2,3,0), can p see a?  Is a on the left or right of p? How far apart are they?</p>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-01 21:13:06 -0400
+Last updated 2021-09-17 17:30:50 -0400
 </div>
 </div>
 </body>

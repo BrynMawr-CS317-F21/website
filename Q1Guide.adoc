@@ -11,14 +11,18 @@ Quizzes are open book. 30 minutes at the start of class
 
 Topics:
 
+////
 * C++:
 ** `float`, `char`, `std::string`, `int`
 ** pass by value, pass by reference 
 ** `std::vector`
 ** `struct`, `class`
+////
 * points and vectors
 * coordinate systems
+* matrix dimension, transpose, and multiplication
 
+////
 = Practice questions: C++
 
 1) What is the value of x for the following expressions? Assume x has the correct 
@@ -155,6 +159,7 @@ int main(int argc, char** argv)
 ----
 
 7) Write a program that stores 3 points in a `std::vector`. Then iterate through the vector to print each instance out.
+////
 
 = Vector practice
 
@@ -164,7 +169,7 @@ int main(int argc, char** argv)
 * Suppose we have an angle X in degrees. Give an expression for converting it to radians.
 * Suppose we have an angle X in radians. Give an expression for converting it to degrees.
 * What is the origin?
-* What is the difference between a avector and a point?
+* What is the difference between a direction and a point?
 * What is a unit vector?
 * What does it mean to normalize a vector? Why might we want to do this?
 * Do the built-in functions for sin, cos, and tan in C++ take radians or degrees?
@@ -178,12 +183,19 @@ image::triangleStack.png[]
 
 * What should the positions of each triangle be if we would like the centers of each triangle to be along the Y-axis?
 * Write psuedocode to position N traingles along the Y axis.
-* Suppose the bottom triangle is traveling with velocity (0,1,0)units per second. At what time will it be aligned with the top triangle?
-* What should the positions of the triangles be if we wish to position each triangle 130 degrees apart in a circle 1 unit away from the origin?
+* Suppose the bottom triangle is traveling with velocity (0,1,0) units per second. At what time will it be aligned with the top triangle?
+* What should the positions of the triangles be if we wish to position each triangle 130 degrees apart in a circle 1 unit away from the origin? Express your answer in terms of sine and cosine.
 
 3) Suppose we have a target at a point *g* and we wish to compute a point *p* between *g* and the origin. Derive an expression for *p* using atan2.
 
-4) Suppose we have a particle at position (1,1). What is its distance from the origin? What is its distance from the x-axis? Its distance from the y-axis? What is the angle between the direction (1,1) and the positive x-axis? Angle from the negative x-axis? Angle from the positive y-axis?
+4) Suppose we have a particle at position (1,1). 
+
+* What is its distance from the origin? 
+* What is its distance from the x-axis? 
+* Its distance from the y-axis? 
+* What is the angle between the direction (1,1) and the positive x-axis? 
+* Angle from the negative x-axis? 
+* Angle from the positive y-axis?
 
 5) Suppose we have two particles at position (1,1) and (-3,4). Draw them. How far apart are they from each other?
 
@@ -195,4 +207,4 @@ image::triangleStack.png[]
 
 9) Suppose we have an animation that runs at 24 fps. What does this mean? How many frames do we display in a minute? How much time passes between each frame?
 
-10) Suppose a character at position p = (1,5,0) is facing the direction fwd = (-1, -2, 0). Suppose the character's field of view (fov) is 60 degrees. If another character is at position a = (2,3,0), can p see a?  Is a on the left or right of p? How far apart are they?
+//10) Suppose a character at position p = (1,5,0) is facing the direction fwd = (-1, -2, 0). Suppose the character's field of view (fov) is 60 degrees. If another character is at position a = (2,3,0), can p see a?  Is a on the left or right of p? How far apart are they?

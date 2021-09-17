@@ -45,13 +45,7 @@
 <p><em>In which, we implement animations based on interpolation</em></p>
 </div>
 <div class="paragraph">
-<p>This assignment has <strong>two parts!</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Written part: Due Thursday, September 23rd, in class</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Implementation part: Due Friday, September 24th, before midnight</strong></p>
+<p><strong>Due Friday, September 24th, before midnight</strong></p>
 </div>
 <div class="paragraph">
 <p>The goals of this lab are to</p>
@@ -59,20 +53,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>understand derivations based On Bezier curves</p>
-</li>
-<li>
 <p>implement animations using linear interpolation</p>
 </li>
 <li>
 <p>implement animations using cubic interpolation</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>The written part is <a href="asst02-interpolation-written.html">here</a> and
-was given out in class as a handout. Please print the handout and write your answers
-inline.</p>
 </div>
 </div>
 </div>
@@ -102,7 +88,7 @@ inline.</p>
 based on position.</p>
 </div>
 <div class="paragraph">
-<p>For this question, modify the code in <strong>a2-interp/gradient.cpp</strong> to implement a 2D gradient.
+<p>For this question, modify the code in <strong>a2-interpolation/gradient.cpp</strong> to implement a 2D gradient.
 Your program should open a square window and draw NxN cubes to fill it. The color of each
 cube will be a function of four colors and the cube&#8217;s position. The four colors will correspond
 to the four corners of the screen: NE, SE, SW, NW.</p>
@@ -169,17 +155,27 @@ based on \(p_y\) and the window&#8217;s height.</p>
 <h2 id="_draw_cubic">2. Draw Cubic</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the file <strong>a2-interp/drawcurve.cpp</strong>, implement an application that draws a cubic curve
+<p>In the file <strong>a2-interpolation/drawcurve.cpp</strong>, implement an application that draws a cubic curve
 (and its control points) using both Bernstein polynomials and De Casteljau&#8217;s algorithm.</p>
 </div>
 <div class="paragraph">
 <p>This application should hard-code the following control points:</p>
 </div>
-<div class="paragraph">
-<p>*
-*
-*
-*</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(100,  50 , 0)</p>
+</li>
+<li>
+<p>(150, 200 , 0)</p>
+</li>
+<li>
+<p>(250, 100 , 0)</p>
+</li>
+<li>
+<p>(300, 300 , 0)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>When the user presses the '1' key, you should draw the curve by sampling the
@@ -216,7 +212,7 @@ de Casteljau&#8217;s algorithm. The two curves should look visually identical.</
 <h2 id="_cubic_motion">3. Cubic motion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a demo, <strong>a2-interp/particlecubic.cpp</strong>, that
+<p>Implement a demo, <strong>a2-interpolation/particlecubic.cpp</strong>, that
 animates the position of a particle based on a cubic polynomial.</p>
 </div>
 <div class="paragraph">
@@ -251,13 +247,11 @@ animates the position of a particle based on a cubic polynomial.</p>
 <h2 id="_screensaver">4. Screensaver</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In class, we talked about how we can animate a curve by animating the
-control points. In this demo, we will compute a series of random curves and
-use linear interpolation between the control points to blend from one
-curve to the next.</p>
+<p>In class, we talked about how we can animate a curve by animating the control points. In this demo, we will compute a series of random curves and use linear interpolation between the control points to blend from one curve to the next.</p>
 </div>
 <div class="paragraph">
-<p>To run your program from the <strong>/build</strong> directory, type</p>
+<p>Implement your screensaver program in <strong>a2-interpolation/screensaver.cpp</strong>.
+To run your program from the <strong>/build</strong> directory, type</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -383,7 +377,7 @@ like</p>
 <h2 id="_be_unique">5. Be Unique!</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create a unique animation of your own choosing. Below are some ideas:</p>
+<p>Implement your own unique animation in <strong>a2-interpolation/unique.cpp</strong>. Below are some ideas:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -417,6 +411,11 @@ the user. Some ideas:</p>
 <p>Animate one or more shapes using different interpolation curves.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/squash.gif" alt="squash" width="200px">
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -553,7 +552,7 @@ videos should be less than 5 MB.
 <div class="sect2">
 <h3 id="_update_your_readme_md">6.4. Update your Readme.md</h3>
 <div class="paragraph">
-<p>Update <code>assignments/a2-interp/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+<p>Update <code>assignments/a2-interpolation/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
 </div>
 <div class="paragraph">
 <p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
@@ -572,7 +571,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-13 13:46:31 -0400
+Last updated 2021-09-17 17:21:58 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
