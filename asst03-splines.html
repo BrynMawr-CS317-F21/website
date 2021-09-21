@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 3: The Catmull-ROM COM</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_3_the_catmull_rom_com">Assignment 3: The Catmull-ROM COM</a>
+<ul class="sectlevel2">
+<li><a href="#_user_interface">User interface</a></li>
+<li><a href="#_implementation_overview">Implementation overview</a></li>
+</ul>
+</li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_linear_splines">1. Linear splines</a></li>
+<li><a href="#_catmull_rom_splines">2. Catmull-ROM splines</a></li>
+<li><a href="#_hermite_spline">3. Hermite spline</a></li>
+<li><a href="#_curve_editor">4. Curve editor</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_3_the_catmull_rom_com">Assignment 3: The Catmull-ROM COM</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>In which, we build a curve editor for Catmull-Rom and Hermite splines</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Due Friday, Oct 1, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals of this lab are to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement Catmull-Rom splines</p>
+</li>
+<li>
+<p>Implement Hermite splines</p>
+</li>
+<li>
+<p>Implement an interactive spline editor</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="Labs/Curve-Screenshot.png" alt="Curve Screenshot"></span></p>
+</div>
+<div class="sect2">
+<h3 id="_user_interface">User interface</h3>
+<div class="paragraph">
+<p>The basecode includes a simple UI to help you test your splines.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Blue points represent the input data (aka keys) which are interpolated between.</p>
+</li>
+<li>
+<p>Yellow points represent additional control points</p>
+</li>
+</ul>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="spline.ogv" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p>The UI panel contains widgets for</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Type</strong>: interpolation type (You will implement
+Linear, Catmull-Rom, and Hermite</p>
+</li>
+<li>
+<p><strong>Mode</strong>: how left mouse clicks are interpreted:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add</strong>: append points to the curve</p>
+</li>
+<li>
+<p><strong>Edit</strong>: drag curve points (blue) and control points (yellow) using the</p>
+</li>
+<li>
+<p><strong>Delete</strong>: remove curve points (blue)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Ctrl pts</strong>: toggle the display of control points (yellow)</p>
+</li>
+<li>
+<p><strong>Clear</strong>: remove the entire curve.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementation_overview">Implementation overview</h3>
+<div class="paragraph">
+<p>Question: allow students to design their own, or give them a design?
+For this assignment you will implement</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linear_splines">1. Linear splines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement a spline capable of performing linear interpolation.</p>
+</div>
+<div class="paragraph">
+<p>TODO: Test program to ensure that it works</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_catmull_rom_splines">2. Catmull-ROM splines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement a catmull-rom spline.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hermite_spline">3. Hermite spline</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_curve_editor">4. Curve editor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Part 2&lt;/b&gt;. To start, the viewer should draw your keys but not the curve between them. To see your curve,
+implement the method &lt;b&gt;ACurveeditor::drawCurve&lt;/b&gt; in &lt;b&gt;ACurveEditor.cpp&lt;/b&gt;. Draw the spline similarly to how your drew
+your curves from the last assignment.</p>
+</div>
+<div class="paragraph">
+<p>&lt;br&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3&gt;Question 2: Catmull-Rom interpolator (20 points)&lt;/h3&gt;
+&lt;hr&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;This question has multiple parts.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Part 1 (10 points)&lt;/b&gt; For this part, modify the code in
+&lt;b&gt;AInterpolator-basecode.cpp (libsrc/animation)&lt;/b&gt; to implement
+&lt;b&gt;AInterpolatorCatmullRom::computeControlPoints&lt;/b&gt;. For each segment, you
+should set b0, b1, b2, and b3 (in this order). Check the output of
+&lt;b&gt;testCatmullRom.cpp&lt;/b&gt; to check whether your implementation gives the same
+results as our example from class.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;To run your program from the &lt;b&gt;build&lt;/b&gt; directory, type
+&lt;pre class="prettyprint lang-sh"&gt;
+build&gt; ../bin/a3-testCatmullRom
+&lt;/pre&gt;
+&lt;/p&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Part 2 (10 points)&lt;/b&gt;. For this part, modify the code in
+&lt;b&gt;AInterpolator-basecode.cpp (libsrc/animation)&lt;/b&gt; to implement
+&lt;b&gt;AInterpolatorCatmullRom::interpolate&lt;/b&gt;. You can use any method (Bernstein
+functions or de Casteljau&#8217;s algorithm) to interpolate the segment.  Check the
+output using the viewer.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;To run from the &lt;b&gt;build&lt;/b&gt; directory, type
+&lt;pre class="prettyprint lang-sh"&gt;
+build&gt; ../bin/a3-curveEditor
+&lt;/pre&gt;
+&lt;/p&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;br&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3&gt;Question 3: Hermite interpolator (20 points)&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;This question has multiple parts.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Part 1 (10 points)&lt;/b&gt;. Modify the code in
+&lt;b&gt;AInterpolator-basecode.cpp (libsrc/animation)&lt;/b&gt; to implement
+&lt;b&gt;AInterpolatorHermite::computeControlPoints&lt;/b&gt;. For each input key p&lt;sub&gt;i&lt;/sub&gt;,
+you should set p&lt;sub&gt;i&lt;/sub&gt; and p'&lt;sub&gt;i&lt;/sub&gt; as control points (in that order). Check the output of
+&lt;b&gt;testHermite.cpp&lt;/b&gt; to check whether your implementation gives the same
+results as our example from class.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;To run your program from the &lt;b&gt;build&lt;/b&gt; directory, type
+&lt;pre class="prettyprint lang-sh"&gt;
+build&gt; ../bin/a3-testHermite
+&lt;/pre&gt;
+&lt;/p&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Part 2 (10 points)&lt;/b&gt; Modify the code in &lt;b&gt;AInterpolator-basecode.cpp
+(libsrc/animation)&lt;/b&gt; to implement &lt;b&gt;AInterpolatorHermite::interpolate&lt;/b&gt;.
+You should use the Hermite form of the cubic bezier curve to interpolate.
+Check the output using the viewer.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;To run from the &lt;b&gt;build&lt;/b&gt; directory, type
+&lt;pre class="prettyprint lang-sh"&gt;
+build&gt; ../bin/a3-curveEditor
+&lt;/pre&gt;
+&lt;/p&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;br&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3&gt;Question 4: Animate the dot (5 points)&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;In &lt;b&gt;ACurveEditor::update()&lt;/b&gt;, use your spline to animate a dot so it moves along the spline. The basecode in
+ACurveEditor has a member variable &lt;b&gt;mDot&lt;/b&gt; with type AVector3. Update the value of mDot.</p>
+</div>
+<div class="paragraph">
+<p>&lt;br&gt;
+&lt;br&gt;
+&lt;img src="dot.gif"&gt;
+&lt;br&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;hr&gt;
+&lt;h2&gt;Extra Credit (Up to 2 points)&lt;/h2&gt;
+&lt;hr&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Option 1&lt;/b&gt;Improve ASpline::computeSegment. This method uses linear search to find the
+interval containing time. Replace the implementation to use binary search.</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Option 2&lt;/b&gt; Now that your framework supports splines,
+try to make an interesting demo based on that.
+Some ideas</p>
+</div>
+<div class="paragraph">
+<p>&lt;ul&gt;
+&lt;li&gt;Try animating the control points.&lt;/li&gt;
+&lt;li&gt;Try interpolating between curves.&lt;/li&gt;
+&lt;li&gt;Try animating an object&#8217;s position/color/etc based on a spline.&lt;/li&gt;
+&lt;/ul&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;br&gt;
+&lt;img src="balls.gif"&gt;
+&lt;br&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;p&gt;&lt;b&gt;Option 3&lt;/b&gt; Implement your own interpolator type!</p>
+</div>
+<div class="paragraph">
+<p>&lt;br&gt;
+&lt;hr&gt;
+&lt;h2&gt;Submission Requirements (1 points)&lt;/h2&gt;
+&lt;hr&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;div id="submission"&gt;&lt;/div&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;"&gt;
+&lt;/div&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;/body&gt;
+&lt;/html&gt;</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-09-21 15:47:50 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
