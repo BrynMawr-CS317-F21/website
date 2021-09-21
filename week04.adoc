@@ -7,7 +7,16 @@ include::header.adoc[]
 
 = {title}
 
+Lecture topics:
 
+* Catmull-ROM splines
+* Hermite splines
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff38c2c1-c345-48ac-9925-adaa013ff422[Lecture 9/21/2021], link:Notes/Lecture07-9.21.2021.pdf[Notes]
+
+Additional resources and demos:
+
+* Parent Sections 3.1, 3.2, 4.1, B.5.1, B.5.2, B.5.5., B.5.6 
 * Lengyel: 11.1-11.4
 * Solving equations using Eigen: link:Labs/solveEqn.cpp.txt[Example1]/link:Labs/hermiteEx.cpp.txt[Example2]
 * Spline Example: link:CatmullRomExample.pdf[Catmull-Rom]/link:HermiteExample.pdf[Hermite]
