@@ -25,6 +25,7 @@
 <li><a href="#_catmull_rom_splines">2. Catmull-ROM splines</a></li>
 <li><a href="#_hermite_spline">3. Hermite spline</a></li>
 <li><a href="#_curve_editor">4. Curve editor</a></li>
+<li><a href="#_be_unique">5. Be Unique!</a></li>
 </ul>
 </div>
 </div>
@@ -155,166 +156,111 @@ For this assignment you will implement</p>
 <h2 id="_catmull_rom_splines">2. Catmull-ROM splines</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a catmull-rom spline.</p>
+<p>Implement a Catmull-ROM spline using the formulation from class.</p>
+</div>
+<div class="paragraph">
+<p><strong>testCatmullRom.cpp</strong> to check whether your implementation gives the same
+results as our example from lab.</p>
+</div>
+<div class="paragraph">
+<p>To run your program from the <strong>build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a3-testCatmullRom</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_hermite_spline">3. Hermite spline</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Implement a Hermite spline using the formulation from class.</p>
+</div>
+<div class="paragraph">
+<p><strong>testHermite.cpp</strong> to check whether your implementation gives the same
+results as our example from lab.</p>
+</div>
+<div class="paragraph">
+<p>To run your program from the <strong>build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a3-testHermite</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_curve_editor">4. Curve editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Part 2&lt;/b&gt;. To start, the viewer should draw your keys but not the curve between them. To see your curve,
-implement the method &lt;b&gt;ACurveeditor::drawCurve&lt;/b&gt; in &lt;b&gt;ACurveEditor.cpp&lt;/b&gt;. Draw the spline similarly to how your drew
-your curves from the last assignment.</p>
+<p>In the file <strong>a3-splines/curveeditor.cpp</strong>, complete the implementation
+of the curve editor.</p>
 </div>
 <div class="paragraph">
-<p>&lt;br&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;h3&gt;Question 2: Catmull-Rom interpolator (20 points)&lt;/h3&gt;
-&lt;hr&gt;</p>
+<p>To run from the <strong>build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a3-curveeditor</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>&lt;p&gt;This question has multiple parts.</p>
+<p>Features:</p>
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Part 1 (10 points)&lt;/b&gt; For this part, modify the code in
-&lt;b&gt;AInterpolator-basecode.cpp (libsrc/animation)&lt;/b&gt; to implement
-&lt;b&gt;AInterpolatorCatmullRom::computeControlPoints&lt;/b&gt;. For each segment, you
-should set b0, b1, b2, and b3 (in this order). Check the output of
-&lt;b&gt;testCatmullRom.cpp&lt;/b&gt; to check whether your implementation gives the same
-results as our example from class.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Draw the curve in <code>todo</code></p>
+</li>
+<li>
+<p>Add new data points in <code>todo</code></p>
+</li>
+<li>
+<p>Delete data points in <code>todo</code></p>
+</li>
+<li>
+<p>Edit the data points in <code>todo</code></p>
+</li>
+<li>
+<p>Etc</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;To run your program from the &lt;b&gt;build&lt;/b&gt; directory, type
-&lt;pre class="prettyprint lang-sh"&gt;
-build&gt; ../bin/a3-testCatmullRom
-&lt;/pre&gt;
-&lt;/p&gt;</p>
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Part 2 (10 points)&lt;/b&gt;. For this part, modify the code in
-&lt;b&gt;AInterpolator-basecode.cpp (libsrc/animation)&lt;/b&gt; to implement
-&lt;b&gt;AInterpolatorCatmullRom::interpolate&lt;/b&gt;. You can use any method (Bernstein
-functions or de Casteljau&#8217;s algorithm) to interpolate the segment.  Check the
-output using the viewer.</p>
 </div>
+<div class="sect1">
+<h2 id="_be_unique">5. Be Unique!</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>&lt;p&gt;To run from the &lt;b&gt;build&lt;/b&gt; directory, type
-&lt;pre class="prettyprint lang-sh"&gt;
-build&gt; ../bin/a3-curveEditor
-&lt;/pre&gt;
-&lt;/p&gt;</p>
+<p>Implement your own unique animation in <strong>a3-splines/unique.cpp</strong>. Below are some ideas:</p>
 </div>
-<div class="paragraph">
-<p>&lt;br&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;h3&gt;Question 3: Hermite interpolator (20 points)&lt;/h3&gt;
-&lt;hr&gt;
-&lt;p&gt;This question has multiple parts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement a spline using a different interpolating curve</p>
+</li>
+<li>
+<p>Animate a character that has splines for limbs</p>
+</li>
+<li>
+<p>Use splines to animate shapes or create interesting patterns</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Part 1 (10 points)&lt;/b&gt;. Modify the code in
-&lt;b&gt;AInterpolator-basecode.cpp (libsrc/animation)&lt;/b&gt; to implement
-&lt;b&gt;AInterpolatorHermite::computeControlPoints&lt;/b&gt;. For each input key p&lt;sub&gt;i&lt;/sub&gt;,
-you should set p&lt;sub&gt;i&lt;/sub&gt; and p'&lt;sub&gt;i&lt;/sub&gt; as control points (in that order). Check the output of
-&lt;b&gt;testHermite.cpp&lt;/b&gt; to check whether your implementation gives the same
-results as our example from class.</p>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/balls.gif" alt="balls">
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;To run your program from the &lt;b&gt;build&lt;/b&gt; directory, type
-&lt;pre class="prettyprint lang-sh"&gt;
-build&gt; ../bin/a3-testHermite
-&lt;/pre&gt;
-&lt;/p&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Part 2 (10 points)&lt;/b&gt; Modify the code in &lt;b&gt;AInterpolator-basecode.cpp
-(libsrc/animation)&lt;/b&gt; to implement &lt;b&gt;AInterpolatorHermite::interpolate&lt;/b&gt;.
-You should use the Hermite form of the cubic bezier curve to interpolate.
-Check the output using the viewer.</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;To run from the &lt;b&gt;build&lt;/b&gt; directory, type
-&lt;pre class="prettyprint lang-sh"&gt;
-build&gt; ../bin/a3-curveEditor
-&lt;/pre&gt;
-&lt;/p&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;br&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;h3&gt;Question 4: Animate the dot (5 points)&lt;/h3&gt;
-&lt;hr&gt;
-&lt;p&gt;In &lt;b&gt;ACurveEditor::update()&lt;/b&gt;, use your spline to animate a dot so it moves along the spline. The basecode in
-ACurveEditor has a member variable &lt;b&gt;mDot&lt;/b&gt; with type AVector3. Update the value of mDot.</p>
-</div>
-<div class="paragraph">
-<p>&lt;br&gt;
-&lt;br&gt;
-&lt;img src="dot.gif"&gt;
-&lt;br&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;hr&gt;
-&lt;h2&gt;Extra Credit (Up to 2 points)&lt;/h2&gt;
-&lt;hr&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Option 1&lt;/b&gt;Improve ASpline::computeSegment. This method uses linear search to find the
-interval containing time. Replace the implementation to use binary search.</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Option 2&lt;/b&gt; Now that your framework supports splines,
-try to make an interesting demo based on that.
-Some ideas</p>
-</div>
-<div class="paragraph">
-<p>&lt;ul&gt;
-&lt;li&gt;Try animating the control points.&lt;/li&gt;
-&lt;li&gt;Try interpolating between curves.&lt;/li&gt;
-&lt;li&gt;Try animating an object&#8217;s position/color/etc based on a spline.&lt;/li&gt;
-&lt;/ul&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;br&gt;
-&lt;img src="balls.gif"&gt;
-&lt;br&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Option 3&lt;/b&gt; Implement your own interpolator type!</p>
-</div>
-<div class="paragraph">
-<p>&lt;br&gt;
-&lt;hr&gt;
-&lt;h2&gt;Submission Requirements (1 points)&lt;/h2&gt;
-&lt;hr&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;div id="submission"&gt;&lt;/div&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;div id="footer" style="font-size: 8pt; color: rgb(119, 119, 119);text-align:right;"&gt;
-&lt;/div&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;/body&gt;
-&lt;/html&gt;</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-21 15:47:50 -0400
+Last updated 2021-09-21 16:45:48 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

@@ -97,7 +97,7 @@ Bezier curve polynomial, e.g.
 
 [stem]
 ++++
-p(t) = (1 - t)^3 b_0 + 3t(1-t)^2 b_1 + 3t^2(1 - t) b_2 t^3 b_3
+p(t) = (1 - t)^3 b_0 + 3t(1-t)^2 b_1 + 3t^2(1 - t) b_2 + t^3 b_3
 ++++
 
 
