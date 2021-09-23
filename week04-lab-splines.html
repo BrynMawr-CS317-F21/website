@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Understanding splines</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<h2 id="_understanding_splines" class="discrete">Understanding splines</h2>
+<h2 id="_name" class="discrete">Name:</h2>
+<div class="paragraph">
+<p><strong>Due September 23rd, in lab</strong></p>
+</div>
+<div class="paragraph">
+<p>This worksheet is intended as a short 30 min exercise to be done in groups of 2-3 people.</p>
+</div>
+<h2 id="_catmull_rom_splines" class="discrete">Catmull-ROM splines</h2>
+<div class="paragraph">
+<p>Consider a cubic Catmull-ROM spline with data points at</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(p_0 = (0, 0)^T\)</p>
+</li>
+<li>
+<p>\(p_1 = (1, 1)^T\)</p>
+</li>
+<li>
+<p>\(p_2 = (2, 0)^T\)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>1) Draw the data points</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>2) How many segments does the spline have?</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>3) To ensure C1 continuity, what equations should we use to compute four control
+points for each interior segment of the spline? What about the endpoints?</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>4) Compute the control points for segment 0 (the first segment). Draw the control points above.</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>5) Compute the control points for segment 1 (the second segment). Draw the control points above.</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>6) Suppose each data point is uniformly spaced such that p0 is at time 0, p1 is at time 1, and p2 is at time 2.
+What is the value of the curve at p(1.5)?</p>
+</div>
+<h2 id="_hermite_splines" class="discrete">Hermite splines</h2>
+<div class="paragraph">
+<p>Recall that for Hermite splines, each segment is interpolated using the
+two endpoints \(p_1\) and \(p_2\) along with the slopes at each
+point.</p>
+</div>
+<div class="paragraph">
+<p>We will derive the process for computing
+slopes which give us C2 continuity at each input key.</p>
+</div>
+<div class="paragraph">
+<p>Our goal is to have</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f_i^{''}(1) = f_{i+1}^{''}(0)\]
+</div>
+</div>
+<div class="paragraph">
+<p>&gt;Our approach is to derive expressions for \(f^{''}(0)\)
+and \(f^{''}(1)\) then use these expressions to setup a system of
+linear equations to solve for \(p_i^{'}\)</p>
+</div>
+<div class="paragraph">
+<p>Recall that the equation for interpolating with a Hermite spline is</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f(t) = p_i H_0^3(t) + p_i^{'} H_1^3(t) + p_{i+1}^{'} H_2^3(t) + p_{i+1} H_3^3(t)\]
+</div>
+</div>
+<div class="paragraph">
+<p>where</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{align*}
+H_0^3(t) &amp;= 1 - 3 t^2 + 2 t^3 \\
+H_1^3(t) &amp;= t - 2 t^2 + t^3  \\
+H_2^3(t) &amp;= -t^2 + t^3  \\
+H_3^3(t) &amp;= 3 t^2 - 2 t^3
+\end{align*}\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is \(f^{''}(t)\)?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is \(f_{i+1}^{''}(0)\)?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is \(f_i^{''}(1)\) ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We want \(f_i^{''}(1) = f_{i+1}^{''}(0)\). Substitute the expressions from the previous two questions into this equation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the previous question, which variables are unknowns and which are known?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Rearrange the terms from question 4 so that the unknown variables are on the right hand side and the known variables are on the left hand side. This equation tells us the relationship between the input keys and the slopes at each key.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppose we have a Hermite spline with 5 points</p>
+<div class="literalblock">
+<div class="content">
+<pre>p0 = (0,0,0)
+p1 = (1,2,0)
+p2 = (3,3,0)
+p3 = (6,3,0)
+p4 = (8,0,0)</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Plug in these points into your equation for question 6. You can define three
+equations that we can use to solve for the slopes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Put the equations from the previous question in matrix form P = A P'.</p>
+</li>
+</ul>
+</div>
+<div class="stemblock">
+<div class="content">
+\[P =
+\left[
+\begin{array}{c}
+f_{key}(p_0,p_2)\\
+f_{key}(p_1,p_3)\\
+f_{key}(p_2,p_4)
+\end{array}
+\right]
+
+A =
+\left[
+\begin{array}{ccccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; 0 &amp; 0\\
+0 &amp; a_{22} &amp; a_{23} &amp; a_{24} &amp; 0\\
+0 &amp; 0 &amp; a_{33} &amp; a_{34} &amp; a_{35}
+\end{array}
+\right]
+
+P' =
+\left[
+\begin{array}{c}
+p^{'}_0\\
+p^{'}_1\\
+p^{'}_2\\
+p^{'}_3\\
+p^{'}_4
+\end{array}
+\right]\]
+</div>
+</div>
+<div class="paragraph">
+<p>A is a 3x5 matrix, P' is a 5x3 matrix of the slopes and P is a 3x3 matrix of vectors. What are the
+values for each row of P?  What are the values of each \(a_{ij}\)?</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>How can we augment the above matrix to support clamped endpoint conditions?</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>How can we augment the above matrix to support natural endpoint conditions?</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-09-23 12:49:33 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
