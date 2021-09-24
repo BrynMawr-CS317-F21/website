@@ -25,3 +25,4 @@ Additional Resources and demos:
 * de Casteljau's algorithm: link:Labs/deCasteljau.gif[Demo 1]/link:Labs/deCasteljau-curlyQ.gif[Demo 2]
 * link:https://www.cs.brynmawr.edu/~alinen/lab-website/cs110/notes/week02.html#_snake[Snake implemented with Processing]
 * link:https://www.cs.brynmawr.edu/~alinen/lab-website/cs110/notes/week03.html#_interactive_heart_demo["Heart" demo with Processing]
+* link:https://github.com/alinen/animation-toolkit/blob/main/classexamples/week02-drawline.cpp[How to draw a line]

@@ -45,6 +45,7 @@ Linear and cubic interpolation. Bezier curves, Bernstein polynomials. De Castelj
 Catmull-Rom splines. Hermite Splines.
 
 * link:week04.html[Lecture notes and resources]
+* *Lab Worksheet* link:week04-lab-splines.html[Catmull-ROM and Hermite splines]: *Due Sept 30th, in class* 
 //* *Assignment 03:* link:Labs/lab3-spline.html[The Catmull-Rom Com]: *Due Sept 30*
 
 //-----------------------------

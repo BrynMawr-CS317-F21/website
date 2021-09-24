@@ -12,7 +12,7 @@ include::header.adoc[]
 [discrete]
 = Name: 
 
-*Due September 23rd, in lab*
+*Due September 30th, in class*
 
 This worksheet is intended as a short 30 min exercise to be done in groups of 2-3 people.
 
