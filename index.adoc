@@ -11,7 +11,7 @@ include::header.adoc[]
 
 [.anns]
 == Announcements
-* link:asst02-interpolation.html[Assignment 02] due September 24, midnight
+* link:asst03-splines.html[Assignment 03] due Oct 1, midnight
 * link:Q1Guide.html[Quiz1 Study Guide] *Quiz 1* in class, 30 min, September 28th
 * *Lab Worksheet* link:week04-lab-splines.html[Catmull-ROM and Hermite splines]: *Due Sept 30th, in class* 
 
