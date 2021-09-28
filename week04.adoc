@@ -13,7 +13,7 @@ Lecture topics:
 * Hermite splines
 
 link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff38c2c1-c345-48ac-9925-adaa013ff422[Lecture 9/21/2021], link:Notes/Lecture07-9.21.2021.pdf[Notes]
-link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=10e86795-0fd2-446a-bd41-adac015653a0[Lecture 9/23/2021], link:Notes/Lecture08-9.23.2021.psd[Notes]
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=10e86795-0fd2-446a-bd41-adac015653a0[Lecture 9/23/2021], link:Notes/Lecture08-9.23.2021.pdf[Notes]
 
 Additional resources and demos:
 
