@@ -46,7 +46,7 @@ Catmull-Rom splines. Hermite Splines.
 
 * link:week04.html[Lecture notes and resources]
 * *Lab Worksheet* link:week04-lab-splines.html[Catmull-ROM and Hermite splines]: *Due Sept 30th, in class* 
-* *Assignment 03:* link:Labs/asst03-spline.html[The Catmull-Rom Com]: *Due Oct 1, midnight*
+* *Assignment 03:* link:asst03-splines.html[The Catmull-Rom Com]: *Due Oct 1, midnight*
 
 //-----------------------------
 |5
