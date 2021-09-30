@@ -1,0 +1,179 @@
+include::header.adoc[]
+
+:title: Understanding euler angles
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+:stem: latexmath
+
+[discrete]
+= {title}
+
+[discrete]
+= Name: 
+
+*Due September 30th, in lab*
+
+This worksheet is intended as a short 30 min exercise to be done in groups of 2-3 people.
+
+[discrete]
+= Euler angles
+
+Euler angles allow us to specify rotations as a series of rotations around each of the X, Y, and Z axes. 
+
+Euler angles describe rotations as a sequence of rotations around each axis. 
+Any sequence is valid: we can rotate first around X, then Y, then Z; or we can
+rotate first around Y, then X, and then Z.  
+
+In this lab exercise, we will convert between euler angles and rotation matrices.
+
+[discrete]
+= Converting from XYZ euler angles to a matrix
+
+1) Give the 3 rotation matrices corresponding to rotations around the X, Y, and Z axes respectively.
+Use the following notation to represent the sine and cosine angles in around each axis: 
+`cx, sx, cy, sy, cz, sz`.  For example, cx will be the cosine(XAngle) and sx will be sine(XAngle).
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+
+2) What product of matrices gives the matrix stem[R_{XYZ}] that corresponds to XYZ euler angles below (you do not need to show their multiplication)
+
+[source]
+----
+[           cy*cz,           -cy*sz,     sy]
+[cx*sz + cz*sx*sy, cx*cz - sx*sy*sz, -cy*sx]
+[sx*sz - cx*cz*sy, cz*sx + cx*sy*sz,  cx*cy]
+----
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+
+[discrete]
+= Extracting the XYZ euler angles back from a matrix
+
+Given a rotation matrix, we can extract the angles back out of the matrix. In this 
+section, we will go through the process of extracting euler angles from the matrix we 
+computed in the last section.
+
+1) What matrix element would be the easiest to get an angle back?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+2) Recall the tan = sin/cos. How could we use this to get the other angles back?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+
+3) What happens when the rotation around the Y axis is 90 degrees? Compute the new euler matrix for this case. 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+
+4) Use cosine and sine identities to simplify the matrix.
+
+[stem]
+++++
+sin(z + x) = sin(z) cos(x) + cos(z) sin(x) \\
+cos(z + x) = cos(z) cos(x) - sin(z) sin(x) \\
+sin(z - x) = sin(z) cos(x) - cos(z) sin(x) \\
+cos(z - x) = cos(z) cos(x) + sin(z) sin(x) \\
+++++
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+5) Think about the angles. We could split the rotation between 
+the X and Z axes. Let's set the rotation around Z to zero. What should the rotation around X be?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+6) Now consider the case where the Y rotation is -90.  How could we compute the other angles?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+7) Consider the following matrix. Extract the XYZ angles corresponding to this rotation.
+
+[source]
+----
+    0.9511         0    0.3090
+    0.2185    0.7071   -0.6725
+   -0.2185    0.7071    0.6725
+----
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
