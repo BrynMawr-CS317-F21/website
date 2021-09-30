@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="generator" content="Asciidoctor 2.0.15">
 <title>Assignment 3: The Catmull-ROM COM</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,7 +16,6 @@
 <ul class="sectlevel1">
 <li><a href="#_assignment_3_the_catmull_rom_com">Assignment 3: The Catmull-ROM COM</a>
 <ul class="sectlevel2">
-<li><a href="#_user_interface">User interface</a></li>
 <li><a href="#_implementation_overview">Implementation overview</a></li>
 </ul>
 </li>
@@ -24,8 +23,9 @@
 <li><a href="#_linear_splines">1. Linear splines</a></li>
 <li><a href="#_catmull_rom_splines">2. Catmull-ROM splines</a></li>
 <li><a href="#_hermite_spline">3. Hermite spline</a></li>
-<li><a href="#_curve_editor">4. Curve editor</a></li>
-<li><a href="#_be_unique">5. Be Unique!</a></li>
+<li><a href="#_spline">4. Spline</a></li>
+<li><a href="#_curve_editor">5. Curve editor</a></li>
+<li><a href="#_be_unique">6. Be Unique!</a></li>
 </ul>
 </div>
 </div>
@@ -55,70 +55,35 @@
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="Labs/Curve-Screenshot.png" alt="Curve Screenshot"></span></p>
-</div>
-<div class="sect2">
-<h3 id="_user_interface">User interface</h3>
-<div class="paragraph">
-<p>The basecode includes a simple UI to help you test your splines.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Blue points represent the input data (aka keys) which are interpolated between.</p>
-</li>
-<li>
-<p>Yellow points represent additional control points</p>
-</li>
-</ul>
-</div>
 <div class="videoblock">
 <div class="content">
-<video src="spline.ogv" width="600" controls>
+<video src="Labs/spline-demo.mp4" controls>
 Your browser does not support the video tag.
 </video>
-</div>
-</div>
-<div class="paragraph">
-<p>The UI panel contains widgets for</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Type</strong>: interpolation type (You will implement
-Linear, Catmull-Rom, and Hermite</p>
-</li>
-<li>
-<p><strong>Mode</strong>: how left mouse clicks are interpreted:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Add</strong>: append points to the curve</p>
-</li>
-<li>
-<p><strong>Edit</strong>: drag curve points (blue) and control points (yellow) using the</p>
-</li>
-<li>
-<p><strong>Delete</strong>: remove curve points (blue)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Ctrl pts</strong>: toggle the display of control points (yellow)</p>
-</li>
-<li>
-<p><strong>Clear</strong>: remove the entire curve.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_implementation_overview">Implementation overview</h3>
 <div class="paragraph">
-<p>Question: allow students to design their own, or give them a design?
-For this assignment you will implement</p>
+<p>For this assignment you will implement several splines along with an interactive spline editor.</p>
+</div>
+<div class="paragraph">
+<p>You have been given basecode as a starting point for this assignment. It consists of a <code>Spline</code> class (see <code>spline.h</code>)
+which is capable of using different <code>Interpolator</code> objects (see <code>interpolator.h</code>, <code>interpolator_catmuullrom.h</code>, etc.) to interpolate between points. Interpolators store the control points for each segment in the spline and can interpolate
+between segments given a segment ID and value <code>u</code> in the range 0 to 1.</p>
+</div>
+<div class="paragraph">
+<p>You will implement different interpolators for this assignment. Each must override the following two functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Interpolator::computeControlPoints(const std::vector&lt;glm:::vec3&gt;&amp; keys)</code>. This function should replace the current control points, stored in <code>mCtrlPoints</code>, with new values based on the given keys. Note that the vector of keys might only have 0 or 1 keys in it. If this is the case, the list of control points should be empty because there are no segments yet to interpolate!</p>
+</li>
+<li>
+<p><code>InterpolatorLinear::interpolate(int segment, float u)</code>. This function should return an interpolated value on the given segment. The value <code>u</code> should range between 0 and 1.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -145,10 +110,43 @@ For this assignment you will implement</p>
 <h2 id="_linear_splines">1. Linear splines</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a spline capable of performing linear interpolation.</p>
+<p>In the file <code>interpolator_linear.h</code>, implement an interpolator that computes linear interpolation.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>InterpolatorLinear::computeControlPoints</code></p>
+</li>
+<li>
+<p>Implement <code>InterpolatorLinear::interpolate</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We recommend you store your control points so as not to repeat points at adjoining segments, like so \(p_0 p_1 p_2 \cdots p_n\)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>TODO: Test program to ensure that it works</p>
+<p>To test your implementation, run the utility <code>test_linear.cpp</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>~/cs317/AnimationToolkit/build$ ../bin/a3-test-linear
+control points: vec3(0.000000, 0.000000, 0.000000)
+control points: vec3(1.000000, 1.000000, 0.000000)
+control points: vec3(2.000000, 0.000000, 0.000000)
+interpolate(0, 0) = vec3(0.000000, 0.000000, 0.000000)
+interpolate(1, 1) = vec3(2.000000, 0.000000, 0.000000)
+interpolate(1, 0.5) = vec3(1.500000, 0.500000, 0.000000)</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -156,18 +154,50 @@ For this assignment you will implement</p>
 <h2 id="_catmull_rom_splines">2. Catmull-ROM splines</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a Catmull-ROM spline using the formulation from class.</p>
+<p>In the file <code>interpolator_catmullrom.h</code>, implement a Catmull-ROM interpolator using the formulation from class.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>InterpolatorCatmullRom::computeControlPoints</code></p>
+</li>
+<li>
+<p>Implement <code>InterpolatorCatmullRom::interpolate</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><strong>testCatmullRom.cpp</strong> to check whether your implementation gives the same
-results as our example from lab.</p>
+<p>To test your implementation, run the utility <code>test_catmullrom.cpp</code>.
+Notice that this utility implements the spline from lab!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We recommend you store your control points so as not to repeat points at adjoining segments, like so \(b_0^0 b_1^0 b_2^0 \quad b_0^1 b_1^1 b_2^1 \cdots b_0^n b_1^n b_2^n b_3^n\)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To run your program from the <strong>build</strong> directory, type</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a3-testCatmullRom</code></pre>
+<pre class="highlight"><code>~/cs317/AnimationToolkit/build$ ../bin/a3-test-catmullrom
+control points: vec3(0.000000, 0.000000, 0.000000)
+control points: vec3(0.166660, 0.166660, 0.000000)
+control points: vec3(0.666800, 1.000000, 0.000000)
+control points: vec3(1.000000, 1.000000, 0.000000)
+control points: vec3(1.333200, 1.000000, 0.000000)
+control points: vec3(1.833340, 0.166660, 0.000000)
+control points: vec3(2.000000, 0.000000, 0.000000)
+interpolate(0, 0) = vec3(0.000000, 0.000000, 0.000000)
+interpolate(1, 1) = vec3(2.000000, 0.000000, 0.000000)
+interpolate(1, 0.5) = vec3(1.562452, 0.562497, 0.000000)</code></pre>
 </div>
 </div>
 </div>
@@ -176,77 +206,261 @@ results as our example from lab.</p>
 <h2 id="_hermite_spline">3. Hermite spline</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a Hermite spline using the formulation from class.</p>
+<p>In the file <code>interpolator_hermite.h</code>, implement a Hermite interpolator using the formulation from class.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>InterpolatorHermite::computeControlPoints</code></p>
+</li>
+<li>
+<p>Implement <code>InterpolatorHermite::interpolate</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><strong>testHermite.cpp</strong> to check whether your implementation gives the same
-results as our example from lab.</p>
+<p>To test your implementation, run the utility <code>test_hermite.cpp</code>.
+Notice that this utility implements the spline from lab!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We recommend you store your control points so as not to repeat points at adjoining segments, like so \(p_0 p'_0 \quad p_1 p'_1 \cdots p_n p'_n\)
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To run your program from the <strong>build</strong> directory, type</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a3-testHermite</code></pre>
+<pre class="highlight"><code>~/cs317/AnimationToolkit/build$ ../bin/a3-test-hermite
+control point: vec3(0.000000, 0.000000, 0.000000)
+control point: vec3(0.821429, 2.250000, 0.000000)
+control point: vec3(1.000000, 2.000000, 0.000000)
+control point: vec3(1.357143, 1.500000, 0.000000)
+control point: vec3(3.000000, 3.000000, 0.000000)
+control point: vec3(2.750000, 0.750000, 0.000000)
+control point: vec3(6.000000, 3.000000, 0.000000)
+control point: vec3(2.642857, -1.500000, 0.000000)
+control point: vec3(8.000000, 0.000000, 0.000000)
+control point: vec3(1.678571, -3.750000, 0.000000)
+(clamped) interpolate(0, 0) = vec3(0.000000, 0.000000, 0.000000)
+(clamped) interpolate(3, 1) = vec3(8.000000, 0.000000, 0.000000)
+(clamped) interpolate(2, 0.5) = vec3(4.486607, 3.415179, 0.000000)
+(natural) interpolate(0, 0) = vec3(0.082321, 0.224750, 0.000000)
+(natural) interpolate(3, 1) = vec3(7.831821, 0.374250, 0.000000)
+(natural) interpolate(2, 0.5) = vec3(4.513393, 3.281250, 0.000000)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_curve_editor">4. Curve editor</h2>
+<h2 id="_spline">4. Spline</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the file <strong>a3-splines/curveeditor.cpp</strong>, complete the implementation
+<p>The Spline class manages keyframes provided by the user and supports multiple interpolation types.
+You implemented the different interpolation methods in the previous sections. Now let&#8217;s complete the spline class.</p>
+</div>
+<div class="paragraph">
+<p>Read <code>spline.h</code> and <code>spline.cpp</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finish the implementation of the following method in <code>spline.cpp</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Spline::getValue(float t)</code> Given <code>t</code>, this method must determine the segment and normalized time and then use the current interpolator to return a value. If t is less than the first time, clamp to the first value. If t is greater than the last key time, clamp to the last value.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Test your implementation using the utility <code>test_spline.cpp</code>.  To run from the <strong>build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; ../bin/a3-test-spline
+-------------------------------
+Current interpolation type: Linear
+Number of control points: 0
+Duration: 0
+getValue(0): vec3(0.000000, 0.000000, 0.000000)
+
+-------------------------------
+Current interpolation type: Linear
+Number of control points: 2
+Duration: 1
+getValue(-1): vec3(0.000000, 0.000000, 0.000000)
+getValue(5): vec3(1.000000, 1.000000, 0.000000)
+getValue(0.5): vec3(0.500000, 0.500000, 0.000000)
+getValue(0): vec3(0.000000, 0.000000, 0.000000)
+getValue(1): vec3(1.000000, 1.000000, 0.000000)
+
+-------------------------------
+Current interpolation type: Linear
+Number of control points: 3
+Duration: 2
+getValue(1.5): vec3(1.500000, 0.500000, 0.000000)
+
+-------------------------------
+Current interpolation type: Catmull-Rom
+Number of control points: 7
+Duration: 2
+getValue(1.5): vec3(1.562452, 0.562497, 0.000000)
+
+-------------------------------
+-------------------------------
+Current interpolation type: Linear
+Number of control points: 0
+Duration: 0
+getValue(0): vec3(0.000000, 0.000000, 0.000000)
+
+-------------------------------
+Current interpolation type: Linear
+Number of control points: 2
+Duration: 1
+getValue(-1): vec3(0.000000, 0.000000, 0.000000)
+getValue(5): vec3(1.000000, 1.000000, 0.000000)
+getValue(0.5): vec3(0.500000, 0.500000, 0.000000)
+getValue(0): vec3(0.000000, 0.000000, 0.000000)
+getValue(1): vec3(1.000000, 1.000000, 0.000000)
+
+-------------------------------
+Current interpolation type: Linear
+Number of control points: 3
+Duration: 2
+getValue(1.5): vec3(1.500000, 0.500000, 0.000000)
+
+-------------------------------
+Current interpolation type: Catmull-Rom
+Number of control points: 7
+Duration: 2
+getValue(1.5): vec3(1.562452, 0.562497, 0.000000)
+
+-------------------------------
+Current interpolation type: Hermite
+Number of control points: 6
+Duration: 2
+getValue(1.5): (clamped) vec3(1.500000, 0.500000, 0.000000)
+getValue(1.5): (natural) vec3(1.500000, 0.687500, 0.000000)
+
+-------------------------------
+Current interpolation type: Hermite
+Number of control points: 6
+Duration: 2
+getValue(1.5): (natural)vec3(1.906250, 1.093750, 0.000000)
+
+-------------------------------
+Current interpolation type: Hermite
+Number of control points: 4
+Duration: 2
+getValue(1.5): vec3(2.250000, 0.750000, 0.000000)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_curve_editor">5. Curve editor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file <strong>a3-splines/curve_editor.cpp</strong>, complete the implementation
 of the curve editor.</p>
+</div>
+<div class="paragraph">
+<p>The basecode includes a simple UI based on keyboard controls.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Blue points represent the input data (aka keys) which are interpolated between.</p>
+</li>
+<li>
+<p>Yellow points represent additional control points</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Keyboard Controls:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1: Linear</p>
+</li>
+<li>
+<p>2: Catmull-Rom</p>
+</li>
+<li>
+<p>3: Hermite</p>
+</li>
+<li>
+<p>c: Toggle control points</p>
+</li>
+<li>
+<p>h: clamp hermite on/off</p>
+</li>
+<li>
+<p>a: add mode</p>
+</li>
+<li>
+<p>e: edit mode</p>
+</li>
+<li>
+<p>d: delete mode</p>
+</li>
+<li>
+<p>SPACEBAR: clear</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finish the implementation of the curve editor.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>CurveEditor::scene()</code> so it draws each spline. When control points are visible, display the control points differently for catmull-rom and hermite splines to indicate how their control points differ.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>To run from the <strong>build</strong> directory, type</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a3-curveeditor</code></pre>
+<pre class="highlight"><code>build&gt; ../bin/a3-curve-editor</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Features:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Draw the curve in <code>todo</code></p>
-</li>
-<li>
-<p>Add new data points in <code>todo</code></p>
-</li>
-<li>
-<p>Delete data points in <code>todo</code></p>
-</li>
-<li>
-<p>Edit the data points in <code>todo</code></p>
-</li>
-<li>
-<p>Etc</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_be_unique">5. Be Unique!</h2>
+<h2 id="_be_unique">6. Be Unique!</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement your own unique animation in <strong>a3-splines/unique.cpp</strong>. Below are some ideas:</p>
+<p>Implement your own unique animation or image in <strong>a3-splines/unique.cpp</strong>. Below are some ideas:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a spline using a different interpolating curve</p>
+<p>Implement a unique interpolator</p>
 </li>
 <li>
 <p>Animate a character that has splines for limbs</p>
 </li>
 <li>
 <p>Use splines to animate shapes or create interesting patterns</p>
+</li>
+<li>
+<p>Support drawing splines in different colors.</p>
+</li>
+<li>
+<p>Draw something using splines</p>
 </li>
 </ul>
 </div>
@@ -260,7 +474,7 @@ of the curve editor.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-21 16:45:48 -0400
+Last updated 2021-09-26 14:57:30 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
