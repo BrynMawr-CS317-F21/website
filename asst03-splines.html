@@ -26,6 +26,14 @@
 <li><a href="#_spline">4. Spline</a></li>
 <li><a href="#_curve_editor">5. Curve editor</a></li>
 <li><a href="#_be_unique">6. Be Unique!</a></li>
+<li><a href="#_hand_in_your_work">7. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">7.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">7.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">7.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">7.4. Update your Readme.md</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -240,16 +248,16 @@ We recommend you store your control points so as not to repeat points at adjoini
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>~/cs317/AnimationToolkit/build$ ../bin/a3-test-hermite
-control point: vec3(0.000000, 0.000000, 0.000000)
-control point: vec3(0.821429, 2.250000, 0.000000)
+ontrol point: vec3(0.000000, 0.000000, 0.000000)
+control point: vec3(1.000000, 0.000000, 0.000000)
 control point: vec3(1.000000, 2.000000, 0.000000)
-control point: vec3(1.357143, 1.500000, 0.000000)
+control point: vec3(1.321429, 2.035714, 0.000000)
 control point: vec3(3.000000, 3.000000, 0.000000)
-control point: vec3(2.750000, 0.750000, 0.000000)
+control point: vec3(2.714286, 0.857143, 0.000000)
 control point: vec3(6.000000, 3.000000, 0.000000)
-control point: vec3(2.642857, -1.500000, 0.000000)
+control point: vec3(2.821429, -2.464286, 0.000000)
 control point: vec3(8.000000, 0.000000, 0.000000)
-control point: vec3(1.678571, -3.750000, 0.000000)
+control point: vec3(1.000000, 0.000000, 0.000000)
 (clamped) interpolate(0, 0) = vec3(0.000000, 0.000000, 0.000000)
 (clamped) interpolate(3, 1) = vec3(8.000000, 0.000000, 0.000000)
 (clamped) interpolate(2, 0.5) = vec3(4.486607, 3.415179, 0.000000)
@@ -286,35 +294,6 @@ You implemented the different interpolation methods in the previous sections. No
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>&gt; ../bin/a3-test-spline
--------------------------------
-Current interpolation type: Linear
-Number of control points: 0
-Duration: 0
-getValue(0): vec3(0.000000, 0.000000, 0.000000)
-
--------------------------------
-Current interpolation type: Linear
-Number of control points: 2
-Duration: 1
-getValue(-1): vec3(0.000000, 0.000000, 0.000000)
-getValue(5): vec3(1.000000, 1.000000, 0.000000)
-getValue(0.5): vec3(0.500000, 0.500000, 0.000000)
-getValue(0): vec3(0.000000, 0.000000, 0.000000)
-getValue(1): vec3(1.000000, 1.000000, 0.000000)
-
--------------------------------
-Current interpolation type: Linear
-Number of control points: 3
-Duration: 2
-getValue(1.5): vec3(1.500000, 0.500000, 0.000000)
-
--------------------------------
-Current interpolation type: Catmull-Rom
-Number of control points: 7
-Duration: 2
-getValue(1.5): vec3(1.562452, 0.562497, 0.000000)
-
--------------------------------
 -------------------------------
 Current interpolation type: Linear
 Number of control points: 0
@@ -471,10 +450,146 @@ of the curve editor.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">7. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">7.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">7.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">7.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">7.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a3-splines/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-26 14:57:30 -0400
+Last updated 2021-10-01 17:04:42 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

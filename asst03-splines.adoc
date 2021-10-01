@@ -117,16 +117,16 @@ To run your program from the *build* directory, type
 [source]
 ----
 ~/cs317/AnimationToolkit/build$ ../bin/a3-test-hermite
-control point: vec3(0.000000, 0.000000, 0.000000)
-control point: vec3(0.821429, 2.250000, 0.000000)
+ontrol point: vec3(0.000000, 0.000000, 0.000000)
+control point: vec3(1.000000, 0.000000, 0.000000)
 control point: vec3(1.000000, 2.000000, 0.000000)
-control point: vec3(1.357143, 1.500000, 0.000000)
+control point: vec3(1.321429, 2.035714, 0.000000)
 control point: vec3(3.000000, 3.000000, 0.000000)
-control point: vec3(2.750000, 0.750000, 0.000000)
+control point: vec3(2.714286, 0.857143, 0.000000)
 control point: vec3(6.000000, 3.000000, 0.000000)
-control point: vec3(2.642857, -1.500000, 0.000000)
+control point: vec3(2.821429, -2.464286, 0.000000)
 control point: vec3(8.000000, 0.000000, 0.000000)
-control point: vec3(1.678571, -3.750000, 0.000000)
+control point: vec3(1.000000, 0.000000, 0.000000)
 (clamped) interpolate(0, 0) = vec3(0.000000, 0.000000, 0.000000)
 (clamped) interpolate(3, 1) = vec3(8.000000, 0.000000, 0.000000)
 (clamped) interpolate(2, 0.5) = vec3(4.486607, 3.415179, 0.000000)
@@ -151,35 +151,6 @@ Test your implementation using the utility `test_spline.cpp`.  To run from the *
 [source]
 ----
 > ../bin/a3-test-spline
--------------------------------
-Current interpolation type: Linear
-Number of control points: 0
-Duration: 0
-getValue(0): vec3(0.000000, 0.000000, 0.000000)
-
--------------------------------
-Current interpolation type: Linear
-Number of control points: 2
-Duration: 1
-getValue(-1): vec3(0.000000, 0.000000, 0.000000)
-getValue(5): vec3(1.000000, 1.000000, 0.000000)
-getValue(0.5): vec3(0.500000, 0.500000, 0.000000)
-getValue(0): vec3(0.000000, 0.000000, 0.000000)
-getValue(1): vec3(1.000000, 1.000000, 0.000000)
-
--------------------------------
-Current interpolation type: Linear
-Number of control points: 3
-Duration: 2
-getValue(1.5): vec3(1.500000, 0.500000, 0.000000)
-
--------------------------------
-Current interpolation type: Catmull-Rom
-Number of control points: 7
-Duration: 2
-getValue(1.5): vec3(1.562452, 0.562497, 0.000000)
-
--------------------------------
 -------------------------------
 Current interpolation type: Linear
 Number of control points: 0
@@ -272,3 +243,4 @@ Implement your own unique animation or image in *a3-splines/unique.cpp*. Below a
 
 image::Labs/balls.gif[widt=200]
 
+include::handin.adoc[]
