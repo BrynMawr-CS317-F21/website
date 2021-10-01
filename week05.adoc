@@ -7,7 +7,19 @@ include::header.adoc[]
 
 = {title}
 
-* link:MathNotes.2019.pdf[Math notes (Coordinate systems and matrices)]
-* link:EulerAngles.html[Euler angle conversions]
-* link:EulerExamples.pdf[Sample problems with answers]
+Lecture topics:
+
+* Rotation matrices: Rx, Ry, Rz
+* Euler Angles
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=797fbfac-3715-4a85-9000-adb101474891[Lecture 9/28/2021],link:Notes/Lecture09-9.28.2021.pdf[Notes]
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=83963c80-0e36-43be-a77f-adb3017c1742[Lecture 9/30/2021],link:Notes/Lecture10-9.30.2021.pdf[Notes]
+
+Additional Resources and Demos:
+
+//* link:MathNotes.2019.pdf[Math notes (Coordinate systems and matrices)]
+//* link:EulerAngles.html[Euler angle conversions]
+//* link:EulerExamples.pdf[Sample problems with answers]
+* Parent: Section 2.2
 * Lengyel: 3.1, 4.3
