@@ -57,7 +57,8 @@ Rotations. Matrices. Euler angles. Gimbol lock.
 
 * *Sept 28* Quiz1 link:Q1Guide.html[Quiz1 Study Guide]: Math preliminaries and first animations
 * link:week05.html[Lecture notes and resources]
-//* *Assignment 04:* link:Labs/lab4-rotations.html[You spin me round]: *Due Oct 7*
+* link:week05-lab-euler.html[Euler angle practice]
+* *Assignment 04:* link:asst04-euler.html[You spin me round]: *Due Oct 8*
 
 //-----------------------------
 |6

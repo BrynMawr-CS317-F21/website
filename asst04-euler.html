@@ -69,10 +69,34 @@ right. In your next assignment, you will implement the remaining two teapots.</p
 </div>
 <div class="videoblock">
 <div class="content">
-<video src="Labs/teapots.ogv" controls>
+<video src="Labs/teapots.mp4" controls>
 Your browser does not support the video tag.
 </video>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For this assignment, you do not need to implement the quaternion conversions that animate the bottom, left two teapots.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To type a value into the GUI&#8217;s slider, do <strong>control+&lt;left click&gt;</strong>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -99,6 +123,18 @@ Your browser does not support the video tag.
 <div class="sectionbody">
 <div class="paragraph">
 <p>In the file <code>libsrc/atkmath/matrix3-basecode.cpp</code>, implement the conversions from euler angles to a matrix.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In this assignment, you will complete the implementations for <strong>Matrix3</strong> in <code>libsrc/atkmath</code>. You do not need to modify <code>assignments/a4-euler/teapots.cpp</code> or <code>assignments/a4-euler/test_euler.cpp</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To start, implement the function <code>Matrix3::fromEulerAnglesZYX()</code>.  This function
@@ -167,7 +203,23 @@ m11 = 3;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a4-testEuler</code></pre>
+<pre class="highlight"><code>build&gt; ../bin/a4-test-euler</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a test fails, it prints the expected value followed by the computed value, for example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>ZYX
+  TEST FAIL
+  0 0 1
+0 -1 0
+1 0 0
+
+  1 0 0
+0 1 0
+0 0 1</code></pre>
 </div>
 </div>
 </div>
@@ -216,8 +268,20 @@ m11 = 3;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a4-testEuler</code></pre>
+<pre class="highlight"><code>build&gt; ../bin/a4-test-euler</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Implement the special cases (e.g. when the middle angle is 90 or -90 degrees) after implementing the main algorithms for each case.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -240,9 +304,15 @@ m11 = 3;</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>&lt;img src="flower.gif" height=200px"&gt;
-&lt;img src="paths.gif" height=200px"&gt;</p>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/flower.gif" alt="flower" height="200px">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/paths.gif" alt="paths" height="200px">
+</div>
 </div>
 </div>
 </div>
@@ -385,7 +455,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-01 15:19:26 -0400
+Last updated 2021-10-02 12:17:02 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

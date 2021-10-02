@@ -248,7 +248,7 @@ We recommend you store your control points so as not to repeat points at adjoini
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>~/cs317/AnimationToolkit/build$ ../bin/a3-test-hermite
-ontrol point: vec3(0.000000, 0.000000, 0.000000)
+control point: vec3(0.000000, 0.000000, 0.000000)
 control point: vec3(1.000000, 0.000000, 0.000000)
 control point: vec3(1.000000, 2.000000, 0.000000)
 control point: vec3(1.321429, 2.035714, 0.000000)
@@ -264,6 +264,23 @@ control point: vec3(1.000000, 0.000000, 0.000000)
 (natural) interpolate(0, 0) = vec3(0.082321, 0.224750, 0.000000)
 (natural) interpolate(3, 1) = vec3(7.831821, 0.374250, 0.000000)
 (natural) interpolate(2, 0.5) = vec3(4.513393, 3.281250, 0.000000)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above, we list the control points for a Hermite spline with clamped endpoints. If we use natural endpoints, we would get</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>control point: vec3(0.000000, 0.000000, 0.000000)
+control point: vec3(0.821429, 2.250000, 0.000000)
+control point: vec3(1.000000, 2.000000, 0.000000)
+control point: vec3(1.357143, 1.500000, 0.000000)
+control point: vec3(3.000000, 3.000000, 0.000000)
+control point: vec3(2.750000, 0.750000, 0.000000)
+control point: vec3(6.000000, 3.000000, 0.000000)
+control point: vec3(2.642857, -1.500000, 0.000000)
+control point: vec3(8.000000, 0.000000, 0.000000)
+control point: vec3(1.678571, -3.750000, 0.000000)</code></pre>
 </div>
 </div>
 </div>
@@ -589,7 +606,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-01 17:04:42 -0400
+Last updated 2021-10-02 11:46:19 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

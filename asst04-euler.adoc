@@ -28,7 +28,11 @@ left allows you to enter test values. Each teapot tests a conversion
 function. This week, you will implement 6 of the teapots to match the top
 right. In your next assignment, you will implement the remaining two teapots.
 
-video::Labs/teapots.ogv[]
+video::Labs/teapots.mp4[]
+
+NOTE: For this assignment, you do not need to implement the quaternion conversions that animate the bottom, left two teapots.
+
+NOTE: To type a value into the GUI's slider, do *control+<left click>*
 
 = Get the source
 
@@ -48,6 +52,8 @@ Then update the source on your local machine and rebuild.
 = Euler to Matrix
 
 In the file `libsrc/atkmath/matrix3-basecode.cpp`, implement the conversions from euler angles to a matrix.
+
+NOTE: In this assignment, you will complete the implementations for *Matrix3* in `libsrc/atkmath`. You do not need to modify `assignments/a4-euler/teapots.cpp` or `assignments/a4-euler/test_euler.cpp`.
 
 To start, implement the function `Matrix3::fromEulerAnglesZYX()`.  This function
 takes a parameter called angleRad which stores euler angles as a 3-tuple
@@ -80,7 +86,22 @@ Use the utility `test_euler.cpp` to help you implement your methods. Note that y
 
 [source]
 ----
-build> ../bin/a4-testEuler 
+build> ../bin/a4-test-euler 
+----
+
+When a test fails, it prints the expected value followed by the computed value, for example,
+
+[source]
+----
+ZYX
+  TEST FAIL
+  0 0 1
+0 -1 0
+1 0 0
+
+  1 0 0
+0 1 0
+0 0 1
 ----
 
 = Matrix to Euler
@@ -107,8 +128,10 @@ To run the unit tests from the *build* directory, type
 
 [source]
 ----
-build> ../bin/a4-testEuler 
+build> ../bin/a4-test-euler 
 ----
+
+NOTE: Implement the special cases (e.g. when the middle angle is 90 or -90 degrees) after implementing the main algorithms for each case. 
 
 = Be Unique!
 
@@ -118,8 +141,7 @@ Implement your own unique animation or image in `a4-euler/unique.cpp`. Some idea
 * Make a cone that follows a trajectory
 * Create a shape whose orientation and position is controlled using the keyboard
 
-<img src="flower.gif" height=200px">
-<img src="paths.gif" height=200px">
-
+image::Labs/flower.gif[height=200px]
+image::Labs/paths.gif[height=200px]
 
 include::handin.adoc[]
