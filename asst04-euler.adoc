@@ -9,7 +9,7 @@ include::header.adoc[]
 
 = {title}
 
-_ In which, euler angles and rotation matrices become part of our 3D programming skillset_
+_In which, euler angles and rotation matrices become part of our 3D programming skillset_
 
 **Due Friday, Oct 8, before midnight**
 
