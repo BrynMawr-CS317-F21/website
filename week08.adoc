@@ -1,0 +1,24 @@
+include::header.adoc[]
+
+:title: Week 06: Rotations II: Quaternions
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Lecture topics:
+
+* Slerp. Interpolating rotation.
+* Transforms. Coordinate systems. Skeletons and joints.
+
+link:[Lecture 10/19/2021],link:Notes/Lecture13-10.19.2021.pdf[Notes]
+
+link:[Lecture 10/21/2021],link:Notes/Lecture14-10.21.2021.pdf[Notes]
+
+Additional Resources:
+
+* link:https://dl.acm.org/citation.cfm?doid=325334.325242[Animating rotation with quaternion curves (seminal paper)]
+* link:SlerpExample.pdf[Slerp example] 
+* Lengyel Chpt 4
+* Parent Chpt 2

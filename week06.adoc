@@ -7,7 +7,15 @@ include::header.adoc[]
 
 = {title}
 
+Lecture topics:
+
+* Angle/Axis rotations
+* Quaternions
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=83963c80-0e36-43be-a77f-adb3017c1742[Lecture 10/5/2021],link:Notes/Lecture11-10.5.2021.pdf[Notes]
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9bbe3d48-8202-4328-af4e-adba017de9b0[Lecture 10/7/2021],link:Notes/Lecture12-10.5.2021.pdf[Notes]
+
 * Lengyel Appendix A, 4.3, 4.6.1, 4.6.2, 4.6.3
 * link:QuazyQuaternions.pdf[Quazy quaternions]
-* link:https://dl.acm.org/citation.cfm?doid=325334.325242[Animating rotation with quaternion curves (seminal paper)]
-* link:SlerpExample.pdf[Slerp example] 
+
