@@ -11,8 +11,8 @@ include::header.adoc[]
 
 [.anns]
 == Announcements
-* link:Q2Guide.html[Quiz2 Study Guide] *Quiz 2* in lab, 30 min, October 7
-* *Assignment 04:* link:asst04-euler.html[You spin me round]: *Due Oct 8*
+* *Assignment 05:* link:asst05-quat.html[Quazy Quaternions]: *Due Oct 22*
+* *Lab (Quaternions):* link:week08-quat-worksheet.html[Quaternions Worksheet]: *Due Oct 21*
 
 == **Schedule**
 

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Assignment 5: Quazy Quaternions</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_5_quazy_quaternions">Assignment 5: Quazy Quaternions</a></li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_quaternion">1. Quaternion</a>
+<ul class="sectlevel2">
+<li><a href="#_angleaxis">1.1. Angle/Axis</a></li>
+<li><a href="#_matrix">1.2. Matrix</a></li>
+</ul>
+</li>
+<li><a href="#_be_unique">2. Be Unique!</a></li>
+<li><a href="#_hand_in_your_work">3. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">3.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">3.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">3.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">3.4. Update your Readme.md</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_5_quazy_quaternions">Assignment 5: Quazy Quaternions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Quaternions, matrices, and you!</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Due Friday, Oct 22, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals of this lab are to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement angle/axis to quaternion conversions</p>
+</li>
+<li>
+<p>Implement quaternion to matrix conversions</p>
+</li>
+<li>
+<p>Use rotations in an animation (based on the code your wrote for lab 4)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After completing this assignment, all teapots from lab 4 should spin in unison!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quaternion">1. Quaternion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finish the quaternion implementation in <code>libsrc/atkmath</code>. Use the utility,
+<code>a5-test-quat</code> to check your work.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a5-test-quat</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once all your conversions are working, <a href="asst04-euler.html">your teapot demo will also be fully operational</a>!</p>
+</div>
+<div class="sect2">
+<h3 id="_angleaxis">1.1. Angle/Axis</h3>
+<div class="paragraph">
+<p>Implement conversions between quaternions and the
+angle-axis representations for rotation.</p>
+</div>
+<div class="paragraph">
+<p>Recall that the relationship between quaternions and an angle/axis rotation is</p>
+</div>
+<div class="paragraph">
+<p>\(
+q = \left[\sin(\frac{\theta}{2}) \hat{u}, \cos(\frac{\theta}{2})\right]
+\)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>Quaternion::fromAngleAxis</code> in <code>libsrc/atkmath/Quaternion-basecode.cpp</code></p>
+</li>
+<li>
+<p>Implement <code>Quaternion::toAngleAxis</code> in <code>libsrc/atkmath/Quaternion-basecode.cpp</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::fromAngleAxis</code> in <code>libsrc/atkmath/Matrix3-basecode.cpp</code> using a direct angle/axis to matrix implementation</p>
+</li>
+<li>
+<p>Implement <code>Matrix3::toAngleAxis</code> in <code>libsrc/atkmath/Matrix3-basecode.cpp</code> using a direct matrix to angle/axis implementation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To run the unit tests from the &lt;b&gt;build&lt;/b&gt; directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a5-test-quat</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Accessing member variables in Quaternion works similarly to Matrix3</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>void Quaternion::foo() {
+    // accessing member variables in Quaternion works similarly to Matrix3
+    mX = 0.5;
+    mY = 0.0;
+    mZ = 3.0;
+    mW = -5.0;
+    normalize(); // make myself a unit quaternion
+}
+
+void foo() {
+    AQuaternion q; // create an identity quat
+    q[0] = 0.1; // x value
+    q[1] = 0.1; // y value
+    q[2] = 0.1; // z value
+    q[3] = 0.1; // w value
+    q.normalize(); // make q a unit quaternion
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_matrix">1.2. Matrix</h3>
+<div class="paragraph">
+<p>In class, we derived the rotation matrix corresponding to a quaternion</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[q = (x, y, z, w) = (\bar{v}, w )\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\left( \begin{array}{ccc}
+1-2(y^2+z^2) &amp; 2(x y - w z) &amp; 2(x z + w y) \\
+2(x y + w z) &amp; 1-2(x^2+z^2) &amp; 2(y z - w x) \\
+2(x z - w y) &amp; 2(y z + w x) &amp; 1-2(y^2+x^2) \\
+\end{array} \right)\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement the above matrix to convert from a Quaternion to a Matrix3 in <code>Quaternion::toMatrix()</code> located in <code>libsrc/atkmath/Quaternion-basecode.cpp</code></p>
+</li>
+<li>
+<p>Implement the algorithm for converting from Matrix3 to Quaternion in <code>Quaternion::fromMatrix()</code> in <code>libsrc/atkmath/Quaternion-basecode.cpp</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To run the tests from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a5-test-quat-mat
+build&gt; ../bin/a4-teapots</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_be_unique">2. Be Unique!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement your own unique animation or image in <code>a5-quat/unique.cpp</code>. Some ideas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make a new demo with objects that rotate around an arbitrary axis</p>
+</li>
+<li>
+<p>Create a shape whose orientation and position is controlled using the keyboard</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/rings.gif" alt="rings" height="200px">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/ripplesExtra.gif" alt="ripplesExtra" height="100px">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/ripples2.gif" alt="ripples2" height="100px">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">3. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">3.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">3.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">3.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">3.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a5-quat/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-15 17:05:58 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

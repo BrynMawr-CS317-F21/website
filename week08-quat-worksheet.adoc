@@ -1,0 +1,191 @@
+include::header.adoc[]
+
+:title: Understanding quaternions
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+:stem: latexmath
+
+[discrete]
+= {title}
+
+[discrete]
+= Name: 
+
+*Due October 21st, in lab*
+
+This worksheet is intended as a short 30 min exercise to be done in groups of 1-3 people.
+
+[discrete]
+= Quaternions
+
+* Multiply the quaternions \( q_1 = (1,0, 0, 3) \) and \( q_2 = (1, 0, 0, 0) \)
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+* Compute the inverse of \( q = (1, -1, 0, 1) \). 
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+[discrete]
+= Angle/Axis
+
+Recall that the relationship between quaternions and an angle/axis rotation is
+
+[stem]
+++++
+q = \left[\sin(\frac{\theta}{2}) \hat{u}, \cos(\frac{\theta}{2})\right]
+++++
+
+* What is the quaternion corresponding to a 30 degree rotation around the Y axis.
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+* Suppose we have a quaternion [0.18301, 0.18301, 0, 0.9659]. What is the angle and axis corresponding to this quaternion?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+[discrete]
+= Matrix
+
+In class, we derived the rotation matrix corresponding to a quaternion 
+\( q = (x, y, z, w) = (\bar{v}, w ) \).
+
+[stem]
+++++
+\left( \begin{array}{ccc}
+1-2(y^2+z^2) & 2(x y - w z) & 2(x z + w y) \\
+2(x y + w z) & 1-2(x^2+z^2) & 2(y z - w x) \\
+2(x z - w y) & 2(y z + w x) & 1-2(y^2+x^2) \\
+\end{array} \right)
+++++
+
+Suppose we have a quaternion corresponding to a 45 degree rotation around the Z axis. Verify that the matrix above reduces to a Z rotation matrix \( R_Z(45) \).
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+In class, we showed that 
+\( w^2 = \frac{1}{4}(m_{11} + m_{22} + m_{33} + 1) \). Using the diagonal terms, 
+derive expressions for 
+
+* \( x^2\)
+* \( y^2\)
+* \( z^2\)
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+Consider the matrix above. Using the off-diagonal terms, derive expressions for 
+
+* \( w x\)
+* \( w y\)
+* \( w z\)
+* \( x y\)
+* \( x z\)
+* \( y z\)
+
+Using the expressions above, we can extract a quaternion from a rotation matrix, similarly to how we extract euler angles from a matrix.  A numerically stable approach is to 
+
+* solve for \( w^2 \), \( x^2 \), \( y^2 \), and \( z^2 \)
+* Find the term with the largest value
+* Based on the largest component, compute the remaining terms using the off-diagonal matrix elements.
+
+For example, if \( w^2 \) is the largest, we would then solve for x, y, and z using 
+the expressions for \( w x \), \( w y \), and \( w z \).
+
+Consider the matrix \( R_Z(45) \) from the previous question. 
+Apply this algorithm to obtain the original quaternion back.
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +

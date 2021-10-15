@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Understanding quaternions</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<h2 id="_understanding_quaternions" class="discrete">Understanding quaternions</h2>
+<h2 id="_name" class="discrete">Name:</h2>
+<div class="paragraph">
+<p><strong>Due October 21st, in lab</strong></p>
+</div>
+<div class="paragraph">
+<p>This worksheet is intended as a short 30 min exercise to be done in groups of 1-3 people.</p>
+</div>
+<h2 id="_quaternions" class="discrete">Quaternions</h2>
+<div class="ulist">
+<ul>
+<li>
+<p>Multiply the quaternions \( q_1 = (1,0, 0, 3) \) and \( q_2 = (1, 0, 0, 0) \)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compute the inverse of \( q = (1, -1, 0, 1) \).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<h2 id="_angleaxis" class="discrete">Angle/Axis</h2>
+<div class="paragraph">
+<p>Recall that the relationship between quaternions and an angle/axis rotation is</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[q = \left[\sin(\frac{\theta}{2}) \hat{u}, \cos(\frac{\theta}{2})\right]\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the quaternion corresponding to a 30 degree rotation around the Y axis.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppose we have a quaternion [0.18301, 0.18301, 0, 0.9659]. What is the angle and axis corresponding to this quaternion?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<h2 id="_matrix" class="discrete">Matrix</h2>
+<div class="paragraph">
+<p>In class, we derived the rotation matrix corresponding to a quaternion
+\( q = (x, y, z, w) = (\bar{v}, w ) \).</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\left( \begin{array}{ccc}
+1-2(y^2+z^2) &amp; 2(x y - w z) &amp; 2(x z + w y) \\
+2(x y + w z) &amp; 1-2(x^2+z^2) &amp; 2(y z - w x) \\
+2(x z - w y) &amp; 2(y z + w x) &amp; 1-2(y^2+x^2) \\
+\end{array} \right)\]
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose we have a quaternion corresponding to a 45 degree rotation around the Z axis. Verify that the matrix above reduces to a Z rotation matrix \( R_Z(45) \).</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>In class, we showed that
+\( w^2 = \frac{1}{4}(m_{11} + m_{22} + m_{33} + 1) \). Using the diagonal terms,
+derive expressions for</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\( x^2\)</p>
+</li>
+<li>
+<p>\( y^2\)</p>
+</li>
+<li>
+<p>\( z^2\)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>Consider the matrix above. Using the off-diagonal terms, derive expressions for</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\( w x\)</p>
+</li>
+<li>
+<p>\( w y\)</p>
+</li>
+<li>
+<p>\( w z\)</p>
+</li>
+<li>
+<p>\( x y\)</p>
+</li>
+<li>
+<p>\( x z\)</p>
+</li>
+<li>
+<p>\( y z\)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Using the expressions above, we can extract a quaternion from a rotation matrix, similarly to how we extract euler angles from a matrix.  A numerically stable approach is to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>solve for \( w^2 \), \( x^2 \), \( y^2 \), and \( z^2 \)</p>
+</li>
+<li>
+<p>Find the term with the largest value</p>
+</li>
+<li>
+<p>Based on the largest component, compute the remaining terms using the off-diagonal matrix elements.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, if \( w^2 \) is the largest, we would then solve for x, y, and z using
+the expressions for \( w x \), \( w y \), and \( w z \).</p>
+</div>
+<div class="paragraph">
+<p>Consider the matrix \( R_Z(45) \) from the previous question.
+Apply this algorithm to obtain the original quaternion back.</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-15 17:18:12 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
