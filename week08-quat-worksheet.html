@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.15">
+<meta name="generator" content="Asciidoctor 2.0.16">
 <title>Understanding quaternions</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,12 +22,8 @@
 <p>This worksheet is intended as a short 30 min exercise to be done in groups of 1-3 people.</p>
 </div>
 <h2 id="_quaternions" class="discrete">Quaternions</h2>
-<div class="ulist">
-<ul>
-<li>
-<p>Multiply the quaternions \( q_1 = (1,0, 0, 3) \) and \( q_2 = (1, 0, 0, 0) \)</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Multiply the complex numbers \( a = 3 + 4 i \) and \( b = 3 - 4 i \). Note that b is the conjugate of a.</p>
 </div>
 <div class="paragraph">
 <p>&#160;<br>
@@ -38,15 +34,107 @@
 &#160;<br>
 &#160;<br></p>
 </div>
+<div class="paragraph">
+<p>We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (1, 0, 0, 0) \).
+A quaternion \(q = (x, y, z, w) \) is often denoted \(q = (\mathbf{v}, w) \),
+where \( \mathbf{v} = (x, y, z) \) is the vector part and \( w \) is the scalar part. Quaternions extend the complex numbers.
+With this perspective, a quaternion corresponds to \(q = x\hat{i} + y\hat{j} + z\hat{k} + w\),
+where \(\hat{i}^2 = \hat{j}^2 = \hat{k}^2 = -1\).</p>
+</div>
+<div class="paragraph">
+<p>Recall that</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[q^{-1} = \frac{\bar{q}}{||q||^2}\]
+</div>
+</div>
+<div class="paragraph">
+<p>where</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\bar{q} = (-\mathbf{v}, s)\]
+</div>
+</div>
+<div class="paragraph">
+<p>Given \(q = (1, -1, 0, 1) \). Compute the following expressions</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Compute the inverse of \( q = (1, -1, 0, 1) \).</p>
+<p>\( ||q||^2 \)</p>
+</li>
+<li>
+<p>\( \bar{q} \)</p>
+</li>
+<li>
+<p>\( q^{-1} \)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>Let \(q_1 = q \) and \( q_2 = q^{-1} \).
+If \( q_1 = (\mathbf{v_1}, s_1) \) and \( q_2 = (\mathbf{v_2}, s_2) \), then</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[q_1 q_2 = (s_1 \mathbf{v_2} + s_2 \mathbf{v_1} + v_1 \times v_2, s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2})\]
+</div>
+</div>
+<div class="paragraph">
+<p>Compute the following expressions</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\( s_1 \cdot \mathbf{v_2} \)</p>
+</li>
+<li>
+<p>\( s_2 \cdot \mathbf{v_1} \)</p>
+</li>
+<li>
+<p>\( \mathbf{v_1} \times \mathbf{v_2} \)</p>
+</li>
+<li>
+<p>\( s_1 s_2 \)</p>
+</li>
+<li>
+<p>\( \mathbf{v_1} \cdot \mathbf{v_2} \)</p>
+</li>
+<li>
+<p>\( s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)</p>
+</li>
+<li>
+<p>\( q q^{-1} \)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
 &#160;<br>
 &#160;<br>
 &#160;<br>
@@ -58,7 +146,16 @@
 </div>
 <h2 id="_angleaxis" class="discrete">Angle/Axis</h2>
 <div class="paragraph">
-<p>Recall that the relationship between quaternions and an angle/axis rotation is</p>
+<p>Which subset of quaternions correspond to rotations?</p>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>Recall that the relationship between some quaternions and an angle/axis rotation is</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -68,7 +165,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What is the quaternion corresponding to a 30 degree rotation around the Y axis.</p>
+<p>What is the quaternion corresponding to a 30 degree rotation around the Y axis?</p>
 </li>
 </ul>
 </div>
@@ -139,64 +236,7 @@
 &#160;<br></p>
 </div>
 <div class="paragraph">
-<p>In class, we showed that
-\( w^2 = \frac{1}{4}(m_{11} + m_{22} + m_{33} + 1) \). Using the diagonal terms,
-derive expressions for</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\( x^2\)</p>
-</li>
-<li>
-<p>\( y^2\)</p>
-</li>
-<li>
-<p>\( z^2\)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br>
-&#160;<br></p>
-</div>
-<div class="paragraph">
-<p>Consider the matrix above. Using the off-diagonal terms, derive expressions for</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\( w x\)</p>
-</li>
-<li>
-<p>\( w y\)</p>
-</li>
-<li>
-<p>\( w z\)</p>
-</li>
-<li>
-<p>\( x y\)</p>
-</li>
-<li>
-<p>\( x z\)</p>
-</li>
-<li>
-<p>\( y z\)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Using the expressions above, we can extract a quaternion from a rotation matrix, similarly to how we extract euler angles from a matrix.  A numerically stable approach is to</p>
+<p>Recall the algorithm for extracting a quaternion from a rotation matrix.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -260,7 +300,7 @@ Apply this algorithm to obtain the original quaternion back.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-15 17:18:12 -0400
+Last updated 2021-10-17 17:41:09 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

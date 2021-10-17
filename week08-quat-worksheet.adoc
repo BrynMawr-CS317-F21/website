@@ -19,7 +19,7 @@ This worksheet is intended as a short 30 min exercise to be done in groups of 1-
 [discrete]
 = Quaternions
 
-* Multiply the quaternions \( q_1 = (1,0, 0, 3) \) and \( q_2 = (1, 0, 0, 0) \)
+Multiply the complex numbers \( a = 3 + 4 i \) and \( b = 3 - 4 i \). Note that b is the conjugate of a.
 
 {nbsp} +
 {nbsp} +
@@ -29,8 +29,72 @@ This worksheet is intended as a short 30 min exercise to be done in groups of 1-
 {nbsp} +
 {nbsp} +
 
-* Compute the inverse of \( q = (1, -1, 0, 1) \). 
+We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (1, 0, 0, 0) \).
+A quaternion \(q = (x, y, z, w) \) is often denoted \(q = (\mathbf{v}, w) \), 
+where \( \mathbf{v} = (x, y, z) \) is the vector part and \( w \) is the scalar part. Quaternions extend the complex numbers. 
+With this perspective, a quaternion corresponds to \(q = x\hat{i} + y\hat{j} + z\hat{k} + w\), 
+where \(\hat{i}^2 = \hat{j}^2 = \hat{k}^2 = -1\). 
 
+Recall that 
+
+[stem]
+++++
+q^{-1} = \frac{\bar{q}}{||q||^2}
+++++
+
+where
+
+[stem]
+++++
+\bar{q} = (-\mathbf{v}, s)
+++++
+
+Given \(q = (1, -1, 0, 1) \). Compute the following expressions
+
+* \( ||q||^2 \)
+* \( \bar{q} \)
+* \( q^{-1} \)
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+Let \(q_1 = q \) and \( q_2 = q^{-1} \). 
+If \( q_1 = (\mathbf{v_1}, s_1) \) and \( q_2 = (\mathbf{v_2}, s_2) \), then 
+
+[stem]
+++++
+q_1 q_2 = (s_1 \mathbf{v_2} + s_2 \mathbf{v_1} + v_1 \times v_2, s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2})
+++++
+
+Compute the following expressions
+
+* \( s_1 \cdot \mathbf{v_2} \)
+* \( s_2 \cdot \mathbf{v_1} \)
+* \( \mathbf{v_1} \times \mathbf{v_2} \)
+* \( s_1 s_2 \)
+* \( \mathbf{v_1} \cdot \mathbf{v_2} \)
+* \( s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)
+* \( q q^{-1} \)
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
 {nbsp} +
 {nbsp} +
 {nbsp} +
@@ -44,14 +108,21 @@ This worksheet is intended as a short 30 min exercise to be done in groups of 1-
 [discrete]
 = Angle/Axis
 
-Recall that the relationship between quaternions and an angle/axis rotation is
+Which subset of quaternions correspond to rotations?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+Recall that the relationship between some quaternions and an angle/axis rotation is
 
 [stem]
 ++++
 q = \left[\sin(\frac{\theta}{2}) \hat{u}, \cos(\frac{\theta}{2})\right]
 ++++
 
-* What is the quaternion corresponding to a 30 degree rotation around the Y axis.
+* What is the quaternion corresponding to a 30 degree rotation around the Y axis?
 
 {nbsp} +
 {nbsp} +
@@ -111,37 +182,7 @@ Suppose we have a quaternion corresponding to a 45 degree rotation around the Z 
 {nbsp} +
 {nbsp} +
 
-In class, we showed that 
-\( w^2 = \frac{1}{4}(m_{11} + m_{22} + m_{33} + 1) \). Using the diagonal terms, 
-derive expressions for 
-
-* \( x^2\)
-* \( y^2\)
-* \( z^2\)
-
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-{nbsp} +
-
-Consider the matrix above. Using the off-diagonal terms, derive expressions for 
-
-* \( w x\)
-* \( w y\)
-* \( w z\)
-* \( x y\)
-* \( x z\)
-* \( y z\)
-
-Using the expressions above, we can extract a quaternion from a rotation matrix, similarly to how we extract euler angles from a matrix.  A numerically stable approach is to 
+Recall the algorithm for extracting a quaternion from a rotation matrix.
 
 * solve for \( w^2 \), \( x^2 \), \( y^2 \), and \( z^2 \)
 * Find the term with the largest value
