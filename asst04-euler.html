@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 4: You spin me round</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_4_you_spin_me_round">Assignment 4: You spin me round</a></li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_euler_to_matrix">1. Euler to Matrix</a></li>
+<li><a href="#_matrix_to_euler">2. Matrix to Euler</a></li>
+<li><a href="#_be_unique">3. Be Unique!</a></li>
+<li><a href="#_hand_in_your_work">4. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">4.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">4.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">4.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">4.4. Update your Readme.md</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_4_you_spin_me_round">Assignment 4: You spin me round</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>In which, euler angles and rotation matrices become part of our 3D programming skillset</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Due Friday, Oct 8, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals of this lab are to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand the matrix form of euler angles</p>
+</li>
+<li>
+<p>Understand how to get euler angles from a rotations matrix</p>
+</li>
+<li>
+<p>Implement euler conversions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this assignment, you will implement conversions between euler angles
+and matrices. To help test your conversions, you have been given a grid of
+spinning teapots as well as a console program for unit testing.</p>
+</div>
+<div class="paragraph">
+<p>In the teapot viewer, you should see a grid of teapots. The UI on the top
+left allows you to enter test values. Each teapot tests a conversion
+function. This week, you will implement 6 of the teapots to match the top
+right. In your next assignment, you will implement the remaining two teapots.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/teapots.mp4" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For this assignment, you do not need to implement the quaternion conversions that animate the bottom, left two teapots.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To type a value into the GUI&#8217;s slider, do <strong>control+&lt;left click&gt;</strong>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_euler_to_matrix">1. Euler to Matrix</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file <code>libsrc/atkmath/matrix3-basecode.cpp</code>, implement the conversions from euler angles to a matrix.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In this assignment, you will complete the implementations for <strong>Matrix3</strong> in <code>libsrc/atkmath</code>. You do not need to modify <code>assignments/a4-euler/teapots.cpp</code> or <code>assignments/a4-euler/test_euler.cpp</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To start, implement the function <code>Matrix3::fromEulerAnglesZYX()</code>.  This function
+takes a parameter called angleRad which stores euler angles as a 3-tuple</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>angleRad[0] contains the rotation around the X axis (in radians)</p>
+</li>
+<li>
+<p>angleRad[1] contains the rotation around the Y axis (in radians)</p>
+</li>
+<li>
+<p>angleRad[2] contains the rotation around the Z axis (in radians)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You will be implementing many similar functions. I recommend you add methods or functions to compute Rx, Ry, and Rz matrices.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In <code>matrix3.h</code>, you will see that <code>Matrix3</code> supports two types of syntax for accessing elements: indexing or by element name. For example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>std::cout &lt;&lt; mM[0][0] &lt;&lt; std::endl; // indexing notation
+std::cout &lt;&lt; m11 &lt;&lt; std::endl; // lecture matrix notation
+mM[row][col] = 0.4;
+m11 = 3;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>Matrix3::fromEulerAnglesZYX()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::fromEulerAnglesXYZ()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::fromEulerAnglesXZY()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::fromEulerAnglesYZX()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::fromEulerAnglesYXZ()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::fromEulerAnglesZXY()</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Use the utility <code>test_euler.cpp</code> to help you implement your methods. Note that you can add more tests to this utility to help debug special cases!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a4-test-euler</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a test fails, it prints the expected value followed by the computed value, for example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>ZYX
+  TEST FAIL
+  0 0 1
+0 -1 0
+1 0 0
+
+  1 0 0
+0 1 0
+0 0 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_matrix_to_euler">2. Matrix to Euler</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In class, we derived recipes for extract euler angles from XYZ and ZYX rotation matrices. In this question, derive the remaining formulas for extracting euler angles and implement them in your basecode.</p>
+</div>
+<div class="paragraph">
+<p>In your implementation, be carefull of edge cases around 90 degrees!</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement <code>Matrix3::toEulerAnglesZYX()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::toEulerAnglesXYZ()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::toEulerAnglesXZY()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::toEulerAnglesYZX()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::toEulerAnglesYXZ()</code></p>
+</li>
+<li>
+<p>Implement <code>Matrix3::toEulerAnglesZXY()</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To run the teapots from the <strong>build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a4-teapots</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the unit tests from the <strong>build</strong> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a4-test-euler</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Implement the special cases (e.g. when the middle angle is 90 or -90 degrees) after implementing the main algorithms for each case.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_be_unique">3. Be Unique!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement your own unique animation or image in <code>a4-euler/unique.cpp</code>. Some ideas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make a demo with rotating objects</p>
+</li>
+<li>
+<p>Make a cone that follows a trajectory</p>
+</li>
+<li>
+<p>Create a shape whose orientation and position is controlled using the keyboard</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/flower.gif" alt="flower" height="200px">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/paths.gif" alt="paths" height="200px">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">4. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">4.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">4.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">4.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">4.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a4-euler/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-13 15:55:06 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

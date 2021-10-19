@@ -1,0 +1,232 @@
+include::header.adoc[]
+
+:title: Understanding quaternions
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+:stem: latexmath
+
+[discrete]
+= {title}
+
+[discrete]
+= Name: 
+
+*Due October 21st, in lab*
+
+This worksheet is intended as a short 30 min exercise to be done in groups of 1-3 people.
+
+[discrete]
+= Quaternions
+
+Multiply the complex numbers \( a = 3 + 4 i \) and \( b = 3 - 4 i \). Note that b is the conjugate of a.
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (1, 0, 0, 0) \).
+A quaternion \(q = (x, y, z, w) \) is often denoted \(q = (\mathbf{v}, w) \), 
+where \( \mathbf{v} = (x, y, z) \) is the vector part and \( w \) is the scalar part. Quaternions extend the complex numbers. 
+With this perspective, a quaternion corresponds to \(q = x\hat{i} + y\hat{j} + z\hat{k} + w\), 
+where \(\hat{i}^2 = \hat{j}^2 = \hat{k}^2 = -1\). 
+
+Recall that 
+
+[stem]
+++++
+q^{-1} = \frac{\bar{q}}{||q||^2}
+++++
+
+where
+
+[stem]
+++++
+\bar{q} = (-\mathbf{v}, s)
+++++
+
+Given \(q = (1, -1, 0, 1) \). Compute the following expressions
+
+* \( ||q||^2 \)
+* \( \bar{q} \)
+* \( q^{-1} \)
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+Let \(q_1 = q \) and \( q_2 = q^{-1} \). 
+If \( q_1 = (\mathbf{v_1}, s_1) \) and \( q_2 = (\mathbf{v_2}, s_2) \), then 
+
+[stem]
+++++
+q_1 q_2 = (s_1 \mathbf{v_2} + s_2 \mathbf{v_1} + v_1 \times v_2, s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2})
+++++
+
+Compute the following expressions
+
+* \( s_1 \cdot \mathbf{v_2} \)
+* \( s_2 \cdot \mathbf{v_1} \)
+* \( \mathbf{v_1} \times \mathbf{v_2} \)
+* \( s_1 s_2 \)
+* \( \mathbf{v_1} \cdot \mathbf{v_2} \)
+* \( s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)
+* \( q q^{-1} \)
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+[discrete]
+= Angle/Axis
+
+Which subset of quaternions correspond to rotations?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+Recall that the relationship between some quaternions and an angle/axis rotation is
+
+[stem]
+++++
+q = \left[\sin(\frac{\theta}{2}) \hat{u}, \cos(\frac{\theta}{2})\right]
+++++
+
+* What is the quaternion corresponding to a 30 degree rotation around the Y axis?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+* Suppose we have a quaternion [0.18301, 0.18301, 0, 0.9659]. What is the angle and axis corresponding to this quaternion?
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+[discrete]
+= Matrix
+
+In class, we derived the rotation matrix corresponding to a quaternion 
+\( q = (x, y, z, w) = (\bar{v}, w ) \).
+
+[stem]
+++++
+\left( \begin{array}{ccc}
+1-2(y^2+z^2) & 2(x y - w z) & 2(x z + w y) \\
+2(x y + w z) & 1-2(x^2+z^2) & 2(y z - w x) \\
+2(x z - w y) & 2(y z + w x) & 1-2(y^2+x^2) \\
+\end{array} \right)
+++++
+
+Suppose we have a quaternion corresponding to a 45 degree rotation around the Z axis. Verify that the matrix above reduces to a Z rotation matrix \( R_Z(45) \).
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+Recall the algorithm for extracting a quaternion from a rotation matrix.
+
+* solve for \( w^2 \), \( x^2 \), \( y^2 \), and \( z^2 \)
+* Find the term with the largest value
+* Based on the largest component, compute the remaining terms using the off-diagonal matrix elements.
+
+For example, if \( w^2 \) is the largest, we would then solve for x, y, and z using 
+the expressions for \( w x \), \( w y \), and \( w z \).
+
+Consider the matrix \( R_Z(45) \) from the previous question. 
+Apply this algorithm to obtain the original quaternion back.
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
