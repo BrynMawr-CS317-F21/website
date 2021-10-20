@@ -94,6 +94,15 @@ void foo() {
 }
 ----
 
+The output of `test-quat` should be
+
+[source]
+----
+45 Z 0 0 0.382683 0.92388 0 0 1 45
+45 Y 0 0.382683 0 0.92388 0 1 0 45
+45 X 0.382683 0 0 0.92388 1 0 0 45
+----
+
 == Matrix 
 
 In class, we derived the rotation matrix corresponding to a quaternion 
@@ -121,6 +130,29 @@ To run the tests from the `build` directory, type
 ----
 build> ../bin/a5-test-quat-mat 
 build> ../bin/a4-teapots
+----
+
+The output of `test-quat-mat` should be
+
+[source]
+----
+45 Z 0 0 0.382683 0.92388
+45 Z
+0.707107 -0.707107 0
+0.707107 0.707107 0
+0 0 1
+
+45 Y 0 0.382683 0 0.92388
+45 Y
+0.707107 0 0.707107
+0 1 0
+-0.707107 0 0.707107
+
+45 X 0.382683 0 0 0.92388
+45 X
+1 0 0
+0 0.707107 -0.707107
+0 0.707107 0.707107
 ----
 
 = Be Unique!

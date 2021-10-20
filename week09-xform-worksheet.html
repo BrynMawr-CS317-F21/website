@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Understanding transforms</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<h2 id="_understanding_transforms" class="discrete">Understanding transforms</h2>
+<h2 id="_name" class="discrete">Name:</h2>
+<div class="paragraph">
+<p><strong>Due October 28st, in lab</strong></p>
+</div>
+<div class="paragraph">
+<p>This worksheet is intended as a short 30 min exercise to be done in groups of 1-3 people.</p>
+</div>
+<h2 id="_stacking_boxes" class="discrete">Stacking boxes</h2>
+<div class="paragraph">
+<p>A room has three boxes in it. Each box has a local coordinate system
+attached to it. The lengths of all three boxes in the x,y, and z directions of
+their local coordinate frames are (3,2,1) respectively. The origin of each box
+is in the lower left-hand corner.  The z-axis of each box is aligned with the
+global Z axis.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The position of B1 with respect to the world (e.g. the coordinate system corresponding to \(X_0, Y_0, Z_0 \)) is
+\(p_1 = (-2, 0, 1)^T \).</p>
+</li>
+<li>
+<p>The position of B2 with respect to the world is \( p_2 = (4, 0, 2)^T \). The rotation of B2 with respect to the world is 45 degrees around the Z axis.</p>
+</li>
+<li>
+<p>The position of B3 with respect to the world is \( p_3 = (5, 4, 2)^T \). The rotation of B3 with respect to the world is 90 degrees around the Z axis.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="boxes-2019.png" alt="boxes 2019" width="200px">
+</div>
+</div>
+<div class="paragraph">
+<p>In your assignment for this week, you will implement the solutions of the following questions.
+In this worksheet, you will manually solve for the transforms corresponding to the above picture.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What are the frames of reference&#8201;&#8212;&#8201;\( F_1^0, F_2^0, F_3^0 \)&#8201;&#8212;&#8201;in the form of 2x2 block matrices? Each matrix should transform from the block&#8217;s local coordinate frame to the global coordinate frame.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the position of B2 relative to the local coordinate system attached to box B1? Express your answer as a 4x1 homogeneous coordinate.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the position of B3 relative to the local coordinate system attached to box B2? Express your answer as a 4x1 homogeneous coordinate.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the transformation matrix that stacks B2 onto B1?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-20 14:15:23 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

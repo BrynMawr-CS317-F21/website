@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 6: Characters, big and small</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_6_characters_big_and_small">Assignment 6: Characters, big and small</a></li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_slerp">1. Slerp</a></li>
+<li><a href="#_stacking_boxes">2. Stacking Boxes</a></li>
+<li><a href="#_skeleton">3. Skeleton</a></li>
+<li><a href="#_tentacle">4. Tentacle</a>
+<ul class="sectlevel2">
+<li><a href="#_skeleton_2">4.1. Skeleton</a></li>
+<li><a href="#_motion">4.2. Motion</a></li>
+</ul>
+</li>
+<li><a href="#_be_unique">5. Be Unique</a></li>
+<li><a href="#_hand_in_your_work">6. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">6.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">6.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">6.4. Update your Readme.md</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_6_characters_big_and_small">Assignment 6: Characters, big and small</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>In which, we take our first steps making our characters step</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Due Friday, Oct 29, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals of this lab are to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement slerp</p>
+</li>
+<li>
+<p>Implement a simple keyframed animation</p>
+</li>
+<li>
+<p>Work with skeletons</p>
+</li>
+<li>
+<p>Create and animate simple characters</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_slerp">1. Slerp</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement <code>Quaternion::Slerp()</code> in
+<code>libsrc/atkmath/quaternion-basecode.cpp</code></p>
+</div>
+<div class="paragraph">
+<p>To run the unit tests from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a6-test-slerp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the class teapot demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a6-slerp-teapot</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/slerpTeapot.gif" alt="slerpTeapot">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stacking_boxes">2. Stacking Boxes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>atk::Transform</code> class represents a 4x4 homogeneous transform as a 2x2 block matrix.
+The transform&#8217;s rotation \(R_j^i\) and translation \(d_j^i\) are public variables.
+Because the bottom row of such matrices are always known, we do not
+store them. Instead, we store the top left block as a rotation (Quaternion) and the
+top right column as a vector.</p>
+</div>
+<div class="paragraph">
+<p>For this question, you will use the transform class to position several boxes.
+Look at the code in <code>assignments/a6-transform/boxes.cpp</code>.
+ You will need to modify it.</p>
+</div>
+<div class="paragraph">
+<p>A room has three boxes in it. Each box has a local coordinate system
+attached to it. The lengths of all three boxes in the x,y, and z directions of
+their local coordinate frames are (3,2,1) respectively. The origin of each box
+is in the lower left-hand corner.  The z-axis of each box is aligned with the
+global Z axis.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The position of B1 with respect to the world (e.g. the coordinate system corresponding to \(X_0, Y_0, Z_0 \)) is
+\(p_1 = (-2, 0, 1)^T \).</p>
+</li>
+<li>
+<p>The position of B2 with respect to the world is \( p_2 = (4, 0, 2)^T \). The rotation of B2 with respect to the world is 45 degrees around the Z axis.</p>
+</li>
+<li>
+<p>The position of B3 with respect to the world is \( p_3 = (5, 4, 2)^T \). The rotation of B3 with respect to the world is 90 degrees around the Z axis.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/boxes-2019.png" alt="boxes 2019" height="200px">
+</div>
+</div>
+<div class="paragraph">
+<p>In your lab for this week, you will manually solve for the transforms corresponding to the above picture.
+In this assignment, you will implement the solutions in <code>assignments/a6-transform/boxes.cpp</code>.</p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a6-boxes</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_skeleton">3. Skeleton</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this question, you will learn about the <code>atk::Skeleton</code> and <code>atk::Joint</code> classes in your basecode.</p>
+</div>
+<div class="paragraph">
+<p>First, read the header files for Skeleton and Joint in <code>libsrc/atk/skeleton.h</code> and
+<code>libsrc/atk/joint.h</code>.</p>
+</div>
+<div class="paragraph">
+<p>Second, complete the program in <code>assignments/a6-transform/skeleton.cpp</code>
+This program loads a BVH file and prints information about the character in it.
+For more details, read below.</p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a6-skeleton</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Skeleton</strong> class implements a hierarchy of joints using a tree data structure. Using the skeleton class,
+users can iterate over joints and navigate through the joint hierarchy using depth- or breadth- first searches.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Joint</strong> class stores two transforms: one that converts from the local frame of the joint to its parent (called <strong>local2parent</strong>);
+and one that converts from the local frame to the global frame (called <strong>local2global</strong>). When a skeleton is created, each joint must be
+initialized with its local to parent transform. A joint&#8217;s local to global transform is only computed later,
+when the user calls <code>Skeleton::fk()</code>. Joints also store an ID, name, parent pointer, and list of children pointers.
+The root joint always has an ID of zero and a NULL parent pointer.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tentacle">4. Tentacle</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Forward kinematics (FK)</strong> is an algorithm that allows us to efficiently compute the global positions of
+the end effectors of a character, given the local2parent transforms at each joint. A by-product of this
+process is that we also get the local2global transforms for <em>every</em> joint in the skeleton, meaning we
+also get the global positions of every joint.</p>
+</div>
+<div class="sect2">
+<h3 id="_skeleton_2">4.1. Skeleton</h3>
+<div class="paragraph">
+<p>In this demo, we will define a tentacle character and then draw it using the global positions of each joint.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>void scene()
+  for each joint
+    if the joint is the root
+       continue
+
+    p1 = global position of the parent joint
+    p2 = global position of the joint
+    draw a limb between p1 and p2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tips and requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your skeleton should have at least 5 joints (including the root)</p>
+</li>
+<li>
+<p>Each joint is 50 units from its parent. To make this easier, let the offset of each joint from its parent by along the local X-axis.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/tentacleSkeleton.png" alt="tentacleSkeleton" height="320">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_motion">4.2. Motion</h3>
+<div class="paragraph">
+<p>Use sine to animate each joint of the tentacle.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Rotate each joint around its local Z axis.</p>
+</li>
+<li>
+<p>Use sine to compute the angle of rotation around each joint&#8217;s local Z axis.</p>
+</li>
+<li>
+<p>Offset the angle of rotation for each joint to make the animation more interesting</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/tentacle.gif" alt="tentacle" height="320">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_be_unique">5. Be Unique</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create and animate your own character (or characters) consisting of multiple body parts.
+Try setting keyframes or defining procedural motions using functions like sine or the rose curves.
+Feel free to also add particle effects for extra flare!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">6. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">6.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">6.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">6.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a6-transform/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-20 13:53:49 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
