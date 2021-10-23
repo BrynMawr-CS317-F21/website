@@ -86,7 +86,7 @@ General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 
 Slerp. Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
 
-* Lengyel Chpt 4, Parent Chpt 2
+* Lengyel Chpt 4, Parent Chpt 2 link:week08.html[Additional Resources]
 * *Lab (Quaternions):* link:week08-quat-worksheet.html[Quaternions Worksheet]: *Due Oct 21*
 * *Assignment 06:* link:asst06-transform.html[Building character]: *Due Oct 28*
 
@@ -95,12 +95,12 @@ Slerp. Transformations. Coordinate systems revisited. Homogeneous coordinates. S
 | Oct 28
 |*Characters and motion* anchor:week09[]
 
-More Articulated Characters. Skeleton Example. Tree traversal review. Forward Kinematics.
-Motion. Poses. Motion Representation. Motion Capture. Procedural animation.
+More Articulated Characters. Tree traversal review.
+Motion. Motion Representation. Motion Capture. Procedural animation.
 
 * *NO CLASS Oct 26!!*
-* Butterfly: link:Labs/AButterfly.cpp.txt[Skeleton I]
-* link:SkeletonExamples.pd[Skeleton FK Example]
+//* Butterfly: link:Labs/AButterfly.cpp.txt[Skeleton I]
+//* link:SkeletonExamples.pdf[Skeleton FK Example]
 * link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 
 //* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Nov 4*

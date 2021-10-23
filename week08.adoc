@@ -14,7 +14,7 @@ Lecture topics:
 
 See slack for the notes from 10/19/2021.
 
-link:[Lecture 10/21/2021],link:Notes/Lecture14-10.21.2021.pdf[Notes]
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f975df93-c187-40a3-9293-adca0140af1a[Lecture 10/21/2021],link:Notes/Lecture14-10.21.2021.pdf[Notes]
 
 Additional Resources:
 
