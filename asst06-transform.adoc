@@ -1,6 +1,6 @@
 include::header.adoc[]
 
-:title: Assignment 6: Characters, big and small
+:title: Assignment 6: Building character
 :Author Initials: ASN
 :Date:    2020-02-07
 :Revision: 0.1
@@ -16,8 +16,7 @@ _In which, we take our first steps making our characters step_
 The goals of this lab are to 
 
 * Implement slerp
-* Implement a simple keyframed animation
-* Work with skeletons
+* Start working with skeletons
 * Create and animate simple characters
 
 = Get the source
@@ -73,7 +72,7 @@ image::Labs/slerpTeapot.gif[]
 = Stacking Boxes
 
 The `atk::Transform` class represents a 4x4 homogeneous transform as a 2x2 block matrix. 
-The transform's rotation \(R_j^i\) and translation \(d_j^i\) are public variables. 
+The transform's rotation \(R_j^i\) and translation \(d_j^i\) are member variables. 
 Because the bottom row of such matrices are always known, we do not 
 store them. Instead, we store the top left block as a rotation (Quaternion) and the 
 top right column as a vector. 
@@ -96,7 +95,9 @@ global Z axis.
 image::Labs/boxes-2019.png[height=200px]
 
 In your lab for this week, you will manually solve for the transforms corresponding to the above picture. 
-In this assignment, you will implement the solutions in `assignments/a6-transform/boxes.cpp`.
+In this part of the assignment, you will implement the solutions in `assignments/a6-transform/boxes.cpp`.
+You have already been given code corresponding the worksheet. You need to fill in values and define additional 
+transforms.
 
 To run the demo from the `build` directory, type
 
@@ -104,6 +105,19 @@ To run the demo from the `build` directory, type
 ----
 build> ../bin/a6-boxes 
 ----
+
+Transforms to implement:
+
+* **Q1**: Specify the displacement and rotation that transforms from frame 1 to the world frame.
+* **Q2**: Specify the displacement and rotation that transforms from frame 2 to the world frame.
+* **Q3**: Specify the displacement and rotation that transforms from frame 3 to the world frame.
+* **Q4**: If a transform \( F_j^i \) transforms from frame j to frame i. The inverse stem:[(F_j^i)^{-1} = F_i^j] transforms from frame i to frame j. Use this fact to compute the transform from frame 2 to frame 1. You implementation should use \( F_1^0 \) and \(F_2^0 \). 
+* **Q5**: Compute the transform from frame 3 to frame 2. You implementation should use \( F_2^0 \) and \(F_3^0 \). 
+* **Q6**: Transforms can be interpreted as (1) conversions between frames of reference, or (2) modifications on an object. Consider Box 2. Suppose we wish to move it from its current location and orientation so it stacks on top of B1. Compute a series of transformations that achieves this result. 
+
+After completing each part, your scene should look like the following:
+
+image::Labs/boxes-2021.png[]
 
 = Skeleton
 
@@ -132,13 +146,12 @@ initialized with its local to parent transform. A joint's local to global transf
 when the user calls `Skeleton::fk()`. Joints also store an ID, name, parent pointer, and list of children pointers.
 The root joint always has an ID of zero and a NULL parent pointer.
 
-//You can create characters from scratch using the methods in Skeleton and Joint.
-//However, we usually load characters (and motion) from a file. Your basecode
-//supports a file format called 
-//link:https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html[BVH].
-//The first part of the file contains the hierachy of joints and the second part 
-//contains root positions and joint orientations to use for animation. A BVH
-//reader is defined in the class `atk::BVHReader` in `libsrc/atk/bvhreader.cpp`.
+This program reads in the skeleton from a 
+link:https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html[BVH file].
+The channels for each joint represent the degrees of freedom that are animated in the file. 
+Rotations are specified as euler angles, based on the channel order. 
+
+After modifying the program, you should see link:Labs/skeleton_output.txt[output like this].
 
 = Tentacle 
 
@@ -179,6 +192,17 @@ Use sine to animate each joint of the tentacle.
 * Offset the angle of rotation for each joint to make the animation more interesting 
 
 image::Labs/tentacle.gif[height=320]
+
+//= Paper doll
+//
+//In `squirrel.cpp` (under assignments), implement a posable character consisting of 
+//sprites. A sprite is a 2D image. You have starting basecode for this program. 
+//This program loads images for the body, tail, legs, and arms and supports the following controls:
+//
+//* Typing 1,2,3,4 
+//
+//Your program loads sprites for the body, arm, leg, and tail 
+//of our character 
 
 = Be Unique
 

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Assignment 6: Characters, big and small</title>
+<title>Assignment 6: Building character</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -14,7 +14,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_assignment_6_characters_big_and_small">Assignment 6: Characters, big and small</a></li>
+<li><a href="#_assignment_6_building_character">Assignment 6: Building character</a></li>
 <li><a href="#_get_the_source">Get the source</a></li>
 <li><a href="#_slerp">1. Slerp</a></li>
 <li><a href="#_stacking_boxes">2. Stacking Boxes</a></li>
@@ -39,7 +39,7 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_assignment_6_characters_big_and_small">Assignment 6: Characters, big and small</h2>
+<h2 id="_assignment_6_building_character">Assignment 6: Building character</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>In which, we take our first steps making our characters step</em></p>
@@ -56,10 +56,7 @@
 <p>Implement slerp</p>
 </li>
 <li>
-<p>Implement a simple keyframed animation</p>
-</li>
-<li>
-<p>Work with skeletons</p>
+<p>Start working with skeletons</p>
 </li>
 <li>
 <p>Create and animate simple characters</p>
@@ -121,7 +118,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>atk::Transform</code> class represents a 4x4 homogeneous transform as a 2x2 block matrix.
-The transform&#8217;s rotation \(R_j^i\) and translation \(d_j^i\) are public variables.
+The transform&#8217;s rotation \(R_j^i\) and translation \(d_j^i\) are member variables.
 Because the bottom row of such matrices are always known, we do not
 store them. Instead, we store the top left block as a rotation (Quaternion) and the
 top right column as a vector.</p>
@@ -159,7 +156,9 @@ global Z axis.</p>
 </div>
 <div class="paragraph">
 <p>In your lab for this week, you will manually solve for the transforms corresponding to the above picture.
-In this assignment, you will implement the solutions in <code>assignments/a6-transform/boxes.cpp</code>.</p>
+In this part of the assignment, you will implement the solutions in <code>assignments/a6-transform/boxes.cpp</code>.
+You have already been given code corresponding the worksheet. You need to fill in values and define additional
+transforms.</p>
 </div>
 <div class="paragraph">
 <p>To run the demo from the <code>build</code> directory, type</p>
@@ -167,6 +166,39 @@ In this assignment, you will implement the solutions in <code>assignments/a6-tra
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>build&gt; ../bin/a6-boxes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Transforms to implement:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Q1</strong>: Specify the displacement and rotation that transforms from frame 1 to the world frame.</p>
+</li>
+<li>
+<p><strong>Q2</strong>: Specify the displacement and rotation that transforms from frame 2 to the world frame.</p>
+</li>
+<li>
+<p><strong>Q3</strong>: Specify the displacement and rotation that transforms from frame 3 to the world frame.</p>
+</li>
+<li>
+<p><strong>Q4</strong>: If a transform \( F_j^i \) transforms from frame j to frame i. The inverse \((F_j^i)^{-1} = F_i^j\) transforms from frame i to frame j. Use this fact to compute the transform from frame 2 to frame 1. You implementation should use \( F_1^0 \) and \(F_2^0 \).</p>
+</li>
+<li>
+<p><strong>Q5</strong>: Compute the transform from frame 3 to frame 2. You implementation should use \( F_2^0 \) and \(F_3^0 \).</p>
+</li>
+<li>
+<p><strong>Q6</strong>: Transforms can be interpreted as (1) conversions between frames of reference, or (2) modifications on an object. Consider Box 2. Suppose we wish to move it from its current location and orientation so it stacks on top of B1. Compute a series of transformations that achieves this result.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After completing each part, your scene should look like the following:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/boxes-2021.png" alt="boxes 2021">
 </div>
 </div>
 </div>
@@ -204,6 +236,15 @@ and one that converts from the local frame to the global frame (called <strong>l
 initialized with its local to parent transform. A joint&#8217;s local to global transform is only computed later,
 when the user calls <code>Skeleton::fk()</code>. Joints also store an ID, name, parent pointer, and list of children pointers.
 The root joint always has an ID of zero and a NULL parent pointer.</p>
+</div>
+<div class="paragraph">
+<p>This program reads in the skeleton from a
+<a href="https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html">BVH file</a>.
+The channels for each joint represent the degrees of freedom that are animated in the file.
+Rotations are specified as euler angles, based on the channel order.</p>
+</div>
+<div class="paragraph">
+<p>After modifying the program, you should see <a href="Labs/skeleton_output.txt">output like this</a>.</p>
 </div>
 </div>
 </div>
@@ -427,7 +468,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-20 13:53:49 -0400
+Last updated 2021-10-23 11:42:27 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

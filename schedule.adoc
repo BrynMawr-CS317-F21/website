@@ -69,7 +69,7 @@ General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 
 * *Oct 7* Quiz2 link:Q2Guide.html[Quiz2 Study Guide]: Interpolation and splines
 * link:week06.html[Lecture notes and resources]
-* *Assignment 05:* link:Labs/lab5-quat.html[Quazy Quaternions] *Due Oct 21 (after fall break)*
+* *Assignment 05:* link:asst05-quat.html[Quazy Quaternions] *Due Oct 21 (after fall break)*
 
 //-----------------------------
 |7
@@ -84,11 +84,11 @@ General angle-axis rotations. Quaternions.  Slerp. Interpolating rotations
 | Oct 19,21
 |*Skeletons* anchor:week08[]
 
-Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
+Slerp. Transformations. Coordinate systems revisited. Homogeneous coordinates. Skeletons and joints
 
 * Lengyel Chpt 4, Parent Chpt 2
 * *Lab (Quaternions):* link:week08-quat-worksheet.html[Quaternions Worksheet]: *Due Oct 21*
-//* *Assignment 06:* link:Labs/lab6-fk.html[Building character]: *Due Oct 28*
+* *Assignment 06:* link:asst06-transform.html[Building character]: *Due Oct 28*
 
 //-----------------------------
 |9

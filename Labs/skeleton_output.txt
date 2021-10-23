@@ -1,0 +1,75 @@
+The number of joints is 66
+0 Beta:Hips
+1 Beta:Spine
+2 Beta:Spine1
+3 Beta:Spine2
+4 Beta:Neck
+5 Beta:Neck1
+6 Beta:Head
+7 Beta:HeadSite
+8 Beta:LeftShoulder
+9 Beta:LeftArm
+10 Beta:LeftForeArm
+11 Beta:LeftHand
+12 Beta:LeftHandThumb1
+13 Beta:LeftHandThumb2
+14 Beta:LeftHandThumb3
+15 Beta:LeftHandThumb3Site
+16 Beta:LeftHandMiddle1
+17 Beta:LeftHandMiddle2
+18 Beta:LeftHandMiddle3
+19 Beta:LeftHandMiddle3Site
+20 Beta:LeftHandIndex1
+21 Beta:LeftHandIndex2
+22 Beta:LeftHandIndex3
+23 Beta:LeftHandIndex3Site
+24 Beta:LeftHandRing1
+25 Beta:LeftHandRing2
+26 Beta:LeftHandRing3
+27 Beta:LeftHandRing3Site
+28 Beta:LeftHandPinky1
+29 Beta:LeftHandPinky2
+30 Beta:LeftHandPinky3
+31 Beta:LeftHandPinky3Site
+32 Beta:RightShoulder
+33 Beta:RightArm
+34 Beta:RightForeArm
+35 Beta:RightHand
+36 Beta:RightHandThumb1
+37 Beta:RightHandThumb2
+38 Beta:RightHandThumb3
+39 Beta:RightHandThumb3Site
+40 Beta:RightHandIndex1
+41 Beta:RightHandIndex2
+42 Beta:RightHandIndex3
+43 Beta:RightHandIndex3Site
+44 Beta:RightHandMiddle1
+45 Beta:RightHandMiddle2
+46 Beta:RightHandMiddle3
+47 Beta:RightHandMiddle3Site
+48 Beta:RightHandRing1
+49 Beta:RightHandRing2
+50 Beta:RightHandRing3
+51 Beta:RightHandRing3Site
+52 Beta:RightHandPinky1
+53 Beta:RightHandPinky2
+54 Beta:RightHandPinky3
+55 Beta:RightHandPinky3Site
+56 Beta:LeftUpLeg
+57 Beta:LeftLeg
+58 Beta:LeftFoot
+59 Beta:LeftToeBase
+60 Beta:LeftToeBaseSite
+61 Beta:RightUpLeg
+62 Beta:RightLeg
+63 Beta:RightFoot
+64 Beta:RightToeBase
+65 Beta:RightToeBaseSite
+The root joint name is: Beta:Hips
+The root joint ID is: 0
+The root joint's number of children is: 3
+Beta:Spine
+Beta:LeftUpLeg
+Beta:RightUpLeg
+The offset between the left hand and its parent is vec3(27.873800, 0.000000, 0.000000)
+The parent of the hand is Beta:LeftForeArm

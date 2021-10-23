@@ -45,7 +45,7 @@ global Z axis.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="boxes-2019.png" alt="boxes 2019" width="200px">
+<img src="Labs/boxes-2019.png" alt="boxes 2019" width="400px">
 </div>
 </div>
 <div class="paragraph">
@@ -78,7 +78,7 @@ In this worksheet, you will manually solve for the transforms corresponding to t
 <div class="ulist">
 <ul>
 <li>
-<p>What is the position of B2 relative to the local coordinate system attached to box B1? Express your answer as a 4x1 homogeneous coordinate.</p>
+<p>If a transform \( F_j^i \) transforms from frame j to frame i. The inverse \((F_j^i)^{-1} = F_i^j\) transforms from frame i to frame j. Use this fact to compute the transform from frame 2 to frame 1. You implementation should use \( F_1^0 \) and \(F_2^0 \).  What is the position of B2 relative to the local coordinate system attached to box B1? Express your answer as a 4x1 homogeneous coordinate.</p>
 </li>
 </ul>
 </div>
@@ -123,9 +123,15 @@ In this worksheet, you will manually solve for the transforms corresponding to t
 <div class="ulist">
 <ul>
 <li>
-<p>What is the transformation matrix that stacks B2 onto B1?</p>
+<p>Transforms can be interpreted as (1) conversions between frames of reference, or (2) modifications on an object. Consider Box 2. Suppose we wish to move it from its current location and orientation so it stacks on top of B1. Compute a series of transformations that achieves this result
+and then multiply them together to find the transformation matrix that stacks B2 onto B1.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/boxes-2021.png" alt="boxes 2021">
+</div>
 </div>
 <div class="paragraph">
 <p>&#160;<br>
@@ -150,7 +156,7 @@ In this worksheet, you will manually solve for the transforms corresponding to t
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-20 14:15:23 -0400
+Last updated 2021-10-22 17:27:05 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

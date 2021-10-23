@@ -12,7 +12,7 @@ Lecture topics:
 * Slerp. Interpolating rotation.
 * Transforms. Coordinate systems. Skeletons and joints.
 
-link:[Lecture 10/19/2021],link:Notes/Lecture13-10.19.2021.pdf[Notes]
+See slack for the notes from 10/19/2021.
 
 link:[Lecture 10/21/2021],link:Notes/Lecture14-10.21.2021.pdf[Notes]
 

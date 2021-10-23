@@ -29,7 +29,7 @@ Multiply the complex numbers \( a = 3 + 4 i \) and \( b = 3 - 4 i \). Note that 
 {nbsp} +
 {nbsp} +
 
-We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (1, 0, 0, 0) \).
+We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (0, 0, 0, 1) \).
 A quaternion \(q = (x, y, z, w) \) is often denoted \(q = (\mathbf{v}, w) \), 
 where \( \mathbf{v} = (x, y, z) \) is the vector part and \( w \) is the scalar part. Quaternions extend the complex numbers. 
 With this perspective, a quaternion corresponds to \(q = x\hat{i} + y\hat{j} + z\hat{k} + w\), 
@@ -66,21 +66,21 @@ Given \(q = (1, -1, 0, 1) \). Compute the following expressions
 {nbsp} +
 
 Let \(q_1 = q \) and \( q_2 = q^{-1} \). 
-If \( q_1 = (\mathbf{v_1}, s_1) \) and \( q_2 = (\mathbf{v_2}, s_2) \), then 
+If \( q_1 = (\mathbf{v_1}, w_1) \) and \( q_2 = (\mathbf{v_2}, w_2) \), then 
 
 [stem]
 ++++
-q_1 q_2 = (s_1 \mathbf{v_2} + s_2 \mathbf{v_1} + v_1 \times v_2, s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2})
+q_1 q_2 = (w_1 \mathbf{v_2} + w_2 \mathbf{v_1} + v_1 \times v_2, w_1 w_2 - \mathbf{v_1} \cdot \mathbf{v_2})
 ++++
 
 Compute the following expressions
 
-* \( s_1 \cdot \mathbf{v_2} \)
-* \( s_2 \cdot \mathbf{v_1} \)
+* \( w_1 \mathbf{v_2} \)
+* \( w_2 \mathbf{v_1} \)
 * \( \mathbf{v_1} \times \mathbf{v_2} \)
-* \( s_1 s_2 \)
+* \( w_1 w_2 \)
 * \( \mathbf{v_1} \cdot \mathbf{v_2} \)
-* \( s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)
+* \( w_1 w_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)
 * \( q q^{-1} \)
 
 {nbsp} +

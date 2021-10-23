@@ -35,7 +35,7 @@
 &#160;<br></p>
 </div>
 <div class="paragraph">
-<p>We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (1, 0, 0, 0) \).
+<p>We will show that if we have a quaternion \( q = (1, -1, 0, 1) \), that \( q q^{-1} = (0, 0, 0, 1) \).
 A quaternion \(q = (x, y, z, w) \) is often denoted \(q = (\mathbf{v}, w) \),
 where \( \mathbf{v} = (x, y, z) \) is the vector part and \( w \) is the scalar part. Quaternions extend the complex numbers.
 With this perspective, a quaternion corresponds to \(q = x\hat{i} + y\hat{j} + z\hat{k} + w\),
@@ -86,11 +86,11 @@ where \(\hat{i}^2 = \hat{j}^2 = \hat{k}^2 = -1\).</p>
 </div>
 <div class="paragraph">
 <p>Let \(q_1 = q \) and \( q_2 = q^{-1} \).
-If \( q_1 = (\mathbf{v_1}, s_1) \) and \( q_2 = (\mathbf{v_2}, s_2) \), then</p>
+If \( q_1 = (\mathbf{v_1}, w_1) \) and \( q_2 = (\mathbf{v_2}, w_2) \), then</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[q_1 q_2 = (s_1 \mathbf{v_2} + s_2 \mathbf{v_1} + v_1 \times v_2, s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2})\]
+\[q_1 q_2 = (w_1 \mathbf{v_2} + w_2 \mathbf{v_1} + v_1 \times v_2, w_1 w_2 - \mathbf{v_1} \cdot \mathbf{v_2})\]
 </div>
 </div>
 <div class="paragraph">
@@ -99,22 +99,22 @@ If \( q_1 = (\mathbf{v_1}, s_1) \) and \( q_2 = (\mathbf{v_2}, s_2) \), then</p>
 <div class="ulist">
 <ul>
 <li>
-<p>\( s_1 \cdot \mathbf{v_2} \)</p>
+<p>\( w_1 \mathbf{v_2} \)</p>
 </li>
 <li>
-<p>\( s_2 \cdot \mathbf{v_1} \)</p>
+<p>\( w_2 \mathbf{v_1} \)</p>
 </li>
 <li>
 <p>\( \mathbf{v_1} \times \mathbf{v_2} \)</p>
 </li>
 <li>
-<p>\( s_1 s_2 \)</p>
+<p>\( w_1 w_2 \)</p>
 </li>
 <li>
 <p>\( \mathbf{v_1} \cdot \mathbf{v_2} \)</p>
 </li>
 <li>
-<p>\( s_1 s_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)</p>
+<p>\( w_1 w_2 - \mathbf{v_1} \cdot \mathbf{v_2} \)</p>
 </li>
 <li>
 <p>\( q q^{-1} \)</p>
@@ -300,7 +300,7 @@ Apply this algorithm to obtain the original quaternion back.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-20 10:41:42 -0400
+Last updated 2021-10-21 15:57:30 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
