@@ -88,7 +88,7 @@ Slerp. Transformations. Coordinate systems revisited. Homogeneous coordinates. S
 
 * Lengyel Chpt 4, Parent Chpt 2 link:week08.html[Additional Resources]
 * *Lab (Quaternions):* link:week08-quat-worksheet.html[Quaternions Worksheet]: *Due Oct 21*
-* *Assignment 06:* link:asst06-transform.html[Building character]: *Due Oct 28*
+* *Assignment 06:* link:asst06-transform.html[Building character]: *Due Oct 29*
 
 //-----------------------------
 |9
@@ -102,6 +102,7 @@ Motion. Motion Representation. Motion Capture. Procedural animation.
 //* Butterfly: link:Labs/AButterfly.cpp.txt[Skeleton I]
 //* link:SkeletonExamples.pdf[Skeleton FK Example]
 * link:Q3Guide.html[Quiz3 Study Guide]: Rotations
+* *Lab (Transforms):* link:week09-xform-worksheet.html[Transform Worksheet]: *Due Oct 28*
 
 //* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Nov 4*
 
