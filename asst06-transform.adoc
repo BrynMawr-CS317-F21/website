@@ -46,12 +46,25 @@ To run the unit tests from the `build` directory, type
 build> ../bin/a6-test-slerp 
 ----
 
+Here is sample output:
+
+[source]
+----
+q0 0 0 0 1
+q1 0 0 0.866025 0.5
+t=0.25: 0 0 0.258819 0.965926
+t=0.5: 0 0 0.5 0.866025
+t=0.75: 0 0 0.707107 0.707107
+t=1: 0 0 0.866025 0.5
+----
+
 To run the class teapot demo from the `build` directory, type 
 
 [source]
 ----
 build> ../bin/a6-slerp-teapot 
 ----
+
 
 image::Labs/slerpTeapot.gif[]
 
