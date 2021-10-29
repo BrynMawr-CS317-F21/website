@@ -95,12 +95,12 @@ Slerp. Transformations. Coordinate systems revisited. Homogeneous coordinates. S
 | Oct 28
 |*Characters and motion* anchor:week09[]
 
-More Articulated Characters. Tree traversal review.
-Motion. Motion Representation. Motion Capture. Procedural animation.
+More Articulated Characters. Scene Graph. Examples.
 
 * *NO CLASS Oct 26!!*
 //* Butterfly: link:Labs/AButterfly.cpp.txt[Skeleton I]
 //* link:SkeletonExamples.pdf[Skeleton FK Example]
+* link:week09.html[Additional Resources]
 * link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 * *Lab (Transforms):* link:week09-xform-worksheet.html[Transform Worksheet]: *Due Oct 28*
 
@@ -111,7 +111,7 @@ Motion. Motion Representation. Motion Capture. Procedural animation.
 | Nov 2,4
 |*Motion Editing* anchor:week10[]
 
-Motion editing. Blending. Splicing. Interpolation. Transitions.
+Motion representations. Motion editing. Blending. Splicing. Interpolation. Transitions.
 Transitions. Reorienting a motion. Crossfading. 
 
 * *Quiz3 Nov 4*

@@ -1,0 +1,20 @@
+include::header.adoc[]
+
+:title: Week 09: More frames of reference, Skeletons and joints
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Lecture topics:
+
+* Transforms. Coordinate systems. Skeletons and joints.
+* Examples and practice
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5c158fc4-3467-490c-89c1-add00102b952[Lecture 10/28/2021],link:Notes/Lecture15-10.28.2021.pdf[Notes]
+
+Additional Resources:
+
+* Lengyel Chpt 4
+* Parent Chpt 2

@@ -1,6 +1,6 @@
 include::header.adoc[]
 
-:title: Week 06: Rotations II: Quaternions
+:title: Week 08: Slerp, Transforms, Skeletons and joints
 :Author Initials: ASN
 :Date:    2020-02-07
 :Revision: 0.1
