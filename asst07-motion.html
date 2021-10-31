@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 7: Commotion of motion</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_7_commotion_of_motion">Assignment 7: Commotion of motion</a></li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_motion_practice">1. Motion Practice</a></li>
+<li><a href="#_motion_viewer">2. Motion viewer</a></li>
+<li><a href="#_thriller">3. Thriller</a></li>
+<li><a href="#_butterfly">4. Butterfly</a></li>
+<li><a href="#_paper_doll">5. Paper Doll</a></li>
+<li><a href="#_be_unique">6. Be Unique</a></li>
+<li><a href="#_hand_in_your_work">7. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">7.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">7.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">7.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">7.4. Update your Readme.md</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_7_commotion_of_motion">Assignment 7: Commotion of motion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>In which, we begin work with more complex characters</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Due Friday, Nov 5, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals of this lab are to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Work more with transforms</p>
+</li>
+<li>
+<p>Attach geometry to joints using the matrix stack</p>
+</li>
+<li>
+<p>Begin working with motion capture data</p>
+</li>
+<li>
+<p>Animate more complex characters</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_motion_practice">1. Motion Practice</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this question, use the APIs in <code>Motion</code>, <code>Pose</code> and <code>Skeleton</code>
+to finish the implementation in <code>assignments/a7-motion/practice_motion.cpp</code>.</p>
+</div>
+<div class="paragraph">
+<p>*<code>Motion</code> is defined in <code>libsrc/atk/motion.h</code>
+*<code>Skeleton</code> is defined in <code>libsrc/atk/skeleton.h</code>
+*<code>Pose</code> is defined in <code>libsrc/atk/pose.h</code></p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a7-motion-practice</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Motion</code> implements a fixed-framerate motion loaded from a
+<a href="https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html">BVH file</a>.  A motion stores a sequence of a &lt;b&gt;APose&lt;/b&gt;. Each APose stores the
+state of the skeleton on that frame .  Because <code>Motion</code> represents motions with
+a fixed framerate, the time between each key is 1/fps. Fps stands for frames
+per second. For the characters in this class, poses contain the root position
+and the rotations for each joint. All pose data is always in local coordinates.
+The order of the joint rotations in <code>Pose</code> matches the IDs in
+<code>Skeleton</code>.  For example, the joint with ID = 5 has its local rotation
+stored in jointRots[5].</p>
+</div>
+<div class="paragraph">
+<p>Running this program should produce the following output</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>The number of frames is 32
+The frame rate is 30
+The duration of the animation is 1.03333
+The root position on frame 5 is: vec3(1.069900, 91.642601, 25.193100)
+The local rotation of the left hand on frame 5 is: vec3(0.136196, -0.027970, -0.351661)
+The speed of the motion is (units/s): 2.90323</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_motion_viewer">2. Motion viewer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Complete the program, <code>motion_viewer.cpp</code>, that loads and plays different BVH files from the command line
+and allows the user the pause, play, and step through a motion.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a7-motion-viewer
+build&gt; ../bin/a7-motion-viewer ../motions/Beta/idle.bvh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By default, your viewer should load a default motion. In other words, if no file name is given, the program should still show an animated character.</p>
+</li>
+<li>
+<p>Pressing the 'P' key should toggle play and pause</p>
+</li>
+<li>
+<p>Pressing the '0' key should reset the motion to the first frame</p>
+</li>
+<li>
+<p>If the motion is paused, pressing '.' should step forward one frame. The motion should wrap to the first frame.</p>
+</li>
+<li>
+<p>If the motion is paused, pressing ',' should step backward one frame. The motion should wrap to the last frame.</p>
+</li>
+<li>
+<p>Pressing the ']' key should increase the playback speed.</p>
+</li>
+<li>
+<p>Pressing the '[' key should decrease the playback speed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hints and Tips:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the sample program, ``, from class to see how you can use your basecode to load and visualize a BVH motion.</p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/">Command line argument (simple examples)</a></p>
+</li>
+<li>
+<p>Override the method <a href="https://alinen.github.io/agl/html/classagl_1_1_window.html#a022bd571eae1add76f1f06b4e4a4e8a3">keyUp()</a> to implement your controls</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are in windows, you can run your program with arguments from <code>git bash</code>, where you run cmake. Or you can specify command line arguments in your project properties, inside visual studio
+</td>
+</tr>
+</table>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/motion-viewer.mp4" height="400" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thriller">3. Thriller</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file, <code>thriller.cpp</code>, implement dancers performing the 80s classic: Thriller!
+Note that to draw multiple characters with the same synchronized animations,
+we only need one skeleton and multiple drawers!</p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a7-thriller</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/thriller.ogv" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p>Your solution should have the following features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The basecode uses a "Devil" object to draw each character. Use a vector or array to store multiple "Devil" objects. Each object can have its own color, position, and size.</p>
+</li>
+<li>
+<p>Arrange 12 characters in a 4x3 grid across the floor.</p>
+</li>
+<li>
+<p>Jitter the positions of the characters so that the alignment is not exact.</p>
+</li>
+<li>
+<p>Randomize the colors of the characters.</p>
+</li>
+<li>
+<p>Randomize the sizes of the characters.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_butterfly">4. Butterfly</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file <code>butterfly.cpp</code>, extend the butterfly demo from class to have more interesting wings and movement.</p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a7-butterfly</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>image::Labs/butterfly.gif</p>
+</div>
+<div class="paragraph">
+<p>Your solution should have the following features</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Two+ primitives for each wing</p>
+</li>
+<li>
+<p>Animated wings</p>
+</li>
+<li>
+<p>Animated body</p>
+</li>
+<li>
+<p>An option to display the coordinate axes for the body</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use red for the x axis</p>
+</li>
+<li>
+<p>Use green for the y axis</p>
+</li>
+<li>
+<p>Use blue for the z axis</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hints and tips:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display the coordinate axes, define the origin and axes in local coordinates and use the body&#8217;s local-to-global transform to convert them to global points and directions. Use <code>drawEllipsoid</code> to draw the axes.</p>
+</li>
+<li>
+<p>Use the body&#8217;s coordinate axes to help you size and place the wings. (The wings' frames align with the body&#8217;s frame).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_paper_doll">5. Paper Doll</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In <code>squirrel.cpp</code> (under assignments), implement a posable character consisting of
+sprites using a matrix stack.</p>
+</div>
+<div class="paragraph">
+<p>This program supports the following controls:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pressing 1,2,3,4 switched the current body part</p>
+</li>
+<li>
+<p>Pressing the UP and DOWN keys rotates the body part</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You have starting basecode for this program. This program loads images for the
+body, tail, legs, and arms. When each image is loaded, we also setup a <code>pivot</code> point (in local
+coordinates) which indicates where we want the part to rotate. For example, we load the body with</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>  loadSprite("body", vec3(0.5, 0.5f, 0.0f), "../models/squirrel/squirrel-body.png");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This loads the body image and sets the pivot point to 50% of the image width and
+50% of the image height (e.g. the middle of the image).</p>
+</div>
+<div class="paragraph">
+<p>Program requirements and hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You must draw the parts of the body from back to front. This ensures that the layering works correctly.</p>
+</li>
+<li>
+<p>You should use <code>push()</code> and <code>pop()</code> to manage the transforms correctly.</p>
+</li>
+<li>
+<p>To position the sprites, use the following series of transformations (listed starting from local coordinates)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When you call <code>drawSprite</code>, you draw the image in its local coordinate system, which centers the image at the origin.</p>
+</li>
+<li>
+<p>Next, translate the sprite so the pivot is aligned with the origin</p>
+</li>
+<li>
+<p>Next, rotate</p>
+</li>
+<li>
+<p>Next, translate relative to its parent</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/Squirrel.mp4" height="400" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_be_unique">6. Be Unique</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create and animate your own character (or characters) consisting of multiple body parts.
+Try setting keyframes or defining procedural motions using functions like sine or the rose curves.
+Feel free to also add particle effects for extra flare!</p>
+</div>
+<div class="paragraph">
+<p>Some ideas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Look online for BVH files of different motions</p>
+</li>
+<li>
+<p>Customize the appearance of a skeletal character (add a top hat and monocle; crown and sword; or whatever your imagine!)</p>
+</li>
+<li>
+<p>Create your own paper doll animation, or general collage scene (Have you seen Monty Python&#8217;s Flying Circus?)</p>
+</li>
+<li>
+<p>Try using spites for the butterfly wings</p>
+</li>
+<li>
+<p>Create a procedural animation (for example with sin/cos/tan)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Try animating the arms to make a dance motion.</p>
+</li>
+<li>
+<p>Try animating a tapping foot</p>
+</li>
+<li>
+<p>Try animating gaze</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/characters.gif" alt="characters" height="200">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">7. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">7.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">7.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">7.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">7.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a7-motion/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-31 08:27:14 -0400
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

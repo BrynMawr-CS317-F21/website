@@ -1,0 +1,424 @@
+include::header.adoc[]
+
+:title: Assignment 8: The cross-fade away
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+:Dir: assignments/a8-blend
+:stem: latexmath
+
+= {title}
+
+_In which, we implement blending and reorienting between motions_
+
+**Due Friday, Nov 12, before midnight**
+     
+The goals of this lab are to 
+
+* Implement spliced motions
+* Implement blends between similar motions
+* Modify animations for a part of the body
+* Align motion sequences for blending
+
+= Get the source
+
+On Github, do a `Fetch Upstream` to synchronize your forked repository with the class repository.
+
+Then update the source on your local machine and rebuild.
+
+[source]
+----
+> git pull
+> cd build
+> cmake ..; make
+----
+
+:sectnums:
+
+= Blend
+
+In this question, you will blend the walk motion with a strafe motion.
+Implement your solution in <b>assignments/a8-blend/ABlend.cpp</b> inside of 
+the method <b>blend()</b>.
+
+[source]
+----
+// m1: First input motion
+// m2: Second input motion
+// alpha: blend value
+// returns the result of m1 * (1-alpha) + m2
+AMotion blend(const AMotion& m1, const AMotion& m2, double alpha) 
+----
+
+Your implementation should be based on the code from class
+
+
+[source]
+----
+duration = duration1 * (1-alpha) + duration2 * alpha
+deltaT = 1/fps
+for t from 0 to duration, increment by deltaT
+    APose pose1 = pose from motion1
+    APose pose2 = pose from motion2
+		APose newPose = lerp pose1 and pose2 by alpha
+		result.appendKey(newPose)
+return result
+----
+
+To run the demo from the <b>build</b> directory, type 
+
+[source]
+----
+build> ../bin/a8-blend 
+----
+
+image::Labs/blend.gif[]
+
+Controls
+
+* Press 'UP' to increase the blend factor _alpha
+* Press 'DOWN' to decrease the blend factor
+
+Your program should have the following features
+
+* `blend()` should create and return a new motion. Use `Motion::appendKey` to add poses to your blended motion
+* The motion returned by blend should have a framerate equal to motion1. Hint: Call setFramerate() before returning result.
+* The duration of the blended motion should be based on the blend factor, e.g. duration = duration1 * (1-alpha) + duration2 * alpha. 
+* Use `Pose::Lerp` to blend poses from motion1 and motion2
+
+= Splice
+
+In the file `splice.cpp`, implement a character that walk and dance gangnam style at the same time. 
+
+[source]
+----
+// orig: Starting input motion
+// upper: Motion for the modifying the upper body (all joints which are descendants of the spine)
+// alpha: blend value
+// returns a new motion such that 
+//     the lower body matches the motion in 'orig'
+//     the upper body is the result of blending the upper body motion with 
+//         the original's upper body motion, e.g. newupper = upper * (1-alpha) + orig * alpha
+AMotion spliceUpperBody(const AMotion& orig, const AMotion& upper, double alpha) 
+----
+
+For this question, use keys for blending instead of durations, e.g.
+
+[source]
+----
+for i in range numKeys in orig
+    APose pose = orig.getKey(i)
+		// compute new pose and either call appendKey() or editKey() set the pose
+----
+
+To run the demo from the `build` directory, type 
+
+[source]
+----
+build> ../bin/a8-splice 
+----
+
+image::Labs/splice-gangnam-walk.gif[]
+
+Controls
+
+* Press '0' to use 100% of the dance upper body motion
+* Press '1' to use 50% of the dance upper body motion with 50% of the original
+* Press '2' to see the original motion
+* Press 'UP' to increase the blend factor _alpha
+* Press 'DOWN' to decrease the blend factor
+
+NOTE: If you implement your solution so that key '0' shows the original instead of key '2', that is ok. 
+
+Your program should have the following features
+
+* `spliceUpperBody()` should create and return a new motion. Use AMotion::appendKey to add poses to your blended motion
+* The motion returned by blend should have a framerate equal to orig
+* The upper body consists of all descendants of the joint "Beta:Spine1" 
+* TODO: Use `glm::slerp` to blend local rotations for the upper body
+* Use the sequence of poses from upper starting at key ID = 120
+
+= Zombie Arms
+
+In the file, `zombie.cpp`, implement a character that walks with zombie arms. 
+Your implementation should load the motion, `walk.bvh`, and modify the arm motion to 
+create this effect. We will implement and compare two techniques for modifying the arms: "Freeze" and "Offset".
+
+To run the demo from the `build` directory, type 
+
+[source]
+----
+build> ../bin/a8-zombie 
+----
+
+Controls
+
+* Press '0' to see the original motion
+* Press '1' to see the arms with a constant rotation
+* Press '2' to see the arms with an offset rotation
+
+== Freeze 
+
+To `freeze` the arms, we will set both the shoulders and elbows to a constant
+rotation. Implement your solution in the function `computeArmFreeze`.
+
+[source]
+----
+// motion: input motion
+// returns a new motion with the shoulders and elbows outstretched
+Motion computeArmFreeze(const Motion& motion)
+----
+
+video::Labs/zombieFreezeArms.ogv[]
+
+Freeze arms should have the following features:
+
+* The left shoulder should local rotation equal to XYZ euler angles (-53, -88, -33) 
+* The right shoulder should local rotation equal to XYZ euler angles (14, 88, -33) 
+* Both elbows should local rotation equal to XYZ euler angles (0, 23, 0) 
+* The motion returned should have a framerate equal to motion
+* You should modify the joints with names: "Beta:LeftArm", "Beta:RightArm" (shoulders), "Beta:LeftForeArm", and "Beta:RightForeArm" (elbows). 
+
+== Offset
+
+To offset the arms, we will apply an offset rotation to shoulder's animation 
+curve. We will freeze the elbows as before. 
+Implement your solution in the function `computeArmOffset`.
+
+[source]
+----
+// motion: input motion
+// returns a new motion with the shoulders and elbows outstretched but moving
+Motion computeArmOffset(const Motion& motion)
+----
+
+To compute the offset, we will 
+use the local rotation of the should on the first frame to compute an offset 
+rotation.
+
+[stem]
+++++
+R_{offset} = R_{desired} (R_i^j)^{-1}
+++++
+
+where stem:[R_i^j] is the local to parent rotation for the shoulder joint. stem:[R_{desired}] is the target rotation we want for the joint. For the right joint, 
+the desired rotation will be the XYZ euler angles (14, 88, -33). For the 
+left joint, the desired rotation will be the XYZ euler angles (-53, -88, -33). Be mindful that these angles are in degrees, not radians!
+
+video::Labs/zombieOffsetArms.ogv[]
+
+Offset arms should have the following features:
+
+* The left shoulder's desired rotation is XYZ euler angles (-53, -88, -33) 
+* The right shoulder's desired rotation is XYZ euler angles (14, 88, -33) 
+* Both elbows should local rotation equal to XYZ euler angles (0, 23, 0). These frozen as before.
+* The motion returned should have a framerate equal to motion
+* You should modify the joints with names: "Beta:LeftArm", "Beta:RightArm" (shoulders), "Beta:LeftForeArm", and "Beta:RightForeArm" (elbows). 
+
+= Reorient
+
+In the file `reorient.cpp`, you will modify a motion so it starts in a new location
+and orientation. You will need to perform the same calculation in crossfade to
+align two motions. 
+
+[source]
+----
+// motion: the input motion
+// pos: the new starting position of the motion
+// heading: the new starting orientation as an angle (radians) around the world UP axis (e.g. Y)
+// returns a new motion whose starting pose has a root position and rotation that matches pos and heading
+Motion reorient(const Motion& motion, const vec3& pos, double heading)
+----
+
+To run the demo from the `build` directory, type 
+
+[source]
+----
+build> ../bin/a8-reorient 
+----
+
+video::Labs/reorient.ogv[]
+
+Controls
+
+* Use the left and right arrow keys to rotate
+* Use WASD to translate forward, back, left, and right
+
+Your demo should have teh following features
+
+* The returned motion should have the same framerate as the input
+* The root position and heading of the first frame should match the desired position and heading. All subsequent frames should be offset so the resulting motions looks like the original. 
+* The best solution should only align the headings. However, you may implement a simpler solution which sets the full XYZ orientation to match the heading. This will affect how motions where the root may tilt (such as jumps) are reoriented. 
+
+= Crossfade
+
+In the file, `crossfade.cpp`, you will implement a crossfade transition between a walk and a jumping motion. 
+
+To run the demo from the `build` directory, type
+
+[source]
+----
+build> ../bin/a8-crossfade 
+----
+
+You can build up your solution in steps.
+
+// Member function: AMotionBlender::blend<br>
+//<br>
+// param motion1: the starting motion of the transition<br>
+// param motion2: the ending motion of the transition<br>
+// param startKeyId: the frame of the starting motion at which to start blending<br>
+// param endKeyId: the frame of the ending motion at which to start blending<br>
+// param numBlendFrames: the number of frames in the blend<br>
+// param blend: the computed crossfade motion. This motion should contain
+<ul>
+<li>The starting motion sequence. This consists of the keys from motion 1 in range [0, startKeyId)
+<li>The cross fade sequence. This consists of the blended keys between motion 1 and motion 2. 
+The blended motion will have numBlendFrames in it. The first frame will blend the startKeyId from 
+motion 1 with the endKeyId from motion 2. The second frame will blend the (startKeyId+1) key 
+from motion1 with the (endKeyId+1) from motion 2. Etc.
+<li>The ending motion sequence. This consists of the keys from motion 2 in range 
+[endKeyId+numBlendFrames, motion2.getNumKeys).
+</ul>
+
+== Append
+
+To start, simply create a new motion which combines the keys from walk with the keys from jump.
+
+image::Labs/crossfade-append.gif[]
+
+
+== Crossfade
+
+
+<p><b>Part 2 (5 points)</b> Implement AMotionBlender::crossfade. 
+<br>
+
+<p>So far, the transition snaps from the first motion to the 
+second motion. Fix this problem by implementing AMotionBlender::crossfade. This function 
+should blend the frame between motion 1 and motion 2 and append the blended frames to 
+'blend'. Extend AMotionBlender::blend to call your new crossfade function. 
+Now, your assignment should look as follows: the motion is smooth but the character slides to 
+the origin to play the jump motion.
+
+image::Labs/crossfade-blend1.gif[]
+
+== Align
+
+<p>Now we have a smooth result but the jump unrealistically 
+moves back to the origin. We want the jump to occur at the character's current location! 
+We will fix this by aligning the sequence from motion 2 with the start transition key from 
+motion 1. Note that you can re-use the logic from reorient!
+
+<p>Translate the keys so that the second sequence is aligned with the first sequence. Extend AMotionBlender::blend to call align. Your assignment should now look as follows.
+
+<br>
+<br>
+<center>
+<img src="crossfade-blend2-walkjump.gif">
+</center>
+<br>
+However, note that blending between a turn and jump still doesn't work! Let's fix that.
+<br>
+<br>
+<center>
+<img src="crossfade-blend2-turnwalk.gif">
+</center>
+<br>
+
+<p>Reorient the keys (e.g. rotate and translate) so that the second sequence is aligned with the first. Now your blend should look good in all cases.
+<br>
+<br>
+<center>
+<img src="crossfade-blend3.gif">
+</center>
+<br>
+
+<p><b>Testing tip:</b> A correct crossfade should return the original motion whenever 
+you crossfade between the same motion. For example, try blending two walk motions 
+over the starting 10 frames. The result should look identical to the original motion. 
+
+= WASD Controller
+
+In the file, `controller.cpp`, implement a character that can be controlled using the keyboard. 
+We will use the motion from `motions/Beta/walking.bvh` to animate the body but 
+the root will be animated based on keyboard input.
+
+To run the demo from the `build` directory, type 
+
+[source]
+----
+build> ../bin/a7-controller 
+----
+
+Controls:
+
+* Pressing 'a' will walk left
+* Pressing 'd' will walk right
+* Pressing 'w' will walk forward
+* Pressing 's' will walk backward
+
+Again, we will build this demo up in steps
+
+*Pin the root*
+
+Modify the pose of the skeleton so that the character's body animates but does not move.
+
+image::Labs/wasd1.gif[]
+
+*Visualize the heading*
+
+The user can change the heading of the character by pressing 'a' and 'd' or the left and right arrow buttons. 
+When the user pressing 'a' or left, the heading turns left. To start, draw the heading on the floor at the 
+location of the character. Hint: use the global position of the character to compute endpoints for a line. 
+Use <b>ADrawLine</b> to draw the direction of the heading.
+
+image::Labs/wasd2.gif[]
+
+*Turn the body to match the heading*
+
+Modify the pose of the skeleton so that the character rotates with the heading
+
+image::Labs/wasd3.gif[]
+
+*Set the camera to follow the character*
+
+When we update the character, modify the camera position and look target so that it's behind the 
+character's head. Use the global position of the character's head to compute positions  
+for the camera. You will need global positions for the camera's position and for the target 
+where the camera is looking. 
+
+[source]
+----
+vec3 globalPos;
+vec3 globalLookPos;
+...
+Camera* camera = getCamera();
+camera->set(globalPos, globalLookPos, AVector3(0,1,0) /*up*/);
+----
+
+image::Labs/wasd4.gif[]
+
+*Update the character position*
+
+Modify the pose of the skeleton so that the character both rotates and moves with the heading. 
+Update the position of the skeleton's root similarly to how you animated 
+a particle to move in a straight line. In this case, velocity is based on the heading and the 
+desired speed.
+
+image::Labs/wasd5.gif[]
+
+= Unique
+
+Personalize at least one of the demos from this week. Some ideas:
+
+* Support additional commands in your controller (such as dance, or jumping)
+* Create a unique character
+* Add a particle trail that emits from your character as it walks around
+* Create an interesting environment for your character to move around in 
+* Use blending in your controller
+* Procedurally create a silly walk 
+
+In your README, be sure to describe what your customizations.
+
+include::handin.adoc[]

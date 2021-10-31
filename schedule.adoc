@@ -104,7 +104,7 @@ More Articulated Characters. Scene Graph. Examples.
 * link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 * *Lab (Transforms):* link:week09-xform-worksheet.html[Transform Worksheet]: *Due Oct 28*
 
-//* *Assignment 07:* link:Labs/lab7-motion.html[Motion]: *Due Nov 4*
+* *Assignment 07:* link:asst07-motion.html[Motion]: *Due Nov 5*
 
 //-----------------------------
 |10
@@ -115,7 +115,7 @@ Motion representations. Motion editing. Blending. Splicing. Interpolation. Trans
 Transitions. Reorienting a motion. Crossfading. 
 
 * *Quiz3 Nov 4*
-* *Assignment 08:* link:Labs/lab8-blend.html[Cross-fade away!]: *Due Nov 11*
+* *Assignment 08:* link:asst08-blend.html[Cross-fade away!]: *Due Nov 12*
 
 //-----------------------------
 |11
@@ -125,7 +125,7 @@ Transitions. Reorienting a motion. Crossfading.
 Analytical method for two-link chain. CCD Algorithm.
 
 * link:Labs/ikccd.ogv[CCD demo]
-//* *Assignment 09:* link:Labs/lab9-ik.html[Reach for your goals]: *Due Nov 18*
+//* *Assignment 09:* link:asst09-ik.html[Reach for your goals]: *Due Nov 19*
 * link:Q4Guide.html[Quiz4 Study Guide]: Transformations
 
 //-----------------------------

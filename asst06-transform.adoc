@@ -206,16 +206,6 @@ Use sine to animate each joint of the tentacle.
 
 image::Labs/tentacle.gif[height=320]
 
-//= Paper doll
-//
-//In `squirrel.cpp` (under assignments), implement a posable character consisting of 
-//sprites. A sprite is a 2D image. You have starting basecode for this program. 
-//This program loads images for the body, tail, legs, and arms and supports the following controls:
-//
-//* Typing 1,2,3,4 
-//
-//Your program loads sprites for the body, arm, leg, and tail 
-//of our character 
 
 = Be Unique
 
