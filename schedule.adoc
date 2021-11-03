@@ -98,8 +98,6 @@ Slerp. Transformations. Coordinate systems revisited. Homogeneous coordinates. S
 More Articulated Characters. Scene Graph. Examples.
 
 * *NO CLASS Oct 26!!*
-//* Butterfly: link:Labs/AButterfly.cpp.txt[Skeleton I]
-//* link:SkeletonExamples.pdf[Skeleton FK Example]
 * link:week09.html[Additional Resources]
 * link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 * *Lab (Transforms):* link:week09-xform-worksheet.html[Transform Worksheet]: *Due Oct 28*
@@ -111,10 +109,11 @@ More Articulated Characters. Scene Graph. Examples.
 | Nov 2,4
 |*Motion Editing* anchor:week10[]
 
-Motion representations. Motion editing. Blending. Splicing. Interpolation. Transitions.
-Transitions. Reorienting a motion. Crossfading. 
+Matrix Stack. Fixed-frame vs. Key-framed motion. Motion editing: Blending. Splicing. Interpolation. Transitions.
+Reorienting a motion. Crossfading. 
 
-* *Quiz3 Nov 4*
+* link:week10.html[Additional Resources]
+* *Quiz3 Nov 4*: link:Q3Guide.html[Quiz3 Study Guide]: Rotations
 * *Assignment 08:* link:asst08-blend.html[Cross-fade away!]: *Due Nov 12*
 
 //-----------------------------

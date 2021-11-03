@@ -1,0 +1,22 @@
+include::header.adoc[]
+
+:title: Week 10: Motion Editing
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Lecture topics:
+
+Matrix Stack. Fixed-frame vs. Key-framed motion. Motion editing: Blending. Splicing. Interpolation. Transitions.
+Reorienting a motion. Crossfading. 
+
+* Transforms. Coordinate systems. Skeletons and joints.
+* Examples and practice
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7b4d0b17-f6a1-4242-9f27-add4013712a0[Lecture], link:Notes/Lecture16-11.2.2021[Notes]
+
+Additional Resources:
+
+* Lengyel Chpt 5 and Chpt 6
