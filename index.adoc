@@ -11,8 +11,7 @@ include::header.adoc[]
 
 [.anns]
 == Announcements
-* *Assignment 07:* link:asst07-motion.html[Motion]: *Due Nov 5*
-* *Quiz 3 (Nov 4): Rotations*, 30 minutes, in lab (link:Q3Guide.html[Quiz3 Study Guide])
+* *Assignment 08:* link:asst08-blend.html[Blending in]: *Due Nov 12*
 
 == **Schedule**
 

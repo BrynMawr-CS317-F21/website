@@ -114,7 +114,7 @@ Reorienting a motion. Crossfading.
 
 * link:week10.html[Additional Resources]
 * *Quiz3 Nov 4*: link:Q3Guide.html[Quiz3 Study Guide]: Rotations
-* *Assignment 08:* link:asst08-blend.html[Cross-fade away!]: *Due Nov 12*
+* *Assignment 08:* link:asst08-blend.html[Blending in]: *Due Nov 12*
 
 //-----------------------------
 |11

@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.16">
-<title>Assignment 8: The cross-fade away</title>
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Assignment 8: Blending in</title>
 <link rel="stylesheet" href="style/cs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -14,7 +14,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_assignment_8_the_cross_fade_away">Assignment 8: The cross-fade away</a></li>
+<li><a href="#_assignment_8_blending_in">Assignment 8: Blending in</a></li>
 <li><a href="#_get_the_source">Get the source</a></li>
 <li><a href="#_blend">1. Blend</a></li>
 <li><a href="#_splice">2. Splice</a></li>
@@ -25,21 +25,13 @@
 </ul>
 </li>
 <li><a href="#_reorient">4. Reorient</a></li>
-<li><a href="#_crossfade">5. Crossfade</a>
+<li><a href="#_unique">5. Unique</a></li>
+<li><a href="#_hand_in_your_work">6. Hand-in your work</a>
 <ul class="sectlevel2">
-<li><a href="#_append">5.1. Append</a></li>
-<li><a href="#_crossfade_2">5.2. Crossfade</a></li>
-<li><a href="#_align">5.3. Align</a></li>
-</ul>
-</li>
-<li><a href="#_wasd_controller">6. WASD Controller</a></li>
-<li><a href="#_unique">7. Unique</a></li>
-<li><a href="#_hand_in_your_work">8. Hand-in your work</a>
-<ul class="sectlevel2">
-<li><a href="#_what_to_hand_in">8.1. What to hand-in</a></li>
-<li><a href="#_how_to_hand_in">8.2. How to hand-in</a></li>
-<li><a href="#_generating_images_movies_and_gifs">8.3. Generating images, movies and gifs</a></li>
-<li><a href="#_update_your_readme_md">8.4. Update your Readme.md</a></li>
+<li><a href="#_what_to_hand_in">6.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">6.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">6.4. Update your Readme.md</a></li>
 </ul>
 </li>
 </ul>
@@ -47,7 +39,7 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_assignment_8_the_cross_fade_away">Assignment 8: The cross-fade away</h2>
+<h2 id="_assignment_8_blending_in">Assignment 8: Blending in</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>In which, we implement blending and reorienting between motions</em></p>
@@ -108,26 +100,26 @@ the method &lt;b&gt;blend()&lt;/b&gt;.</p>
 // m2: Second input motion
 // alpha: blend value
 // returns the result of m1 * (1-alpha) + m2
-AMotion blend(const AMotion&amp; m1, const AMotion&amp; m2, double alpha)</code></pre>
+Motion blend(const Motion&amp; m1, const Motion&amp; m2, double alpha)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Your implementation should be based on the code from class</p>
+<p>This function should implement the algorithm from class</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>duration = duration1 * (1-alpha) + duration2 * alpha
 deltaT = 1/fps
 for t from 0 to duration, increment by deltaT
-    APose pose1 = pose from motion1
-    APose pose2 = pose from motion2
-		APose newPose = lerp pose1 and pose2 by alpha
+    Pose pose1 = pose from motion1
+    Pose pose2 = pose from motion2
+		Pose newPose = lerp pose1 and pose2 by alpha
 		result.appendKey(newPose)
 return result</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To run the demo from the &lt;b&gt;build&lt;/b&gt; directory, type</p>
+<p>To run the demo from the <code>build</code> directory, type</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -188,7 +180,7 @@ return result</code></pre>
 //     the lower body matches the motion in 'orig'
 //     the upper body is the result of blending the upper body motion with
 //         the original's upper body motion, e.g. newupper = upper * (1-alpha) + orig * alpha
-AMotion spliceUpperBody(const AMotion&amp; orig, const AMotion&amp; upper, double alpha)</code></pre>
+Motion spliceUpperBody(const Motion&amp; orig, const Motion&amp; upper, double alpha)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -197,8 +189,9 @@ AMotion spliceUpperBody(const AMotion&amp; orig, const AMotion&amp; upper, doubl
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>for i in range numKeys in orig
-    APose pose = orig.getKey(i)
-		// compute new pose and either call appendKey() or editKey() set the pose</code></pre>
+    Pose pose = orig.getKey(i)
+		// compute new pose and either call appendKey() or editKey() set the pose
+    // editPose() replaces an existing key; appendPose() adds the key to the end of the motion</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -220,33 +213,12 @@ AMotion spliceUpperBody(const AMotion&amp; orig, const AMotion&amp; upper, doubl
 <div class="ulist">
 <ul>
 <li>
-<p>Press '0' to use 100% of the dance upper body motion</p>
-</li>
-<li>
-<p>Press '1' to use 50% of the dance upper body motion with 50% of the original</p>
-</li>
-<li>
-<p>Press '2' to see the original motion</p>
-</li>
-<li>
 <p>Press 'UP' to increase the blend factor _alpha</p>
 </li>
 <li>
 <p>Press 'DOWN' to decrease the blend factor</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you implement your solution so that key '0' shows the original instead of key '2', that is ok.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Your program should have the following features</p>
@@ -263,10 +235,10 @@ If you implement your solution so that key '0' shows the original instead of key
 <p>The upper body consists of all descendants of the joint "Beta:Spine1"</p>
 </li>
 <li>
-<p>TODO: Use <code>glm::slerp</code> to blend local rotations for the upper body</p>
+<p>Use <code>glm::slerp</code> to blend local rotations for the upper body</p>
 </li>
 <li>
-<p>Use the sequence of poses from upper starting at key ID = 120</p>
+<p>In the above demo, we use start splicing the poses of the upper body starting at key = 120</p>
 </li>
 </ul>
 </div>
@@ -454,7 +426,7 @@ Your browser does not support the video tag.
 </ul>
 </div>
 <div class="paragraph">
-<p>Your demo should have teh following features</p>
+<p>Your demo should have th following features</p>
 </div>
 <div class="ulist">
 <ul>
@@ -472,222 +444,7 @@ Your browser does not support the video tag.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_crossfade">5. Crossfade</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In the file, <code>crossfade.cpp</code>, you will implement a crossfade transition between a walk and a jumping motion.</p>
-</div>
-<div class="paragraph">
-<p>To run the demo from the <code>build</code> directory, type</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a8-crossfade</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can build up your solution in steps.</p>
-</div>
-<div class="paragraph">
-<p>&lt;ul&gt;
-&lt;li&gt;The starting motion sequence. This consists of the keys from motion 1 in range [0, startKeyId)
-&lt;li&gt;The cross fade sequence. This consists of the blended keys between motion 1 and motion 2.
-The blended motion will have numBlendFrames in it. The first frame will blend the startKeyId from
-motion 1 with the endKeyId from motion 2. The second frame will blend the (startKeyId+1) key
-from motion1 with the (endKeyId+1) from motion 2. Etc.
-&lt;li&gt;The ending motion sequence. This consists of the keys from motion 2 in range
-[endKeyId+numBlendFrames, motion2.getNumKeys).
-&lt;/ul&gt;</p>
-</div>
-<div class="sect2">
-<h3 id="_append">5.1. Append</h3>
-<div class="paragraph">
-<p>To start, simply create a new motion which combines the keys from walk with the keys from jump.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/crossfade-append.gif" alt="crossfade append">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_crossfade_2">5.2. Crossfade</h3>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Part 2 (5 points)&lt;/b&gt; Implement AMotionBlender::crossfade.
-&lt;br&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;So far, the transition snaps from the first motion to the
-second motion. Fix this problem by implementing AMotionBlender::crossfade. This function
-should blend the frame between motion 1 and motion 2 and append the blended frames to
-'blend'. Extend AMotionBlender::blend to call your new crossfade function.
-Now, your assignment should look as follows: the motion is smooth but the character slides to
-the origin to play the jump motion.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/crossfade-blend1.gif" alt="crossfade blend1">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_align">5.3. Align</h3>
-<div class="paragraph">
-<p>&lt;p&gt;Now we have a smooth result but the jump unrealistically
-moves back to the origin. We want the jump to occur at the character&#8217;s current location!
-We will fix this by aligning the sequence from motion 2 with the start transition key from
-motion 1. Note that you can re-use the logic from reorient!</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;Translate the keys so that the second sequence is aligned with the first sequence. Extend AMotionBlender::blend to call align. Your assignment should now look as follows.</p>
-</div>
-<div class="paragraph">
-<p>&lt;br&gt;
-&lt;br&gt;
-&lt;center&gt;
-&lt;img src="crossfade-blend2-walkjump.gif"&gt;
-&lt;/center&gt;
-&lt;br&gt;
-However, note that blending between a turn and jump still doesn&#8217;t work! Let&#8217;s fix that.
-&lt;br&gt;
-&lt;br&gt;
-&lt;center&gt;
-&lt;img src="crossfade-blend2-turnwalk.gif"&gt;
-&lt;/center&gt;
-&lt;br&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;Reorient the keys (e.g. rotate and translate) so that the second sequence is aligned with the first. Now your blend should look good in all cases.
-&lt;br&gt;
-&lt;br&gt;
-&lt;center&gt;
-&lt;img src="crossfade-blend3.gif"&gt;
-&lt;/center&gt;
-&lt;br&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Testing tip:&lt;/b&gt; A correct crossfade should return the original motion whenever
-you crossfade between the same motion. For example, try blending two walk motions
-over the starting 10 frames. The result should look identical to the original motion.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_wasd_controller">6. WASD Controller</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In the file, <code>controller.cpp</code>, implement a character that can be controlled using the keyboard.
-We will use the motion from <code>motions/Beta/walking.bvh</code> to animate the body but
-the root will be animated based on keyboard input.</p>
-</div>
-<div class="paragraph">
-<p>To run the demo from the <code>build</code> directory, type</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a7-controller</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Controls:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Pressing 'a' will walk left</p>
-</li>
-<li>
-<p>Pressing 'd' will walk right</p>
-</li>
-<li>
-<p>Pressing 'w' will walk forward</p>
-</li>
-<li>
-<p>Pressing 's' will walk backward</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Again, we will build this demo up in steps</p>
-</div>
-<div class="paragraph">
-<p><strong>Pin the root</strong></p>
-</div>
-<div class="paragraph">
-<p>Modify the pose of the skeleton so that the character&#8217;s body animates but does not move.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/wasd1.gif" alt="wasd1">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Visualize the heading</strong></p>
-</div>
-<div class="paragraph">
-<p>The user can change the heading of the character by pressing 'a' and 'd' or the left and right arrow buttons.
-When the user pressing 'a' or left, the heading turns left. To start, draw the heading on the floor at the
-location of the character. Hint: use the global position of the character to compute endpoints for a line.
-Use &lt;b&gt;ADrawLine&lt;/b&gt; to draw the direction of the heading.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/wasd2.gif" alt="wasd2">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Turn the body to match the heading</strong></p>
-</div>
-<div class="paragraph">
-<p>Modify the pose of the skeleton so that the character rotates with the heading</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/wasd3.gif" alt="wasd3">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Set the camera to follow the character</strong></p>
-</div>
-<div class="paragraph">
-<p>When we update the character, modify the camera position and look target so that it&#8217;s behind the
-character&#8217;s head. Use the global position of the character&#8217;s head to compute positions
-for the camera. You will need global positions for the camera&#8217;s position and for the target
-where the camera is looking.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>vec3 globalPos;
-vec3 globalLookPos;
-...
-Camera* camera = getCamera();
-camera-&gt;set(globalPos, globalLookPos, AVector3(0,1,0) /*up*/);</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/wasd4.gif" alt="wasd4">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Update the character position</strong></p>
-</div>
-<div class="paragraph">
-<p>Modify the pose of the skeleton so that the character both rotates and moves with the heading.
-Update the position of the skeleton&#8217;s root similarly to how you animated
-a particle to move in a straight line. In this case, velocity is based on the heading and the
-desired speed.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Labs/wasd5.gif" alt="wasd5">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_unique">7. Unique</h2>
+<h2 id="_unique">5. Unique</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Personalize at least one of the demos from this week. Some ideas:</p>
@@ -720,10 +477,10 @@ desired speed.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hand_in_your_work">8. Hand-in your work</h2>
+<h2 id="_hand_in_your_work">6. Hand-in your work</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_what_to_hand_in">8.1. What to hand-in</h3>
+<h3 id="_what_to_hand_in">6.1. What to hand-in</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -739,7 +496,7 @@ desired speed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_to_hand_in">8.2. How to hand-in</h3>
+<h3 id="_how_to_hand_in">6.2. How to hand-in</h3>
 <div class="paragraph">
 <p>Check-in your code, images, and writeup and push the changes to Github.
 If everything is uploaded correctly, you will see your work on Github.</p>
@@ -761,7 +518,7 @@ the end to commit changes. You can always revert to an old version if you need t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_images_movies_and_gifs">8.3. Generating images, movies and gifs</h3>
+<h3 id="_generating_images_movies_and_gifs">6.3. Generating images, movies and gifs</h3>
 <div class="paragraph">
 <p><strong>Screenshots</strong></p>
 </div>
@@ -837,7 +594,7 @@ videos should be less than 5 MB.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_update_your_readme_md">8.4. Update your Readme.md</h3>
+<h3 id="_update_your_readme_md">6.4. Update your Readme.md</h3>
 <div class="paragraph">
 <p>Update <code>assignments/a8-blend/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
 </div>
@@ -858,7 +615,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-30 14:09:00 -0400
+Last updated 2021-11-06 13:59:27 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

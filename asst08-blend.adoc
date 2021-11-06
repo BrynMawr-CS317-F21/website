@@ -1,6 +1,6 @@
 include::header.adoc[]
 
-:title: Assignment 8: The cross-fade away
+:title: Assignment 8: Blending in
 :Author Initials: ASN
 :Date:    2020-02-07
 :Revision: 0.1
@@ -47,25 +47,24 @@ the method <b>blend()</b>.
 // m2: Second input motion
 // alpha: blend value
 // returns the result of m1 * (1-alpha) + m2
-AMotion blend(const AMotion& m1, const AMotion& m2, double alpha) 
+Motion blend(const Motion& m1, const Motion& m2, double alpha) 
 ----
 
-Your implementation should be based on the code from class
-
+This function should implement the algorithm from class
 
 [source]
 ----
 duration = duration1 * (1-alpha) + duration2 * alpha
 deltaT = 1/fps
 for t from 0 to duration, increment by deltaT
-    APose pose1 = pose from motion1
-    APose pose2 = pose from motion2
-		APose newPose = lerp pose1 and pose2 by alpha
+    Pose pose1 = pose from motion1
+    Pose pose2 = pose from motion2
+		Pose newPose = lerp pose1 and pose2 by alpha
 		result.appendKey(newPose)
 return result
 ----
 
-To run the demo from the <b>build</b> directory, type 
+To run the demo from the `build` directory, type 
 
 [source]
 ----
@@ -99,7 +98,7 @@ In the file `splice.cpp`, implement a character that walk and dance gangnam styl
 //     the lower body matches the motion in 'orig'
 //     the upper body is the result of blending the upper body motion with 
 //         the original's upper body motion, e.g. newupper = upper * (1-alpha) + orig * alpha
-AMotion spliceUpperBody(const AMotion& orig, const AMotion& upper, double alpha) 
+Motion spliceUpperBody(const Motion& orig, const Motion& upper, double alpha) 
 ----
 
 For this question, use keys for blending instead of durations, e.g.
@@ -107,8 +106,9 @@ For this question, use keys for blending instead of durations, e.g.
 [source]
 ----
 for i in range numKeys in orig
-    APose pose = orig.getKey(i)
+    Pose pose = orig.getKey(i)
 		// compute new pose and either call appendKey() or editKey() set the pose
+    // editPose() replaces an existing key; appendPose() adds the key to the end of the motion
 ----
 
 To run the demo from the `build` directory, type 
@@ -122,21 +122,16 @@ image::Labs/splice-gangnam-walk.gif[]
 
 Controls
 
-* Press '0' to use 100% of the dance upper body motion
-* Press '1' to use 50% of the dance upper body motion with 50% of the original
-* Press '2' to see the original motion
 * Press 'UP' to increase the blend factor _alpha
 * Press 'DOWN' to decrease the blend factor
-
-NOTE: If you implement your solution so that key '0' shows the original instead of key '2', that is ok. 
 
 Your program should have the following features
 
 * `spliceUpperBody()` should create and return a new motion. Use AMotion::appendKey to add poses to your blended motion
 * The motion returned by blend should have a framerate equal to orig
 * The upper body consists of all descendants of the joint "Beta:Spine1" 
-* TODO: Use `glm::slerp` to blend local rotations for the upper body
-* Use the sequence of poses from upper starting at key ID = 120
+* Use `glm::slerp` to blend local rotations for the upper body
+* In the above demo, we use start splicing the poses of the upper body starting at key = 120
 
 = Zombie Arms
 
@@ -244,25 +239,25 @@ Controls
 * Use the left and right arrow keys to rotate
 * Use WASD to translate forward, back, left, and right
 
-Your demo should have teh following features
+Your demo should have th following features
 
 * The returned motion should have the same framerate as the input
 * The root position and heading of the first frame should match the desired position and heading. All subsequent frames should be offset so the resulting motions looks like the original. 
 * The best solution should only align the headings. However, you may implement a simpler solution which sets the full XYZ orientation to match the heading. This will affect how motions where the root may tilt (such as jumps) are reoriented. 
 
-= Crossfade
-
-In the file, `crossfade.cpp`, you will implement a crossfade transition between a walk and a jumping motion. 
-
-To run the demo from the `build` directory, type
-
-[source]
-----
-build> ../bin/a8-crossfade 
-----
-
-You can build up your solution in steps.
-
+//= Crossfade
+//
+//In the file, `crossfade.cpp`, you will implement a crossfade transition between a walk and a jumping motion. 
+//
+//To run the demo from the `build` directory, type
+//
+//[source]
+//----
+//build> ../bin/a8-crossfade 
+//----
+//
+//You can build up your solution in steps.
+//
 // Member function: AMotionBlender::blend<br>
 //<br>
 // param motion1: the starting motion of the transition<br>
@@ -271,143 +266,143 @@ You can build up your solution in steps.
 // param endKeyId: the frame of the ending motion at which to start blending<br>
 // param numBlendFrames: the number of frames in the blend<br>
 // param blend: the computed crossfade motion. This motion should contain
-<ul>
-<li>The starting motion sequence. This consists of the keys from motion 1 in range [0, startKeyId)
-<li>The cross fade sequence. This consists of the blended keys between motion 1 and motion 2. 
-The blended motion will have numBlendFrames in it. The first frame will blend the startKeyId from 
-motion 1 with the endKeyId from motion 2. The second frame will blend the (startKeyId+1) key 
-from motion1 with the (endKeyId+1) from motion 2. Etc.
-<li>The ending motion sequence. This consists of the keys from motion 2 in range 
-[endKeyId+numBlendFrames, motion2.getNumKeys).
-</ul>
-
-== Append
-
-To start, simply create a new motion which combines the keys from walk with the keys from jump.
-
-image::Labs/crossfade-append.gif[]
-
-
-== Crossfade
-
-
-<p><b>Part 2 (5 points)</b> Implement AMotionBlender::crossfade. 
-<br>
-
-<p>So far, the transition snaps from the first motion to the 
-second motion. Fix this problem by implementing AMotionBlender::crossfade. This function 
-should blend the frame between motion 1 and motion 2 and append the blended frames to 
-'blend'. Extend AMotionBlender::blend to call your new crossfade function. 
-Now, your assignment should look as follows: the motion is smooth but the character slides to 
-the origin to play the jump motion.
-
-image::Labs/crossfade-blend1.gif[]
-
-== Align
-
-<p>Now we have a smooth result but the jump unrealistically 
-moves back to the origin. We want the jump to occur at the character's current location! 
-We will fix this by aligning the sequence from motion 2 with the start transition key from 
-motion 1. Note that you can re-use the logic from reorient!
-
-<p>Translate the keys so that the second sequence is aligned with the first sequence. Extend AMotionBlender::blend to call align. Your assignment should now look as follows.
-
-<br>
-<br>
-<center>
-<img src="crossfade-blend2-walkjump.gif">
-</center>
-<br>
-However, note that blending between a turn and jump still doesn't work! Let's fix that.
-<br>
-<br>
-<center>
-<img src="crossfade-blend2-turnwalk.gif">
-</center>
-<br>
-
-<p>Reorient the keys (e.g. rotate and translate) so that the second sequence is aligned with the first. Now your blend should look good in all cases.
-<br>
-<br>
-<center>
-<img src="crossfade-blend3.gif">
-</center>
-<br>
-
-<p><b>Testing tip:</b> A correct crossfade should return the original motion whenever 
-you crossfade between the same motion. For example, try blending two walk motions 
-over the starting 10 frames. The result should look identical to the original motion. 
-
-= WASD Controller
-
-In the file, `controller.cpp`, implement a character that can be controlled using the keyboard. 
-We will use the motion from `motions/Beta/walking.bvh` to animate the body but 
-the root will be animated based on keyboard input.
-
-To run the demo from the `build` directory, type 
-
-[source]
-----
-build> ../bin/a7-controller 
-----
-
-Controls:
-
-* Pressing 'a' will walk left
-* Pressing 'd' will walk right
-* Pressing 'w' will walk forward
-* Pressing 's' will walk backward
-
-Again, we will build this demo up in steps
-
-*Pin the root*
-
-Modify the pose of the skeleton so that the character's body animates but does not move.
-
-image::Labs/wasd1.gif[]
-
-*Visualize the heading*
-
-The user can change the heading of the character by pressing 'a' and 'd' or the left and right arrow buttons. 
-When the user pressing 'a' or left, the heading turns left. To start, draw the heading on the floor at the 
-location of the character. Hint: use the global position of the character to compute endpoints for a line. 
-Use <b>ADrawLine</b> to draw the direction of the heading.
-
-image::Labs/wasd2.gif[]
-
-*Turn the body to match the heading*
-
-Modify the pose of the skeleton so that the character rotates with the heading
-
-image::Labs/wasd3.gif[]
-
-*Set the camera to follow the character*
-
-When we update the character, modify the camera position and look target so that it's behind the 
-character's head. Use the global position of the character's head to compute positions  
-for the camera. You will need global positions for the camera's position and for the target 
-where the camera is looking. 
-
-[source]
-----
-vec3 globalPos;
-vec3 globalLookPos;
-...
-Camera* camera = getCamera();
-camera->set(globalPos, globalLookPos, AVector3(0,1,0) /*up*/);
-----
-
-image::Labs/wasd4.gif[]
-
-*Update the character position*
-
-Modify the pose of the skeleton so that the character both rotates and moves with the heading. 
-Update the position of the skeleton's root similarly to how you animated 
-a particle to move in a straight line. In this case, velocity is based on the heading and the 
-desired speed.
-
-image::Labs/wasd5.gif[]
-
+//<ul>
+//<li>The starting motion sequence. This consists of the keys from motion 1 in range [0, startKeyId)
+//<li>The cross fade sequence. This consists of the blended keys between motion 1 and motion 2. 
+//The blended motion will have numBlendFrames in it. The first frame will blend the startKeyId from 
+//motion 1 with the endKeyId from motion 2. The second frame will blend the (startKeyId+1) key 
+//from motion1 with the (endKeyId+1) from motion 2. Etc.
+//<li>The ending motion sequence. This consists of the keys from motion 2 in range 
+//[endKeyId+numBlendFrames, motion2.getNumKeys).
+//</ul>
+//
+//== Append
+//
+//To start, simply create a new motion which combines the keys from walk with the keys from jump.
+//
+//image::Labs/crossfade-append.gif[]
+//
+//
+//== Crossfade
+//
+//
+//<p><b>Part 2 (5 points)</b> Implement AMotionBlender::crossfade. 
+//<br>
+//
+//<p>So far, the transition snaps from the first motion to the 
+//second motion. Fix this problem by implementing AMotionBlender::crossfade. This function 
+//should blend the frame between motion 1 and motion 2 and append the blended frames to 
+//'blend'. Extend AMotionBlender::blend to call your new crossfade function. 
+//Now, your assignment should look as follows: the motion is smooth but the character slides to 
+//the origin to play the jump motion.
+//
+//image::Labs/crossfade-blend1.gif[]
+//
+//== Align
+//
+//<p>Now we have a smooth result but the jump unrealistically 
+//moves back to the origin. We want the jump to occur at the character's current location! 
+//We will fix this by aligning the sequence from motion 2 with the start transition key from 
+//motion 1. Note that you can re-use the logic from reorient!
+//
+//<p>Translate the keys so that the second sequence is aligned with the first sequence. Extend AMotionBlender::blend to call align. Your assignment should now look as follows.
+//
+//<br>
+//<br>
+//<center>
+//<img src="crossfade-blend2-walkjump.gif">
+//</center>
+//<br>
+//However, note that blending between a turn and jump still doesn't work! Let's fix that.
+//<br>
+//<br>
+//<center>
+//<img src="crossfade-blend2-turnwalk.gif">
+//</center>
+//<br>
+//
+//<p>Reorient the keys (e.g. rotate and translate) so that the second sequence is aligned with the first. Now your blend should look good in all cases.
+//<br>
+//<br>
+//<center>
+//<img src="crossfade-blend3.gif">
+//</center>
+//<br>
+//
+//<p><b>Testing tip:</b> A correct crossfade should return the original motion whenever 
+//you crossfade between the same motion. For example, try blending two walk motions 
+//over the starting 10 frames. The result should look identical to the original motion. 
+//
+//= WASD Controller
+//
+//In the file, `controller.cpp`, implement a character that can be controlled using the keyboard. 
+//We will use the motion from `motions/Beta/walking.bvh` to animate the body but 
+//the root will be animated based on keyboard input.
+//
+//To run the demo from the `build` directory, type 
+//
+//[source]
+//----
+//build> ../bin/a7-controller 
+//----
+//
+//Controls:
+//
+//* Pressing 'a' will walk left
+//* Pressing 'd' will walk right
+//* Pressing 'w' will walk forward
+//* Pressing 's' will walk backward
+//
+//Again, we will build this demo up in steps
+//
+//*Pin the root*
+//
+//Modify the pose of the skeleton so that the character's body animates but does not move.
+//
+//image::Labs/wasd1.gif[]
+//
+//*Visualize the heading*
+//
+//The user can change the heading of the character by pressing 'a' and 'd' or the left and right arrow buttons. 
+//When the user pressing 'a' or left, the heading turns left. To start, draw the heading on the floor at the 
+//location of the character. Hint: use the global position of the character to compute endpoints for a line. 
+//Use <b>ADrawLine</b> to draw the direction of the heading.
+//
+//image::Labs/wasd2.gif[]
+//
+//*Turn the body to match the heading*
+//
+//Modify the pose of the skeleton so that the character rotates with the heading
+//
+//image::Labs/wasd3.gif[]
+//
+//*Set the camera to follow the character*
+//
+//When we update the character, modify the camera position and look target so that it's behind the 
+//character's head. Use the global position of the character's head to compute positions  
+//for the camera. You will need global positions for the camera's position and for the target 
+//where the camera is looking. 
+//
+//[source]
+//----
+//vec3 globalPos;
+//vec3 globalLookPos;
+//...
+//Camera* camera = getCamera();
+//camera->set(globalPos, globalLookPos, AVector3(0,1,0) /*up*/);
+//----
+//
+//image::Labs/wasd4.gif[]
+//
+//*Update the character position*
+//
+//Modify the pose of the skeleton so that the character both rotates and moves with the heading. 
+//Update the position of the skeleton's root similarly to how you animated 
+//a particle to move in a straight line. In this case, velocity is based on the heading and the 
+//desired speed.
+//
+//image::Labs/wasd5.gif[]
+//
 = Unique
 
 Personalize at least one of the demos from this week. Some ideas:
