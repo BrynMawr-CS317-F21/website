@@ -15,7 +15,8 @@ Reorienting a motion. Crossfading.
 * Transforms. Coordinate systems. Skeletons and joints.
 * Examples and practice
 
-link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7b4d0b17-f6a1-4242-9f27-add4013712a0[Lecture], link:Notes/Lecture16-11.2.2021[Notes]
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7b4d0b17-f6a1-4242-9f27-add4013712a0[Lecture 11/2/2021], link:Notes/Lecture16-11.2.2021[Notes]
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dc936e7f-3ea2-4f29-8b77-add9014e685b[Lecture 11/4/2021], link:Notes/Lecture17-11.4.2021[Notes]
 
 Additional Resources:
 
