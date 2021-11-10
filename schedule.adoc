@@ -123,8 +123,8 @@ Reorienting a motion. Crossfading.
 
 Analytical method for two-link chain. CCD Algorithm.
 
-* link:Labs/ikccd.ogv[CCD demo]
 //* *Assignment 09:* link:asst09-ik.html[Reach for your goals]: *Due Nov 19*
+* link:week11.html[Additional Resources]
 * link:Q4Guide.html[Quiz4 Study Guide]: Transformations
 
 //-----------------------------

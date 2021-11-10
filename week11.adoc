@@ -15,6 +15,9 @@ link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=416dfff6-a
 
 Additional Resources:
 
-* link:https://www.youtube.com/watch?v=4DyO_VS_3Gk[IK Rig Demo Reel]
-* link:https://www.youtube.com/watch?v=V4TQSeUpH3Q[IK Rig Demo Reel from nucl.ai]
-* link:https://www.youtube.com/watch?v=KLjTU0yKS00[IK Rig Talk from GDC]
+* Parent Chpt 5.3
+* link:Labs/ikccd.ogv[CCD demo]
+* IK-Rig
+** link:https://www.youtube.com/watch?v=4DyO_VS_3Gk[IK Rig Demo Reel]
+** link:https://www.youtube.com/watch?v=V4TQSeUpH3Q[IK Rig Demo Reel from nucl.ai]
+** link:https://www.youtube.com/watch?v=KLjTU0yKS00[IK Rig Talk from GDC]
