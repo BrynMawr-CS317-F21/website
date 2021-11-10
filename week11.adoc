@@ -1,0 +1,20 @@
+include::header.adoc[]
+
+:title: Week 11: Inverse Kinematics
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+Lecture topics:
+
+Inverse kinematics (IK); Analytic method (Two-link chain); Cyclic coordinate descent (CCD)
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=416dfff6-aff0-4f8f-a262-addb014a6fd2[Lecture 11/9/2021], link:Notes/Lecture18-11.9.2021.pdf[Notes]
+
+Additional Resources:
+
+* link:https://www.youtube.com/watch?v=4DyO_VS_3Gk[IK Rig Demo Reel]
+* link:https://www.youtube.com/watch?v=V4TQSeUpH3Q[IK Rig Demo Reel from nucl.ai]
+* link:https://www.youtube.com/watch?v=KLjTU0yKS00[IK Rig Talk from GDC]
