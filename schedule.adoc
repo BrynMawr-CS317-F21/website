@@ -142,7 +142,7 @@ Physics. Intro to rigid body simulation.
 * Particle Systems. Demos: water, smoke, fireworks, cloth, jello
 * Simple force particle: link:Labs/forceParticle.cpp.txt[Code]
 //* *Assignment 10:* link:Labs/Lab10-physics.html[Use the force]: *Due Nov 22*
-* *Quiz4 Nov 16*
+* *Quiz4 Nov 18*
 
 //-----------------------------
 |13
