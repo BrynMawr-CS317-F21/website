@@ -206,7 +206,6 @@ The camera can be controlled with the mouse:
 * Left-button drag with the mouse to rotate
 * Right-button drag with the mouse to pan
 * Middle-button drag with the mouse to zoom
-* 'f' button will focus the view on the character
 
 The player control panel on the top left can be used to move the goal position.
 
