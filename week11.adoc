@@ -13,6 +13,8 @@ Inverse kinematics (IK); Analytic method (Two-link chain); Cyclic coordinate des
 
 link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=416dfff6-aff0-4f8f-a262-addb014a6fd2[Lecture 11/9/2021], link:Notes/Lecture18-11.9.2021.pdf[Notes]
 
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d42e7156-4efa-4b21-b9b4-addf00feb4b3[Lecture 11/11/2021], link:Notes/Lecture19-11.11.2021.pdf[Notes]
+
 Additional Resources:
 
 * Parent Chpt 5.3

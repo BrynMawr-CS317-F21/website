@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 9: Cross-fade away</title>
+<link rel="stylesheet" href="style/cs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_9_cross_fade_away">Assignment 9: Cross-fade away</a></li>
+<li><a href="#_get_the_source">Get the source</a></li>
+<li><a href="#_crossfade">1. Crossfade</a>
+<ul class="sectlevel2">
+<li><a href="#_append">1.1. Append</a></li>
+<li><a href="#_crossfade_2">1.2. Crossfade</a></li>
+<li><a href="#_align">1.3. Align</a></li>
+</ul>
+</li>
+<li><a href="#_controller">2. Controller</a></li>
+<li><a href="#_two_link_analytic_method">3. Two-link analytic method</a></li>
+<li><a href="#_unique">4. Unique</a></li>
+<li><a href="#_hand_in_your_work">5. Hand-in your work</a>
+<ul class="sectlevel2">
+<li><a href="#_what_to_hand_in">5.1. What to hand-in</a></li>
+<li><a href="#_how_to_hand_in">5.2. How to hand-in</a></li>
+<li><a href="#_generating_images_movies_and_gifs">5.3. Generating images, movies and gifs</a></li>
+<li><a href="#_update_your_readme_md">5.4. Update your Readme.md</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_9_cross_fade_away">Assignment 9: Cross-fade away</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>In which, we implement several popular techniques</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Due Friday, Nov 19, before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goal of this lab is to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Align motion sequences for blending</p>
+</li>
+<li>
+<p>Implement cross-fade</p>
+</li>
+<li>
+<p>Implement video-game character controls</p>
+</li>
+<li>
+<p>Implement the two-link analytic IK algorithm from class</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_the_source">Get the source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Github, do a <code>Fetch Upstream</code> to synchronize your forked repository with the class repository.</p>
+</div>
+<div class="paragraph">
+<p>Then update the source on your local machine and rebuild.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; git pull
+&gt; cd build
+&gt; cmake ..; make</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_crossfade">1. Crossfade</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file, <code>crossfade.cpp</code>, you will implement crossfade transitions between two motions.</p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a8-crossfade</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This executable takes command line arguments.  By default, the above will load
+walking.bvh and jump.bvh with a 10 frame transition between them.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>../bin/a8-crossfade [-m1 &lt;motion1&gt;] [-m2 &lt;motion2&gt;] [-nframes &lt;num transition frames&gt;]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Implement your solution in <code>crossfade(int numBlendFrames)</code>. This method should generate a
+new motion, stored in the instance variable <code>_blend</code>, that blends from <code>_motion1</code> to <code>_motion2</code>
+over <code>numBlendFrames</code> frames. In your case code, the corresponding frames from motion1 and
+motion2 are computed for you.</p>
+</div>
+<div class="paragraph">
+<p>You should build up your solution in steps and define methods to keep your code cleaner.</p>
+</div>
+<div class="sect2">
+<h3 id="_append">1.1. Append</h3>
+<div class="paragraph">
+<p>To start, simply create a new motion which combines the keys from walk with the keys from jump.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/crossfade-append.gif" alt="crossfade append">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_crossfade_2">1.2. Crossfade</h3>
+<div class="paragraph">
+<p>So far, the transition snaps from the first motion to the
+second motion. Now implement the crossfade. This function
+should blend the frame between motion 1 and motion 2 and append the blended frames to
+<code>_blend</code>.</p>
+</div>
+<div class="paragraph">
+<p>Now, your assignment should look as follows: the motion is smooth but the character slides to
+the origin to play the jump motion.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/crossfade-blend1.gif" alt="crossfade blend1">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_align">1.3. Align</h3>
+<div class="paragraph">
+<p>Now we have a smooth result but the jump unrealistically
+moves back to the origin. We want the jump to occur at the character&#8217;s current location!
+We will fix this by aligning the sequence from motion 2 with the start transition key from
+motion 1. Note that you can re-use the logic from <code>reorient</code>!</p>
+</div>
+<div class="paragraph">
+<p>You can also implement this in steps. For example, first
+translate the keys so that the second sequence is aligned with the first sequence.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/crossfade-blend2-walkjump.gif" alt="crossfade blend2 walkjump">
+</div>
+</div>
+<div class="paragraph">
+<p>However, note that blending between a turn and jump still doesn&#8217;t work! Let&#8217;s fix that.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/crossfade-blend2-turnwalk.gif" alt="crossfade blend2 turnwalk">
+</div>
+</div>
+<div class="paragraph">
+<p>Reorient the keys (e.g. rotate and translate) so that the second sequence is
+aligned with the first. Now your blend should look good in all cases.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/crossfade-blend3.gif" alt="crossfade blend3">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Testing tip</strong> A correct crossfade should return the original motion whenever
+you crossfade between the same motion. For example, try blending two walk motions
+over the starting 10 frames. The result should look identical to the original motion.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_controller">2. Controller</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file, <code>controller.cpp</code>, implement a character that can be controlled using the keyboard.
+We will use the motion from <code>motions/Beta/walking.bvh</code> to animate the body but
+the root will be animated based on keyboard input.</p>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a9-controller</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Controls:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pressing 'a' will turn the character left</p>
+</li>
+<li>
+<p>Pressing 'd' will turn the character right</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The user can change the heading of the character by pressing 'a' and 'd' keys.
+This has been implemented for you in the basecode.  Again, we will build this
+demo up in steps</p>
+</div>
+<div class="paragraph">
+<p><strong>Pin the root</strong></p>
+</div>
+<div class="paragraph">
+<p>Modify the pose of the skeleton so that the character&#8217;s body animates but does not move.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/wasd1.gif" alt="wasd1">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Turn the body to match the heading</strong></p>
+</div>
+<div class="paragraph">
+<p>Modify the pose of the skeleton so that the character rotates with the heading</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/wasd3.gif" alt="wasd3">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Set the camera to follow the character</strong></p>
+</div>
+<div class="paragraph">
+<p>When we update the character, modify the camera position and look target so that it&#8217;s behind the
+character&#8217;s head. Use the global position of the character&#8217;s head to compute positions
+for the camera. You will need global positions for the camera&#8217;s position and for the target
+where the camera is looking.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>vec3 globalPos;
+vec3 globalLookPos;
+...
+lookAt(globalPos, globalLookPos, vec3(0,1,0) /*up*/);</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/wasd4.gif" alt="wasd4">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Update the character position</strong></p>
+</div>
+<div class="paragraph">
+<p>Modify the pose of the skeleton so that the character both rotates and moves with the heading.
+Update the position of the skeleton&#8217;s root similarly to how you animated
+a particle to move in a straight line. In this case, velocity is based on the heading and the
+desired speed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/wasd5.gif" alt="wasd5">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_two_link_analytic_method">3. Two-link analytic method</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file, <code>twolink.cpp</code>, implement a two-link kinematic chain using the algorithm from class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>// Place the Skeleton's end effector at goalPos
+// Skeleton will contain a two-link chain
+// Assume joint 0 is the root
+// Assume joint 1 is the middle joint
+// Assume joint 2 is the end effector
+void solveIKTwoLink(Skeleton&amp; skeleton, const vec3&amp; goalPos)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the demo from the <code>build</code> directory, type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>build&gt; ../bin/a9-twolink</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When you change the local rotation of a joint, you must call fk() to update the global rotations and translations.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When implementing solveIKTwoLink(), it is best to approach the task systematically. For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First, set the goal position to something along the x axis. For example, set the goal position to (100,0,0) in the UI.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Solve for \(\theta_{2z}\) and set the rotation for the elbow. If done correctly, the distance
+between the wrist and root will match the distance between the goal position and the root. Print out the distance between the wrist and shoulder. It should be 100.</p>
+</li>
+<li>
+<p>Next, solve for \(\theta_{1z}\) and set the rotation for the root. If done correctly, the wrist should be at the desired position exactly.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Last, solve for full root rotation in terms of \(\gamma\) and \(\beta\). Once correct, the wrist position should match the goal position&#8201;&#8212;&#8201;so long as it is in reach.</p>
+</li>
+</ul>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/2link.mp4" height="400" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p>The basecode includes a simple interface and 3D viewer. See above for a demo.</p>
+</div>
+<div class="paragraph">
+<p>The camera can be controlled with the mouse:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Left-button drag with the mouse to rotate</p>
+</li>
+<li>
+<p>Right-button drag with the mouse to pan</p>
+</li>
+<li>
+<p>Middle-button drag with the mouse to zoom</p>
+</li>
+<li>
+<p>'f' button will focus the view on the character</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The player control panel on the top left can be used to move the goal position.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unique">4. Unique</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Personalize one the demos from this assignment. Below are some ideas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Support more actions for your character, such as jumping</p>
+</li>
+<li>
+<p>Modify your character to carry something</p>
+</li>
+<li>
+<p>Create a trailing effect for your character</p>
+</li>
+<li>
+<p>Create a unique looking character or environment.</p>
+</li>
+<li>
+<p>Animate 2-link arm capable of catching an object</p>
+</li>
+<li>
+<p>Create a character animated procedurally using IK</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hand_in_your_work">5. Hand-in your work</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_to_hand_in">5.1. What to hand-in</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Your code</p>
+</li>
+<li>
+<p>Images, movies, gifs, as appropriate</p>
+</li>
+<li>
+<p>Your readme</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_hand_in">5.2. How to hand-in</h3>
+<div class="paragraph">
+<p>Check-in your code, images, and writeup and push the changes to Github.
+If everything is uploaded correctly, you will see your work on Github.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; cd animation-toolkit
+&gt; git add &lt;files&gt;
+&gt; git commit -m "helpful message"
+&gt; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Best practice is to always commit changes as you work, rather than waiting until
+the end to commit changes. You can always revert to an old version if you need to!</p>
+</div>
+<div class="paragraph">
+<p>Your code should download and compile without modifications. Test your assignment on a lab machine (Park 230) to ensure that it works.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generating_images_movies_and_gifs">5.3. Generating images, movies and gifs</h3>
+<div class="paragraph">
+<p><strong>Screenshots</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can take a screenshot by</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prt Scrn to take a screenshot of the desktop.</p>
+</li>
+<li>
+<p>Alt + Prt Scrn to take a screenshot of a window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Gifs</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use Peek to create gifs.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtopeek.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Movies</strong></p>
+</div>
+<div class="paragraph">
+<p>On Ubuntu, you can use <code>recordmydesktop</code> to record movies in .ogv format.</p>
+</div>
+<div class="paragraph">
+<p>By default, the whole desktop is recorded unless you give it a window id.
+To get the window id, call <code>xwininfo</code> and click on the window. Then pass the
+id to <code>recordmydesktop</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; recordmydesktop --windowid &lt;WindowId&gt; --no-sound  --v_quality 30 -o &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check the video, open it in firefox.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&gt; firefox &lt;name&gt;.ogv</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="Labs/howtorecord.mp4" width="600" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Files larger than 100 MB cannot be checked into git. In general,
+videos should be less than 5 MB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_your_readme_md">5.4. Update your Readme.md</h3>
+<div class="paragraph">
+<p>Update <code>assignments/a9-ik/Readme.md</code> to document the features in your assignment. Your readme should contain your images, gifs, and movies.</p>
+</div>
+<div class="paragraph">
+<p>On github, you can drag and drop movies into your readme files. Images and gifs can also be added that way, or by including text such as the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>![Alternate text here](/path/to/image.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <a href="https://www.markdownguide.org/basic-syntax/">Guide</a> can help you with writing markdown.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-11-14 12:15:21 -0500
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
