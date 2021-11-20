@@ -58,7 +58,7 @@ rotations of the interior joints.
 
 The basecode comes with a viewer to help you test your algorithm.
 
-video::Labs/ikccd.ogv[]
+video::Labs/ikviewer-2020.ogv[]
 
 User interface overview
 
@@ -73,12 +73,13 @@ The right panel lets you select the algorithm for IK along with IK parameters. F
 
 * Threshold: how close to the goal do we need to be to stop iterating
 * Max iterations: max number of iterations to use before stopping the algorithm
+* Nudge: the nudge factor to use when moving towards the goal
 * Chain length: the number of ancestors to "nudge" towards the goal. If the chain size is -1, we use all ancestors up to (but excluding) the root.
-* IK Algorithm: Either CCD or Analytic
+* Epsilon: threshold for analytic IK
 
 == CCD 
 
-Implement the CCD algorithm in `IKController::solveIKCCD()`.
+Implement the CCD algorithm in `IKController::solveIKCCD()` in `ik_controller.cpp`.
 
 [source]
 ----
@@ -103,7 +104,7 @@ To run the demo from the `build` directory, type
 
 [source]
 ----
-build> ../bin/a10-ik 
+build> ../bin/a10-ikviewer 
 ----
 
 NOTE: When you change the local rotation of a joint, you must call fk() to update the global rotations and translations.
@@ -116,7 +117,7 @@ Implementation Hints
 
 == Analytical method
 
-Implement `IKController::solveIKAnalytic()`. Your solution should combine the 
+Implement `IKController::solveIKAnalytic()` in `ik_controller.cpp`. Your solution should combine the 
 techniques of the simple two-link analytic approach with CCD's angle/axis calculation. This work 
 will allow us to animate the legs and arms of the character such that the knees and elbows 
 bend along their natural axis. 

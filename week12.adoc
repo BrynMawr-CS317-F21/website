@@ -1,0 +1,22 @@
+include::header.adoc[]
+
+:title: Week 12: Introduction to physically-based animation
+:Author Initials: ASN
+:Date:    2020-02-07
+:Revision: 0.1
+
+= {title}
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7b4d0b17-f6a1-4242-9f27-add4013712a0[Lecture 11/16/2021], link:Notes/Lecture20-11.16.2021.pdf[Notes]
+
+link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d4cf3fbd-726a-484c-8297-ade4014b8196[Lecture 11/18/2021], link:Notes/Lecture21-11.18.2021.pdf[Notes]
+
+Additional Resources:
+
+* Read link:https://graphics.stanford.edu/courses/cs448b-00-winter/papers/phys_model.pdf[Physically Based Modeling SIGGRAPH Course]
+* Open Dynamics Engine (ODE) link:http://ode.org/wiki/index.php?title=Manual[Documentation]
+* Pushing a box: link:Labs/ABoxSim1.cpp.txt[Code]
+* Box with collisions: link:Labs/ABoxSim2.cpp.txt[Code]
+* Mixing kinematic and dynamic boxes: link:Labs/ABoxSim3.cpp.txt[Code]
+* Particle Systems. Demos: water, smoke, fireworks, cloth, jello
+* Simple force particle: link:Labs/forceParticle.cpp.txt[Code]

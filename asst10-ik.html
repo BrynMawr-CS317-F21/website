@@ -118,7 +118,7 @@ rotations of the interior joints.</p>
 </div>
 <div class="videoblock">
 <div class="content">
-<video src="Labs/ikccd.ogv" controls>
+<video src="Labs/ikviewer-2020.ogv" controls>
 Your browser does not support the video tag.
 </video>
 </div>
@@ -155,17 +155,20 @@ The right panel lets you select the algorithm for IK along with IK parameters. F
 <p>Max iterations: max number of iterations to use before stopping the algorithm</p>
 </li>
 <li>
+<p>Nudge: the nudge factor to use when moving towards the goal</p>
+</li>
+<li>
 <p>Chain length: the number of ancestors to "nudge" towards the goal. If the chain size is -1, we use all ancestors up to (but excluding) the root.</p>
 </li>
 <li>
-<p>IK Algorithm: Either CCD or Analytic</p>
+<p>Epsilon: threshold for analytic IK</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="_ccd">2.1. CCD</h3>
 <div class="paragraph">
-<p>Implement the CCD algorithm in <code>IKController::solveIKCCD()</code>.</p>
+<p>Implement the CCD algorithm in <code>IKController::solveIKCCD()</code> in <code>ik_controller.cpp</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -191,7 +194,7 @@ bool IKController::solveIKCCD(Skeleton&amp; skeleton, int jointid,
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>build&gt; ../bin/a10-ik</code></pre>
+<pre class="highlight"><code>build&gt; ../bin/a10-ikviewer</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -226,7 +229,7 @@ When you change the local rotation of a joint, you must call fk() to update the 
 <div class="sect2">
 <h3 id="_analytical_method">2.2. Analytical method</h3>
 <div class="paragraph">
-<p>Implement <code>IKController::solveIKAnalytic()</code>. Your solution should combine the
+<p>Implement <code>IKController::solveIKAnalytic()</code> in <code>ik_controller.cpp</code>. Your solution should combine the
 techniques of the simple two-link analytic approach with CCD&#8217;s angle/axis calculation. This work
 will allow us to animate the legs and arms of the character such that the knees and elbows
 bend along their natural axis.</p>
@@ -538,7 +541,7 @@ videos should be less than 5 MB.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-14 13:31:50 -0500
+Last updated 2021-11-20 15:02:40 -0500
 </div>
 </div>
 <script type="text/x-mathjax-config">
