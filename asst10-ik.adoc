@@ -58,7 +58,7 @@ rotations of the interior joints.
 
 The basecode comes with a viewer to help you test your algorithm.
 
-video::Labs/ikviewer-2020.ogv[]
+video::Labs/ikviewer-2020.mp4[]
 
 User interface overview
 
@@ -188,7 +188,7 @@ Suggested approach
 
 1) Animate the hand targets first.
 
-image::Lab/dancer1.gif[]
+image::Labs/dancer1.gif[]
 
 2) Then use IKController to position the hands so that they follow the targets 
 
