@@ -1,49 +1,52 @@
-#include "AFramework.h"
-#include "AGLObjects.h" // Helpers for drawing shapes
+#include "atkui/framework.h"
+#include "atk/toolkit.h"
 #include <random>
 #include <functional>
 
-class ParticleExample : public AFramework
+using namespace glm;
+using namespace atk;
+
+class ParticleExample : public atkui::Framework
 {
 public:
-   ParticleExample() : AFramework(AFramework::Orthographic) // calls base class ctor
+   ParticleExample() : atkui::Framework(atkui::Orthographic) // calls base class ctor
    {
    }
 
    virtual void setup() 
    {
-      _pos = AVector3(0,0,0);
-      _velocity = AVector3(100,100,0);
-      _gravity = AVector3(0,-100,0);
+      _pos = vec3(0,0,0);
+      _velocity = vec3(100,100,0);
+      _gravity = vec3(0,-100,0);
       _mass = 2.0;
    }
 
    virtual void update() 
    {
-      AVector3 accumForces = _gravity;
-      AVector3 acc =  accumForces / _mass; 
+      vec3 accumForces = _gravity;
+      vec3 acc =  accumForces / _mass; 
 
       _pos = _pos + dt() * _velocity;
       _velocity = _velocity + dt() * acc;
    }
 
-   virtual void draw() //overrides draw
+   virtual void scene() //overrides draw
    {
-      ASetColor(AVector3(1,0,0));
-      ADrawSphere(_pos, 10);
+      update();
+      setColor(vec3(1,0,0));
+      drawSphere(_pos, 10);
    }
 
 private:
-   AVector3 _gravity;
-   AVector3 _velocity;
-   AVector3 _pos;
-   double _mass;
+   vec3 _gravity;
+   vec3 _velocity;
+   vec3 _pos;
+   float _mass;
 };
 
 int main(int argc, char** argv)
 {
    ParticleExample viewer;
-   viewer.init(argc, argv);
    viewer.run();
    return 0;
 }

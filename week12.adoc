@@ -15,8 +15,8 @@ Additional Resources:
 
 * Read link:https://graphics.stanford.edu/courses/cs448b-00-winter/papers/phys_model.pdf[Physically Based Modeling SIGGRAPH Course]
 * Open Dynamics Engine (ODE) link:http://ode.org/wiki/index.php?title=Manual[Documentation]
-* Pushing a box: link:Labs/ABoxSim1.cpp.txt[Code]
-* Box with collisions: link:Labs/ABoxSim2.cpp.txt[Code]
-* Mixing kinematic and dynamic boxes: link:Labs/ABoxSim3.cpp.txt[Code]
-* Particle Systems. Demos: water, smoke, fireworks, cloth, jello
 * Simple force particle: link:Labs/forceParticle.cpp.txt[Code]
+* Particle Systems. Unity demos (link:https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325[Unity standard assets]). Install Unity and then install the standard assets package. Drag and drop particle assets from the content browser to the 3D view to add a particle system to your scene to add them to your scene.
+//* Pushing a box: link:Labs/ABoxSim1.cpp.txt[Code]
+//* Box with collisions: link:Labs/ABoxSim2.cpp.txt[Code]
+//* Mixing kinematic and dynamic boxes: link:Labs/ABoxSim3.cpp.txt[Code]

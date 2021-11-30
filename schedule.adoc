@@ -143,18 +143,19 @@ Physics. Intro to rigid body simulation.
 |Nov 23 (No class Thursday, Thanksgiving)
 |*Steering* anchor:week13[]
 
-A simple car model. Boids.
+A simple car model. 
 
-* link:http://www.red3d.com/cwr/steer/gdc99[Boids]
+* link:Notes/Lecture22-11.23.2021.pdf[Notes]
+* link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7f309291-4da5-4d64-86af-ade90156f0d1[Video]
 
 //-----------------------------
 |14
-|Nov 39, Dec 2
-|*Character animation tools* anchor:week14[]
+|Nov 30, Dec 2
+|*Boids, motion capture* anchor:week14[]
 
-Motion capture. Tools for character modeling, skinning, and keyframing.
+Boids. Motion capture technologies. 
 
-* link:https://www.blender.org[Blender]
+* link:http://www.red3d.com/cwr/steer/gdc99[Boids]
 //* *Assignment 11:* link:Labs/lab11-steering.html[Flocks]: *Due Dec 9*
 //* link:https://www.skinning.org/direct-methods.pdf[Skinning short course (SIGGRAPH 2014)]
 
@@ -163,7 +164,10 @@ Motion capture. Tools for character modeling, skinning, and keyframing.
 |Dec 7, Dec 9
 |*Character animation in game engines* anchor:week15[]
 
+Tools for character modeling, skinning, and keyframing. Character animation techniques in game engines.
+
+* link:https://www.blender.org[Blender]
 * link:https://www.unity3d.com[Unity]
-* link:https:https://www.unrealengine.com/en-US/[Unity]
+* link:https:https://www.unrealengine.com/en-US/[Unreal Engine]
 
 |===
