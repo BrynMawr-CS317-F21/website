@@ -155,6 +155,8 @@ A simple car model.
 
 Boids. Motion capture technologies. 
 
+* link:Notes/Lecture23-11.30.2021.pdf[notes]
+* link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bd6da810-c9c1-4a35-9ad7-adf0014bdda5[Video]
 * link:http://www.red3d.com/cwr/steer/gdc99[Boids]
 //* *Assignment 11:* link:Labs/lab11-steering.html[Flocks]: *Due Dec 9*
 //* link:https://www.skinning.org/direct-methods.pdf[Skinning short course (SIGGRAPH 2014)]
