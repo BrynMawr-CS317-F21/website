@@ -16,84 +16,182 @@
 <h2 id="_understanding_analytic_inverse_kinematics" class="discrete">Understanding analytic inverse kinematics</h2>
 <h2 id="_name" class="discrete">Name:</h2>
 <div class="paragraph">
-<p><strong>Due November 23, in class</strong></p>
+<p><strong>Due December 2, in lab</strong></p>
 </div>
 <div class="paragraph">
 <p>This worksheet is intended as a short 60 min exercise to be done in groups of 1-3 people.</p>
 </div>
+<h2 id="_two_link_chain_inverse_kinematics" class="discrete">Two-link chain inverse kinematics</h2>
 <div class="paragraph">
-<p>&lt;h3&gt;Question 1: Practice two-link chain analytical method (15 points)&lt;/h3&gt;
-&lt;hr&gt;</p>
+<p>In this question, you will work through the calculations needed to perform IK
+for a two-link chain on paper.</p>
 </div>
 <div class="paragraph">
-<p>&lt;p&gt;In this question, you will work through the calculations needed to perform IK
-for a two-link chain on paper. Include your answers in your readme for this week.
-Remember that you can use python, octave, matlab, maple, our basecode or any other
+<p>Remember that you can use python, octave, matlab, maple, our basecode or any other
 method to check your answers!</p>
 </div>
 <div class="paragraph">
-<p>&lt;p&gt;Suppose we have a 2-link chain as in class.</p>
+<p>Suppose we have a 2-link chain as in class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Labs/2LinkChain.png" alt="2LinkChain">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The root joint \(p_1\) is located at the origin.</p>
+</li>
+<li>
+<p>The next joint \(p_2\) is offset from \(p_1\) by \((2,0,0)^T\)</p>
+</li>
+<li>
+<p>The next joint \(p_3\) is offset from \(p_2\) by \((5,0,0)^T\)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>&lt;br&gt;
-&lt;br&gt;
-&lt;img src="2LinkChain.png"&gt;
-&lt;br&gt;
-&lt;br&gt;</p>
+<p>Reference: <a href="IK-Worksheet.html">IK example</a></p>
 </div>
 <div class="paragraph">
-<p>&lt;p&gt;The root joint p&lt;sub&gt;1&lt;/sub&gt; is located at the origin.</p>
+<p>Suppose we wish to position \(p_3\) at a target position \(p_d = (-4,3,0)^T\)</p>
 </div>
 <div class="paragraph">
-<p>&lt;p&gt;The next joint p&lt;sub&gt;2&lt;/sub&gt; is offset from p&lt;sub&gt;1&lt;/sub&gt; by (2,0,0)&lt;sup&gt;T&lt;/sup&gt;</p>
+<p>Let&#8217;s use the analytic IK method for class to
+compute rotations for \(p_1\) and \(p_2\) such that
+\(p_3\) is located at \(p_d\).</p>
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;The next joint p&lt;sub&gt;3&lt;/sub&gt; is offset from p&lt;sub&gt;2&lt;/sub&gt; by (5,0,0)&lt;sup&gt;T&lt;/sup&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the desired distance r between \(p_3\) and \(p_1\)?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is L1?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is L2?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is the angle \(\theta_{2z}\) that achieves the desired length?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is the new global position of joint 3? Verify that setting the rotation of joint 1 to \(\theta_{2z}\) results in the desired distance.
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>&lt;p&gt;&lt;b&gt;Solve using the analytic two-link method (Reference: &lt;a href="../IK-Worksheet.html"&gt;here&lt;/a&gt;)&lt;/b&gt;&lt;br&gt;</p>
+<h3 id="_use_polar_coordinates_to_compute_the_orientation_of_joint_1" class="discrete">Use polar coordinates to compute the orientation of joint 1</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>What is the angle \(\theta_{1z}\) that points the limb along the x axis?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is the new global position of joint 3? Verify that setting \(\theta_{2z}\) and \(\theta_{1z}\) points the limb along the x axis using the kinematic equation for our joints.
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>Compute the heading (\(\beta\)) and elevation (\(\gamma\)) that point the limb towards the target \(p_d\).
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>Plug in \(\beta\), \(\gamma\), \(\theta_{1z}\), and \(\theta_{2z}\) and verify that \(p_3\) is now at location \(p_d\).
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>&lt;li&gt;Suppose we wish to position p&lt;sub&gt;3&lt;/sub&gt; at a target position
-p&lt;sub&gt;d&lt;/sub&gt; = (-4,3,0)&lt;sup&gt;T&lt;/sup&gt;.
-Let&#8217;s use the analytic IK method for class to
-compute rotations for p&lt;sub&gt;1&lt;/sub&gt; and p&lt;sub&gt;2&lt;/sub&gt; such that
-p&lt;sub&gt;3&lt;/sub&gt; is located at p&lt;sub&gt;d&lt;/sub&gt;.
-&lt;ol&gt;
-&lt;li&gt;&lt;b&gt;(1 point)&lt;/b&gt; What is the desired distance r between p&lt;sub&gt;3&lt;/sub&gt; and p&lt;sub&gt;1&lt;/sub&gt;?
-&lt;li&gt;&lt;b&gt;(1 point)&lt;/b&gt; What is L1?
-&lt;li&gt;&lt;b&gt;(1 point)&lt;/b&gt; What is L2?
-&lt;li&gt;&lt;b&gt;(2 points)&lt;/b&gt;What is the angle \( \theta_{2z}\) that achieves the desired length?
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;What is the new global position of joint 3? Verify that setting the rotation of joint 1 to \(\theta_{2z} \) results in the desired distance.
-&lt;/ol&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;Using polar coordinates to compute the orientation of joint 1:
-&lt;ol&gt;
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt; What is the angle \( \theta_{1z}\) that points the limb along the x axis?
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt; What is the new global position of joint 3? Verify that setting \( \theta_{2z} \) and \( \theta_{1z} \) points the limb along the x axis using the kinematic equation for our joints.
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt; Compute the heading (beta) and elevation (gamma) that point the limb towards the target \( p_d \).
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;Plug in beta, gamma, \( \theta_{1z} \), and \( \theta_{2z} \) and verify that \( p_3 \) is now at location \( p_d \).
-&lt;/ol&gt;</p>
-</div>
-<div class="paragraph">
-<p>&lt;p&gt;Using angle/axis to compute the orientation of joint 1:
-&lt;ol&gt;
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;After setting the length, what is the global position of joint 3?
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;What is the direction vector r?
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;What is the error vector e?
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;What is the angle phi and axis of rotation?
-&lt;li&gt;&lt;b&gt;(1 points)&lt;/b&gt;Plugin in the angle/axis rotation and \(\theta_{2z} \) and verify that \( p_3 \) is now at location \( p_d \)
-&lt;/ol&gt;</p>
+<h3 id="_find_an_angleaxis_rotation_to_compute_the_orientation_of_joint_1" class="discrete">Find an angle/axis rotation to compute the orientation of joint 1</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>After setting a rotation for joint2, what is the global position of joint 3?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is the direction vector \(r\)?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is the error vector \(e\)?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>What is the angle \(\phi\) and axis of rotation?
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br></p>
+</li>
+<li>
+<p>Plugin in the angle/axis rotation and \(\theta_{2z}\) and verify that \(p_3\) is now at location \(p_d\)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
+&#160;<br>
 &#160;<br></p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-30 14:15:39 -0400
+Last updated 2021-12-01 10:49:38 -0500
 </div>
 </div>
 <script type="text/x-mathjax-config">

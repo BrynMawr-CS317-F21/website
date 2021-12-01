@@ -12,64 +12,124 @@ include::header.adoc[]
 [discrete]
 = Name: 
 
-*Due November 23, in class*
+*Due December 2, in lab*
 
 This worksheet is intended as a short 60 min exercise to be done in groups of 1-3 people.
 
 [discrete]
-<h3>Question 1: Practice two-link chain analytical method (15 points)</h3>
-<hr>
 
-<p>In this question, you will work through the calculations needed to perform IK 
-for a two-link chain on paper. Include your answers in your readme for this week. 
+= Two-link chain inverse kinematics
+
+In this question, you will work through the calculations needed to perform IK 
+for a two-link chain on paper. 
+
 Remember that you can use python, octave, matlab, maple, our basecode or any other 
 method to check your answers! 
 
-<p>Suppose we have a 2-link chain as in class. 
+Suppose we have a 2-link chain as in class. 
 
-<br>
-<br>
-<img src="2LinkChain.png">
-<br>
-<br>
+image::Labs/2LinkChain.png[]
 
-<p>The root joint p<sub>1</sub> is located at the origin.
+* The root joint stem:[p_1] is located at the origin.
+* The next joint stem:[p_2] is offset from stem:[p_1] by stem:[(2,0,0)^T]
+* The next joint stem:[p_3] is offset from stem:[p_2] by stem:[(5,0,0)^T]
 
-<p>The next joint p<sub>2</sub> is offset from p<sub>1</sub> by (2,0,0)<sup>T</sup>
+Reference: link:IK-Worksheet.html[IK example]
 
-<p>The next joint p<sub>3</sub> is offset from p<sub>2</sub> by (5,0,0)<sup>T</sup>
+Suppose we wish to position stem:[p_3] at a target position stem:[p_d = (-4,3,0)^T]  
 
-<p><b>Solve using the analytic two-link method (Reference: <a href="../IK-Worksheet.html">here</a>)</b><br>
-
-<li>Suppose we wish to position p<sub>3</sub> at a target position 
-p<sub>d</sub> = (-4,3,0)<sup>T</sup>.  
 Let's use the analytic IK method for class to 
-compute rotations for p<sub>1</sub> and p<sub>2</sub> such that 
-p<sub>3</sub> is located at p<sub>d</sub>.
-<ol>
-<li><b>(1 point)</b> What is the desired distance r between p<sub>3</sub> and p<sub>1</sub>?
-<li><b>(1 point)</b> What is L1?
-<li><b>(1 point)</b> What is L2?
-<li><b>(2 points)</b>What is the angle \( \theta_{2z}\) that achieves the desired length? 
-<li><b>(1 points)</b>What is the new global position of joint 3? Verify that setting the rotation of joint 1 to \(\theta_{2z} \) results in the desired distance.
-</ol>
+compute rotations for stem:[p_1] and stem:[p_2] such that 
+stem:[p_3] is located at stem:[p_d].
 
-<p>Using polar coordinates to compute the orientation of joint 1:
-<ol>
-<li><b>(1 points)</b> What is the angle \( \theta_{1z}\) that points the limb along the x axis? 
-<li><b>(1 points)</b> What is the new global position of joint 3? Verify that setting \( \theta_{2z} \) and \( \theta_{1z} \) points the limb along the x axis using the kinematic equation for our joints. 
-<li><b>(1 points)</b> Compute the heading (beta) and elevation (gamma) that point the limb towards the target \( p_d \).  
-<li><b>(1 points)</b>Plug in beta, gamma, \( \theta_{1z} \), and \( \theta_{2z} \) and verify that \( p_3 \) is now at location \( p_d \).
-</ol>
+* What is the desired distance r between stem:[p_3] and stem:[p_1]?
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is L1?
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is L2?
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is the angle stem:[\theta_{2z}] that achieves the desired length? 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is the new global position of joint 3? Verify that setting the rotation of joint 1 to stem:[\theta_{2z}] results in the desired distance.
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
 
-<p>Using angle/axis to compute the orientation of joint 1:
-<ol>
-<li><b>(1 points)</b>After setting the length, what is the global position of joint 3? 
-<li><b>(1 points)</b>What is the direction vector r?
-<li><b>(1 points)</b>What is the error vector e?
-<li><b>(1 points)</b>What is the angle phi and axis of rotation?
-<li><b>(1 points)</b>Plugin in the angle/axis rotation and \(\theta_{2z} \) and verify that \( p_3 \) is now at location \( p_d \)
-</ol>
+[discrete]
+== Use polar coordinates to compute the orientation of joint 1
 
+* What is the angle stem:[\theta_{1z}] that points the limb along the x axis? 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is the new global position of joint 3? Verify that setting stem:[\theta_{2z}] and stem:[\theta_{1z}] points the limb along the x axis using the kinematic equation for our joints. 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* Compute the heading (stem:[\beta]) and elevation (stem:[\gamma]) that point the limb towards the target stem:[p_d].  
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* Plug in stem:[\beta], stem:[\gamma], stem:[\theta_{1z}], and stem:[\theta_{2z}] and verify that stem:[p_3] is now at location stem:[p_d].
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+
+[discrete]
+== Find an angle/axis rotation to compute the orientation of joint 1
+
+* After setting a rotation for joint2, what is the global position of joint 3? 
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is the direction vector stem:[r]?
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is the error vector stem:[e]?
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* What is the angle stem:[\phi] and axis of rotation?
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+* Plugin in the angle/axis rotation and stem:[\theta_{2z}] and verify that stem:[p_3] is now at location stem:[p_d]
+
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
+{nbsp} +
 {nbsp} +
 {nbsp} +

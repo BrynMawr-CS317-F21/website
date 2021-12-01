@@ -11,7 +11,7 @@ include::header.adoc[]
 
 _In which, we use inverse kinematics to animate our characters_
 
-**Due Thursday, Dec 2, before midnight**
+**Due Friday, Dec 3, before midnight**
      
 The goal of this lab is to 
 
@@ -188,7 +188,7 @@ Suggested approach
 
 1) Animate the hand targets first.
 
-image::Labs/dancer1.gif[]
+image::Labc/dancer1.gif[]
 
 2) Then use IKController to position the hands so that they follow the targets 
 
