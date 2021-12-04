@@ -11,8 +11,8 @@ include::header.adoc[]
 
 [.anns]
 == Announcements
-* *Assignment 10:* link:asst10-ik.html[Reach for your goals]: *Extended: Due Dec 3*
-* link:week12-ik-worksheet.html[Lab - IK Worksheet]: *Due Dec 2* 
+* *Assignment 11:* link:asst11-steering.html[Steering]: *Due Dec 9*
+* *Final Exam*: Self-scheduled, 3 hours, Open book and laptop.
 
 == **Schedule**
 
