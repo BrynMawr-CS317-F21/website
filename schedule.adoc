@@ -135,7 +135,7 @@ Analytical method for two-link chain. CCD Algorithm.
 Physics. Intro to rigid body simulation.
 
 * link:week12.html[Additional Resources]
-* *Assignment 10:* link:Labs/Lab10-ik.html[Reach for your goals]: *Due Dec 2*
+* *Assignment 10:* link:asst10-ik.html[Reach for your goals]: *Due Dec 2*
 * *Quiz4 Nov 18*
 
 //-----------------------------
