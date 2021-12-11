@@ -172,5 +172,7 @@ Tools for character modeling, skinning, and keyframing. Character animation tech
 * link:https://www.blender.org[Blender]
 * link:https://www.unity3d.com[Unity]
 * link:https:https://www.unrealengine.com/en-US/[Unreal Engine]
+* link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=55cd587f-5b89-4628-aacd-adf701587b23[Skins and meshes in blender: workshop]
+* link:https://brynmawr.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e79bb6eb-92b9-4c24-b6cc-adfa0128adac[Unity move tree demo]
 
 |===
