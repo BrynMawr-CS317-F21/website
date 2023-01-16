@@ -9,16 +9,9 @@ include::header.adoc[]
 
 = {course}: {title} -- {term}
 
-[.anns]
-== Announcements
-* *Final Exam*: self-scheduled, 3 hours, open book/laptop, link:https://www.brynmawr.edu/access-services/students/procedures-and-schedules-final-exams-fall-2021[See here for details]
-
-== **Schedule**
-
-The syllabus may change during the semester. Please check here every week for updates 
-on lecture content, worksheets, and assignments.
-
-include::schedule.adoc[]
+//[.anns]
+//== Announcements
+//* *Final Exam*: self-scheduled, 3 hours, open book/laptop, link:https://www.brynmawr.edu/access-services/students/procedures-and-schedules-final-exams-fall-2021[See here for details]
 
 == Course Info
 
@@ -43,7 +36,7 @@ Optional Texts (available at the library):
 |===
 
 
-**Welcome to CS317**, 
+**Welcome to CS317** 
 
 The goal of this course is to give students a foundation for programming 3D animated and interactive graphics.
 
@@ -63,6 +56,39 @@ If you would like to work on your own laptop, you can follow the instructions be
 * **C++ development environment** Please follow the instructions at link:https://github.com/BrynMawr-CS312-2021/cplusplus-beginners[cplusplus-beginners] 
 * **Graphics development environment** Please follow the instructions at link:https://github.com/BrynMawr-CS312-2021/getting-started[getting-started] 
 * **Blender (Optional)** Please go to link:https://blender.org[blender.org]. Blender is an open-source 3D modeling tool and advanced renderer. We will occasionally use blender to inspect and edit models and materials.
+
+=== Course Preview
+
+Below are some of the demos you will implement during the semester.
+
+[cols="1a,1a,1a"]
+|===
+|.Representing and blending between rotations
+image:Labs/slerpTeapot.gif[width=300px]
+|.Bezier curves
+image:Labs/screensaver.gif[width=300px]
+|.Non-human characters
+image:Labs/butterfly.gif[width=300px]
+|.Squirrel paper doll based on forward kinematics.
+image:Labs/squirrel.png[width=300px]
+|.Characters based on motion capture and hierarchical transformations.
+image:Labs/characters.gif[width=300px]
+|.Animations based on inverse kinematics
+image:Labs/dancer5.gif[width=300px]
+|.Crowds based on physically-based steering and flocking behaviors
+image::Labs/leader.gif[width=300px]
+|.Physics-based simulation
+image:Labs/wallPhysics.gif[width=300px]
+|.Motion blending, warping and splicing
+image:Labs/splice-gangnam-walk.gif[width=300px]
+|===
+
+== **Schedule**
+
+The syllabus may change during the semester. Please check here every week for updates 
+on lecture content, worksheets, and assignments.
+
+include::schedule.adoc[]
 
 == Grading Policies
 

@@ -15,10 +15,13 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_announcements">Announcements</a></li>
-<li><a href="#_schedule"><strong>Schedule</strong></a></li>
 <li><a href="#_course_info">Course Info</a></li>
-<li><a href="#_software">Software</a></li>
+<li><a href="#_software">Software</a>
+<ul class="sectlevel2">
+<li><a href="#_course_preview">Course Preview</a></li>
+</ul>
+</li>
+<li><a href="#_schedule"><strong>Schedule</strong></a></li>
 <li><a href="#_grading_policies">Grading Policies</a>
 <ul class="sectlevel2">
 <li><a href="#_exam_and_quizzes">Exam and Quizzes</a></li>
@@ -34,15 +37,167 @@
 </div>
 </div>
 <div id="content">
-<div class="sect1 anns">
-<h2 id="_announcements">Announcements</h2>
+<div class="sect1">
+<h2 id="_course_info">Course Info</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Professor</strong>: <a href="https://www.cs.brynmawr.edu/~alinen">Aline Normoyle</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Office</strong>:Park 204</p>
+</div>
+<div class="paragraph">
+<p><strong>Office hours</strong>:Tue 2:25-3:45pm, and by appointment</p>
+</div>
+<div class="paragraph">
+<p>Optional Texts (available at the library):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Computer Animation, 3rd Edition</em> by Rick Parent</p>
+</li>
+<li>
+<p><em>Mathematics for 3D Game Programming and Computer Graphics, 3rd Edition</em> by Eric Lengyel</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all fit-content center">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Activity</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lecture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Park 336 (and Zoom (Link posted on Slack))</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tuesday, Thursday, 12:55am-2:15pm EST</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Park 230</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Thursday, 2:25pm - 3:45pm EST</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Professor Office Hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Science Center (Labs/Atrium/Park 204)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Late afternoon Tues/Weds/Thurs. Check <a href="https://calendly.com/anormoyle/office-hours">calend.ly</a> for my availability. No appointment necessary unless you would to talk privately.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Welcome to CS317</strong></p>
+</div>
+<div class="paragraph">
+<p>The goal of this course is to give students a foundation for programming 3D animated and interactive graphics.</p>
+</div>
+<div class="paragraph">
+<p>In particular, we will "look under the hood" at the algorithms used by game engines and modeling tools to create authorable, interactive characters and special effects. Labs will give students hands on experience implementing algorithms in C++ as well as opportunities to derive their own unique animations. Topics will include mathematical foundations (coordinate systems, transformations, quaternions), interpolation techniques, keyframing, motion capture and procedural animation, and physically-based systems. Animation is hard work but nothing beats the joy and satisfaction of creating your own worlds and watching them come to life!</p>
+</div>
+<div class="paragraph">
+<p>Prereqs: Discrete Math (CS 231) and Systems Programming (CS 223). Calculus and linear algebra is also helpful.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software">Software</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Final Exam</strong>: self-scheduled, 3 hours, open book/laptop, <a href="https://www.brynmawr.edu/access-services/students/procedures-and-schedules-final-exams-fall-2021">See here for details</a></p>
+<p><strong>Slack</strong> Please go to <a href="https://slack.com/signin">slack.com</a>. Our workspace is BrynMawr-CS317-F21. You can ask questions and request one-on-one help over zoom using this course&#8217;s slack channel.</p>
+</li>
+<li>
+<p><strong>Development environment</strong> This refers to the tools we will use to write and run code. We will program in C++ in a Ubuntu programming environment (Park 230), although you may setup your windows or mac laptop for development if you like.</p>
+</li>
+<li>
+<p><strong>Github Account</strong> Please go to <a href="https://github.com/">github.com</a> and register. You will be using github to submit assignments.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>You will have everything you need to run your assignments in the CS labs in the Park Science Center (Park 230).
+If you would like to work on your own laptop, you can follow the instructions below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>C++ development environment</strong> Please follow the instructions at <a href="https://github.com/BrynMawr-CS312-2021/cplusplus-beginners">cplusplus-beginners</a></p>
+</li>
+<li>
+<p><strong>Graphics development environment</strong> Please follow the instructions at <a href="https://github.com/BrynMawr-CS312-2021/getting-started">getting-started</a></p>
+</li>
+<li>
+<p><strong>Blender (Optional)</strong> Please go to <a href="https://blender.org">blender.org</a>. Blender is an open-source 3D modeling tool and advanced renderer. We will occasionally use blender to inspect and edit models and materials.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_course_preview">Course Preview</h3>
+<div class="paragraph">
+<p>Below are some of the demos you will implement during the semester.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Representing and blending between rotations</div>
+<p><span class="image"><img src="Labs/slerpTeapot.gif" alt="slerpTeapot" width="300px"></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Bezier curves</div>
+<p><span class="image"><img src="Labs/screensaver.gif" alt="screensaver" width="300px"></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Non-human characters</div>
+<p><span class="image"><img src="Labs/butterfly.gif" alt="butterfly" width="300px"></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Squirrel paper doll based on forward kinematics.</div>
+<p><span class="image"><img src="Labs/squirrel.png" alt="squirrel" width="300px"></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Characters based on motion capture and hierarchical transformations.</div>
+<p><span class="image"><img src="Labs/characters.gif" alt="characters" width="300px"></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Animations based on inverse kinematics</div>
+<p><span class="image"><img src="Labs/dancer5.gif" alt="dancer5" width="300px"></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="Labs/leader.gif" alt="leader" width="300px">
+</div>
+<div class="title">Figure 1. Crowds based on physically-based steering and flocking behaviors</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Physics-based simulation</div>
+<p><span class="image"><img src="Labs/wallPhysics.gif" alt="wallPhysics" width="300px"></span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<div class="title">Motion blending, warping and splicing</div>
+<p><span class="image"><img src="Labs/splice-gangnam-walk.gif" alt="splice gangnam walk" width="300px"></span></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -421,111 +576,6 @@ Reorienting a motion. Crossfading.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_course_info">Course Info</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Professor</strong>: <a href="https://www.cs.brynmawr.edu/~alinen">Aline Normoyle</a></p>
-</div>
-<div class="paragraph">
-<p><strong>Office</strong>:Park 204</p>
-</div>
-<div class="paragraph">
-<p><strong>Office hours</strong>:Tue 2:25-3:45pm, and by appointment</p>
-</div>
-<div class="paragraph">
-<p>Optional Texts (available at the library):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Computer Animation, 3rd Edition</em> by Rick Parent</p>
-</li>
-<li>
-<p><em>Mathematics for 3D Game Programming and Computer Graphics, 3rd Edition</em> by Eric Lengyel</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all fit-content center">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Activity</th>
-<th class="tableblock halign-left valign-top">Location</th>
-<th class="tableblock halign-left valign-top">Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lecture</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Park 336 (and Zoom (Link posted on Slack))</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tuesday, Thursday, 12:55am-2:15pm EST</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lab</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Park 230</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Thursday, 2:25pm - 3:45pm EST</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Professor Office Hours</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Science Center (Labs/Atrium/Park 204)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Late afternoon Tues/Weds/Thurs. Check <a href="https://calendly.com/anormoyle/office-hours">calend.ly</a> for my availability. No appointment necessary unless you would to talk privately.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p><strong>Welcome to CS317</strong>,</p>
-</div>
-<div class="paragraph">
-<p>The goal of this course is to give students a foundation for programming 3D animated and interactive graphics.</p>
-</div>
-<div class="paragraph">
-<p>In particular, we will "look under the hood" at the algorithms used by game engines and modeling tools to create authorable, interactive characters and special effects. Labs will give students hands on experience implementing algorithms in C++ as well as opportunities to derive their own unique animations. Topics will include mathematical foundations (coordinate systems, transformations, quaternions), interpolation techniques, keyframing, motion capture and procedural animation, and physically-based systems. Animation is hard work but nothing beats the joy and satisfaction of creating your own worlds and watching them come to life!</p>
-</div>
-<div class="paragraph">
-<p>Prereqs: Discrete Math (CS 231) and Systems Programming (CS 223). Calculus and linear algebra is also helpful.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_software">Software</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Slack</strong> Please go to <a href="https://slack.com/signin">slack.com</a>. Our workspace is BrynMawr-CS317-F21. You can ask questions and request one-on-one help over zoom using this course&#8217;s slack channel.</p>
-</li>
-<li>
-<p><strong>Development environment</strong> This refers to the tools we will use to write and run code. We will program in C++ in a Ubuntu programming environment (Park 230), although you may setup your windows or mac laptop for development if you like.</p>
-</li>
-<li>
-<p><strong>Github Account</strong> Please go to <a href="https://github.com/">github.com</a> and register. You will be using github to submit assignments.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You will have everything you need to run your assignments in the CS labs in the Park Science Center (Park 230).
-If you would like to work on your own laptop, you can follow the instructions below:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>C++ development environment</strong> Please follow the instructions at <a href="https://github.com/BrynMawr-CS312-2021/cplusplus-beginners">cplusplus-beginners</a></p>
-</li>
-<li>
-<p><strong>Graphics development environment</strong> Please follow the instructions at <a href="https://github.com/BrynMawr-CS312-2021/getting-started">getting-started</a></p>
-</li>
-<li>
-<p><strong>Blender (Optional)</strong> Please go to <a href="https://blender.org">blender.org</a>. Blender is an open-source 3D modeling tool and advanced renderer. We will occasionally use blender to inspect and edit models and materials.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_grading_policies">Grading Policies</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -754,7 +804,7 @@ know that help and support are available. Staff members are trained to support s
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-10 19:32:56 -0500
+Last updated 2022-11-12 15:25:09 -0500
 </div>
 </div>
 </body>
